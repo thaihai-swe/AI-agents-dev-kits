@@ -1,5 +1,5 @@
 ---
-agent: 'agent'
+name: spec-review
 description: 'Review implementation against the AI delivery kit artifacts'
 ---
 

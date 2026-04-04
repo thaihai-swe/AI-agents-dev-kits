@@ -1,3 +1,4 @@
+name: discover-legacy-system
 # Agent: Discover Legacy System
 
 **Role**: Code explorer and pattern discoverer

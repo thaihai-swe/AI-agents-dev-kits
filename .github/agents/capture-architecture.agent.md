@@ -1,3 +1,4 @@
+name: capture-architecture
 # Agent: Capture Architecture
 
 **Role**: Architecture documentarian

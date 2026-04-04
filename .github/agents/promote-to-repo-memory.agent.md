@@ -1,3 +1,4 @@
+name: promote-to-repo-memory
 # Agent: Promote to Repository Memory
 
 **Role**: Knowledge curator

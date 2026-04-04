@@ -128,7 +128,7 @@ Key folders:
 1. **Read**: [USAGE-GUIDE.md](USAGE-GUIDE.md) (10 minute overview covering both Greenfield and Brownfield workflows)
 2. **Setup**: Run `@constitution` and `@project-knowledge-base` agents if new project
 3. **Begin**: Run appropriate first agent based on project type
-   - Greenfield: `@spec-requirement` 
+   - Greenfield: `@spec-requirement`
    - Brownfield: `@discover-legacy-system`
 
 ---

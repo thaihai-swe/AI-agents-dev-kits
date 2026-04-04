@@ -61,7 +61,7 @@ Result: Knowledge compounds instead of repeating
 
 ---
 
-### 3. **Repository Memory** (`/memories/repo/`) ⭐ NEW
+### 3. **Repository Memory** (`/memories/repo/`)
 **Scope**: This specific project
 **Owner**: Team
 **Lifetime**: For the life of the project

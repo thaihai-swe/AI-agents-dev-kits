@@ -1,5 +1,5 @@
 ---
-agent: 'agent'
+name: spec-implement
 description: 'Implement a feature from the approved spec, plan, and task list'
 ---
 
