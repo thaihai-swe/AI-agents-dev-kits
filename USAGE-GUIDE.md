@@ -1,9 +1,10 @@
 # AI Dev Kit: Usage Guide
 
-**Version**: 2.0
-**Last updated**: 2026-04-04
+**Version**: 1.0 (Production Ready)
+**Last updated**: April 4, 2026
+**Agents**: 13 | **Templates**: 11 | **Status**: Complete & Tested
 
-> 👈 **Quick overview?** See [README.md](README.md) | **All agents?** See [kit-docs/AGENTS-REFERENCE.md](kit-docs/AGENTS-REFERENCE.md)
+> 👈 **Quick overview?** See [README.md](README.md) | **Visual guides?** See [visual-maps/](visual-maps/) | **All agents?** See [kit-docs/AGENTS-REFERENCE.md](kit-docs/AGENTS-REFERENCE.md)
 
 ---
 
@@ -12,26 +13,27 @@
 ### Path 1: New Project (Greenfield)
 
 **One-time setup** (1 hour total):
-1. `@constitution` → Define project rules
-2. `@project-knowledge-base` → Document initial patterns
+1. `/constitution` → Define project rules
+2. `/patterns` → Document initial patterns
 
 **Per feature** (6-8 hours):
-1. `@spec-requirement` → Write spec
-2. `@spec-review-requirements` → Get approval
-3. `@spec-design` (optional) → Create technical design
-4. `@spec-plan` → Plan implementation
-5. `@spec-tasks` → Break into tasks
-6. `@spec-implement` → Write code
-7. `@spec-review` → Quality gate
+1. `/spec` → Write specification
+2. (Optional) `/analyze` → Research or investigate
+3. (Optional) `/design` → Create technical design
+4. `/plan` → Plan implementation
+5. `/tasks` → Break into tasks
+6. `/implement` → Write code
+7. `/review` → Quality gate
+8. `/archive` → Save learnings
 
 **See details**: [Greenfield Workflow](#greenfield-workflow-new-project) below
 
 ### Path 2: Existing Project (Brownfield)
 
 **One-time autonomous discovery** (~30 minutes):
-1. `@discover-legacy-system "system name"` → Explore codebase
-2. `@capture-architecture` → Document design
-3. `@promote-to-repo-memory` → Organize findings
+1. `/discover "system name"` → Explore codebase
+2. `/architecture` → Document design
+3. `/archive` → Organize findings
 
 **Result**: Project memory populated with gotchas, patterns, architecture
 
@@ -43,7 +45,7 @@
 
 1. Check `artifacts/features/<slug>/` for current status
 2. Read `memories/repo/*` for project context
-3. Run appropriate next agent
+3. Run appropriate next command
 4. Continue from last checkpoint
 
 **See details**: [Resuming Multi-Session Work](#resuming-multi-session-work) below
@@ -54,61 +56,73 @@
 
 ### Setup Phase: One-Time (30 minutes)
 
-**Step 1: Constitution Agent** (15 min)
+**Step 1: Constitution** (15 min)
 ```
-@constitution
+/constitution
 ```
 Creates: `memories/repo/constitution.md` with project rules
 
-**Step 2: Project Knowledge Base** (15 min)
+**Step 2: Patterns Library** (15 min)
 ```
-@project-knowledge-base
+/patterns
 ```
 Creates: `memories/repo/project-knowledge-base.md` with team patterns
 
 ### Feature Workflow: Per Feature (6-8 hours)
 
-**Step 1: Spec** (45-90 min)
+**Step 1: Specification** (45-90 min)
 ```
-@spec-requirement "Add [feature]"
+/spec "Add [feature]"
 ```
-Output: `spec.md` with requirements and AC
+Output: `spec.md` with requirements and acceptance criteria
 
-**Step 2: Spec Review** (15-30 min)
+**Step 2: Investigation** (Optional, 30-60 min if needed)
 ```
-@spec-review-requirements <slug>
+/analyze "Need to investigate first?"
 ```
-Output: Approval or feedback
+Output: `analysis.md` with findings and recommendations
 
 **Step 3: Design** (1-2 hours, optional)
 ```
-@spec-design <slug>
+/design
 ```
 Output: `design.md` for complex features
 
 **Step 4: Plan** (1-2 hours)
 ```
-@spec-plan <slug>
+/plan
 ```
 Output: `plan.md` with phases and timeline
 
 **Step 5: Tasks** (1-2 hours)
 ```
-@spec-tasks <slug>
+/tasks
 ```
 Output: `tasks.md` with task breakdown (TASK-001...)
 
-**Step 6: Implement** (2-4 hours per task)
+**Step 6: Review** (15-30 min)
 ```
-@spec-implement <slug>
+/requirement-review
+```
+Output: Spec approval or feedback
+
+**Step 7: Implement** (2-4 hours per task)
+```
+/implement
 ```
 Output: Code, tests, traceability
 
-**Step 7: Review** (30-60 min)
+**Step 8: Verification** (30-60 min)
 ```
-@spec-review <slug>
+/review
 ```
 Output: Final approval before merge
+
+**Step 9: Archive** (15-30 min)
+```
+/archive
+```
+Output: Learnings saved to memory
 
 ### Timeline Summary
 
@@ -124,21 +138,21 @@ Output: Final approval before merge
 
 **Step 1: Explore**
 ```
-@discover-legacy-system "auth system"
+/discover "auth system"
 ```
-Output: `/memories/session/investigation-notes.md`
+Output: Investigation notes and findings
 
 **Step 2: Document**
 ```
-@capture-architecture
+/architecture
 ```
-Output: `/memories/repo/architecture-decisions.md`
+Output: `memories/repo/architecture-decisions.md`
 
-**Step 3: Promote**
+**Step 3: Archive**
 ```
-@promote-to-repo-memory
+/archive
 ```
-Output: Updated `/memories/repo/` with gotchas and patterns
+Output: Updated `memories/repo/` with gotchas and patterns
 
 ### Phase 2: Features (Follow Greenfield workflow)
 
@@ -185,19 +199,29 @@ With memory populated:
 
 **From Copilot chat** (recommended):
 1. Open VS Code Copilot
-2. Type: `@<agent-name> [brief context]`
-3. Example: `@discover-legacy-system Explore auth system`
+2. Type: `/<command> [brief context]`
+3. Example: `/discover Explore auth system`
 4. Agent explores autonomously → Outputs generated files
 
-**Key difference**: Agents don't ask many questions—they explore/generate directly:
-- `discover-legacy-system` → Searches code, generates `/memories/session/investigation-notes.md`
-- `capture-architecture` → Analyzes codebase, generates `/memories/repo/architecture-decisions.md`
-- `promote-to-repo-memory` → Auto-classifies findings, updates all repo files
+**Slash commands available**:
+- `/spec` → Write specification
+- `/analyze` → Investigate problems
+- `/design` → Create technical design
+- `/plan` → Plan implementation
+- `/tasks` → Break into tasks
+- `/implement` → Write code
+- `/review` → Verify completion
+- `/requirement-review` → Review specification
+- `/constitution` → Define project principles
+- `/patterns` → Build patterns library
+- `/discover` → Explore existing system
+- `/architecture` → Document architecture
+- `/archive` → Save learnings to memory
 
-**From command line** (when CLI exists):
-```bash
-./scripts/run-agent discover-legacy-system "auth system"
-```
+**Key difference**: Agents don't ask many questions—they explore/generate directly:
+- `/discover` → Searches code, generates analysis
+- `/architecture` → Analyzes codebase, generates architecture decisions
+- `/archive` → Promotes findings to memory
 
 ---
 
@@ -397,38 +421,38 @@ All future features for this system:
 ### Fast Path: Add Feature to Known System
 
 ```
-Step 1: Agent retrieves context (you don't read manually)
-  → @spec-requirement Add user profile feature
+Step 1: Create specification (agent reads context automatically)
+  → /spec "Add user profile feature"
   → Agent reads: /memories/repo/* automatically
   → Spec includes gotchas, integration points
 
 Step 2: Design & plan
-  → @spec-plan
-  → @spec-tasks
+  → /plan
+  → /tasks
 
 Step 3: Implement
   → Code with gotchas in mind
   → Update repo memory if new discoveries
 
 Step 4: Review & merge
-  → @spec-review
+  → /review
 ```
 
 ### First Time: Explore New Codebase
 
 ```
 Step 1: Autonomous discovery (5-10 min)
-  → @discover-legacy-system Map the auth system
+  → /discover "Map the auth system"
   → Agent autonomously explores code
-  → Output: /memories/session/investigation-notes.md with 5+ gotchas
+  → Output: Analysis with 5+ gotchas
 
 Step 2: Capture architecture (5-10 min)
-  → @capture-architecture
+  → /architecture
   → Agent infers from code structure
-  → Output: /memories/repo/architecture-decisions.md (filled)
+  → Output: /memories/repo/architecture-decisions.md
 
-Step 3: Promote findings (2-5 min)
-  → @promote-to-repo-memory
+Step 3: Archive findings (2-5 min)
+  → /archive
   → Agent auto-classifies HIGH/MEDIUM confidence
   → Output: Updated legacy-system-watchouts.md, integration-points.md
 
@@ -447,20 +471,20 @@ Step 1: Read memory
   → cat memories/repo/integration-points.md
 
 Step 2: Create spec (informed by memory)
-  → @spec-requirement Add user profile feature
+  → /spec "Add user profile feature"
   → Reference gotchas: "Must respect session key format"
   → Reference integration: "Hooks at src/routes/users.ts"
 
 Step 3: Design & plan
-  → @spec-plan
-  → @spec-tasks
+  → /plan
+  → /tasks
 
 Step 4: Implement (1+ sessions)
   → Session N: Implement, discover new gotcha
   → Update repo memory with findings
 
 Step 5: Review & merge
-  → @spec-review
+  → /review
   → Ensure gotchas handled
 ```
 
@@ -468,17 +492,17 @@ Step 5: Review & merge
 
 ```
 Step 1: Autonomous discovery (autonomous, minimal input needed)
-  → @discover-legacy-system Map the auth system
+  → /discover "Map the auth system"
   → Agent explores code, finds gotchas, maps architecture
-  → Output: /memories/session/investigation-notes.md (filled)
+  → Output: Analysis (filled)
 
 Step 2: Capture architecture
-  → @capture-architecture
+  → /architecture
   → Agent infers from code structure
-  → Output: /memories/repo/architecture-decisions.md (filled)
+  → Output: /memories/repo/architecture-decisions.md
 
-Step 3: Promote findings
-  → @promote-to-repo-memory
+Step 3: Archive findings
+  → /archive
   → Agent auto-classifies HIGH/MEDIUM, organizes
   → Updates: legacy-system-watchouts.md, integration-points.md
 
@@ -491,23 +515,23 @@ Step 4: Future work
 
 ```
 Session 1 (6 hours)
-  → @spec-requirement
+  → /spec
   → Phase 1 implementation
-  → End: @promote-to-repo-memory (auto-save new findings)
+  → End: /archive (auto-save new findings)
 
 Session 2 (6 hours)
   → Agent automatically reads repo memory for context
   → Phase 2 implementation
-  → End: @promote-to-repo-memory (new discoveries added)
+  → End: /archive (new discoveries added)
 
 Session 3 (8 hours)
   → Agent automatically reads repo memory for context
   → Phase 3 implementation
-  → End: @promote-to-repo-memory (findings added)
+  → End: /archive (findings added)
 
 Session 4 (4 hours)
   → Final review with memory context
-  → @spec-review → Merge
+  → /review → Merge
 
 **Benefit**: Each session builds on previous discoveries, no context rediscovery
 ```
@@ -586,16 +610,16 @@ Session 4 (4 hours)
 
 ## Links & References
 
-| Document                                                                   | Purpose                  | When to Read              |
-| -------------------------------------------------------------------------- | ------------------------ | ------------------------- |
-| [memories/README.md](memories/README.md)                                   | Memory system overview   | First time setup          |
+| Document                                                                             | Purpose                  | When to Read              |
+| ------------------------------------------------------------------------------------ | ------------------------ | ------------------------- |
+| [memories/README.md](memories/README.md)                                             | Memory system overview   | First time setup          |
 | [memories/repo/constitution.md](memories/repo/constitution.md)                       | Project rules            | Before designing features |
 | [memories/repo/project-knowledge-base.md](memories/repo/project-knowledge-base.md)   | Project patterns         | Before implementing       |
 | [memories/repo/legacy-system-watchouts.md](memories/repo/legacy-system-watchouts.md) | Gotchas in existing code | Before specs (brownfield) |
 | [memories/repo/architecture-decisions.md](memories/repo/architecture-decisions.md)   | Why it's built this way  | Before designing          |
 | [memories/repo/integration-points.md](memories/repo/integration-points.md)           | Where features connect   | Before specs              |
-| [.github/agents/](/.github/agents/)                                        | All agent guides         | When running agents       |
-| [.github/specs/templates/](/.github/specs/templates/)                      | All templates            | When creating artifacts   |
+| [.github/agents/](/.github/agents/)                                                  | All agent guides         | When running agents       |
+| [.github/specs/templates/](/.github/specs/templates/)                                | All templates            | When creating artifacts   |
 
 ---
 
