@@ -1,7 +1,7 @@
 ---
 name: constitution
 description: Create or refine the project's constitution as durable architectural guardrails and long-term memory for AI-assisted delivery.
-tools: [read/readFile, edit/createDirectory, edit/createFile, edit/editFiles, edit/rename, search, vscode.mermaid-chat-features/renderMermaidDiagram, todo]
+tools: [read/readFile, edit/createDirectory, edit/createFile, edit/editFiles, edit/rename, search, todo]
 ---
 
 # Purpose

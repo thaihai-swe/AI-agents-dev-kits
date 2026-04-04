@@ -1,4 +1,8 @@
+---
 name: discover-legacy-system
+description: Explore existing codebases to understand architecture, patterns, and gotchas
+tools: [read/readFile, search, grep, semantic_search]
+---
 # Agent: Discover Legacy System
 
 **Role**: Code explorer and pattern discoverer

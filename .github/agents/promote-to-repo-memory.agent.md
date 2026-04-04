@@ -1,4 +1,8 @@
+---
 name: promote-to-repo-memory
+description: Promote discovery findings to durable project memory with confidence classification
+tools: [read/readFile, edit/createDirectory, edit/createFile, edit/editFiles, edit/rename]
+---
 # Agent: Promote to Repository Memory
 
 **Role**: Knowledge curator

@@ -1,6 +1,7 @@
 ---
 name: spec-review
 description: 'Review implementation against the AI delivery kit artifacts'
+tools: [read/readFile, search, grep, get_errors, semantic_search]
 ---
 
 # Goal

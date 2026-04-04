@@ -1,7 +1,7 @@
 ---
 name: spec-tasks
 description: Decompose an approved spec and plan into an execution-ready task list with traceability, sequencing, and clear completion checkpoints.
-tools: [read/readFile, edit/createDirectory, edit/createFile, edit/editFiles, edit/rename, search, vscode.mermaid-chat-features/renderMermaidDiagram, todo]
+tools: [read/readFile, edit/createDirectory, edit/createFile, edit/editFiles, edit/rename, todo]
 ---
 
 # Purpose
