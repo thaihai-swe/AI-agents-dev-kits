@@ -14,8 +14,8 @@ Review a change against its spec, plan, tasks, and definition of done.
    - `artifacts/features/<feature-slug>/design.md` if present
    - `artifacts/features/<feature-slug>/plan.md`
    - `artifacts/features/<feature-slug>/tasks.md`
-   - `memories/constitution.md` if present
-   - `memories/project-knowledge-base.md` if present
+   - `memories/repo/constitution.md` if present
+   - `memories/repo/project-knowledge-base.md` if present
    - `.github/specs/checklists/definition-of-done.md`
 2. Compare the current implementation or diff against the documented intent.
 3. Identify:

@@ -14,8 +14,8 @@ Execute the approved implementation tasks while staying aligned with the AI deli
    - `artifacts/features/<feature-slug>/design.md` if present
    - `artifacts/features/<feature-slug>/plan.md`
    - `artifacts/features/<feature-slug>/tasks.md`
-   - `memories/constitution.md` if present
-   - `memories/project-knowledge-base.md` if present
+   - `memories/repo/constitution.md` if present
+   - `memories/repo/project-knowledge-base.md` if present
 2. Implement only the approved in-scope tasks and follow `design.md` when it exists.
 3. Follow task order unless a dependency or technical constraint requires resequencing.
 4. Keep changes small and traceable to specific tasks and acceptance criteria.

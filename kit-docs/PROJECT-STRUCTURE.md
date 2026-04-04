@@ -58,11 +58,11 @@ This is a **reusable AI dev kit template** designed for multiple projects. It co
 
 | File                         | Purpose                       | When to start                      | Who fills it                 |
 | ---------------------------- | ----------------------------- | ---------------------------------- | ---------------------------- |
-| `constitution.md`            | Project rules & standards     | Day 1                              | Tech lead or senior engineer |
-| `project-knowledge-base.md`  | Proven patterns & conventions | First sprint                       | Team lead                    |
-| `architecture-decisions.md`  | Why system is built this way  | During discovery                   | Architects, senior devs      |
-| `legacy-system-watchouts.md` | Gotchas in existing code      | During discovery of legacy systems | Whoever discovers them       |
-| `integration-points.md`      | Where features connect        | As team learns codebase            | Whoever works on features    |
+| `repo/constitution.md`            | Project rules & standards     | Day 1                              | Tech lead or senior engineer |
+| `repo/project-knowledge-base.md`  | Proven patterns & conventions | First sprint                       | Team lead                    |
+| `repo/architecture-decisions.md`  | Why system is built this way  | During discovery                   | Architects, senior devs      |
+| `repo/legacy-system-watchouts.md` | Gotchas in existing code      | During discovery of legacy systems | Whoever discovers them       |
+| `repo/integration-points.md`      | Where features connect        | As team learns codebase            | Whoever works on features    |
 
 ### `artifacts/` - Project Artifacts (Evolving)
 
@@ -140,7 +140,7 @@ artifacts/
 
 **Instance** (in project):
 ```
-memories/legacy-system-watchouts.md
+memories/repo/legacy-system-watchouts.md
 ├── Points to template
 ├── Filled with PROJECT's gotchas
 ├── Created during discovery phase
@@ -150,7 +150,7 @@ memories/legacy-system-watchouts.md
 **Workflow**:
 1. Kit provides blank template
 2. Project team discovers gotchas
-3. Team fills `memories/legacy-system-watchouts.md` using that template
+3. Team fills `memories/repo/legacy-system-watchouts.md` using that template
 4. Gotchas become shared team knowledge
 
 ---
@@ -166,8 +166,8 @@ cd my-project
 ### Step 2: Customize Project Memory
 
 Fill these **once at project start**:
-- `memories/constitution.md` (project rules)
-- `memories/project-knowledge-base.md` (emerging patterns)
+- `memories/repo/constitution.md` (project rules)
+- `memories/repo/project-knowledge-base.md` (emerging patterns)
 
 ### Step 3: Discover Legacy System (if applicable)
 
@@ -187,9 +187,9 @@ Agents autonomously explore and document the system. No questions asked—just p
 # Then: Autonomously promote (5-10 min)
 → Use: promote-to-repo-memory.agent.md
 → Agent: Classifies findings by confidence, organizes into files
-→ Fills: memories/legacy-system-watchouts.md (HIGH confidence findings)
-→ Fills: memories/architecture-decisions.md (architectural insights)
-→ Fills: memories/integration-points.md (feature connection points)
+→ Fills: memories/repo/legacy-system-watchouts.md (HIGH confidence findings)
+→ Fills: memories/repo/architecture-decisions.md (architectural insights)
+→ Fills: memories/repo/integration-points.md (feature connection points)
 
 Total discovery time: ~30 min (vs 3-5 hours manual exploration)
 ```
@@ -260,11 +260,11 @@ These don't change much:
 ### Project Memory (Project Lifetime)
 
 These grow continuously:
-- `memories/constitution.md` - Set at start, rarely changes
-- `memories/project-knowledge-base.md` - Grows with project
-- `memories/legacy-system-watchouts.md` - Added during discovery
-- `memories/architecture-decisions.md` - Added during discovery
-- `memories/integration-points.md` - Added during discovery
+- `memories/repo/constitution.md` - Set at start, rarely changes
+- `memories/repo/project-knowledge-base.md` - Grows with project
+- `memories/repo/legacy-system-watchouts.md` - Added during discovery
+- `memories/repo/architecture-decisions.md` - Added during discovery
+- `memories/repo/integration-points.md` - Added during discovery
 
 ### Project Artifacts (Per-Feature Lifetime)
 
@@ -285,4 +285,3 @@ When you copy this kit to your project:
 4. **Reference** templates from `.github/specs/templates/` when creating artifacts
 
 The kit stays the same, your project knowledge grows in `memories/`.
-

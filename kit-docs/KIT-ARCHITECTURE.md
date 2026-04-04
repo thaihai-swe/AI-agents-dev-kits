@@ -67,7 +67,7 @@ Result: Knowledge compounds instead of repeating
 **Lifetime**: For the life of the project
 **Pre-existing files**:
 - `constitution.md` (durable project rules)
-- `project-knowledge-base.md` (project patterns)
+- `repo/project-knowledge-base.md` (project patterns)
 
 **New files added**:
 - **`legacy-system-watchouts.md`** ← Gotchas in existing code

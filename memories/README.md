@@ -8,7 +8,7 @@ This folder stores knowledge that compounds over time: patterns learned, gotchas
 
 ## 📁 What Goes Where
 
-### `constitution.md` — Project Rules
+### `repo/constitution.md` — Project Rules
 
 Project-wide standards and non-negotiables:
 - Code style requirements
@@ -23,7 +23,7 @@ Project-wide standards and non-negotiables:
 
 ---
 
-### `project-knowledge-base.md` — Patterns & Conventions
+### `repo/project-knowledge-base.md` — Patterns & Conventions
 
 Patterns your team has proven work:
 - Naming conventions
@@ -39,7 +39,7 @@ Patterns your team has proven work:
 
 ---
 
-### `legacy-system-watchouts.md` — Gotchas
+### `repo/legacy-system-watchouts.md` — Gotchas
 
 Things about the existing system that can break new features:
 - What quirks exist?
@@ -54,7 +54,7 @@ Things about the existing system that can break new features:
 
 ---
 
-### `architecture-decisions.md` — Design Choices
+### `repo/architecture-decisions.md` — Design Choices
 
 Why the system is built the way it is:
 - Technology stack (and why)
@@ -69,7 +69,7 @@ Why the system is built the way it is:
 
 ---
 
-### `integration-points.md` — Where Features Connect
+### `repo/integration-points.md` — Where Features Connect
 
 Where and how new features integrate:
 - Entry points for new features
@@ -89,8 +89,8 @@ Where and how new features integrate:
 ### For New Projects (Greenfield)
 
 1. **Initialize** (Day 1):
-   - Fill `constitution.md` with project rules
-   - Fill `project-knowledge-base.md` with initial patterns
+   - Fill `repo/constitution.md` with project rules
+   - Fill `repo/project-knowledge-base.md` with initial patterns
 
 2. **First sprint**: Add patterns as you discover them
 
@@ -128,13 +128,13 @@ Before creating a feature spec, always check:
 
 ```bash
 # Quick scan (2 min)
-cat constitution.md
-cat legacy-system-watchouts.md
-cat integration-points.md
+cat repo/constitution.md
+cat repo/legacy-system-watchouts.md
+cat repo/integration-points.md
 
 # Deep dive (5 min)
-cat architecture-decisions.md
-cat project-knowledge-base.md
+cat repo/architecture-decisions.md
+cat repo/project-knowledge-base.md
 ```
 
 **These tell you**:

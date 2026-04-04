@@ -161,9 +161,9 @@ None (or list any changes to existing endpoints)
 
 ## Related Documents
 
-- **Gotchas**: [Link to memories/legacy-system-watchouts.md](#)
-- **Integration points**: [Link to memories/integration-points.md](#)
-- **Architecture decisions**: [Link to memories/architecture-decisions.md](#)
+- **Gotchas**: [Link to memories/repo/legacy-system-watchouts.md](#)
+- **Integration points**: [Link to memories/repo/integration-points.md](#)
+- **Architecture decisions**: [Link to memories/repo/architecture-decisions.md](#)
 - **Gotchwise specifics**: [See specific gotchas below]
 
 ---

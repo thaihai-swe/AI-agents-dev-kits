@@ -34,8 +34,8 @@ Before writing, read the most relevant context:
 1. Read `artifacts/features/<feature-slug>/spec.md`.
 2. Read `artifacts/features/<feature-slug>/requirements-review.md` if present.
 3. Read `artifacts/features/<feature-slug>/design.md` if present.
-4. Read `memories/constitution.md` if present.
-5. Read `memories/project-knowledge-base.md` if present.
+4. Read `memories/repo/constitution.md` if present.
+5. Read `memories/repo/project-knowledge-base.md` if present.
 6. Read `.github/specs/checklists/definition-of-ready.md`.
 7. Read `.github/specs/templates/plan-template.md`.
 8. Read any existing `artifacts/features/<feature-slug>/plan.md` if present.
@@ -73,7 +73,7 @@ The plan must:
 - keep requirements, risks, dependencies, files, and validation traceable with IDs such as `REQ-001`, `AC-001`, `RISK-001`, `DEP-001`, `FILE-001`, and `CC-001`
 - keep design detail out of `plan.md` beyond what is needed to execute safely
 - make explicit what will change, what will remain unchanged, and what must be protected from regression
-- link change-specific planning back to stable repository context from `project-knowledge-base.md`
+- link change-specific planning back to stable repository context from `memories/repo/project-knowledge-base.md`
 - remain implementation-ready without collapsing into low-level coding detail
 
 When planning, prefer:

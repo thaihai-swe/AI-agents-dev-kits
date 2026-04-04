@@ -1,125 +1,161 @@
 # AI Dev Kit: Usage Guide
 
-**Version**: 1.0
-**Last updated**: 2024-04-03
+**Version**: 2.0
+**Last updated**: 2026-04-04
 
-> 👈 **Start here instead?** See [README.md](README.md) for kit overview and navigation
-
----
-
-## Quick Start
-
-### First Time Using the Kit
-
-1. **Read**: `.github/agents/spec-requirement.agent.md`
-   - Learn how to create feature specs
-
-2. **Read**: `memories/README.md`
-   - Understand the memory system (where knowledge lives)
-
-3. **Create**: Your first feature specification
-   - Use: `.github/specs/templates/spec-template.md`
-   - Run: Agent `spec-requirement.agent.md`
-
-### If Working on Existing Project (Brownfield)
-
-1. **Explore**: Use agent `discover-legacy-system.agent.md`
-   - Maps existing code
-   - Finds gotchas
-   - Documents integration points
-
-2. **Promote**: Use agent `promote-to-repo-memory.agent.md`
-   - Move findings to `/memories/repo/`
-   - Build institutional knowledge
-
-3. **Read**: Memory files before creating specs
-   - `/memories/repo/legacy-system-watchouts.md` → What to avoid
-   - `/memories/repo/integration-points.md` → Where to connect
-   - `/memories/repo/architecture-decisions.md` → Why it's built this way
+> 👈 **Quick overview?** See [README.md](README.md) | **All agents?** See [kit-docs/AGENTS-REFERENCE.md](kit-docs/AGENTS-REFERENCE.md)
 
 ---
 
-## The Dev Kit Workflow
+## Quick Start: Choose Your Path
 
-### For Greenfield (New Project)
+### Path 1: New Project (Greenfield)
 
+**One-time setup** (1 hour total):
+1. `@constitution` → Define project rules
+2. `@project-knowledge-base` → Document initial patterns
+
+**Per feature** (6-8 hours):
+1. `@spec-requirement` → Write spec
+2. `@spec-review-requirements` → Get approval
+3. `@spec-design` (optional) → Create technical design
+4. `@spec-plan` → Plan implementation
+5. `@spec-tasks` → Break into tasks
+6. `@spec-implement` → Write code
+7. `@spec-review` → Quality gate
+
+**See details**: [Greenfield Workflow](#greenfield-workflow-new-project) below
+
+### Path 2: Existing Project (Brownfield)
+
+**One-time autonomous discovery** (~30 minutes):
+1. `@discover-legacy-system "system name"` → Explore codebase
+2. `@capture-architecture` → Document design
+3. `@promote-to-repo-memory` → Organize findings
+
+**Result**: Project memory populated with gotchas, patterns, architecture
+
+**Then**: Use Greenfield workflow (features now respect project constraints)
+
+**See details**: [Brownfield Workflow](#brownfield-workflow-existing-project) below
+
+### Path 3: Resume Work
+
+1. Check `artifacts/features/<slug>/` for current status
+2. Read `memories/repo/*` for project context
+3. Run appropriate next agent
+4. Continue from last checkpoint
+
+**See details**: [Resuming Multi-Session Work](#resuming-multi-session-work) below
+
+---
+
+## Greenfield Workflow (New Project)
+
+### Setup Phase: One-Time (30 minutes)
+
+**Step 1: Constitution Agent** (15 min)
 ```
-1. spec-requirement.agent.md
-   → Create feature spec (spec.md)
-   → All AC, REQ, RISK defined
-
-2. spec-review-requirements.agent.md
-   → Review spec for quality
-   → Approve or request changes
-
-3. spec-plan.agent.md
-   → Create implementation plan (plan.md)
-   → Phases, risks, validation
-
-4. spec-tasks.agent.md
-   → Break into tasks (tasks.md)
-   → Per-task AC, dependencies
-
-5. (Git branch: feature/name)
-
-6. spec-implement.agent.md
-   → Implement tasks
-   → Maintain traceability (link specs to code)
-
-7. spec-review.agent.md
-   → Review against spec
-   → Quality gate before merge
-
-8. (Merge to main)
+@constitution
 ```
+Creates: `memories/repo/constitution.md` with project rules
 
-### For Brownfield (Existing Project)
-
-**Phase 1: Discovery (Autonomous)**
+**Step 2: Project Knowledge Base** (15 min)
 ```
-1. @discover-legacy-system "Map [system name]"
-   → Outputs: /memories/session/investigation-notes.md
-   → Agent finds: gotchas, architecture, patterns
-
-2. @capture-architecture "Document architecture"
-   → Outputs: /memories/repo/architecture-decisions.md
-   → Agent infers: why built this way, trade-offs, constraints
-
-3. @promote-to-repo-memory
-   → Outputs: Updated /memories/repo/legacy-system-watchouts.md
-   →          Updated /memories/repo/integration-points.md
-   → Agent: Auto-classifies findings by confidence, organizes
+@project-knowledge-base
 ```
+Creates: `memories/repo/project-knowledge-base.md` with team patterns
 
-**Phase 2: Feature Development (Now informed by memory)**
+### Feature Workflow: Per Feature (6-8 hours)
+
+**Step 1: Spec** (45-90 min)
 ```
-4. @spec-requirement "Add [feature]"
-   → Agent reads repo memory first
-   → Respects gotchas, integration points, patterns
-   → Outputs: artifacts/features/[feature]/spec.md
-
-5. @spec-review-requirements
-   → Review spec for quality
-
-6. @spec-plan
-   → Design implementation respecting memory
-   → Call out integration points
-
-7. @spec-tasks
-   → Break into tasks
-
-8. @spec-implement
-   → Implement with gotchas in mind
-   → Reference architecture decisions
-
-9. @spec-review
-   → Quality gate
-   → Verify gotchas handled
-
-10. (Merge)
+@spec-requirement "Add [feature]"
 ```
+Output: `spec.md` with requirements and AC
 
-**Result**: Faster onboarding + fewer gotcha surprises
+**Step 2: Spec Review** (15-30 min)
+```
+@spec-review-requirements <slug>
+```
+Output: Approval or feedback
+
+**Step 3: Design** (1-2 hours, optional)
+```
+@spec-design <slug>
+```
+Output: `design.md` for complex features
+
+**Step 4: Plan** (1-2 hours)
+```
+@spec-plan <slug>
+```
+Output: `plan.md` with phases and timeline
+
+**Step 5: Tasks** (1-2 hours)
+```
+@spec-tasks <slug>
+```
+Output: `tasks.md` with task breakdown (TASK-001...)
+
+**Step 6: Implement** (2-4 hours per task)
+```
+@spec-implement <slug>
+```
+Output: Code, tests, traceability
+
+**Step 7: Review** (30-60 min)
+```
+@spec-review <slug>
+```
+Output: Final approval before merge
+
+### Timeline Summary
+
+- Setup: 30 min (one-time)
+- Per feature: 6-8 hours total
+- Knowledge reused across features
+
+---
+
+## Brownfield Workflow (Existing Project)
+
+### Phase 1: Discovery (Autonomous, ~30 min)
+
+**Step 1: Explore**
+```
+@discover-legacy-system "auth system"
+```
+Output: `/memories/session/investigation-notes.md`
+
+**Step 2: Document**
+```
+@capture-architecture
+```
+Output: `/memories/repo/architecture-decisions.md`
+
+**Step 3: Promote**
+```
+@promote-to-repo-memory
+```
+Output: Updated `/memories/repo/` with gotchas and patterns
+
+### Phase 2: Features (Follow Greenfield workflow)
+
+With memory populated:
+- Spec respects project constraints
+- Gotchas known and avoided
+- Integration points identified
+- Knowledge compounds with each feature
+
+---
+
+## Resuming Multi-Session Work
+
+1. Check task status: `artifacts/features/<slug>/tasks.md`
+2. Read project memory: `/memories/repo/*`
+3. Resume from last checkpoint
+4. Knowledge persists across sessions
 
 ---
 
@@ -127,18 +163,21 @@
 
 ### Each Agent's Purpose
 
-| Agent                      | Input                 | Output                 | When                  | Autonomy                                                          |
-| -------------------------- | --------------------- | ---------------------- | --------------------- | ----------------------------------------------------------------- |
-| `spec-requirement`         | Feature idea          | spec.md                | Start of feature      | Asks clarifying Qs                                                |
-| `spec-review-requirements` | spec.md               | Approval/feedback      | After spec written    | Reviews & approves                                                |
-| `spec-design`              | spec.md               | design.md              | Complex features      | Designs autonomously                                              |
-| `spec-plan`                | spec.md + design.md   | plan.md                | Ready to implement    | Plans autonomously                                                |
-| `spec-tasks`               | plan.md               | tasks.md               | Ready to break down   | Breaks down tasks                                                 |
-| `spec-implement`           | tasks.md              | Code + commits         | During implementation | Implements & tests                                                |
-| `spec-review`              | Implementation        | Quality feedback       | Before merge          | Reviews against spec                                              |
-| `discover-legacy-system`   | (brief context)       | investigation-notes    | First with legacy     | **🔥 Autonomous**: Searches code, finds gotchas, maps architecture |
-| `capture-architecture`     | (optional validation) | architecture-decisions | After discovery       | **🔥 Autonomous**: Infers from code, generates filled doc          |
-| `promote-to-repo-memory`   | Session notes         | Updated repo files     | End of session        | **🔥 Autonomous**: Classifies, promotes, organizes                 |
+| Agent                      | Input        | Output            | When           | Autonomy     |
+| -------------------------- | ------------ | ----------------- | -------------- | ------------ |
+| `constitution`             | Team input   | constitution.md   | Setup          | Interactive  |
+| `project-knowledge-base`   | Patterns     | knowledge-base.md | Setup          | Interactive  |
+| `spec-requirement`         | Feature idea | spec.md           | Start          | Questions    |
+| `spec-review-requirements` | spec.md      | Approval          | After spec     | Reviews      |
+| `spec-design`              | spec.md      | design.md         | Complex        | Autonomous   |
+| `spec-plan`                | spec.md      | plan.md           | Plan           | Autonomous   |
+| `spec-tasks`               | plan.md      | tasks.md          | Tasks          | Autonomous   |
+| `spec-implement`           | tasks.md     | Code+tests        | Implementation | Autonomous   |
+| `spec-review`              | Code         | Feedback          | Review         | Autonomous   |
+| `discover-legacy-system`   | Context      | investigation     | Legacy         | 🔥 Autonomous |
+| `capture-architecture`     | Context      | arch-decisions    | Design         | 🔥 Autonomous |
+| `promote-to-repo-memory`   | Notes        | /memories/repo    | End            | 🔥 Autonomous |
+
 
 **New agents (🔥) are autonomous**: Less questions, more action. Output ready to use immediately.
 
@@ -170,7 +209,7 @@
 /memories/
 ├── user/                # Your preferences (across all projects)
 ├── session/             # This conversation only
-└── /memories/repo/      # This project's knowledge
+└── repo/                # This project's durable knowledge
     ├── constitution.md
     ├── project-knowledge-base.md
     ├── legacy-system-watchouts.md
@@ -184,12 +223,12 @@
 
 ```bash
 # Quick scan
-cat memories/legacy-system-watchouts.md
-cat memories/integration-points.md
+cat memories/repo/legacy-system-watchouts.md
+cat memories/repo/integration-points.md
 
 # Deep dive
-cat memories/architecture-decisions.md
-cat memories/project-knowledge-base.md
+cat memories/repo/architecture-decisions.md
+cat memories/repo/project-knowledge-base.md
 ```
 
 **What each tells you**:
@@ -404,8 +443,8 @@ Step 4: Now use normal workflow
 
 ```
 Step 1: Read memory
-  → cat memories/legacy-system-watchouts.md
-  → cat memories/integration-points.md
+  → cat memories/repo/legacy-system-watchouts.md
+  → cat memories/repo/integration-points.md
 
 Step 2: Create spec (informed by memory)
   → @spec-requirement Add user profile feature
@@ -550,11 +589,11 @@ Session 4 (4 hours)
 | Document                                                                   | Purpose                  | When to Read              |
 | -------------------------------------------------------------------------- | ------------------------ | ------------------------- |
 | [memories/README.md](memories/README.md)                                   | Memory system overview   | First time setup          |
-| [memories/constitution.md](memories/constitution.md)                       | Project rules            | Before designing features |
-| [memories/project-knowledge-base.md](memories/project-knowledge-base.md)   | Project patterns         | Before implementing       |
-| [memories/legacy-system-watchouts.md](memories/legacy-system-watchouts.md) | Gotchas in existing code | Before specs (brownfield) |
-| [memories/architecture-decisions.md](memories/architecture-decisions.md)   | Why it's built this way  | Before designing          |
-| [memories/integration-points.md](memories/integration-points.md)           | Where features connect   | Before specs              |
+| [memories/repo/constitution.md](memories/repo/constitution.md)                       | Project rules            | Before designing features |
+| [memories/repo/project-knowledge-base.md](memories/repo/project-knowledge-base.md)   | Project patterns         | Before implementing       |
+| [memories/repo/legacy-system-watchouts.md](memories/repo/legacy-system-watchouts.md) | Gotchas in existing code | Before specs (brownfield) |
+| [memories/repo/architecture-decisions.md](memories/repo/architecture-decisions.md)   | Why it's built this way  | Before designing          |
+| [memories/repo/integration-points.md](memories/repo/integration-points.md)           | Where features connect   | Before specs              |
 | [.github/agents/](/.github/agents/)                                        | All agent guides         | When running agents       |
 | [.github/specs/templates/](/.github/specs/templates/)                      | All templates            | When creating artifacts   |
 

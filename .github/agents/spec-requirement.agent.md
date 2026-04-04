@@ -34,8 +34,8 @@ The specification should describe the `what` and `why` first. Include `how` only
 
 Before writing, read the most relevant context:
 
-1. Read `memories/constitution.md` if present.
-2. Read `memories/project-knowledge-base.md` if present.
+1. Read `memories/repo/constitution.md` if present.
+2. Read `memories/repo/project-knowledge-base.md` if present.
 3. Read `.github/specs/checklists/definition-of-ready.md`.
 4. Read `.github/specs/templates/spec-template.md`.
 5. Read any existing `artifacts/features/<feature-slug>/spec.md` if present.

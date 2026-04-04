@@ -36,8 +36,8 @@ Before writing, read the most relevant context:
 1. Read `artifacts/features/<feature-slug>/spec.md`.
 2. Read `artifacts/features/<feature-slug>/plan.md`.
 3. Read `artifacts/features/<feature-slug>/design.md` if present.
-4. Read `memories/constitution.md` if present.
-5. Read `memories/project-knowledge-base.md` if present.
+4. Read `memories/repo/constitution.md` if present.
+5. Read `memories/repo/project-knowledge-base.md` if present.
 6. Read `.github/specs/templates/tasks-template.md`.
 7. Read any existing `artifacts/features/<feature-slug>/tasks.md` if present.
 

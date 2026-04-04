@@ -6,7 +6,7 @@ tools: [read/readFile, edit/createDirectory, edit/createFile, edit/editFiles, ed
 
 # Purpose
 
-Create or update `memories/constitution.md` as the repository's durable source of truth for non-negotiable engineering rules, delivery guardrails, and AI operating constraints.
+Create or update `memories/repo/constitution.md` as the repository's durable source of truth for non-negotiable engineering rules, delivery guardrails, and AI operating constraints.
 
 Use this agent when the team needs to:
 
@@ -31,18 +31,18 @@ Gather context from the repository before writing:
 1. Read `.github/specs/USAGE-GUIDE.md` if present.
 2. Read `.github/specs/checklists/definition-of-ready.md` and `.github/specs/checklists/definition-of-done.md` if present.
 3. Read `.github/specs/templates/constitution-template.md`.
-4. Review any existing `memories/constitution.md`.
+4. Review any existing `memories/repo/constitution.md`.
 5. If feature artifacts or existing code reveal durable project rules, extract them carefully instead of inventing new ones.
 
 # Output
 
 Create or update only:
 
-- `memories/constitution.md`
+- `memories/repo/constitution.md`
 
 Do not create or update:
 
-- `memories/project-knowledge-base.md`
+- `memories/repo/project-knowledge-base.md`
 - feature artifacts under `artifacts/features/`
 - implementation code
 - `tasks.md`, `plan.md`, or `spec.md`

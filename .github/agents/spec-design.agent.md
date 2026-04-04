@@ -36,8 +36,8 @@ Before writing, read the most relevant context:
 
 1. Read `artifacts/features/<feature-slug>/spec.md`.
 2. Read `artifacts/features/<feature-slug>/requirements-review.md` if present.
-3. Read `memories/constitution.md` if present.
-4. Read `memories/project-knowledge-base.md` if present.
+3. Read `memories/repo/constitution.md` if present.
+4. Read `memories/repo/project-knowledge-base.md` if present.
 5. Read `.github/specs/templates/design-template.md`.
 6. Read any existing `artifacts/features/<feature-slug>/design.md` if present.
 
@@ -67,8 +67,8 @@ Do not create or update:
 The design must:
 
 - stay aligned with the approved scope in `spec.md`
-- respect durable rules in `memories/constitution.md`
-- use stable repository context from `memories/project-knowledge-base.md` when relevant
+- respect durable rules in `memories/repo/constitution.md`
+- use stable repository context from `memories/repo/project-knowledge-base.md` when relevant
 - describe technical shape without turning into an execution checklist
 - make interfaces, boundaries, tradeoffs, and brownfield constraints explicit
 

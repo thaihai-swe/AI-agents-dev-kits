@@ -32,8 +32,8 @@ Do not drift into:
 Before writing, read the most relevant context:
 
 1. Read `artifacts/features/<feature-slug>/spec.md`.
-2. Read `memories/constitution.md` if present.
-3. Read `memories/project-knowledge-base.md` if present.
+2. Read `memories/repo/constitution.md` if present.
+3. Read `memories/repo/project-knowledge-base.md` if present.
 4. Read `.github/specs/checklists/definition-of-ready.md`.
 5. Read `.github/specs/templates/requirements-review-template.md`.
 6. Read any existing `artifacts/features/<feature-slug>/requirements-review.md` if present.

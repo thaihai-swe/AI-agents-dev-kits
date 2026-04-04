@@ -6,7 +6,7 @@ tools: [read/readFile, edit/createDirectory, edit/createFile, edit/editFiles, ed
 
 # Purpose
 
-Create or update `memories/project-knowledge-base.md` as the repository's durable descriptive memory.
+Create or update `memories/repo/project-knowledge-base.md` as the repository's durable descriptive memory.
 
 Use this agent when the team needs to:
 
@@ -30,10 +30,10 @@ Treat the project knowledge base as:
 
 Gather context from the repository before writing:
 
-1. Read `memories/constitution.md` if present.
+1. Read `memories/repo/constitution.md` if present.
 2. Read `.github/specs/USAGE-GUIDE.md` if present.
 3. Read `.github/specs/templates/project-knowledge-base-template.md`.
-4. Review any existing `memories/project-knowledge-base.md`.
+4. Review any existing `memories/repo/project-knowledge-base.md`.
 5. Inspect the repository structure and any stable reference implementations.
 6. If feature artifacts reveal durable repository patterns, extract them carefully instead of copying feature-specific detail.
 7. Prefer short, retrievable entries over long narrative prose.
@@ -43,11 +43,11 @@ Gather context from the repository before writing:
 
 Create or update only:
 
-- `memories/project-knowledge-base.md`
+- `memories/repo/project-knowledge-base.md`
 
 Do not create or update:
 
-- `memories/constitution.md`
+- `memories/repo/constitution.md`
 - feature artifacts under `artifacts/features/`
 - implementation code
 - `tasks.md`, `plan.md`, or `spec.md`
@@ -83,7 +83,7 @@ Promotion rules:
 
 - Promote here only if the finding is descriptive, durable, and reusable across multiple future changes.
 - Do not promote findings that are still uncertain, feature-scoped, or normative.
-- If a finding should govern future work as a rule, recommend promotion to `memories/constitution.md` instead.
+- If a finding should govern future work as a rule, recommend promotion to `memories/repo/constitution.md` instead.
 
 # Completion Standard
 
