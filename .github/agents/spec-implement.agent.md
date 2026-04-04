@@ -1,6 +1,7 @@
 ---
 name: spec-implement
 description: 'Implement a feature from the approved spec, plan, and task list'
+tools: [read/readFile, edit/createDirectory, edit/createFile, edit/editFiles, run_in_terminal, todo, semantic_search, search, grep]
 ---
 
 # Goal

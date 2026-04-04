@@ -1,7 +1,7 @@
 ---
 name: constitution
 description: Create or refine the project's constitution as durable architectural guardrails and long-term memory for AI-assisted delivery.
-tools: [read/readFile, edit/createDirectory, edit/createFile, edit/editFiles, edit/rename, search, vscode.mermaid-chat-features/renderMermaidDiagram, todo]
+tools: [read/readFile, edit/createDirectory, edit/createFile, edit/editFiles, edit/rename, search, todo]
 ---
 
 # Purpose
@@ -14,6 +14,17 @@ Use this agent when the team needs to:
 - replace drifting chat instructions with durable written rules
 - align AI-assisted work around consistent constraints
 - revise project-wide standards after architecture or process changes
+
+## First-Run Setup
+
+For new projects, this agent should be invoked **first** before any feature work begins. The constitution becomes the foundation for all downstream decisions.
+
+**Recommended sequence for repository initialization**:
+1. **/constitution** — Establish foundational rules and guardrails
+2. **/patterns** — Document stable repository context and patterns
+3. Then begin feature work with `/spec` → `/plan` → `/tasks` → `/implement`
+
+If `memories/repo/` directory is empty, start here.
 
 # Why This Matters
 

@@ -1,4 +1,8 @@
+---
 name: capture-architecture
+description: Document architectural decisions and constraints for the project
+tools: [read/readFile, edit/createDirectory, edit/createFile, edit/editFiles, search, grep]
+---
 # Agent: Capture Architecture
 
 **Role**: Architecture documentarian

@@ -1,201 +1,181 @@
-# AI Dev Kit
+# AI Development Kit
 
-**An opinionated, lightweight workflow for building features with AI agents—whether starting fresh or working with existing systems.**
+**Complete system for building software with AI: 13 specialized agents, 11 reusable templates, 3-tier memory system, and comprehensive documentation.**
+
+Designed for sustainable, traceable feature development—from specification through implementation—that works seamlessly with AI while maintaining quality gates and team knowledge.
 
 ---
 
 ## ⚡ Quick Start
 
-**New to this kit?** Start here:
+**New here?** (5 minutes)
+1. Read [Getting Started](docs/guides/getting-started.md) — See how it works
+2. Pick a workflow: [New feature?](docs/workflows/README.md) or [Existing code?](docs/workflows/README.md)
+3. Use [All Commands](docs/reference/commands.md) as reference
 
-1. **[USAGE-GUIDE.md](USAGE-GUIDE.md)** — Your day-to-day guide
-   - 12 agents and what each one does
-   - Greenfield workflow (new projects) — 7 agents
-   - Brownfield workflow (existing code) — 3 discovery agents + 7 feature agents
-   - Memory system (how knowledge persists across sessions)
-   - Troubleshooting and best practices
-
-2. **See all agents** — [kit-docs/AGENTS-REFERENCE.md](kit-docs/AGENTS-REFERENCE.md)
-   - Detailed description of each agent's role
-   - When to use each agent
-   - What each agent reads and outputs
-   - Success criteria for each agent
-
-3. **Your first action** depends on your project:
-   - **Greenfield (new project)?** → Run `constitution` agent first
-   - **Brownfield (existing code)?** → Run `discover-legacy-system` agent
-
-4. **Questions?** → [USAGE-GUIDE.md](USAGE-GUIDE.md) covers all workflows in detail
+**Questions?** → [FAQ (100+ Q&A)](docs/reference/faq.md)
 
 ---
 
-## 🎯 Enhancing Your Kit
+## 📚 Documentation (21 files, organized by purpose)
 
-Want to extend the kit with specialized agents, layered instructions, and prompt discoverability? See our enhancement resources:
-
-**Start here** → [QUICK-START-SUMMARY.md](QUICK-START-SUMMARY.md) (10 min overview)
-
-Then choose your path:
-- **Full analysis & recommendations**: [ENHANCEMENT-REVIEW.md](ENHANCEMENT-REVIEW.md) (comparative analysis + priorities)
-- **Month-by-month execution plan**: [IMPLEMENTATION-ROADMAP.md](IMPLEMENTATION-ROADMAP.md) (3-week breakdown)
-- **Copy-ready templates & code**: [ADAPTATION-GUIDE.md](ADAPTATION-GUIDE.md) (patterns from Brad Stevens' starter kit)
-
-**What's included**:
-- ✨ 7 specialized Memory Bank agents (Planning, Implementation, Creative, Research, etc.)
-- ✨ Layered instruction system (4 complexity levels + phase modes)
-- ✨ Prompt templates with YAML frontmatter (discoverable via `/` commands)
-- ✨ MCP server configuration examples
-- ✨ Technology-specific instructions (optional)
-- ✨ Automation scripts (optional)
-
-**Estimated effort**: 1-3 weeks (25-36 hours), with high-priority items completable in Week 1
+| What You Need               | Where to Find It                                                                                    |
+| --------------------------- | --------------------------------------------------------------------------------------------------- |
+| **What are the 13 agents?** | [agents/README.md](docs/agents/README.md) + [Deep dives by category](docs/agents/details/)          |
+| **How do I use them?**      | [Workflows Guide](docs/workflows/README.md)                                                         |
+| **All commands reference**  | [All 13 Commands](docs/reference/commands.md) or [Agent Reference](docs/agents/AGENTS-REFERENCE.md) |
+| **Key terms explained**     | [Terminology](docs/reference/terminology.md)                                                        |
+| **Questions answered**      | [FAQ](docs/reference/faq.md)                                                                        |
+| **Quality gates**           | [Checklists](docs/checklists/)                                                                      |
+| **How memory works**        | [Memory System](docs/memory-system/README.md)                                                       |
+| **Everything else**         | [Full Documentation Hub](docs/README.md)                                                            |
 
 ---
 
-## 📚 For Your Team
+## 🎯 Your First Day
 
-### Running Features (Most Common)
+### Scenario 1: Starting a Brand New Feature
+```
+1. /spec                 Create specification
+2. /requirement-review   Check for gaps (optional)
+3. /design               Tech architecture (if complex)
+4. /plan                 Execution sequence
+5. /tasks                Break into small tasks
+6. /implement            Build & test
+7. /review               Verify it matches spec
+```
 
-Follow the workflows in [USAGE-GUIDE.md](USAGE-GUIDE.md):
+### Scenario 2: Working with Existing Code
+```
+1. /discover             Explore and map the system
+2. /architecture         Extract current design
+3. /archive              Save findings to team memory
+4. Then → follow new feature flow above
+```
 
-- **Greenfield workflow**: spec → review → plan → tasks → implement → review
-- **Brownfield workflow**: discover → capture → promote → then use Greenfield workflow
-- **Resume work**: Check `artifacts/features/<feature>/` for existing specs
-
-### Memory & Documentation
-
-Your project knowledge lives in `memories/repo/`:
-
-- `constitution.md` — Project rules and standards
-- `project-knowledge-base.md` — Proven patterns
-- `legacy-system-watchouts.md` — Gotchas to avoid
-- `architecture-decisions.md` — Why it's built this way
-- `integration-points.md` — Where features connect
-
-Start here: [memories/README.md](memories/README.md)
-
-### Templates & Agents
-
-- **Instructions**: `.github/instructions/` — Always-on Copilot guidance for this kit
-- **Prompts**: `.github/prompts/` — Slash-command entrypoints for spec, plan, tasks, and README flows
-- **Templates**: `.github/specs/templates/` — Use these as starting points
-- **Agents**: `.github/agents/` — Run these to automate workflow steps
-
----
-
-## 🛠️ For Kit Maintainers
-
-### Understanding the Kit
-
-**How the kit works**: [kit-docs/KIT-ARCHITECTURE.md](kit-docs/KIT-ARCHITECTURE.md)
-- Three-tier memory system
-- Why each component exists
-- How to extend the kit
-
-**Project structure**: [kit-docs/PROJECT-STRUCTURE.md](kit-docs/PROJECT-STRUCTURE.md)
-- What belongs where
-- Kit files vs project files
-- Setup for new projects
-
-**Memory system details**: [kit-docs/MEMORY-SYSTEM.md](kit-docs/MEMORY-SYSTEM.md)
-- How memory is organized
-- How to use each tier
-- Best practices
-
-### Customizing for Your Team
-
-1. Update templates in `.github/specs/templates/`
-2. Modify agents in `.github/agents/` if needed
-3. Document team patterns in `kit-docs/`
+### Scenario 3: Setting Up a New Project
+```
+1. /constitution         Define project rules
+2. /patterns             Document patterns & standards
+3. /project-knowledge-base  Capture team knowledge
+4. Then → start shipping features
+```
 
 ---
 
+## 📦 System Components
 
-## 📋 File Organization
-
-See [kit-docs/PROJECT-STRUCTURE.md](kit-docs/PROJECT-STRUCTURE.md) for complete file organization details.
-
-Key folders:
-- `kit-docs/` — Documentation for maintainers
-- `memories/` — Project knowledge (automatic, shared across sessions)
-- `artifacts/features/` — Your feature specs, plans, and tasks
-- `.github/agents/`, `.github/instructions/`, `.github/prompts/`, `.github/specs/` — Agent definitions, instructions, prompts, and templates
-
----
-
-## 🚀 Getting Started
-
-1. **Read**: [USAGE-GUIDE.md](USAGE-GUIDE.md) (10 minute overview covering both Greenfield and Brownfield workflows)
-2. **Setup**: Run `@constitution` and `@project-knowledge-base` agents if new project
-3. **Begin**: Run appropriate first agent based on project type
-   - Greenfield: `@spec-requirement`
-   - Brownfield: `@discover-legacy-system`
+| Component             | Location                                    | Purpose                                             |
+| --------------------- | ------------------------------------------- | --------------------------------------------------- |
+| **13 Agents**         | [docs/agents/](docs/agents/)                | Spec, design, plan, code, review, discovery, memory |
+| **Workflows**         | [docs/workflows/](docs/workflows/README.md) | How to chain agents together                        |
+| **Templates**         | `.github/specs/templates/`                  | 11 reusable scaffolds                               |
+| **Checklists**        | `.github/specs/checklists/`                 | Quality gates (ready/done)                          |
+| **Memory System**     | `memories/`                                 | 3-tier knowledge storage                            |
+| **Feature Artifacts** | `artifacts/features/<slug>/`                | spec.md, design.md, plan.md, tasks.md               |
 
 ---
 
-## ❓ Common Questions
+## 🧠 How It Works
 
-**Q: What do I read first?**
-A: [USAGE-GUIDE.md](USAGE-GUIDE.md) — it covers both greenfield and brownfield workflows
+```
+Request
+   ↓
+/spec → spec.md (what are we building?)
+   ↓
+/design → design.md (how will we build it?)
+   ↓
+/plan → plan.md (what's the execution order?)
+   ↓
+/tasks → tasks.md (what are the concrete steps?)
+   ↓
+/implement → code + tests (build it)
+   ↓
+/review → verification (does it match the spec?)
+   ↓
+MERGED & DONE
+```
 
-**Q: Where do I put my specs?**
-A: `artifacts/features/<feature-slug>/spec.md`
-
-**Q: How do I resume work from last session?**
-A: Check `artifacts/features/<feature>/` → read existing artifacts → continue from last agent used
-
-**Q: What's in memories/?**
-A: Project knowledge that agents read automatically. See [memories/README.md](memories/README.md)
-
-**Q: How do I customize this kit?**
-A: See [kit-docs/KIT-ARCHITECTURE.md](kit-docs/KIT-ARCHITECTURE.md) for extension guidance
-
----
-
-## 📖 Full Documentation Index
-
-### For First-Time Users
-1. [USAGE-GUIDE.md](USAGE-GUIDE.md) — Step-by-step workflows (Greenfield & Brownfield)
-2. [kit-docs/AGENTS-REFERENCE.md](kit-docs/AGENTS-REFERENCE.md) — Complete reference for all 12 agents
-3. [kit-docs/README.md](kit-docs/README.md) — Documentation hub (find what you need)
-
-### For Using the Kit
-- [memories/README.md](memories/README.md) — Project memory system & how to use it
-- [kit-docs/AGENTS-MAPPING.md](kit-docs/AGENTS-MAPPING.md) — How agents relate to templates
-
-### For Understanding the Kit
-- [kit-docs/KIT-ARCHITECTURE.md](kit-docs/KIT-ARCHITECTURE.md) — Design principles, memory system reasoning
-- [kit-docs/PROJECT-STRUCTURE.md](kit-docs/PROJECT-STRUCTURE.md) — File organization, kit vs project files
-- [kit-docs/MEMORY-SYSTEM.md](kit-docs/MEMORY-SYSTEM.md) — Three-tier memory architecture
-
-### For Maintaining/Extending the Kit
-- [kit-docs/AGENTS-MAPPING.md](kit-docs/AGENTS-MAPPING.md) — How to customize agents & templates
+**Key concepts:**
+- Each step produces a versioned artifact
+- Artifacts flow through agents
+- Memory learns from each feature
+- Traceability connects code back to requirements (REQ-*, AC-*, TASK-*)
 
 ---
 
-## 💡 Key Concepts
+## 📂 Folder Structure
 
-**Artifacts**: Markdown files that capture each phase of feature work (spec, plan, tasks, implementation files)
-
-**Memory tiers**: User (across projects) | Session (this conversation) | Repository (this project)
-
-**Autonomous agents**: Agents that explore/generate independently, reducing questions and friction
-
-**Traceability IDs**: REQ-* → AC-* → TASK-* linking requirements to implementation
-
-**Definition gates**: Quality checklists that ensure specs, plans, and code meet standards
+```
+/
+├── README.md ────────────────────── You are here
+├── AGENT-SYSTEM-REVIEW.md ───────── Full agent analysis
+├── USAGE-GUIDE.md ───────────────── Adoption roadmap
+│
+├── docs/ ────────────────────────── COMPLETE DOCUMENTATION (21 files)
+│   ├── README.md ─────────────────── Doc hub with cross-links
+│   ├── agents/ ───────────────────── How all 13 agents work
+│   ├── workflows/ ────────────────── Patterns, sequences, decision trees
+│   ├── guides/ ───────────────────── Step-by-step tutorials
+│   ├── reference/ ────────────────── Quick lookups (commands, terms, FAQ)
+│   ├── memory-system/ ────────────── Knowledge persistence explained
+│   ├── checklists/ ───────────────── Quality gates
+│   └── templates/ ────────────────── Reusable scaffolding
+│
+├── .github/ ──────────────────────── Config & definitions
+│   ├── agents/ ───────────────────── 13 agent definitions (YAML)
+│   ├── prompts/ ──────────────────── Agent instructions
+│   ├── specs/templates/ ──────────── 11 reusable templates
+│   ├── specs/checklists/ ─────────── 2 quality gate checklists
+│   └── instructions/ ─────────────── Copilot instructions
+│
+├── memories/ ─────────────────────── Knowledge storage (3-tier)
+│   ├── user/ ─────────────────────── Personal notes (persistent)
+│   ├── session/ ──────────────────── Current task context
+│   └── repo/ ─────────────────────── Team knowledge
+│
+├── artifacts/ ────────────────────── Generated feature work
+│   └── features/<feature-slug>/
+│       ├── spec.md
+│       ├── design.md (optional)
+│       ├── plan.md
+│       ├── tasks.md
+│       └── decision-log.md (optional)
+│
+└── tooling/ ──────────────────────── Dev tools (as needed)
+```
 
 ---
 
-## 🎓 Learn More
+## ✅ Status & Overview
 
-- Workflow details: See [USAGE-GUIDE.md](USAGE-GUIDE.md)
-- Memory design: See [kit-docs/MEMORY-SYSTEM.md](kit-docs/MEMORY-SYSTEM.md)
-- Project setup: See [kit-docs/PROJECT-STRUCTURE.md](kit-docs/PROJECT-STRUCTURE.md)
-- Architecture decisions: See [kit-docs/KIT-ARCHITECTURE.md](kit-docs/KIT-ARCHITECTURE.md)
+| Metric                 | Count                            |
+| ---------------------- | -------------------------------- |
+| **Agents**             | 13 (fully documented & reviewed) |
+| **Documentation**      | 21 files (organized by purpose)  |
+| **Templates**          | 11 reusable scaffolds            |
+| **Quality Checklists** | 2 (ready/done)                   |
+| **Reference Q&A**      | 100+ FAQ answers                 |
+| **Terms**              | 50+ defined                      |
+
+**Status**: Production Ready | **Version**: 2.0 | **Updated**: April 4, 2026
 
 ---
 
-**Version**: 2.0
-**Last updated**: 2026-04-04
-**Agents**: 12 | **Templates**: 11 | **Memory tiers**: 3
+## 🚀 Next Steps
+
+1. **See it in action** → [Getting Started](docs/guides/getting-started.md)
+2. **Need a command?** → [All Commands](docs/reference/commands.md)
+3. **Have questions?** → [FAQ](docs/reference/faq.md)
+4. **Want to understand design?** → [Agent System Review](AGENT-SYSTEM-REVIEW.md)
+5. **Ready to adopt?** → [Usage Guide](USAGE-GUIDE.md)
+
+---
+
+## 🔗 Key Files
+
+- [AGENT-SYSTEM-REVIEW.md](AGENT-SYSTEM-REVIEW.md) — Expert analysis of all 13 agents
+- [USAGE-GUIDE.md](USAGE-GUIDE.md) — How to adopt and use the kit
+- [docs/README.md](docs/README.md) — Main documentation hub
+- [docs/guides/getting-started.md](docs/guides/getting-started.md) — First 10 minutes
+- [docs/reference/commands.md](docs/reference/commands.md) — All commands
