@@ -76,6 +76,32 @@ For each finding in session notes, decide:
 - ✅ **Will team need this in 6 months ?** → Promote to `architecture-decisions.md`
 - ❌ **Temporary or session-specific ?** → Leave in session notes
 
+### Step 2.5: Deduplication Check
+
+**Before promoting any finding, check for duplicates:**
+
+For each finding to promote:
+
+1. **Search existing repo memory files**:
+   - If promoting to `legacy-system-watchouts.md`: Check if identical gotcha already exists
+   - If promoting to `architecture-decisions.md`: Check if same decision already documented
+   - If promoting to `integration-points.md`: Check if same integration point exists
+
+2. **Deduplication rules**:
+   - **Exact match found** → Skip promotion (no duplicate entries)
+   - **Similar but slightly different** → Update existing entry, preserve source history
+   - **New finding** → Promote as new entry
+
+3. **When updating existing entries**:
+   - Add "Also observed in: [New source/date]" to existing entry
+   - Increase confidence if multiple sessions confirm finding
+   - Update **Discovered**: field to show discovery history (e.g., "2026-03-15, 2026-04-04")
+   - Do NOT replace original discovery date
+
+4. **When skipping duplicates**:
+   - Note in session report: "Finding [X] already documented in [file], skipping promotion"
+   - Confidence level increased if duplicate found (confirms finding is stable)
+
 ### Step 3: Automatically Update Repo Memory
 
 **File 1: Update `legacy-system-watchouts.md`**

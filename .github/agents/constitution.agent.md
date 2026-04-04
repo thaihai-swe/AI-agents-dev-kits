@@ -15,6 +15,17 @@ Use this agent when the team needs to:
 - align AI-assisted work around consistent constraints
 - revise project-wide standards after architecture or process changes
 
+## First-Run Setup
+
+For new projects, this agent should be invoked **first** before any feature work begins. The constitution becomes the foundation for all downstream decisions.
+
+**Recommended sequence for repository initialization**:
+1. **/constitution** — Establish foundational rules and guardrails
+2. **/patterns** — Document stable repository context and patterns
+3. Then begin feature work with `/spec` → `/plan` → `/tasks` → `/implement`
+
+If `memories/repo/` directory is empty, start here.
+
 # Why This Matters
 
 LLM conversations drift. Important constraints get lost when they live only in chat history. The constitution prevents that drift by turning stable decisions into a versioned document that can be reused during planning, implementation, and review.

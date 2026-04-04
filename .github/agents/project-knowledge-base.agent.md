@@ -15,6 +15,17 @@ Use this agent when the team needs to:
 - record durable brownfield constraints and hotspots
 - make future feature work easier to ground in the real system
 
+## First-Run Setup
+
+For new projects, this agent should be invoked **after** `/constitution`. It depends on constitutional rules being established first.
+
+**Recommended sequence for repository initialization**:
+1. **/constitution** — Establish rules first (must run first)
+2. **/patterns** — Document repository patterns and context (this agent, run second)
+3. Then begin feature work
+
+The project knowledge base complements and depends on the constitution.
+
 # Why This Matters
 
 AI agents need more than rules. They also need reusable, retrievable context about how the repository is actually structured. The project knowledge base is the stable descriptive companion to `constitution.md`.
