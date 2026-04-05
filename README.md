@@ -1,181 +1,182 @@
-# AI Development Kit
+# AI Agents Dev Kit
 
-**Complete system for building software with AI: 13 specialized agents, 11 reusable templates, 3-tier memory system, and comprehensive documentation.**
+Structured, artifact-driven AI workflow for real software repositories.
 
-Designed for sustainable, traceable feature development—from specification through implementation—that works seamlessly with AI while maintaining quality gates and team knowledge.
+## Overview
 
----
+This repository now centers on a 10-agent delivery model defined in [`.github/agents/`](./.github/agents/). The workflow separates durable repository knowledge from feature-specific delivery artifacts so AI work stays reviewable, resumable, and traceable.
 
-## ⚡ Quick Start
+## Current Agent Set (5 Categories, 10 Agents)
 
-**New here?** (5 minutes)
-1. Read [Getting Started](docs/guides/getting-started.md) — See how it works
-2. Pick a workflow: [New feature?](docs/workflows/README.md) or [Existing code?](docs/workflows/README.md)
-3. Use [All Commands](docs/reference/commands.md) as reference
+### Foundation
+| Command                   | Backing File                      | Purpose                                     |
+| ------------------------- | --------------------------------- | ------------------------------------------- |
+| `/constitution`           | `constitution.agent.md`           | Maintain durable repo-wide rules            |
+| `/project-knowledge-base` | `project-knowledge-base.agent.md` | Maintain durable descriptive repo knowledge |
 
-**Questions?** → [FAQ (100+ Q&A)](docs/reference/faq.md)
+### Discovery & Analysis
+| Command    | Backing File       | Purpose                                                  |
+| ---------- | ------------------ | -------------------------------------------------------- |
+| `/analyze` | `analyze.agent.md` | Investigate a feature area, bug, or brownfield subsystem |
 
----
+### Specification & Design
+| Command                     | Backing File                        | Purpose                                                  |
+| --------------------------- | ----------------------------------- | -------------------------------------------------------- |
+| `/spec-requirement`         | `spec-requirement.agent.md`         | Create or refine `spec.md`                               |
+| `/spec-review-requirements` | `spec-review-requirements.agent.md` | Review `spec.md` readiness                               |
+| `/spec-design`              | `spec-design.agent.md`              | Create `design.md` when planning needs technical clarity |
 
-## 📚 Documentation (21 files, organized by purpose)
+### Planning & Delivery
+| Command       | Backing File          | Purpose           |
+| ------------- | --------------------- | ----------------- |
+| `/spec-plan`  | `spec-plan.agent.md`  | Create `plan.md`  |
+| `/spec-tasks` | `spec-tasks.agent.md` | Create `tasks.md` |
 
-| What You Need               | Where to Find It                                                                                    |
-| --------------------------- | --------------------------------------------------------------------------------------------------- |
-| **What are the 13 agents?** | [agents/README.md](docs/agents/README.md) + [Deep dives by category](docs/agents/details/)          |
-| **How do I use them?**      | [Workflows Guide](docs/workflows/README.md)                                                         |
-| **All commands reference**  | [All 13 Commands](docs/reference/commands.md) or [Agent Reference](docs/agents/AGENTS-REFERENCE.md) |
-| **Key terms explained**     | [Terminology](docs/reference/terminology.md)                                                        |
-| **Questions answered**      | [FAQ](docs/reference/faq.md)                                                                        |
-| **Quality gates**           | [Checklists](docs/checklists/)                                                                      |
-| **How memory works**        | [Memory System](docs/memory-system/README.md)                                                       |
-| **Everything else**         | [Full Documentation Hub](docs/README.md)                                                            |
+### Implementation & Quality
+| Command           | Backing File              | Purpose                                          |
+| ----------------- | ------------------------- | ------------------------------------------------ |
+| `/spec-implement` | `spec-implement.agent.md` | Execute planned implementation work              |
+| `/spec-review`    | `spec-review.agent.md`    | Review implementation against approved artifacts |
 
----
+Older docs in this repo referenced a 13-agent model with separate discovery, architecture, pattern, and archive commands. Those are no longer the source of truth.
 
-## 🎯 Your First Day
+## Repo Memory
 
-### Scenario 1: Starting a Brand New Feature
-```
-1. /spec                 Create specification
-2. /requirement-review   Check for gaps (optional)
-3. /design               Tech architecture (if complex)
-4. /plan                 Execution sequence
-5. /tasks                Break into small tasks
-6. /implement            Build & test
-7. /review               Verify it matches spec
-```
+The current repo-memory model is intentionally compact:
 
-### Scenario 2: Working with Existing Code
-```
-1. /discover             Explore and map the system
-2. /architecture         Extract current design
-3. /archive              Save findings to team memory
-4. Then → follow new feature flow above
+```text
+memories/repo/constitution.md
+memories/repo/project-knowledge-base.md
 ```
 
-### Scenario 3: Setting Up a New Project
-```
-1. /constitution         Define project rules
-2. /patterns             Document patterns & standards
-3. /project-knowledge-base  Capture team knowledge
-4. Then → start shipping features
-```
+- `constitution.md` stores durable rules and guardrails
+- `project-knowledge-base.md` stores durable descriptive context
 
----
+## Feature Artifacts
 
-## 📦 System Components
+Each feature lives under:
 
-| Component             | Location                                    | Purpose                                             |
-| --------------------- | ------------------------------------------- | --------------------------------------------------- |
-| **13 Agents**         | [docs/agents/](docs/agents/)                | Spec, design, plan, code, review, discovery, memory |
-| **Workflows**         | [docs/workflows/](docs/workflows/README.md) | How to chain agents together                        |
-| **Templates**         | `.github/specs/templates/`                  | 11 reusable scaffolds                               |
-| **Checklists**        | `.github/specs/checklists/`                 | Quality gates (ready/done)                          |
-| **Memory System**     | `memories/`                                 | 3-tier knowledge storage                            |
-| **Feature Artifacts** | `artifacts/features/<slug>/`                | spec.md, design.md, plan.md, tasks.md               |
-
----
-
-## 🧠 How It Works
-
-```
-Request
-   ↓
-/spec → spec.md (what are we building?)
-   ↓
-/design → design.md (how will we build it?)
-   ↓
-/plan → plan.md (what's the execution order?)
-   ↓
-/tasks → tasks.md (what are the concrete steps?)
-   ↓
-/implement → code + tests (build it)
-   ↓
-/review → verification (does it match the spec?)
-   ↓
-MERGED & DONE
+```text
+artifacts/features/<feature-slug>/
+  analysis.md
+  spec.md
+  requirements-review.md
+  design.md
+  plan.md
+  tasks.md
+  review.md
 ```
 
-**Key concepts:**
-- Each step produces a versioned artifact
-- Artifacts flow through agents
-- Memory learns from each feature
-- Traceability connects code back to requirements (REQ-*, AC-*, TASK-*)
+Not every feature needs every file. `analysis.md`, `design.md`, and `review.md` are used when they reduce ambiguity or create useful durable evidence.
 
----
+## Standard Workflow
 
-## 📂 Folder Structure
-
-```
-/
-├── README.md ────────────────────── You are here
-├── AGENT-SYSTEM-REVIEW.md ───────── Full agent analysis
-├── USAGE-GUIDE.md ───────────────── Adoption roadmap
-│
-├── docs/ ────────────────────────── COMPLETE DOCUMENTATION (21 files)
-│   ├── README.md ─────────────────── Doc hub with cross-links
-│   ├── agents/ ───────────────────── How all 13 agents work
-│   ├── workflows/ ────────────────── Patterns, sequences, decision trees
-│   ├── guides/ ───────────────────── Step-by-step tutorials
-│   ├── reference/ ────────────────── Quick lookups (commands, terms, FAQ)
-│   ├── memory-system/ ────────────── Knowledge persistence explained
-│   ├── checklists/ ───────────────── Quality gates
-│   └── templates/ ────────────────── Reusable scaffolding
-│
-├── .github/ ──────────────────────── Config & definitions
-│   ├── agents/ ───────────────────── 13 agent definitions (YAML)
-│   ├── prompts/ ──────────────────── Agent instructions
-│   ├── specs/templates/ ──────────── 11 reusable templates
-│   ├── specs/checklists/ ─────────── 2 quality gate checklists
-│   └── instructions/ ─────────────── Copilot instructions
-│
-├── memories/ ─────────────────────── Knowledge storage (3-tier)
-│   ├── user/ ─────────────────────── Personal notes (persistent)
-│   ├── session/ ──────────────────── Current task context
-│   └── repo/ ─────────────────────── Team knowledge
-│
-├── artifacts/ ────────────────────── Generated feature work
-│   └── features/<feature-slug>/
-│       ├── spec.md
-│       ├── design.md (optional)
-│       ├── plan.md
-│       ├── tasks.md
-│       └── decision-log.md (optional)
-│
-└── tooling/ ──────────────────────── Dev tools (as needed)
+```text
+┌─ FOUNDATION ─────────────────────────┐
+│ /constitution                         │
+│         ↓                             │
+│ /project-knowledge-base               │
+└───────────────────────────────────────┘
+                ↓
+┌─ DISCOVERY & ANALYSIS ────────────────┐
+│ /analyze                              │
+└───────────────────────────────────────┘
+                ↓
+┌─ SPECIFICATION & DESIGN ──────────────┐
+│ /spec-requirement                     │
+│         ↓                             │
+│ /spec-review-requirements             │
+│         ↓                             │
+│ /spec-design        (when needed)     │
+└───────────────────────────────────────┘
+                ↓
+┌─ PLANNING & DELIVERY ─────────────────┐
+│ /spec-plan                            │
+│         ↓                             │
+│ /spec-tasks                           │
+└───────────────────────────────────────┘
+                ↓
+┌─ IMPLEMENTATION & QUALITY ────────────┐
+│ /spec-implement                       │
+│         ↓                             │
+│ /spec-review                          │
+└───────────────────────────────────────┘
 ```
 
----
+Feature flow:
 
-## ✅ Status & Overview
+```text
+repo memory (Foundation)
+  ↓
+analysis (Discovery & Analysis)
+  ↓
+specification (Specification & Design)
+  ↓
+requirements review (Specification & Design)
+  ↓
+design (optional, Specification & Design)
+  ↓
+plan (Planning & Delivery)
+  ↓
+tasks (Planning & Delivery)
+  ↓
+implementation (Implementation & Quality)
+  ↓
+review (Implementation & Quality)
+```
 
-| Metric                 | Count                            |
-| ---------------------- | -------------------------------- |
-| **Agents**             | 13 (fully documented & reviewed) |
-| **Documentation**      | 21 files (organized by purpose)  |
-| **Templates**          | 11 reusable scaffolds            |
-| **Quality Checklists** | 2 (ready/done)                   |
-| **Reference Q&A**      | 100+ FAQ answers                 |
-| **Terms**              | 50+ defined                      |
+## Included Scaffolding
 
-**Status**: Production Ready | **Version**: 2.0 | **Updated**: April 4, 2026
+Under [`.github/specs/`](./.github/specs/) the repo includes:
 
----
+- 11 templates for core artifacts and repo-memory docs
+- definition-of-ready and definition-of-done checklists
 
-## 🚀 Next Steps
+## Quick Start
 
-1. **See it in action** → [Getting Started](docs/guides/getting-started.md)
-2. **Need a command?** → [All Commands](docs/reference/commands.md)
-3. **Have questions?** → [FAQ](docs/reference/faq.md)
-4. **Want to understand design?** → [Agent System Review](AGENT-SYSTEM-REVIEW.md)
-5. **Ready to adopt?** → [Usage Guide](USAGE-GUIDE.md)
+1. Read [Getting Started](docs/guides/getting-started.md).
+2. Review the [Workflow Guide](docs/workflows/README.md).
+3. Keep the [Commands Reference](docs/reference/commands.md) open while you work.
 
----
+For a new repository:
 
-## 🔗 Key Files
+```text
+/constitution
+/project-knowledge-base
+```
 
-- [AGENT-SYSTEM-REVIEW.md](AGENT-SYSTEM-REVIEW.md) — Expert analysis of all 13 agents
-- [USAGE-GUIDE.md](USAGE-GUIDE.md) — How to adopt and use the kit
-- [docs/README.md](docs/README.md) — Main documentation hub
-- [docs/guides/getting-started.md](docs/guides/getting-started.md) — First 10 minutes
-- [docs/reference/commands.md](docs/reference/commands.md) — All commands
+For a new feature:
+
+```text
+/analyze
+/spec-requirement
+/spec-review-requirements
+/spec-plan
+/spec-tasks
+/spec-implement
+/spec-review
+```
+
+Add `/spec-design` before planning when the feature changes interfaces, crosses subsystem boundaries, introduces data or compatibility risk, or has multiple viable technical approaches.
+
+## Documentation Map
+
+- [docs/README.md](docs/README.md)
+- [docs/workflows/README.md](docs/workflows/README.md)
+- [docs/reference/commands.md](docs/reference/commands.md)
+- [docs/agents/README.md](docs/agents/README.md)
+- [docs/WORKFLOW-EXAMPLE.md](docs/WORKFLOW-EXAMPLE.md)
+- [docs/how it work.md](docs/how%20it%20work.md)
+
+## Mental Model
+
+The kit works best when these boundaries stay intact:
+
+- `analyze` explores what is true now
+- `spec-requirement` defines what should change and why
+- `spec-design` explains how the system should work when design is needed
+- `spec-plan` and `spec-tasks` turn intent into executable work
+- `spec-implement` changes code and validation
+- `spec-review` checks whether the delivered work actually matches intent
+
+That separation is the main value of the kit.
