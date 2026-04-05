@@ -20,6 +20,7 @@ A strong task list:
 - captures dependencies and sequencing
 - includes validation work
 - ensures each task can be implemented and verified in isolation where practical
+- keeps tasks resumable across sessions
 - makes implementation easier to track and audit
 
 ## Inputs
@@ -36,6 +37,12 @@ Read if present:
 
 If `spec.md` or `plan.md` is missing or clearly incomplete, stop and say so.
 
+Stop and say so when:
+- plan phases are too vague to decompose safely
+- material requirements are not covered by plan phases
+- acceptance criteria have no meaningful validation direction
+- unresolved questions still affect task boundaries or sequencing
+
 ## Writing rules
 
 1. Break work into the smallest useful reviewable outcomes.
@@ -47,6 +54,11 @@ If `spec.md` or `plan.md` is missing or clearly incomplete, stop and say so.
 7. Use stable task identifiers where helpful, for example:
    - TASK-001
    - TASK-002
+8. Organize tasks by implementation phase when the plan is phased.
+9. Link every task back to the plan phase, requirement, and acceptance criteria it serves.
+10. Mark tasks that can run in parallel only when their dependencies and change boundaries make parallel work safe.
+11. Prefer affected modules or files when known, but do not invent speculative file lists.
+12. Include enough status and resume context that implementation can restart without relying on chat history.
 
 ## Suggested structure for `tasks.md`
 
@@ -55,25 +67,43 @@ If `spec.md` or `plan.md` is missing or clearly incomplete, stop and say so.
 ## Overview
 Short note about the tasking strategy.
 
+## Phase Groups
+Group tasks under plan-aligned phases where practical.
+For each phase include:
+- phase id or plan reference
+- goal
+- enabled user scenario or outcome
+- completion criteria
+
 ## Task List
 For each task include:
 - task id
-- title
+- title or summary
+- plan reference
+- linked requirement(s)
+- linked acceptance criteria
 - purpose
+- affected file(s) or module(s)
 - inputs or dependencies
+- parallelization note
 - expected outcome
 - validation notes
 - isolation boundary or scope notes
 - status
+- session or resume note
 
 Example status values:
-- todo
-- in_progress
-- blocked
-- done
+- Not Started
+- In Progress
+- Blocked
+- Done
+- Deferred
 
 ## Dependency Notes
 Cross-task sequencing or gating notes.
+
+## Resume Notes
+Capture the current phase, next recommended task, and active blocker when useful.
 
 ## Completion standard
 
@@ -83,11 +113,15 @@ The task list is ready when it:
 - includes validation work
 - makes isolated implementation slices clear
 - makes execution order and dependencies understandable
+- preserves traceability from plan phases to tasks to requirements and acceptance criteria
+- is specific enough for `spec-implement` to execute without inventing scope or validation
 
 ## Output rules
 
 - Update only `artifacts/features/${input:slug}/tasks.md`
 - Do not implement code in this step
+- Do not finalize tasks that combine unrelated changes into a single task without a clear reason
+- Do not finalize tasks that leave major acceptance criteria uncovered
 - If upstream planning is weak, say so instead of inventing certainty
 
 ## Next step

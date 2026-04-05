@@ -14,9 +14,12 @@ Use this after `spec.md`, `plan.md`, and `tasks.md` exist.
 Responsibilities:
 
 - execute selected tasks
+- choose the next unblocked task by default when a task is not explicitly specified
 - keep implementation scoped
 - add or update validation
 - update task status when the workflow expects it
+- follow task dependencies, phase sequencing, and resume notes
+- stop when dependencies, prerequisites, or task clarity are insufficient
 - stop if upstream artifacts are too weak or contradictory
 
 ## `/spec-review`

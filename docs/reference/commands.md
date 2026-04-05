@@ -60,7 +60,7 @@ Investigate the current authentication flow, session handling, token usage, and 
 
 - Agent file: `constitution.agent.md`
 - Primary output: `memories/repo/constitution.md`
-- Use when: we need durable repo-wide rules, guardrails, or quality expectations
+- Use when: we need durable repo-wide rules, guardrails, quality gates, or AI operating constraints that should govern future work by default
 
 ### `/project-knowledge-base`
 
@@ -99,19 +99,19 @@ Create a feature specification for passwordless email login via one-time magic l
 
 - Agent file: `spec-plan.agent.md`
 - Primary output: `artifacts/features/<slug>/plan.md`
-- Use when: the feature intent is approved and we need execution sequencing
+- Use when: the feature intent is approved and we need the technical approach, sequencing, dependencies, validation, and rollout strategy defined clearly enough for task generation
 
 ### `/spec-tasks`
 
 - Agent file: `spec-tasks.agent.md`
 - Primary output: `artifacts/features/<slug>/tasks.md`
-- Use when: the plan is ready and we need bounded implementation tasks
+- Use when: the plan is ready and we need phased, traceable, implementation-ready task slices with explicit dependencies and validation notes
 
 ### `/spec-implement`
 
 - Agent file: `spec-implement.agent.md`
 - Primary inputs: `spec.md`, `plan.md`, and `tasks.md`
-- Use when: we are ready to execute one or more planned tasks
+- Use when: we are ready to execute the next unblocked planned task or a specifically selected set of tasks, with status updates and validation evidence
 
 Example:
 

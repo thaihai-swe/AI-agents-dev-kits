@@ -20,6 +20,13 @@ Stores durable repo-wide rules:
 - migration safety requirements
 - architecture guardrails
 - review or release constraints
+- AI agent operating constraints
+
+This artifact is normative:
+
+- it defines what future work should follow by default
+- it should use durable rule identifiers when the repo adopts them
+- it should not be used for descriptive repository notes or one-off feature policy
 
 ### `project-knowledge-base.md`
 
@@ -50,6 +57,7 @@ Update repo memory only when the information is:
 - useful beyond a single feature
 
 Do not promote temporary findings or feature-specific decisions into repo memory.
+Do not let `project-knowledge-base.md` override constitutional rules; descriptive memory must remain subordinate to normative policy.
 
 ## Relationship To Feature Artifacts
 

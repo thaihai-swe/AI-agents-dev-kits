@@ -36,6 +36,16 @@ Read if present:
 - `artifacts/features/${input:slug}/analysis.md`
 - other existing feature artifacts for this slug
 
+## Preconditions
+
+If the request is missing product-critical information needed to define:
+- who the users are
+- the problem being solved
+- the core user workflow
+- the intended success outcomes
+
+then stop and state exactly what must be clarified before the specification can be finalized.
+
 ## Writing rules
 
 1. Focus on what and why, not how.
@@ -46,6 +56,10 @@ Read if present:
 6. If important uncertainty remains, call it out explicitly.
 7. Keep the scope bounded.
 8. Prioritize user journeys, user interactions, and success outcomes over technical solutioning.
+9. Separate current-state observations from future-state requirements.
+10. Move nice-to-haves, future ideas, and later phases into `Non-Goals` or `Open Questions` instead of silently expanding scope.
+11. Preserve stable identifiers and update existing sections in place when refining an existing spec.
+12. Do not prescribe frameworks, APIs, database choices, file structures, or deployment models unless they are true business constraints.
 
 ## Suggested structure for `spec.md`
 
@@ -62,6 +76,10 @@ What is wrong, missing, or valuable to improve.
 
 ## Goals
 Concrete intended outcomes.
+
+## User Stories / Key Scenarios
+Capture the highest-value scenarios that define the feature, for example:
+- As a <user>, I want <capability>, so that <outcome>.
 
 ## User Journeys and Experience
 Describe the intended user flow, the key interactions, and the experience the feature should create.
@@ -82,35 +100,46 @@ Use stable identifiers where helpful, for example:
 
 Each requirement should be clear and testable.
 
+Separate functional behavior from quality expectations:
+- functional requirements describe user-visible behavior, rules, and workflows
+- non-functional requirements describe performance, reliability, security, accessibility, compliance, or operational expectations
+
 ## Acceptance Criteria
 Use stable identifiers where helpful, for example:
 - AC-001
 - AC-002
 
-Acceptance criteria should be observable and verifiable.
+Acceptance criteria should be observable, verifiable, and traceable back to one or more requirements.
 
 ## Constraints
 Only include constraints that materially affect the feature.
 
+## Assumptions
+Non-blocking assumptions being made at specification time.
+
 ## Risks and Open Questions
-Ambiguities, assumptions, unresolved issues, or decisions needed before downstream work.
+Ambiguities, unresolved issues, product decisions, or decisions needed before downstream work.
 
 ## Completion standard
 
 The specification is ready when it:
 - clearly defines the problem and value
 - clearly identifies target users and intended experience
+- captures the primary user stories or scenarios
 - has bounded scope
 - includes testable requirements
 - includes verifiable acceptance criteria
+- keeps functional requirements, quality expectations, and constraints meaningfully separated
 - describes success outcomes clearly enough to guide downstream design and planning
 - contains enough context for requirements review
 - avoids technical planning and implementation detail
+- does not depend on hidden product assumptions
 
 ## Output rules
 
 - Update only `artifacts/features/${input:slug}/spec.md`
 - Do not create `design.md`, `plan.md`, or `tasks.md`
+- Do not finalize the spec if acceptance criteria cannot be traced to requirements or cannot be observed by a reviewer
 - If the spec is not ready, state what is missing instead of papering over gaps
 
 ## Next step

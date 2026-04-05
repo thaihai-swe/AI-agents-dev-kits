@@ -50,7 +50,7 @@ This kit solves those problems by:
 ### Specification & Design
 | Command                     | Backing File                        | Purpose                                                  |
 | --------------------------- | ----------------------------------- | -------------------------------------------------------- |
-| `/spec-requirement`         | `spec-requirement.agent.md`         | Create or refine `spec.md`                               |
+| `/spec-requirement`         | `spec-requirement.agent.md`         | Create or refine a user-focused `spec.md`                |
 | `/spec-review-requirements` | `spec-review-requirements.agent.md` | Review `spec.md` readiness                               |
 | `/spec-design`              | `spec-design.agent.md`              | Create `design.md` when planning needs technical clarity |
 

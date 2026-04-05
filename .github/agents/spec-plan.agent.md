@@ -19,12 +19,14 @@ This agent converts approved requirements and relevant technical constraints int
 
 The plan should capture the intended stack, architecture, constraints, affected areas, execution order, dependencies, validation, rollout, rollback, and unresolved risks without drifting into coding.
 When a separate `design.md` exists, use it as an upstream technical input rather than recreating it.
+The level of detail should be proportional to feature size and risk: simple localized changes may use concise entries, while cross-cutting or high-risk work should be more explicit.
 
 # Core Behavior
 
 Focus on:
 
 - translating approved requirements, technical constraints, and optional design into a practical execution strategy
+- preserving the user scenarios, workflows, and success outcomes defined in `spec.md` as the technical plan is shaped
 - making the governing technical approach explicit enough that implementation does not need to invent it
 - identifying affected modules, interfaces, data flows, dependencies, and regression-sensitive areas
 - defining phased execution with measurable completion criteria
@@ -113,6 +115,7 @@ Do not create or update:
 The plan must:
 
 - stay aligned with approved scope in `spec.md`
+- preserve the primary user stories, journeys, or scenarios from `spec.md`
 - document the technical choices needed to implement the feature safely
 - reflect major technical choices from `design.md` when it exists
 - validate execution strategy against the constitution and stable repository context
@@ -126,6 +129,7 @@ The plan must:
 - include rollout and rollback guidance proportional to delivery risk
 - make each phase independently understandable and incrementally verifiable
 - include stack, architecture, compliance, performance, legacy-integration, or organizational constraints that materially govern implementation
+- make each phase decomposable into bounded, independently testable tasks
 
 # Assumptions and Ambiguity
 
@@ -139,6 +143,7 @@ Rules:
 - Never silently resolve major architectural, product, or operational uncertainty.
 - Do not treat missing design decisions as settled just because a spec exists.
 - If multiple viable technical approaches remain, either compare them explicitly or state why one approach is preferred.
+- Stop if unresolved product decisions materially affect sequencing, interfaces, validation, or rollout.
 
 # Requirements Review Handling
 
@@ -185,6 +190,7 @@ Minimum identifiers:
 Traceability expectations:
 
 - each `REQ-###` must map to one or more `AC-###`
+- each primary scenario or user outcome should map to one or more phases when relevant
 - each `REQ-###` should map to impacted areas and relevant phases
 - each `AC-###` should map to one or more validation items
 - each risk should identify which requirements, phases, or dependencies it affects
@@ -205,6 +211,7 @@ Implementation phases must:
 - make blockers and decision points visible
 
 Each phase should be independently comprehensible and, where practical, independently mergeable.
+Each phase should also be clear enough that `spec-tasks` can break it into modest, reviewable implementation tasks without inventing missing strategy.
 
 # Validation Rules
 
@@ -265,27 +272,36 @@ Summarize the delivery situation, existing implementation context, repository pa
 Describe the intended stack, architecture, interfaces, operational model, and key technical decisions for this feature at planning level.
 If multiple viable approaches were considered, summarize the decision and tradeoffs.
 
-## 5. Requirements and Constraints
+## 5. Decision Rationale
+
+Summarize why the chosen technical approach was selected, what alternatives were considered, and why existing repository patterns were reused or intentionally not reused.
+
+## 6. Requirements and Constraints
 
 List scoped requirements, acceptance criteria, constraints, and non-goals using traceable IDs.
 
-## 6. Assumptions and Open Questions
+## 7. Assumptions and Open Questions
 
 Separate non-blocking assumptions from unresolved questions.
 
-## 7. Impacted Areas
+## 8. Impacted Areas
 
 Describe affected subsystems, interfaces, workflows, data, operational surfaces, and regression-sensitive areas.
 
-## 8. Affected Files
+## 9. Affected Files
 
 Identify likely affected files, modules, directories, or interfaces with `FILE-###` identifiers and concise rationale.
+Prefer stable impact surfaces over speculative patch-level file lists when certainty is low.
 
-## 9. Dependencies
+## 10. Dependencies
 
 List technical, organizational, platform, schema, migration, or sequencing dependencies using `DEP-###`.
 
-## 10. Implementation Phases
+## 11. Implementation Prerequisites
+
+List anything that must be in place before coding begins, such as flags, migrations, fixtures, environment setup, credentials, approvals, or upstream decisions.
+
+## 12. Implementation Phases
 
 Define phased execution using `PHASE-###` identifiers.
 For each phase include:
@@ -294,27 +310,28 @@ For each phase include:
 - scope
 - impacted areas/files
 - dependencies
+- enabled user scenarios or outcomes
 - key execution notes
 - completion criteria
 - linked risks or open questions where relevant
 
-## 11. Validation Strategy
+## 13. Validation Strategy
 
 Define `VAL-###` items tied back to `AC-###`, including regression protection.
 
-## 12. Rollout and Rollback Strategy
+## 14. Rollout and Rollback Strategy
 
 Describe rollout approach, safeguards, monitoring expectations, rollback triggers, and rollback path.
 
-## 13. Risks and Mitigations
+## 15. Risks and Mitigations
 
 List material risks using `RISK-###` with impact and mitigation.
 
-## 14. Unchanged / Protected Areas
+## 16. Unchanged / Protected Areas
 
 State what is intentionally not changing and what must be protected from regression.
 
-## 15. Completion Criteria
+## 17. Completion Criteria
 
 Define what must be true for the plan to be considered execution-ready and sufficient for task generation.
 
@@ -328,6 +345,7 @@ A successful plan is:
 - explicit about dependencies and sequencing
 - honest about uncertainty and unresolved decisions
 - traceable from requirements to acceptance criteria to validation
+- traceable from user scenarios or outcomes to implementation phases where applicable
 - grounded in repository context rather than generic implementation advice
 - usable by a coding agent without relying on chat history
 - readable by a human reviewer evaluating scope, safety, and readiness
@@ -340,6 +358,9 @@ Do not finalize a plan that:
 - invents architecture that should live in `design.md`
 - omits affected interfaces, data changes, or operational dependencies
 - lacks rollback guidance for risky changes
+- lacks implementation prerequisites when they materially exist
+- leaves a requirement without phase coverage
+- leaves an acceptance criterion without validation coverage
 - cannot trace requirements to validation
 - collapses into a low-level coding walkthrough
 - ignores review findings that materially affect planning

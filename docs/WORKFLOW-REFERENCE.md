@@ -31,6 +31,9 @@ artifacts/features/<slug>/review.md        (optional)
 - Use `analysis.md` for brownfield discovery and risk reduction
 - Do not plan from a vague spec
 - Use `design.md` only when it reduces planning ambiguity
+- Make `plan.md` explicit enough that `spec-tasks` can break work down without inventing technical strategy
+- Make `tasks.md` explicit enough that `spec-implement` can execute selected tasks without inventing missing scope, ordering, or validation
+- Use `spec-implement` to execute the next unblocked task by default, and stop instead of coding through unresolved blockers
 - Implement from `tasks.md`, not from vague chat intent
 - Review implementation against approved artifacts, not against memory alone
 

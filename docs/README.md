@@ -17,6 +17,8 @@ Repo memory:
 - `memories/repo/constitution.md`
 - `memories/repo/project-knowledge-base.md`
 
+`constitution.md` is normative policy. `project-knowledge-base.md` is descriptive context.
+
 Feature artifacts:
 
 - `artifacts/features/<slug>/analysis.md`

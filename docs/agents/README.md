@@ -9,7 +9,7 @@ This repo currently defines 10 agents organized into 5 categories.
 | **Foundation**               | `/constitution`             | `constitution.agent.md`             | `memories/repo/constitution.md`           |
 |                              | `/project-knowledge-base`   | `project-knowledge-base.agent.md`   | `memories/repo/project-knowledge-base.md` |
 | **Discovery & Analysis**     | `/analyze`                  | `analyze.agent.md`                  | `analysis.md`                             |
-| **Specification & Design**   | `/spec-requirement`         | `spec-requirement.agent.md`         | `spec.md`                                 |
+| **Specification & Design**   | `/spec-requirement`         | `spec-requirement.agent.md`         | user-focused `spec.md`                    |
 |                              | `/spec-review-requirements` | `spec-review-requirements.agent.md` | `requirements-review.md`                  |
 |                              | `/spec-design`              | `spec-design.agent.md`              | `design.md`                               |
 | **Planning & Delivery**      | `/spec-plan`                | `spec-plan.agent.md`                | `plan.md`                                 |
@@ -46,5 +46,7 @@ The current agent set intentionally consolidates several older responsibilities:
 - durable architecture and pattern knowledge belongs in `project-knowledge-base.md`
 - durable repo-wide rules belong in `constitution.md`
 - there is no separate archive or memory-promotion command in the current codebase
+
+The `spec.md` artifact should stay product-focused: target users, key scenarios, intended experience, bounded requirements, acceptance criteria, and success outcomes belong here before technical planning starts.
 
 Treat the files under `.github/agents/` as the source of truth.

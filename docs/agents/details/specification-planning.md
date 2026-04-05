@@ -51,11 +51,11 @@ Adds technical clarity only when planning depends on architecture, interfaces, m
 
 ### `/spec-plan` (Planning & Delivery)
 
-Turns approved intent into execution sequencing, dependencies, validation, rollout, and rollback guidance.
+Turns approved intent into a technical execution strategy with scenario-aware sequencing, dependencies, validation, implementation prerequisites, rollout, and rollback guidance.
 
 ### `/spec-tasks` (Planning & Delivery)
 
-Creates bounded implementation units that are easier to track, review, and validate.
+Creates phased, traceable implementation units that are easier to track, review, resume, and validate.
 
 ## Rule Of Thumb
 
@@ -68,3 +68,6 @@ If execution feels unclear, the missing artifact is usually:
 
 - incomplete `plan.md` (Planning & Delivery)
 - vague `tasks.md` (Planning & Delivery)
+
+Strong `plan.md` artifacts should preserve the user scenarios from `spec.md`, make the technical approach explicit, and stay detailed enough for `spec-tasks` to decompose work without inventing missing strategy.
+Strong `tasks.md` artifacts should preserve traceability to plan phases, requirements, and acceptance criteria while staying small enough for `spec-implement` to execute in reviewable slices.

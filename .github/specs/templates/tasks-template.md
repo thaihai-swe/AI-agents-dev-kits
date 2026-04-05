@@ -16,7 +16,9 @@
 - Record blockers and dependencies explicitly.
 - Link every task back to requirement and acceptance criteria IDs.
 - Link every task back to the plan task or phase it came from.
+- Link each phase or task group back to the user scenario or outcome it enables when relevant.
 - Mark tasks that can run in parallel when they have no dependency relationship.
+- Only mark tasks as parallel-safe when they do not create obvious write conflicts or contract conflicts.
 - Prefer explicit file or module targets when known from the plan.
 - Use these task states consistently: `Not Started`, `In Progress`, `Blocked`, `Done`, `Deferred`.
 
