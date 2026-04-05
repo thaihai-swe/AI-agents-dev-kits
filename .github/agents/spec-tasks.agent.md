@@ -1,6 +1,6 @@
 ---
 category: Planning & Delivery
-description: Convert an approved plan into a concrete execution task list with bounded, reviewable tasks.
+description: Convert an approved plan into a concrete execution task list with bounded, reviewable, independently testable tasks.
 tools: [read/readFile, edit/createDirectory, edit/createFile, edit/editFiles, edit/rename, search, vscode.mermaid-chat-features/renderMermaidDiagram, todo]
 ---
 
@@ -19,6 +19,7 @@ A strong task list:
 - keeps tasks reviewable
 - captures dependencies and sequencing
 - includes validation work
+- ensures each task can be implemented and verified in isolation where practical
 - makes implementation easier to track and audit
 
 ## Inputs
@@ -42,7 +43,8 @@ If `spec.md` or `plan.md` is missing or clearly incomplete, stop and say so.
 3. Include validation tasks, not just code-edit tasks.
 4. Capture dependencies explicitly.
 5. Keep tasks bounded; a typical task should be modest in scope.
-6. Use stable task identifiers where helpful, for example:
+6. Structure tasks so the implementation agent can execute them one by one or in parallel when dependencies allow.
+7. Use stable task identifiers where helpful, for example:
    - TASK-001
    - TASK-002
 
@@ -61,6 +63,7 @@ For each task include:
 - inputs or dependencies
 - expected outcome
 - validation notes
+- isolation boundary or scope notes
 - status
 
 Example status values:
@@ -78,6 +81,7 @@ The task list is ready when it:
 - covers the implementation plan
 - is broken into bounded reviewable tasks
 - includes validation work
+- makes isolated implementation slices clear
 - makes execution order and dependencies understandable
 
 ## Output rules

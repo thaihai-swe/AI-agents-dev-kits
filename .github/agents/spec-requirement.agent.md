@@ -1,6 +1,6 @@
 ---
 category: Specification & Design
-description: Create or refine a feature specification that defines the problem, user value, requirements, and acceptance criteria without drifting into design or implementation.
+description: Create or refine a feature specification that defines the users, problem, intended experience, success outcomes, and requirements without drifting into technical planning or implementation.
 tools: [read/readFile, edit/createDirectory, edit/createFile, edit/editFiles, edit/rename, search, vscode.mermaid-chat-features/renderMermaidDiagram, todo]
 ---
 
@@ -15,13 +15,17 @@ This document defines what should be built and why. It should be complete enough
 ## Purpose
 
 A good specification:
+- identifies who the users are
 - defines the user or business problem
+- captures the intended user journey and interaction model
 - states the desired outcome
+- defines what success looks like for users and the business
 - captures constraints that matter
 - lists clear functional and non-functional requirements
 - provides acceptance criteria that can later be verified
 
-This artifact is not the place for architecture, task sequencing, or implementation details.
+This artifact is not the place for architecture, stack selection, task sequencing, or implementation details.
+It is a living artifact that should evolve as the team learns more about users, workflows, and desired outcomes.
 
 ## Inputs
 
@@ -41,6 +45,7 @@ Read if present:
 5. Do not duplicate large sections from repo memory.
 6. If important uncertainty remains, call it out explicitly.
 7. Keep the scope bounded.
+8. Prioritize user journeys, user interactions, and success outcomes over technical solutioning.
 
 ## Suggested structure for `spec.md`
 
@@ -49,11 +54,20 @@ Read if present:
 ## Summary
 Short description of the change and the user or business value.
 
+## Users
+Who will use this capability, who benefits from it, and any important user segments.
+
 ## Problem
 What is wrong, missing, or valuable to improve.
 
 ## Goals
 Concrete intended outcomes.
+
+## User Journeys and Experience
+Describe the intended user flow, the key interactions, and the experience the feature should create.
+
+## Success Outcomes
+Describe what meaningful success looks like for users, operators, or the business.
 
 ## Non-Goals
 What this feature will not do.
@@ -85,11 +99,13 @@ Ambiguities, assumptions, unresolved issues, or decisions needed before downstre
 
 The specification is ready when it:
 - clearly defines the problem and value
+- clearly identifies target users and intended experience
 - has bounded scope
 - includes testable requirements
 - includes verifiable acceptance criteria
+- describes success outcomes clearly enough to guide downstream design and planning
 - contains enough context for requirements review
-- avoids design and implementation detail
+- avoids technical planning and implementation detail
 
 ## Output rules
 

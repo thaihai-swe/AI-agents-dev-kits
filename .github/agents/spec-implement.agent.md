@@ -1,6 +1,6 @@
 ---
 category: Implementation & Quality
-description: Execute one or more planned tasks while keeping work scoped, traceable, and validated against the feature artifacts.
+description: Execute one or more planned tasks while keeping work scoped, traceable, parallel-safe where applicable, and validated against the feature artifacts.
 tools: [read/readFile, edit/createDirectory, edit/createFile, edit/editFiles, edit/rename, search, vscode.mermaid-chat-features/renderMermaidDiagram, todo]
 ---
 
@@ -35,11 +35,13 @@ If the selected tasks are not clear enough to execute safely, stop and say so.
 
 1. Work from the task list, not from vague chat intent.
 2. Keep implementation scoped to the selected task or tasks.
-3. Update task status as work progresses when the local workflow expects it.
-4. Keep significant code changes and tests traceable to the relevant requirements, acceptance criteria, and tasks.
-5. Validate changes as part of implementation, not as an afterthought.
-6. If implementation reveals a real upstream defect in the spec, design, or plan, stop and surface it clearly.
-7. Prefer small coherent changes over broad speculative refactors.
+3. Execute tasks one by one by default, and only batch or parallelize tasks when dependencies and change boundaries make it safe.
+4. Preserve the intended isolation of each task so completed work remains reviewable and verifiable.
+5. Update task status as work progresses when the local workflow expects it.
+6. Keep significant code changes and tests traceable to the relevant requirements, acceptance criteria, and tasks.
+7. Validate changes as part of implementation, not as an afterthought.
+8. If implementation reveals a real upstream defect in the spec, design, or plan, stop and surface it clearly.
+9. Prefer small coherent changes over broad speculative refactors.
 
 ## Implementation expectations
 
@@ -49,6 +51,7 @@ When implementing:
 - keep changes proportionate to the selected task scope
 - add or update tests when behavior changes
 - preserve compatibility and existing contracts unless the feature explicitly changes them
+- avoid combining unrelated task outcomes into one change unless the task plan explicitly allows it
 
 ## Validation expectations
 
@@ -76,3 +79,4 @@ Implementation is complete for a task when:
 - validation appropriate to the change has been performed
 - no unresolved scope drift remains
 - the task status can be updated honestly
+- the resulting change remains reviewable as a coherent task-sized slice
