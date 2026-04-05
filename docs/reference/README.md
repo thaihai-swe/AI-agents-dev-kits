@@ -2,52 +2,27 @@
 
 Quick lookup materials for the current 10-agent workflow.
 
+## What's In This Section
+
+This section provides quick answers to common questions without the narrative explanation. Use these pages to look up specific information while working.
+
 ## Quick Links
 
-- [commands.md](commands.md) for the current command set
-- [terminology.md](terminology.md) for core terms
-- [faq.md](faq.md) for common workflow questions
-
-## Current Command Summary (5 Categories)
-
-### Foundation
-| Command                   | Purpose                              | Typical Use                                |
-| ------------------------- | ------------------------------------ | ------------------------------------------ |
-| `/constitution`           | Maintain repo-wide rules             | Initial setup or durable rule updates      |
-| `/project-knowledge-base` | Maintain durable descriptive context | Initial setup or durable knowledge updates |
-
-### Discovery & Analysis
-| Command    | Purpose                                | Typical Use                      |
-| ---------- | -------------------------------------- | -------------------------------- |
-| `/analyze` | Investigate current behavior and risks | Brownfield work, bugs, ambiguity |
-
-### Specification & Design
-| Command                     | Purpose                           | Typical Use                    |
-| --------------------------- | --------------------------------- | ------------------------------ |
-| `/spec-requirement`         | Define what should change and why | Start of most features         |
-| `/spec-review-requirements` | Review spec readiness             | Before design or planning      |
-| `/spec-design`              | Resolve technical ambiguity       | Cross-cutting or risky changes |
-
-### Planning & Delivery
-| Command       | Purpose                    | Typical Use                     |
-| ------------- | -------------------------- | ------------------------------- |
-| `/spec-plan`  | Create implementation plan | After requirements are approved |
-| `/spec-tasks` | Create bounded tasks       | After planning                  |
-
-### Implementation & Quality
-| Command           | Purpose               | Typical Use           |
-| ----------------- | --------------------- | --------------------- |
-| `/spec-implement` | Execute planned work  | During implementation |
-| `/spec-review`    | Verify delivered work | After implementation  |
+- **[Commands](commands.md)** - What each agent does and how to invoke it
+- **[Terminology](terminology.md)** - Definitions of key terms
+- **[FAQ](faq.md)** - Common workflow questions and answers
 
 ## How To Use This Section
 
-- Need the right command: read [commands.md](commands.md)
-- Need a term definition: read [terminology.md](terminology.md)
-- Need a workflow answer: read [faq.md](faq.md)
+- **Need to know what command to run?** → [commands.md](commands.md)
+- **Unsure what a term means?** → [terminology.md](terminology.md)
+- **Have a workflow question?** → [faq.md](faq.md)
 
-## Related Docs
+## Related Documentation
 
-- [../workflows/README.md](../workflows/README.md)
-- [../guides/getting-started.md](../guides/getting-started.md)
-- [../memory-system/README.md](../memory-system/README.md)
+For narrative explanations and workflow guidance:
+
+- [How It Works](../how%20it%20work.md) - Why the workflow is organized this way
+- [Workflow Reference](../WORKFLOW-REFERENCE.md) - Scenario-specific workflow patterns
+- [Getting Started](../guides/getting-started.md) - Quick onboarding guide
+- [Workflow Example](../WORKFLOW-EXAMPLE.md) - Full end-to-end example

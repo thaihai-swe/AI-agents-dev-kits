@@ -66,7 +66,7 @@ This kit solves those problems by:
 | `/spec-implement` | `spec-implement.agent.md` | Execute planned implementation work              |
 | `/spec-review`    | `spec-review.agent.md`    | Review implementation against approved artifacts |
 
-Older docs in this repo referenced a 13-agent model with separate discovery, architecture, pattern, and archive commands. Those are no longer the source of truth.
+**Note:** Older docs in this repo referenced a 13-agent model. See [docs/how it work.md](docs/how%20it%20work.md#what-changed-from-the-older-model) for what changed.
 
 ## Repo Memory
 

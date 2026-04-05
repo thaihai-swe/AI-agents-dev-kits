@@ -21,9 +21,9 @@ This repo currently defines 10 agents organized into 5 categories.
 
 - [details/foundation-setup.md](details/foundation-setup.md) - Foundation
 - [details/discovery-learning.md](details/discovery-learning.md) - Discovery & Analysis
-- [details/specification-planning.md](details/specification-planning.md) - Specification & Design
-- [details/specification-planning.md](details/specification-planning.md) - Planning & Delivery
+- [details/specification-planning.md](details/specification-planning.md) - Specification & Design + Planning & Delivery
 - [details/implementation-delivery.md](details/implementation-delivery.md) - Implementation & Quality
+- [details/quality-knowledge.md](details/quality-knowledge.md) - Quality Gates (across phases)
 
 ## Standard Feature Flow
 

@@ -49,7 +49,7 @@ Feature artifacts:
 - `/spec-implement`
 - `/spec-review`
 
-Older docs that referenced `/discover`, `/architecture`, `/patterns`, or `/archive` were describing the retired model.
+Older docs that referenced `/discover`, `/architecture`, `/patterns`, or `/archive` were describing the retired model. See [Important Shift From The Older Model](agents/README.md#important-shift-from-the-older-model) for details.
 
 ## Documentation Map
 
