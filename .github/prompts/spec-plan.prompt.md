@@ -1,1 +1,1 @@
-agent: 'spec-plan'
+agent: spec-plan

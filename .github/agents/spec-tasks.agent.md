@@ -1,5 +1,6 @@
 ---
 category: Planning & Delivery
+name: spec-tasks
 description: Convert an approved plan into a concrete execution task list with bounded, reviewable, independently testable tasks.
 tools: [read/readFile, edit/createDirectory, edit/createFile, edit/editFiles, edit/rename, search, vscode.mermaid-chat-features/renderMermaidDiagram, todo]
 ---

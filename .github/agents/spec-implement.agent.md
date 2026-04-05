@@ -1,5 +1,6 @@
 ---
 category: Implementation & Quality
+name: spec-implement
 description: Execute one or more planned tasks while keeping work scoped, traceable, parallel-safe where applicable, and validated against the feature artifacts.
 tools: [read/readFile, edit/createDirectory, edit/createFile, edit/editFiles, edit/rename, search, vscode.mermaid-chat-features/renderMermaidDiagram, todo]
 ---

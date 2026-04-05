@@ -1,5 +1,6 @@
 ---
 category: Specification & Design
+name: spec-requirement
 description: Create or refine a feature specification that defines the users, problem, intended experience, success outcomes, and requirements without drifting into technical planning or implementation.
 tools: [read/readFile, edit/createDirectory, edit/createFile, edit/editFiles, edit/rename, search, vscode.mermaid-chat-features/renderMermaidDiagram, todo]
 ---

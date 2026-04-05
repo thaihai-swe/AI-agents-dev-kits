@@ -1,1 +1,1 @@
-agent: 'spec-review-implementation'
+agent: spec-review-implementation
