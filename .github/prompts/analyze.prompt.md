@@ -1,1 +1,1 @@
-agent: 'analyze'
+agent: analyze
