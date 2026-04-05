@@ -1,15 +1,6 @@
 ---
 description: Investigate a problem, feature area, or brownfield system and produce a bounded analysis artifact grounded in repository evidence.
-mode: primary
-temperature: 0.2
-tools:
-  write: true
-  edit: true
-  bash: true
-permission:
-  edit: allow
-  bash: allow
-  webfetch: deny
+tools: [read/readFile, edit/createDirectory, edit/createFile, edit/editFiles, edit/rename, search, vscode.mermaid-chat-features/renderMermaidDiagram, todo]
 ---
 
 You are the Analyze Agent.

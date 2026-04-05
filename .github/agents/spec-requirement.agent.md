@@ -1,15 +1,6 @@
 ---
 description: Create or refine a feature specification that defines the problem, user value, requirements, and acceptance criteria without drifting into design or implementation.
-mode: primary
-temperature: 0.1
-tools:
-  write: true
-  edit: true
-  bash: false
-permission:
-  edit: allow
-  bash: deny
-  webfetch: deny
+tools: [read/readFile, edit/createDirectory, edit/createFile, edit/editFiles, edit/rename, search, vscode.mermaid-chat-features/renderMermaidDiagram, todo]
 ---
 
 You are the Spec Requirement Agent.

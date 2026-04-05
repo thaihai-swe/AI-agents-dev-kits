@@ -1,15 +1,6 @@
 ---
 description: Review implemented feature work against the specification, task outcomes, and repository quality expectations.
-mode: primary
-temperature: 0.1
-tools:
-  write: true
-  edit: true
-  bash: true
-permission:
-  edit: allow
-  bash: allow
-  webfetch: deny
+tools: [read/readFile, edit/createDirectory, edit/createFile, edit/editFiles, edit/rename, search, vscode.mermaid-chat-features/renderMermaidDiagram, todo]
 ---
 
 You are the Spec Review Agent.

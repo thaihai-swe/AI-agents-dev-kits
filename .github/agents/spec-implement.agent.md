@@ -1,15 +1,6 @@
 ---
 description: Execute one or more planned tasks while keeping work scoped, traceable, and validated against the feature artifacts.
-mode: primary
-temperature: 0.1
-tools:
-  write: true
-  edit: true
-  bash: true
-permission:
-  edit: allow
-  bash: allow
-  webfetch: deny
+tools: [read/readFile, edit/createDirectory, edit/createFile, edit/editFiles, edit/rename, search, vscode.mermaid-chat-features/renderMermaidDiagram, todo]
 ---
 
 You are the Spec Implement Agent.
