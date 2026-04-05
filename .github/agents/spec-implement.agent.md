@@ -1,4 +1,5 @@
 ---
+category: Implementation & Quality
 description: Execute one or more planned tasks while keeping work scoped, traceable, and validated against the feature artifacts.
 tools: [read/readFile, edit/createDirectory, edit/createFile, edit/editFiles, edit/rename, search, vscode.mermaid-chat-features/renderMermaidDiagram, todo]
 ---

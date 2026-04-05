@@ -16,7 +16,7 @@ This page maps the current commands to the agent files under `.github/agents/`.
 - Output: `memories/repo/project-knowledge-base.md`
 - Use for: durable descriptive repository context
 
-## Discovery
+## Discovery & Analysis
 
 ### `/analyze`
 
@@ -24,7 +24,7 @@ This page maps the current commands to the agent files under `.github/agents/`.
 - Output: `artifacts/features/<slug>/analysis.md`
 - Use for: brownfield discovery, bug investigation, risk clarification
 
-## Specification And Planning
+## Specification & Design
 
 ### `/spec-requirement`
 
@@ -44,6 +44,8 @@ This page maps the current commands to the agent files under `.github/agents/`.
 - Output: `artifacts/features/<slug>/design.md`
 - Use for: technical clarification before planning
 
+## Planning & Delivery
+
 ### `/spec-plan`
 
 - Agent file: `spec-plan.agent.md`
@@ -56,7 +58,7 @@ This page maps the current commands to the agent files under `.github/agents/`.
 - Output: `artifacts/features/<slug>/tasks.md`
 - Use for: bounded, reviewable implementation units
 
-## Delivery
+## Implementation & Quality
 
 ### `/spec-implement`
 

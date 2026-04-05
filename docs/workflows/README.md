@@ -1,6 +1,14 @@
 # Workflows
 
-This page describes the current workflow built around the 10 agent files in [`.github/agents/`](../../.github/agents/).
+This page describes the current workflow built around the 10 agent files organized into 5 categories in [`.github/agents/`](../../.github/agents/).
+
+## Agent Categories
+
+1. **Foundation** - Establish durable repo-wide context
+2. **Discovery & Analysis** - Investigate unclear systems or risks
+3. **Specification & Design** - Define what and how to build
+4. **Planning & Delivery** - Create execution strategy and tasks
+5. **Implementation & Quality** - Build, test, and verify
 
 ## Default Feature Flow
 
@@ -107,12 +115,12 @@ If those conditions are absent, go straight from requirements review to planning
 
 ## Outputs By Phase
 
-| Phase | Artifact | Why it exists |
-| --- | --- | --- |
-| Analysis | `analysis.md` | Capture observed facts, risks, and next-step guidance |
-| Specification | `spec.md` | Define what should change and why |
-| Requirements Review | `requirements-review.md` | Check whether downstream work is safe to start |
-| Design | `design.md` | Resolve technical ambiguity before planning |
-| Planning | `plan.md` | Define execution strategy, sequencing, and validation |
-| Tasks | `tasks.md` | Break work into bounded outcomes |
-| Review | `review.md` | Record verification findings when needed |
+| Phase               | Artifact                 | Why it exists                                         |
+| ------------------- | ------------------------ | ----------------------------------------------------- |
+| Analysis            | `analysis.md`            | Capture observed facts, risks, and next-step guidance |
+| Specification       | `spec.md`                | Define what should change and why                     |
+| Requirements Review | `requirements-review.md` | Check whether downstream work is safe to start        |
+| Design              | `design.md`              | Resolve technical ambiguity before planning           |
+| Planning            | `plan.md`                | Define execution strategy, sequencing, and validation |
+| Tasks               | `tasks.md`               | Break work into bounded outcomes                      |
+| Review              | `review.md`              | Record verification findings when needed              |

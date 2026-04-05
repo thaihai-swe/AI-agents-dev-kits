@@ -27,16 +27,25 @@ Feature artifacts:
 - `artifacts/features/<slug>/tasks.md`
 - `artifacts/features/<slug>/review.md`
 
-## Current Commands
+## Current Commands (5 Categories)
 
-- `/analyze`
+### Foundation
 - `/constitution`
 - `/project-knowledge-base`
+
+### Discovery & Analysis
+- `/analyze`
+
+### Specification & Design
 - `/spec-requirement`
 - `/spec-review-requirements`
 - `/spec-design`
+
+### Planning & Delivery
 - `/spec-plan`
 - `/spec-tasks`
+
+### Implementation & Quality
 - `/spec-implement`
 - `/spec-review`
 

@@ -1,6 +1,6 @@
 # Commands Reference
 
-This is the current command set implemented by the files in [`.github/agents/`](../../.github/agents/).
+This is the current command set implemented by the files in [`.github/agents/`](../../.github/agents/), organized into 5 categories.
 
 ## Current Commands
 
@@ -11,18 +11,28 @@ This is the current command set implemented by the files in [`.github/agents/`](
 /project-knowledge-base
 ```
 
-### Analysis, Specification, and Planning
+### Discovery & Analysis
 
 ```text
 /analyze
+```
+
+### Specification & Design
+
+```text
 /spec-requirement
 /spec-review-requirements
 /spec-design
+```
+
+### Planning & Delivery
+
+```text
 /spec-plan
 /spec-tasks
 ```
 
-### Execution and Review
+### Implementation & Quality
 
 ```text
 /spec-implement

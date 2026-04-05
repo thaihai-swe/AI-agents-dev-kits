@@ -1,4 +1,5 @@
 ---
+category: Planning & Delivery
 name: spec-plan
 description: Turn approved feature requirements and, when needed, technical design into a constitution-aligned, execution-ready implementation plan with explicit sequencing, traceability, risks, validation, rollout, and rollback guidance.
 tools: [read/readFile, edit/createDirectory, edit/createFile, edit/editFiles, edit/rename, search, vscode.mermaid-chat-features/renderMermaidDiagram, todo]

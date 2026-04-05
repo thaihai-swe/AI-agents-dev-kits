@@ -1,27 +1,37 @@
 # Workflow Reference
 
-## Current Visual Flow
+## Current Visual Flow By Category
 
 ```text
-/constitution
-        ↓
-/project-knowledge-base
-
-/analyze
-    ↓
-/spec-requirement
-    ↓
-/spec-review-requirements
-    ↓
-/spec-design        (when needed)
-    ↓
-/spec-plan
-    ↓
-/spec-tasks
-    ↓
-/spec-implement
-    ↓
-/spec-review
+┌─ FOUNDATION ────────────────┐
+│ /constitution               │
+│         ↓                   │
+│ /project-knowledge-base     │
+└─────────────────────────────┘
+                ↓
+┌─ DISCOVERY & ANALYSIS ──────┐
+│ /analyze                    │
+└─────────────────────────────┘
+                ↓
+┌─ SPECIFICATION & DESIGN ────┐
+│ /spec-requirement           │
+│         ↓                   │
+│ /spec-review-requirements   │
+│         ↓                   │
+│ /spec-design  (when needed) │
+└─────────────────────────────┘
+                ↓
+┌─ PLANNING & DELIVERY ───────┐
+│ /spec-plan                  │
+│         ↓                   │
+│ /spec-tasks                 │
+└─────────────────────────────┘
+                ↓
+┌─ IMPLEMENTATION & QUALITY ──┐
+│ /spec-implement             │
+│         ↓                   │
+│ /spec-review                │
+└─────────────────────────────┘
 ```
 
 ## Artifact Flow

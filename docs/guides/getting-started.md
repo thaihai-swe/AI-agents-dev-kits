@@ -1,15 +1,15 @@
 # Getting Started
 
-This is the fastest way to onboard to the current 10-agent model.
+This is the fastest way to onboard to the current 10-agent model organized into 5 categories.
 
 ## The 30-Second Version
 
-| If You Want | Use This |
-| --- | --- |
-| Set up repo memory | `/constitution` -> `/project-knowledge-base` |
-| Build a new feature | `/spec-requirement` -> `/spec-review-requirements` -> `/spec-plan` -> `/spec-tasks` -> `/spec-implement` -> `/spec-review` |
-| Investigate brownfield code | `/analyze` |
-| Handle a cross-cutting feature | add `/spec-design` before planning |
+| If You Want                 | Use This                                                                                              | Category                                             |
+| --------------------------- | ----------------------------------------------------------------------------------------------------- | ---------------------------------------------------- |
+| Set up repo memory          | `/constitution` -> `/project-knowledge-base`                                                          | **Foundation**                                       |
+| Investigate brownfield code | `/analyze`                                                                                            | **Discovery & Analysis**                             |
+| Build a new feature         | `/spec-requirement` -> `/spec-review-requirements` -> `/spec-design` -> `/spec-plan` -> `/spec-tasks` | **Specification & Design** + **Planning & Delivery** |
+| Implement & verify          | `/spec-implement` -> `/spec-review`                                                                   | **Implementation & Quality**                         |
 
 ## Your First Feature
 
@@ -86,15 +86,27 @@ Run these first when the repo has no durable memory yet:
 /project-knowledge-base
 ```
 
-## How To Think About The Workflow
+## How To Think About The 5 Agent Categories
 
-- `analyze` learns what is true now
-- `spec-requirement` defines what should change
+**Foundation:**
+- `constitution` establishes repo-wide rules and guardrails
+- `project-knowledge-base` captures durable descriptive context
+
+**Discovery & Analysis:**
+- `analyze` learns what is true now before making changes
+
+**Specification & Design:**
+- `spec-requirement` defines what should change and why
+- `spec-review-requirements` checks whether the spec is ready downstream
 - `spec-design` clarifies how the system should work when planning needs technical decisions
+
+**Planning & Delivery:**
 - `spec-plan` turns intent into execution strategy
 - `spec-tasks` creates bounded work units
-- `spec-implement` executes the plan
-- `spec-review` verifies the result
+
+**Implementation & Quality:**
+- `spec-implement` executes the planned tasks
+- `spec-review` verifies the result against approved artifacts
 
 ## Safe Defaults
 

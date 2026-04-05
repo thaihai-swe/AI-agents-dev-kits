@@ -8,20 +8,37 @@ Quick lookup materials for the current 10-agent workflow.
 - [terminology.md](terminology.md) for core terms
 - [faq.md](faq.md) for common workflow questions
 
-## Current Command Summary
+## Current Command Summary (5 Categories)
 
-| Command | Purpose | Typical Use |
-| --- | --- | --- |
-| `/constitution` | Maintain repo-wide rules | Initial setup or durable rule updates |
+### Foundation
+| Command                   | Purpose                              | Typical Use                                |
+| ------------------------- | ------------------------------------ | ------------------------------------------ |
+| `/constitution`           | Maintain repo-wide rules             | Initial setup or durable rule updates      |
 | `/project-knowledge-base` | Maintain durable descriptive context | Initial setup or durable knowledge updates |
+
+### Discovery & Analysis
+| Command    | Purpose                                | Typical Use                      |
+| ---------- | -------------------------------------- | -------------------------------- |
 | `/analyze` | Investigate current behavior and risks | Brownfield work, bugs, ambiguity |
-| `/spec-requirement` | Define what should change and why | Start of most features |
-| `/spec-review-requirements` | Review spec readiness | Before design or planning |
-| `/spec-design` | Resolve technical ambiguity | Cross-cutting or risky changes |
-| `/spec-plan` | Create implementation plan | After requirements are approved |
-| `/spec-tasks` | Create bounded tasks | After planning |
-| `/spec-implement` | Execute planned work | During implementation |
-| `/spec-review` | Verify delivered work | After implementation |
+
+### Specification & Design
+| Command                     | Purpose                           | Typical Use                    |
+| --------------------------- | --------------------------------- | ------------------------------ |
+| `/spec-requirement`         | Define what should change and why | Start of most features         |
+| `/spec-review-requirements` | Review spec readiness             | Before design or planning      |
+| `/spec-design`              | Resolve technical ambiguity       | Cross-cutting or risky changes |
+
+### Planning & Delivery
+| Command       | Purpose                    | Typical Use                     |
+| ------------- | -------------------------- | ------------------------------- |
+| `/spec-plan`  | Create implementation plan | After requirements are approved |
+| `/spec-tasks` | Create bounded tasks       | After planning                  |
+
+### Implementation & Quality
+| Command           | Purpose               | Typical Use           |
+| ----------------- | --------------------- | --------------------- |
+| `/spec-implement` | Execute planned work  | During implementation |
+| `/spec-review`    | Verify delivered work | After implementation  |
 
 ## How To Use This Section
 

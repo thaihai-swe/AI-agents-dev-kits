@@ -6,20 +6,37 @@ Structured, artifact-driven AI workflow for real software repositories.
 
 This repository now centers on a 10-agent delivery model defined in [`.github/agents/`](./.github/agents/). The workflow separates durable repository knowledge from feature-specific delivery artifacts so AI work stays reviewable, resumable, and traceable.
 
-## Current Agent Set
+## Current Agent Set (5 Categories, 10 Agents)
 
-| Command | Backing File | Purpose |
-| --- | --- | --- |
-| `/analyze` | `analyze.agent.md` | Investigate a feature area, bug, or brownfield subsystem |
-| `/constitution` | `constitution.agent.md` | Maintain durable repo-wide rules |
+### Foundation
+| Command                   | Backing File                      | Purpose                                     |
+| ------------------------- | --------------------------------- | ------------------------------------------- |
+| `/constitution`           | `constitution.agent.md`           | Maintain durable repo-wide rules            |
 | `/project-knowledge-base` | `project-knowledge-base.agent.md` | Maintain durable descriptive repo knowledge |
-| `/spec-requirement` | `spec-requirement.agent.md` | Create or refine `spec.md` |
-| `/spec-review-requirements` | `spec-review-requirements.agent.md` | Review `spec.md` readiness |
-| `/spec-design` | `spec-design.agent.md` | Create `design.md` when planning needs technical clarity |
-| `/spec-plan` | `spec-plan.agent.md` | Create `plan.md` |
+
+### Discovery & Analysis
+| Command    | Backing File       | Purpose                                                  |
+| ---------- | ------------------ | -------------------------------------------------------- |
+| `/analyze` | `analyze.agent.md` | Investigate a feature area, bug, or brownfield subsystem |
+
+### Specification & Design
+| Command                     | Backing File                        | Purpose                                                  |
+| --------------------------- | ----------------------------------- | -------------------------------------------------------- |
+| `/spec-requirement`         | `spec-requirement.agent.md`         | Create or refine `spec.md`                               |
+| `/spec-review-requirements` | `spec-review-requirements.agent.md` | Review `spec.md` readiness                               |
+| `/spec-design`              | `spec-design.agent.md`              | Create `design.md` when planning needs technical clarity |
+
+### Planning & Delivery
+| Command       | Backing File          | Purpose           |
+| ------------- | --------------------- | ----------------- |
+| `/spec-plan`  | `spec-plan.agent.md`  | Create `plan.md`  |
 | `/spec-tasks` | `spec-tasks.agent.md` | Create `tasks.md` |
-| `/spec-implement` | `spec-implement.agent.md` | Execute planned implementation work |
-| `/spec-review` | `spec-review.agent.md` | Review implementation against approved artifacts |
+
+### Implementation & Quality
+| Command           | Backing File              | Purpose                                          |
+| ----------------- | ------------------------- | ------------------------------------------------ |
+| `/spec-implement` | `spec-implement.agent.md` | Execute planned implementation work              |
+| `/spec-review`    | `spec-review.agent.md`    | Review implementation against approved artifacts |
 
 Older docs in this repo referenced a 13-agent model with separate discovery, architecture, pattern, and archive commands. Those are no longer the source of truth.
 
@@ -55,39 +72,57 @@ Not every feature needs every file. `analysis.md`, `design.md`, and `review.md` 
 ## Standard Workflow
 
 ```text
-/constitution
-/project-knowledge-base
-
-/analyze
-/spec-requirement
-/spec-review-requirements
-/spec-design        (when needed)
-/spec-plan
-/spec-tasks
-/spec-implement
-/spec-review
+┌─ FOUNDATION ─────────────────────────┐
+│ /constitution                         │
+│         ↓                             │
+│ /project-knowledge-base               │
+└───────────────────────────────────────┘
+                ↓
+┌─ DISCOVERY & ANALYSIS ────────────────┐
+│ /analyze                              │
+└───────────────────────────────────────┘
+                ↓
+┌─ SPECIFICATION & DESIGN ──────────────┐
+│ /spec-requirement                     │
+│         ↓                             │
+│ /spec-review-requirements             │
+│         ↓                             │
+│ /spec-design        (when needed)     │
+└───────────────────────────────────────┘
+                ↓
+┌─ PLANNING & DELIVERY ─────────────────┐
+│ /spec-plan                            │
+│         ↓                             │
+│ /spec-tasks                           │
+└───────────────────────────────────────┘
+                ↓
+┌─ IMPLEMENTATION & QUALITY ────────────┐
+│ /spec-implement                       │
+│         ↓                             │
+│ /spec-review                          │
+└───────────────────────────────────────┘
 ```
 
 Feature flow:
 
 ```text
-repo memory
+repo memory (Foundation)
   ↓
-analysis
+analysis (Discovery & Analysis)
   ↓
-specification
+specification (Specification & Design)
   ↓
-requirements review
+requirements review (Specification & Design)
   ↓
-design (optional)
+design (optional, Specification & Design)
   ↓
-plan
+plan (Planning & Delivery)
   ↓
-tasks
+tasks (Planning & Delivery)
   ↓
-implementation
+implementation (Implementation & Quality)
   ↓
-review
+review (Implementation & Quality)
 ```
 
 ## Included Scaffolding

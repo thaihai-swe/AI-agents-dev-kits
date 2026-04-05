@@ -1,4 +1,5 @@
 ---
+category: Foundation
 description: Maintain durable descriptive repository knowledge - stable patterns, architecture notes, integration boundaries, and reusable implementation context.
 tools: [read/readFile, edit/createDirectory, edit/createFile, edit/editFiles, edit/rename, search, vscode.mermaid-chat-features/renderMermaidDiagram, todo]
 ---

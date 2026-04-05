@@ -31,43 +31,40 @@ artifacts/features/<feature-slug>/
 
 Not every feature needs every file. `analysis.md` and `design.md` are mainly there to reduce ambiguity. `review.md` is useful when a durable written review helps future work.
 
-## Current Workflow
+## Current Workflow By Category
 
-The current codebase defines these steps:
-
-```text
-/constitution
-/project-knowledge-base
-/analyze
-/spec-requirement
-/spec-review-requirements
-/spec-design
-/spec-plan
-/spec-tasks
-/spec-implement
-/spec-review
-```
-
-The normal feature path looks like this:
+The 10 agents are organized into 5 categories:
 
 ```text
-repo memory
-  ↓
-analysis
-  ↓
-specification
-  ↓
-requirements review
-  ↓
-design (optional)
-  ↓
-plan
-  ↓
-tasks
-  ↓
-implementation
-  ↓
-review
+┌─ FOUNDATION ─────────────────────────┐
+│ /constitution                         │
+│         ↓                             │
+│ /project-knowledge-base               │
+└───────────────────────────────────────┘
+                ↓
+┌─ DISCOVERY & ANALYSIS ────────────────┐
+│ /analyze                              │
+└───────────────────────────────────────┘
+                ↓
+┌─ SPECIFICATION & DESIGN ──────────────┐
+│ /spec-requirement                     │
+│         ↓                             │
+│ /spec-review-requirements             │
+│         ↓                             │
+│ /spec-design (optional)               │
+└───────────────────────────────────────┘
+                ↓
+┌─ PLANNING & DELIVERY ─────────────────┐
+│ /spec-plan                            │
+│         ↓                             │
+│ /spec-tasks                           │
+└───────────────────────────────────────┘
+                ↓
+┌─ IMPLEMENTATION & QUALITY ────────────┐
+│ /spec-implement                       │
+│         ↓                             │
+│ /spec-review                          │
+└───────────────────────────────────────┘
 ```
 
 ## Why The Workflow Is Split

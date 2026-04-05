@@ -1,8 +1,8 @@
 # Quality Gates
 
-The current workflow has two explicit quality checkpoints.
+The current workflow has two explicit quality checkpoints across different categories.
 
-## `/spec-review-requirements`
+## `/spec-review-requirements` (Specification & Design Category)
 
 Checks whether `spec.md` is good enough for downstream work.
 
@@ -20,7 +20,7 @@ What it looks for:
 - scope leaks
 - blocking ambiguity
 
-## `/spec-review`
+## `/spec-review` (Implementation & Quality Category)
 
 Checks whether the delivered implementation matches the approved artifacts and repo expectations.
 
@@ -41,15 +41,24 @@ What it looks for:
 ## Working Pattern
 
 ```text
+SPECIFICATION & DESIGN:
 /spec-requirement
     ↓
-/spec-review-requirements
+/spec-review-requirements  ← First quality gate
     ↓
+/spec-design
+    ↓
+
+PLANNING & DELIVERY:
 /spec-plan
     ↓
 /spec-tasks
     ↓
+
+IMPLEMENTATION & QUALITY:
 /spec-implement
     ↓
-/spec-review
+/spec-review  ← Second quality gate
 ```
+
+Run `/spec-review-requirements` before committing to plan. Run `/spec-review` after implementation to verify the work matched intent.

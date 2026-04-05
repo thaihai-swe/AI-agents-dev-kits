@@ -1,4 +1,5 @@
 ---
+category: Specification & Design
 description: Create or refine a feature specification that defines the problem, user value, requirements, and acceptance criteria without drifting into design or implementation.
 tools: [read/readFile, edit/createDirectory, edit/createFile, edit/editFiles, edit/rename, search, vscode.mermaid-chat-features/renderMermaidDiagram, todo]
 ---

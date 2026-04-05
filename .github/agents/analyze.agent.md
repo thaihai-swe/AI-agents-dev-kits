@@ -1,4 +1,5 @@
 ---
+category: Discovery & Analysis
 description: Investigate a problem, feature area, or brownfield system and produce a bounded analysis artifact grounded in repository evidence.
 tools: [read/readFile, edit/createDirectory, edit/createFile, edit/editFiles, edit/rename, search, vscode.mermaid-chat-features/renderMermaidDiagram, todo]
 ---

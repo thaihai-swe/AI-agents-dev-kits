@@ -1,29 +1,29 @@
 # Agents
 
-This repo currently defines 10 agents.
+This repo currently defines 10 agents organized into 5 categories.
 
 ## Quick Overview
 
-| Category | Command | Backing File | Main Output |
-| --- | --- | --- | --- |
-| Foundation | `/constitution` | `constitution.agent.md` | `memories/repo/constitution.md` |
-| Foundation | `/project-knowledge-base` | `project-knowledge-base.agent.md` | `memories/repo/project-knowledge-base.md` |
-| Discovery | `/analyze` | `analyze.agent.md` | `analysis.md` |
-| Specification | `/spec-requirement` | `spec-requirement.agent.md` | `spec.md` |
-| Quality Gate | `/spec-review-requirements` | `spec-review-requirements.agent.md` | `requirements-review.md` |
-| Design | `/spec-design` | `spec-design.agent.md` | `design.md` |
-| Planning | `/spec-plan` | `spec-plan.agent.md` | `plan.md` |
-| Planning | `/spec-tasks` | `spec-tasks.agent.md` | `tasks.md` |
-| Delivery | `/spec-implement` | `spec-implement.agent.md` | code, tests, task status updates |
-| Review | `/spec-review` | `spec-review.agent.md` | review findings, optionally `review.md` |
+| Category                     | Command                     | Backing File                        | Main Output                               |
+| ---------------------------- | --------------------------- | ----------------------------------- | ----------------------------------------- |
+| **Foundation**               | `/constitution`             | `constitution.agent.md`             | `memories/repo/constitution.md`           |
+|                              | `/project-knowledge-base`   | `project-knowledge-base.agent.md`   | `memories/repo/project-knowledge-base.md` |
+| **Discovery & Analysis**     | `/analyze`                  | `analyze.agent.md`                  | `analysis.md`                             |
+| **Specification & Design**   | `/spec-requirement`         | `spec-requirement.agent.md`         | `spec.md`                                 |
+|                              | `/spec-review-requirements` | `spec-review-requirements.agent.md` | `requirements-review.md`                  |
+|                              | `/spec-design`              | `spec-design.agent.md`              | `design.md`                               |
+| **Planning & Delivery**      | `/spec-plan`                | `spec-plan.agent.md`                | `plan.md`                                 |
+|                              | `/spec-tasks`               | `spec-tasks.agent.md`               | `tasks.md`                                |
+| **Implementation & Quality** | `/spec-implement`           | `spec-implement.agent.md`           | code, tests, task status updates          |
+|                              | `/spec-review`              | `spec-review.agent.md`              | review findings, optionally `review.md`   |
 
-## Categories
+## Category Details
 
-- [details/specification-planning.md](details/specification-planning.md)
-- [details/implementation-delivery.md](details/implementation-delivery.md)
-- [details/discovery-learning.md](details/discovery-learning.md)
-- [details/foundation-setup.md](details/foundation-setup.md)
-- [details/quality-knowledge.md](details/quality-knowledge.md)
+- [details/foundation-setup.md](details/foundation-setup.md) - Foundation
+- [details/discovery-learning.md](details/discovery-learning.md) - Discovery & Analysis
+- [details/specification-planning.md](details/specification-planning.md) - Specification & Design
+- [details/specification-planning.md](details/specification-planning.md) - Planning & Delivery
+- [details/implementation-delivery.md](details/implementation-delivery.md) - Implementation & Quality
 
 ## Standard Feature Flow
 

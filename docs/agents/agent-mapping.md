@@ -1,37 +1,46 @@
 # Agent Mapping
 
-This is the current dependency map for the 10-agent system.
+This is the current dependency map for the 10-agent system organized into 5 categories.
 
-## Repo-Level Flow
-
-```text
-/constitution
-        ↓
-/project-knowledge-base
-```
-
-- `constitution.md` is normative
-- `project-knowledge-base.md` is descriptive
-
-## Feature-Level Flow
+## Category-Based Flow
 
 ```text
-/analyze
-    ↓
-/spec-requirement
-    ↓
-/spec-review-requirements
-    ↓
-/spec-design        (when needed)
-    ↓
-/spec-plan
-    ↓
-/spec-tasks
-    ↓
-/spec-implement
-    ↓
-/spec-review
+┌─ FOUNDATION ─────────────────────────┐
+│ /constitution                         │
+│         ↓                             │
+│ /project-knowledge-base               │
+└───────────────────────────────────────┘
+                ↓
+┌─ DISCOVERY & ANALYSIS ────────────────┐
+│ /analyze                              │
+└───────────────────────────────────────┘
+                ↓
+┌─ SPECIFICATION & DESIGN ──────────────┐
+│ /spec-requirement                     │
+│         ↓                             │
+│ /spec-review-requirements             │
+│         ↓                             │
+│ /spec-design (when needed)            │
+└───────────────────────────────────────┘
+                ↓
+┌─ PLANNING & DELIVERY ─────────────────┐
+│ /spec-plan                            │
+│         ↓                             │
+│ /spec-tasks                           │
+└───────────────────────────────────────┘
+                ↓
+┌─ IMPLEMENTATION & QUALITY ────────────┐
+│ /spec-implement                       │
+│         ↓                             │
+│ /spec-review                          │
+└───────────────────────────────────────┘
 ```
+
+- **Foundation:** Establishes durable context; run first for new repos
+- **Discovery & Analysis:** Investigates unclear systems or risks
+- **Specification & Design:** Defines what to build and technical approach
+- **Planning & Delivery:** Creates execution strategy and bounded tasks
+- **Implementation & Quality:** Builds code and verifies against artifacts
 
 ## Artifact Dependencies
 
@@ -81,11 +90,11 @@ In the current model:
 
 ## Practical Mapping
 
-| Situation | Start With | Likely Next |
-| --- | --- | --- |
-| New repo | `/constitution` | `/project-knowledge-base` |
-| Brownfield feature | `/analyze` | `/spec-requirement` |
-| Clear new feature | `/spec-requirement` | `/spec-review-requirements` |
-| Cross-cutting change | `/spec-review-requirements` | `/spec-design` |
-| Ready to execute | `/spec-plan` | `/spec-tasks` |
-| Coding against a task list | `/spec-implement` | `/spec-review` |
+| Situation                  | Start With                  | Likely Next                 |
+| -------------------------- | --------------------------- | --------------------------- |
+| New repo                   | `/constitution`             | `/project-knowledge-base`   |
+| Brownfield feature         | `/analyze`                  | `/spec-requirement`         |
+| Clear new feature          | `/spec-requirement`         | `/spec-review-requirements` |
+| Cross-cutting change       | `/spec-review-requirements` | `/spec-design`              |
+| Ready to execute           | `/spec-plan`                | `/spec-tasks`               |
+| Coding against a task list | `/spec-implement`           | `/spec-review`              |
