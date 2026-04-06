@@ -1,6 +1,7 @@
 # AI Agents Dev Kit
 
-Structured, artifact-driven AI workflow for real software repositories.
+ A toolkit that helps you work more effectively with AI coding. It provides structured workflows, reusable commands, and memory features to make AI-assisted development more consistent and productive.
+
 
 ## Overview
 
