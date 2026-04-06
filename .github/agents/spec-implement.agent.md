@@ -42,7 +42,7 @@ If the selected tasks are not clear enough to execute safely, stop and say so.
 4. Keep implementation scoped to the selected task or tasks.
 5. Execute one task at a time by default, and only batch or parallelize tasks when dependencies, file boundaries, and contract boundaries make it safe.
 6. Preserve the intended isolation of each task so completed work remains reviewable and verifiable.
-7. Update task status as work progresses when the local workflow expects it.
+7. Update task status as work progresses when the local workflow expects it, and  mark a task complete after its implementation work is finished.
 8. Keep significant code changes and tests traceable to the relevant requirements, acceptance criteria, and tasks.
 9. Validate changes as part of implementation, not as an afterthought.
 10. If implementation reveals a real upstream defect in the spec, design, plan, or task breakdown, stop and surface it clearly.
@@ -70,7 +70,8 @@ Before implementing, read and honor:
 
 Status guidance:
 - move `Not Started` to `In Progress` when work begins
-- move `In Progress` to `Done` only after the task outcome and validation are complete
+- keep a task `In Progress` while implementation is still underway, even if partial code or tests have landed
+- move `In Progress` to `Done`  after the task's implementation is complete
 - use `Blocked` when execution cannot proceed due to a real blocker
 - use `Deferred` only when the task is intentionally postponed with a reason
 
@@ -95,7 +96,6 @@ Choose the validation that actually matches the change.
 - Record blocker or resume context in `tasks.md` when the workflow uses it
 - Do not silently rewrite upstream feature intent
 - Do not implement work that is not covered by the selected task or tasks
-- Do not mark tasks done without validation evidence appropriate to the change
 - If a major deviation is required, document it clearly and recommend revisiting the relevant upstream artifact
 
 ## Completion standard
