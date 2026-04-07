@@ -4,6 +4,87 @@ A structured framework for AI-assisted software development that separates durab
 
 ---
 
+## What
+
+The **AI Agents Development Kit** is a blueprint system—not a finished application, but a structured framework for managing AI-assisted development at scale. It provides:
+
+- **10 specialized agents** organized into 5 functional categories
+- **Artifact templates** for every phase of feature development (spec → design → plan → tasks → implementation)
+- **Quality gates** that enforce decision review before work proceeds
+- **Durable memory architecture** separating permanent repository knowledge from feature-specific delivery artifacts
+- **Traceability scheme** that links user intent through requirements, design decisions, tasks, and implementation
+- **Reusable prompts and behavioral guardrails** so AI tools operate consistently and safely
+
+It's designed for teams building software with AI assistance who need their work to be **reviewable, resumable, and traceable**.
+
+---
+
+## Who Is It For?
+
+This framework is for:
+
+- **Development Teams** using AI to accelerate delivery who need structured workflows and quality gates
+- **Enterprise Environments** requiring traceability, compliance, and repeatable processes
+- **Teams Managing Uncertainty** (brownfield systems, complex integrations, architectural decisions)
+- **Projects that Demand Pausability** - where work must be resumable by different people or sessions
+- **Organizations Building In-House AI Tools** that need consistent agent behavior and memory management
+- **Quality-First Teams** that want explicit gates between discovery, design, planning, and implementation
+
+If you're working with AI on real projects and need more structure than chat history provides, this kit is for you.
+
+---
+
+## The Problem
+
+Modern AI-assisted development has structural weaknesses:
+
+| Problem                   | Impact                                                            |
+| ------------------------- | ----------------------------------------------------------------- |
+| **Work Disappears**       | All decisions live in chat history—impossible to trace or review  |
+| **Can't Resume**          | Conversational context is lost; must restart from chat scrollback |
+| **Scope Drifts Silently** | AI makes assumptions; team doesn't notice until implementation    |
+| **No Quality Control**    | Chat-based work has no formal gates; anything ships               |
+| **Traceability Broken**   | Can't link requirements → design decisions → tasks → code         |
+| **Rework Hidden**         | When implementation fails, no record of why decisions were made   |
+| **Team Inefficiency**     | Each person rebuilds context; no durable memory layer             |
+
+These problems multiply in enterprise settings where compliance, hand-off efficiency, and risk management matter.
+
+---
+
+## How AI DevKit Helps
+
+This framework solves structural problems through **discipline**, not tools:
+
+| Problem                   | AI DevKit Solution                                                                        |
+| ------------------------- | ----------------------------------------------------------------------------------------- |
+| **Work Disappears**       | Every decision captured in written artifacts; artifacts are the source of truth, not chat |
+| **Can't Resume**          | Feature history preserved in timestamped artifacts; pick up work anywhere in the pipeline |
+| **Scope Drifts Silently** | Quality gates review spec completeness before planning; design before implementation      |
+| **No Quality Control**    | Explicit gates (Definition of Ready, Definition of Done) block unsafe progression         |
+| **Traceability Broken**   | ID scheme (REQ-, AC-, TASK-, etc.) links entire chain from intent through code            |
+| **Rework Hidden**         | Architecture decisions written down; all tradeoffs explicit; rationales preserved         |
+| **Team Inefficiency**     | Durable memory layer captures repo patterns, subsystem boundaries, integration gotchas    |
+
+The key insight: **AI works better when forced to produce written artifacts that humans review before proceeding.**
+
+---
+
+## Platform Direction
+
+The AI DevKit is evolving toward:
+
+1. **Tighter AI Integration** — Agents with sharper preconditioning and postcondition checks
+2. **Vault Modes** — Read-only reviews where agents can't modify artifacts (for compliance)
+3. **Multi-Session Continuity** — Memory graph connecting repo knowledge, session notes, and feature artifacts
+4. **Enforcement Layers** — Preventing unsafe progression (e.g., can't implement without approved tasks)
+5. **Brownfield Specialization** — Deeper analysis and risk reduction for legacy system changes
+6. **Enterprise Scaffolding** — Expanded templates for compliance artifacts, security reviews, and audit trails
+
+Current version (1.0) is production-ready for core workflows. Extended features coming in 1.1+.
+
+---
+
 ## What This Is
 
 This is **not an application**, but a **blueprint system** for managing AI-assisted development through disciplined workflows. It defines:
