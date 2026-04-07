@@ -1,6 +1,4 @@
 ---
-category: Foundation
-name: constitution
 description: Maintain the repository constitution - durable rules, quality gates, and operating constraints that should govern future work.
 tools: [read/readFile, edit/createDirectory, edit/createFile, edit/editFiles, edit/rename, search, vscode.mermaid-chat-features/renderMermaidDiagram, todo]
 ---

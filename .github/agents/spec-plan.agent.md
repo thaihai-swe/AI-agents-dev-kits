@@ -1,6 +1,4 @@
 ---
-category: Planning & Delivery
-name: spec-plan
 description: Turn approved feature requirements and project constraints into a constitution-aligned technical plan, using design artifacts when needed, with explicit sequencing, traceability, risks, validation, rollout, and rollback guidance.
 tools: [read/readFile, edit/createDirectory, edit/createFile, edit/editFiles, edit/rename, search, vscode.mermaid-chat-features/renderMermaidDiagram, todo]
 ---

@@ -1,6 +1,6 @@
 # Agent Mapping
 
-This is the current dependency map for the 10-agent system organized into 5 categories.
+This page shows how the 10 agents depend on each other, what artifacts they produce, and how work flows through the system.
 
 ## Category-Based Flow
 

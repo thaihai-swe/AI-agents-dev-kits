@@ -1,73 +1,218 @@
 # Specification, Design, Planning, And Delivery
 
-This documentation covers agents that turn a change request into execution-ready work.
+This phase turns vague intentions into clear specifications and execution-ready tasks.
 
-## Command Groups
+## Agent Groups
 
 ### Specification & Design (3 agents)
 
-These agents define what should change and handle technical clarification:
+Define what should change and clarify technical approach:
 
-- `/spec-requirement` - Define what/why
-- `/spec-review-requirements` - Check readiness
-- `/spec-design` - Clarify technical approach (when needed)
+- **`/spec-requirement`** — Define what to build, for whom, and why
+- **`/spec-review-requirements`** — Check if spec is ready for downstream work (quality gate)
+- **`/spec-design`** — Clarify technical approach (only when planning needs clarity)
 
 ### Planning & Delivery (2 agents)
 
-These agents create execution strategy and bounded work:
+Create execution strategy and bounded work:
 
-- `/spec-plan` - Create execution strategy
-- `/spec-tasks` - Create bounded implementation units
+- **`/spec-plan`** — Define how to build: sequencing, dependencies, validation, rollout
+- **`/spec-tasks`** — Break plan into bounded, independent implementation units
 
-## Flow
+## Process Flow
 
-```text
-spec.md (Specification & Design)
-    ↓ reviewed by
-requirements-review.md (Specification & Design)
-    ↓ may gate
-design.md (Specification & Design)
-    ↓ informs
-plan.md (Planning & Delivery)
-    ↓ expands into
-tasks.md (Planning & Delivery)
-    ↓ drives
-implementation (Implementation & Quality)
+```
+Analysis (if needed) ──→ Specification
+                              ↓
+                    /spec-requirement
+                              ↓
+                    /spec-review-requirements [QUALITY GATE]
+                              ↓
+                    /spec-design (if needed)
+                              ↓
+                         Planning
+                              ↓
+                      /spec-plan
+                              ↓
+                      /spec-tasks
+                              ↓
+                      Implementation
 ```
 
-## Roles
+## Phase 1: Specification ("What?")
 
-### `/spec-requirement` (Specification & Design)
+### `/spec-requirement`
 
-Defines what should change and why.
+**Purpose:** Define what should change and why. User-focused, not technical.
 
-### `/spec-review-requirements` (Specification & Design)
+**Inputs:**
+- Analysis (if investigation was needed)
+- User feedback or requirements
+- Business objectives
+- Acceptance criteria
 
-Checks whether `spec.md` is clear, complete, bounded, and testable enough for downstream work.
+**Output:** `artifacts/features/<slug>/spec.md`
 
-### `/spec-design` (Specification & Design)
+**Contains:**
+- Target users
+- User scenarios and stories
+- Key requirements
+- Acceptance criteria (testable)
+- In-scope items
+- Out-of-scope items
+- Success metrics
 
-Adds technical clarity only when planning depends on architecture, interfaces, migrations, or tradeoffs.
+**Discipline:** Keep it user-focused. "Who benefits and how?" Not "how will we build it?"
 
-### `/spec-plan` (Planning & Delivery)
+### `/spec-review-requirements` [Quality Gate]
 
-Turns approved intent into a technical execution strategy with scenario-aware sequencing, dependencies, validation, implementation prerequisites, rollout, and rollback guidance.
+**Purpose:** Ensure spec is ready for design and planning. First formal quality gate.
 
-### `/spec-tasks` (Planning & Delivery)
+**Outputs:** `artifacts/features/<slug>/requirements-review.md`
 
-Creates phased, traceable implementation units that are easier to track, review, resume, and validate.
+**Checks:**
+- ✅ Problem statement is clear
+- ✅ Target users/stakeholders identified
+- ✅ Success criteria testable
+- ✅ Scope boundaries clear (in/out)
+- ✅ Requirements valid and complete
+- ✅ No hidden assumptions
+- ✅ Acceptance criteria are specific
+- ✅ Dependencies identified
+- ✅ Risks surfaced
+- ✅ Implementation approach is clear enough
+- ✅ Task breakdown is actionable
+- ✅ Traceability IDs present (REQ-*, AC-*)
 
-## Rule Of Thumb
+**If not ready:** Return to `/spec-requirement`, fix gaps, rerun review.
 
-If planning feels uncertain, the missing artifact is usually either:
+**If ready:** Proceed to design (if needed) or planning.
 
-- a better `spec.md` (Specification & Design)
-- a needed `design.md` (Specification & Design)
+### `/spec-design` (Optional, Specification & Design)
 
-If execution feels unclear, the missing artifact is usually:
+**Purpose:** Resolve technical ambiguity when planning depends on architecture decisions.
 
-- incomplete `plan.md` (Planning & Delivery)
-- vague `tasks.md` (Planning & Delivery)
+**Use when:**
+- Feature crosses subsystem boundaries
+- Changes affect public interfaces
+- Data migration or compatibility risk
+- Multiple viable technical approaches
+- Planning depends on architecture clarity
 
-Strong `plan.md` artifacts should preserve the user scenarios from `spec.md`, make the technical approach explicit, and stay detailed enough for `spec-tasks` to decompose work without inventing missing strategy.
-Strong `tasks.md` artifacts should preserve traceability to plan phases, requirements, and acceptance criteria while staying small enough for `spec-implement` to execute in reviewable slices.
+**Skip when:**
+- Single clear technical approach
+- Changes are localized
+- Architecture is not affected
+- Planning can proceed with current knowledge
+
+**Output:** `artifacts/features/<slug>/design.md`
+
+**Contains:**
+- Technical approach overview
+- Architecture decisions
+- Interface changes
+- Data model impacts
+- Implementation strategy
+- Tradeoffs considered
+- Rollout approach
+
+**Discipline:** Technical clarity only. Not implementation details or task breakdown.
+
+## Phase 2: Planning ("How?")
+
+### `/spec-plan`
+
+**Purpose:** Define execution strategy, sequencing, and validation.
+
+**Inputs:**
+- Spec (what to build)
+- Design (how, if needed)
+- Repo memory (constraints, patterns)
+
+**Output:** `artifacts/features/<slug>/plan.md`
+
+**Contains:**
+- Technical approach overview
+- Execution phases with sequencing
+- Phase dependencies
+- Validation strategy for each phase
+- Rollout and rollback approach
+- Risk handling
+- Prerequisites and blockers
+- Success criteria per phase
+- Traceability (REQ-* ↔ PHASE-*)
+
+**Discipline:** Strategy level, not implementation details. Clear enough for tasks to decompose.
+
+### `/spec-tasks`
+
+**Purpose:** Break plan into bounded, reviewable, independent work units.
+
+**Inputs:**
+- Plan (execution strategy)
+- Spec (requirements)
+- Design (if created)
+
+**Output:** `artifacts/features/<slug>/tasks.md`
+
+**Contains:**
+- Task list (TASK-001, TASK-002, ...)
+- Task dependencies
+- Status tracking
+- Acceptance criteria per task
+- Validation notes
+- Resume/handoff guidance
+- Traceability (REQ-* ↔ AC-* ↔ TASK-*)
+
+**Discipline:** Tasks are independent slices. Small enough to review, large enough to be meaningful.
+
+## Decision Rules
+
+| Situation                       | Decision                                     |
+| ------------------------------- | -------------------------------------------- |
+| Spec is vague or incomplete     | ❌ Don't plan. Return to `/spec-requirement`. |
+| Spec review says "not ready"    | ❌ Don't proceed. Fix spec first.             |
+| Planning feels uncertain        | ❓ Do you need `/spec-design`?                |
+| Multiple valid approaches exist | ✅ May benefit from `/spec-design`.           |
+| Features crosses subsystems     | ✅ Include `/spec-design`.                    |
+| Simple, localized change        | ⏩ Can skip `/spec-design`.                   |
+| Tasks feel unclear              | ❌ Planning is too vague. Improve `plan.md`.  |
+| Implementation feels blocked    | ❌ Check task clarity and dependencies first. |
+
+## Troubleshooting
+
+**"Planning feels uncertain"**
+→ Usually missing or vague `design.md`
+→ Return to `/spec-design` or improve existing design
+
+**"Task breakdown is hard"**
+→ `plan.md` is too strategic or missing phases
+→ Improve `plan.md` before running `/spec-tasks`
+
+**"Spec review keeps failing"**
+→ Requirements are fundamentally unclear
+→ Consider `/analyze` to investigate before re-speccing
+
+**"Too many tasks"**
+→ `plan.md` may need more phases
+→ Break plan into smaller, sequential phases
+
+**"Tasks are too small"**
+→ Combine related tasks that can be reviewed together
+→ Or accept more granularity for better resumability
+
+## Traceability Through Spec & Planning
+
+```
+REQ-001 (spec) ──→ AC-001 (spec acceptance criteria)
+                        ↓
+                    PHASE-A (plan)
+                        ↓
+                    TASK-001 (tasks)
+                        ↓
+                    Implementation references TASK-001
+                        ↓
+                    Review verifies AC-001 coverage
+```
+
+Every requirement should trace forward to tasks and implementation.

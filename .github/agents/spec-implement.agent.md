@@ -1,6 +1,4 @@
 ---
-category: Implementation & Quality
-name: spec-implement
 description: Execute the implementation plan by processing and executing all tasks defined in tasks.md
 tools: [read/readFile, edit/createDirectory, edit/createFile, edit/editFiles, edit/rename, search, vscode.mermaid-chat-features/renderMermaidDiagram, todo]
 ---

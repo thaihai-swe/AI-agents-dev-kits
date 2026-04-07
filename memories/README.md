@@ -48,7 +48,7 @@ Things about the existing system that can break new features:
 - Why did previous attempts fail?
 - How to work around each gotcha?
 
-**When**: Fill during discovery phase (use `discover-legacy-system` agent)
+**When**: Fill during discovery phase (use `analyze` agent)
 **Owner**: Whoever discovers them
 **Update**: Add new items as they're discovered
 
@@ -63,7 +63,7 @@ Why the system is built the way it is:
 - Scaling assumptions
 - Integration patterns
 
-**When**: Fill during discovery (use `capture-architecture` agent)
+**When**: Fill during discovery (use `analyze` agent)
 **Owner**: Architects
 **Update**: Annually or when architecture changes
 
@@ -78,7 +78,7 @@ Where and how new features integrate:
 - Gotchas specific to each integration point
 - Effort estimates or complexity notes
 
-**When**: Fill during discovery (use `discover-legacy-system` agent)
+**When**: Fill during discovery (use `analyze` agent)
 **Owner**: Feature teams
 **Update**: Add new integration points as features are built
 
@@ -98,16 +98,28 @@ Where and how new features integrate:
 
 ### For Existing Projects (Brownfield)
 
-1. **Discovery phase** (30 minutes, autonomous):
+1. **Discovery phase** (start here):
+   - Use `/analyze` agent to investigate existing systems
+   - Agent will help fill `legacy-system-watchouts.md`, `architecture-decisions.md`, and `integration-points.md`
+   - Review findings and save stable patterns to repo memory
+
+2. **Regular feature work** after discovery:
+   - Follow Greenfield workflow above
+   - Reference memory files before creating specs
+
+3. **Continuous updates**:
+   - As you discover new gotchas → add to `legacy-system-watchouts.md`
+   - As you learn new patterns → add to `project-knowledge-base.md`
+   - As you build new features → document integration points
+
+1. **Discovery phase** (start here with brownfield projects):
    ```
-   @discover-legacy-system Map [system name]
-   → Outputs: findings for integration-points, legacy-watchouts
-
-   @capture-architecture
-   → Outputs: architecture-decisions.md (filled)
-
-   @promote-to-repo-memory
-   → Saves findings here in organized form
+   @analyze Map [system name]
+   → Outputs: investigation findings about existing system
+   → Review and save key findings to memory files:
+      - Legacy gotchas → legacy-system-watchouts.md
+      - Architecture insights → architecture-decisions.md
+      - Integration points → integration-points.md
    ```
 
 2. **Regular use**:
@@ -148,10 +160,12 @@ cat repo/project-knowledge-base.md
 
 ## ✍️ Keeping Memory Updated
 
-### After Discovery Phase
-- `discover-legacy-system` agent → Promotes to watchouts, integration-points
-- `capture-architecture` agent → Promotes to architecture-decisions
-- **You**: Review and accept/edit promoted findings
+### After Discovery Phase (using /analyze agent)
+- Use `/analyze` agent findings to fill:
+  - `legacy-system-watchouts.md` – Gotchas discovered
+  - `architecture-decisions.md` – Design insights
+  - `integration-points.md` – Where features integrate
+- **You**: Review findings and decide what's stable enough to keep
 
 ### During Feature Work
 - **Find a gotcha**: Add to `legacy-system-watchouts.md`
@@ -159,7 +173,8 @@ cat repo/project-knowledge-base.md
 - **Integrate somewhere new**: Add to `integration-points.md`
 
 ### End of Session
-- Use `promote-to-repo-memory` agent to save session notes here
+- Update repo memory files with any new patterns, gotchas, or insights
+- Keep memory files current so future features benefit from your discoveries
 
 ---
 
@@ -168,16 +183,14 @@ cat repo/project-knowledge-base.md
 ### Session 1: Exploring Auth System
 
 ```
-@discover-legacy-system: Map auth system
-→ Finds: Redis session format, JWT TTL quirk
+@analyze: Map auth system
+→ Finds: Redis session format, JWT TTL quirk, architecture trade-offs
 
-@capture-architecture
-→ Documents: Why Redis was chosen, trade-offs
+You review findings and save:
+→ legacy-system-watchouts.md: "Redis uses non-standard session format..."
+→ architecture-decisions.md: "Redis chosen for..."
 
-@promote-to-repo-memory
-→ Saves to: legacy-system-watchouts.md, architecture-decisions.md
-
-Result: Team now knows about auth gotchas
+Result: Team now knows about auth gotchas and design decisions
 ```
 
 ### Session 2: Building SSO Feature
@@ -203,8 +216,9 @@ Result: Feature design respects learned constraints
   → Agent reads memory files for context
   → Implementation builds on previous session's findings
 
-@promote-to-repo-memory
-  → New discoveries (OAuth integration approach) saved
+After implementation:
+  → Save new discoveries (OAuth integration approach) to memory files
+  → Update project-knowledge-base.md with patterns learned
 
 Result: Next session picks up with all context preserved
 ```
@@ -289,9 +303,10 @@ Before writing `artifacts/features/<feature>/spec.md`:
 
 ## 🎓 Learn More
 
-- **For detailed reference**: See [kit-docs/MEMORY-SYSTEM.md](../kit-docs/MEMORY-SYSTEM.md)
-- **For kit usage**: See [USAGE-GUIDE.md](../USAGE-GUIDE.md)
-- **For architecture**: See [kit-docs/KIT-ARCHITECTURE.md](../kit-docs/KIT-ARCHITECTURE.md)
+- **For documentation overview**: See [docs/README.md](../docs/README.md)
+- **For memory system details**: See [docs/memory-system/README.md](../docs/memory-system/README.md)
+- **For agent reference**: See [docs/reference/commands.md](../docs/reference/commands.md)
+- **Getting started**: See [docs/guides/getting-started.md](../docs/guides/getting-started.md)
 
 ---
 

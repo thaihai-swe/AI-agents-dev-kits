@@ -1,6 +1,6 @@
 # Agent Command Reference
 
-This page maps the current commands to the agent files under `.github/agents/`.
+Complete reference for all 10 agents organized by category. Each agent has a specific role in the workflow.
 
 ## Foundation
 

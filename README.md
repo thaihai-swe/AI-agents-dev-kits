@@ -1,202 +1,421 @@
-# AI Agents Dev Kit
+# AI Agents Development Kit
 
- A toolkit that helps you work more effectively with AI coding. It provides structured workflows, reusable commands, and memory features to make AI-assisted development more consistent and productive.
-
-
-## Overview
-
-This repository centers on a 10-agent delivery model organized into 5 categories. The workflow separates durable repository knowledge from feature-specific delivery artifacts so AI work stays reviewable, resumable, and traceable.
+A structured framework for AI-assisted software development that separates durable repository knowledge from feature-specific delivery artifacts, ensuring work is reviewable, resumable, and traceable.
 
 ---
 
-## Why This Kit
+## What This Is
 
-Modern AI-assisted development often produces work that's hard to review, impossible to resume, and drifts from intent.
+This is **not an application**, but a **blueprint system** for managing AI-assisted development through disciplined workflows. It defines:
 
-This kit solves those problems by:
+- **10 agents** organized into **5 categories**
+- **Standardized artifact templates** for specs, designs, plans, and tasks
+- **Reusable prompts** and execution rules for AI tools
+- **Quality gates** (Definition of Ready, Definition of Done)
+- **Memory system** for durable repository knowledge
+- **Traceability scheme** connecting requirements → tasks → implementation
 
-- **Making AI output reviewable** - All work is backed by explicit artifacts (specs, designs, plans) you can read and approve before implementation
-- **Enabling resumable work** - Every feature has a documented history. Stop and come back weeks later without losing context
-- **Enforcing scope control** - Quality gates prevent spec ambiguity from turning into unnecessary implementation
-- **Preserving traceability** - Implementation stays tied to requirements. Changes are auditable end-to-end
-- **Separating concerns** - Each agent has one job, enforced by explicit behavioral rules
-- **Handling reality** - Brownfield discovery, risk reduction, and optional design clarification when complexity demands it
+---
+
+## Why Use This Framework
+
+Modern AI-assisted development often produces work that is:
+- **Hard to review** - Missing explicit decisions and tradeoffs
+- **Impossible to resume** - No documented state or dependencies
+- **Drifting from intent** - Missing scope control and validation
+
+This framework solves these problems by:
+
+| Problem              | Solution                                                                              |
+| -------------------- | ------------------------------------------------------------------------------------- |
+| Hard to review       | All decisions captured in written artifacts before implementation                     |
+| Impossible to resume | Feature history preserved in timestamped artifacts under `artifacts/features/<slug>/` |
+| Drifting scope       | Quality gates and review agents enforce spec/plan consistency                         |
+| No traceability      | Explicit IDs link requirements → tasks → code                                         |
+| Task ambiguity       | `/spec-tasks` generates bounded, reviewable implementation units                      |
+| Uncertain priorities | Brownfield analysis via `/analyze` reduces risk before planning                       |
+
+---
+
+## Core Architecture
+
+### Durable Repository Memory
+
+Stored at `memories/repo/`:
+
+```
+constitution.md              # Durable repo-wide rules & quality expectations
+project-knowledge-base.md    # Durable descriptive context (subsystems, patterns, integrations)
+```
+
+- **Constitutional** (normative): Guards against scope creep and quality degradation
+- **Descriptive** (durable): Captures subsystem boundaries, architectural patterns, integration gotchas
+
+### Feature Artifacts
+
+Each feature lives at `artifacts/features/<feature-slug>/`:
+
+```
+analysis.md                  # Discovery findings (optional, for unclear systems)
+spec.md                      # What should change, for whom, and why
+requirements-review.md       # Gate: Is spec ready for planning?
+design.md                    # Technical decisions (optional, only if needed)
+plan.md                      # Execution strategy, phases, dependencies, rollout
+tasks.md                     # Bounded, traceable implementation units
+review.md                    # Implementation verification (optional, for complex changes)
+```
+
+Not every feature needs every file—some are optional and used to reduce ambiguity.
+
+---
+
+## The 10 Agents (5 Categories)
+
+### Foundation (2 agents)
+
+| Agent                  | Command                   | Output                                    | Purpose                                                                    |
+| ---------------------- | ------------------------- | ----------------------------------------- | -------------------------------------------------------------------------- |
+| Constitution           | `/constitution`           | `memories/repo/constitution.md`           | Establish & maintain repo-wide rules, guardrails, and quality expectations |
+| Project Knowledge Base | `/project-knowledge-base` | `memories/repo/project-knowledge-base.md` | Capture & maintain durable descriptive repository knowledge                |
+
+### Discovery & Analysis (1 agent)
+
+| Agent   | Command    | Output                                  | Purpose                                                                 |
+| ------- | ---------- | --------------------------------------- | ----------------------------------------------------------------------- |
+| Analyze | `/analyze` | `artifacts/features/<slug>/analysis.md` | Investigate unclear systems, risks, or constraints before specification |
+
+### Specification & Design (3 agents)
+
+| Agent                    | Command                     | Output                                             | Purpose                                                                 |
+| ------------------------ | --------------------------- | -------------------------------------------------- | ----------------------------------------------------------------------- |
+| Spec Requirement         | `/spec-requirement`         | `artifacts/features/<slug>/spec.md`                | Define what should change, for whom, and why (user-focused)             |
+| Spec Review Requirements | `/spec-review-requirements` | `artifacts/features/<slug>/requirements-review.md` | Quality gate: Check if spec is ready for design/planning                |
+| Spec Design              | `/spec-design`              | `artifacts/features/<slug>/design.md`              | Technical decisions & architectural clarification (optional, if needed) |
+
+### Planning & Delivery (2 agents)
+
+| Agent      | Command       | Output                               | Purpose                                                                   |
+| ---------- | ------------- | ------------------------------------ | ------------------------------------------------------------------------- |
+| Spec Plan  | `/spec-plan`  | `artifacts/features/<slug>/plan.md`  | Execution strategy: sequencing, phases, dependencies, rollout, validation |
+| Spec Tasks | `/spec-tasks` | `artifacts/features/<slug>/tasks.md` | Decompose plan into bounded, independent, traceable implementation units  |
+
+### Implementation & Quality (2 agents)
+
+| Agent          | Command           | Output                                           | Purpose                                                  |
+| -------------- | ----------------- | ------------------------------------------------ | -------------------------------------------------------- |
+| Spec Implement | `/spec-implement` | Code changes + task status updates               | Execute implementation tasks with continuous validation  |
+| Spec Review    | `/spec-review`    | `artifacts/features/<slug>/review.md` (optional) | Verify implementation against spec, plan, and repo rules |
+
+---
+
+## Standard Workflow
+
+### Repository Setup (Once)
+
+Establish baseline durable knowledge:
+
+```
+/constitution               → Create repo-wide rules
+  ↓
+/project-knowledge-base    → Capture durable descriptive context
+```
+
+### Feature Development (Per Feature)
+
+Follow this path for typical feature work:
+
+```
+/analyze                            (if system is unclear or risky)
+  ↓
+/spec-requirement                   → Define what to build
+  ↓
+/spec-review-requirements           → Quality gate: Is spec ready?
+  ↓
+/spec-design                        (optional: only if tech clarity needed)
+  ↓
+/spec-plan                          → Execution strategy
+  ↓
+/spec-tasks                         → Bounded work units
+  ↓
+/spec-implement                     → Build & validate
+  ↓
+/spec-review                        → Final verification
+```
+
+### Variant: Small/Localized Changes
+
+Skip analysis and design for low-risk, well-understood changes:
+
+```
+/spec-requirement
+  ↓
+/spec-review-requirements
+  ↓
+/spec-plan
+  ↓
+/spec-tasks
+  ↓
+/spec-implement
+  ↓
+/spec-review
+```
 
 ---
 
 ## Key Principles
 
-1. **Artifacts First** - Decisions are decisions only when written down and reviewed. Chat history is not enough.
-2. **Durable Memory** - Repository knowledge is compact and stable. Only genuinely durable context gets saved.
-3. **Bounded Discovery** - Investigation is exploration, not planning. Cleanup happens later if findings warrant it.
-4. **Quality Gates** - Specifications are reviewed before planning. Implementation is reviewed before acceptance.
-5. **Explicit Boundaries** - Each agent knows what it does and does not do. No silent scope creep.
-6. **Safe Defaults** - Agents stop at dependency points. Missing upstream work is surfaced, not worked around.
+1. **Artifacts First** — Decisions are only real when written down and reviewed. Chat history is not enough.
+2. **Durable Memory** — Repository knowledge is deliberately compact. Only genuinely durable context gets saved.
+3. **Bounded Exploration** — Investigation (`/analyze`) is for learning, not planning. Technical decisions happen in design/planning phases.
+4. **Quality Gates** — Specs are reviewed before planning. Implementations are reviewed before shipping.
+5. **Explicit Boundaries** — Each agent has one job, enforced by preconditions and scope rules. No silent scope creep.
+6. **Safe Defaults** — Agents stop at dependency points. Missing upstream work is surfaced, not worked around.
+7. **Testable Scope** — Each artifact tier (spec → design → plan → tasks) is reviewed before moving downstream.
 
 ---
 
-## Current Agent Set (5 Categories, 10 Agents)
+## How to Navigate This Repository
 
-### Foundation
-| Command                   | Backing File                      | Purpose                                     |
-| ------------------------- | --------------------------------- | ------------------------------------------- |
-| `/constitution`           | `constitution.agent.md`           | Maintain durable repo-wide rules            |
-| `/project-knowledge-base` | `project-knowledge-base.agent.md` | Maintain durable descriptive repo knowledge |
+### Getting Started
 
-### Discovery & Analysis
-| Command    | Backing File       | Purpose                                                  |
-| ---------- | ------------------ | -------------------------------------------------------- |
-| `/analyze` | `analyze.agent.md` | Investigate a feature area, bug, or brownfield subsystem |
+- **First time?** Start with [docs/guides/getting-started.md](docs/guides/getting-started.md) for a quick onboarding
+- **New feature?** Use [docs/workflows/README.md](docs/workflows/README.md) to choose the right agent sequence
+- **Need a refresher?** See [docs/how it works.md](docs/how%20it%20work.md) for workflow details
 
-### Specification & Design
-| Command                     | Backing File                        | Purpose                                                  |
-| --------------------------- | ----------------------------------- | -------------------------------------------------------- |
-| `/spec-requirement`         | `spec-requirement.agent.md`         | Create or refine a user-focused `spec.md`                |
-| `/spec-review-requirements` | `spec-review-requirements.agent.md` | Review `spec.md` readiness                               |
-| `/spec-design`              | `spec-design.agent.md`              | Create `design.md` when planning needs technical clarity |
+### Documentation Map
 
-### Planning & Delivery
-| Command       | Backing File          | Purpose           |
-| ------------- | --------------------- | ----------------- |
-| `/spec-plan`  | `spec-plan.agent.md`  | Create `plan.md`  |
-| `/spec-tasks` | `spec-tasks.agent.md` | Create `tasks.md` |
+| Section                                    | Purpose                                    |
+| ------------------------------------------ | ------------------------------------------ |
+| [docs/](docs/)                             | Complete documentation index               |
+| [docs/guides/](docs/guides/)               | How-to guides and onboarding               |
+| [docs/workflows/](docs/workflows/)         | Workflow patterns and decision trees       |
+| [docs/reference/](docs/reference/)         | Quick lookups: commands, terminology, FAQ  |
+| [docs/agents/](docs/agents/)               | Deep documentation for each agent category |
+| [docs/memory-system/](docs/memory-system/) | How permanent memory works                 |
 
-### Implementation & Quality
-| Command           | Backing File              | Purpose                                          |
-| ----------------- | ------------------------- | ------------------------------------------------ |
-| `/spec-implement` | `spec-implement.agent.md` | Execute planned implementation work              |
-| `/spec-review`    | `spec-review.agent.md`    | Review implementation against approved artifacts |
+### Configuration Files
 
-**Note:** Older docs in this repo referenced a 13-agent model. See [docs/how it work.md](docs/how%20it%20work.md#what-changed-from-the-older-model) for what changed.
+| File                                                                                         | Purpose                                                   |
+| -------------------------------------------------------------------------------------------- | --------------------------------------------------------- |
+| [.github/agents/](./github/agents/)                                                          | 10 agent definitions (YAML frontmatter + execution rules) |
+| [.github/prompts/](./github/prompts/)                                                        | Prompt configurations for each agent                      |
+| [.github/specs/templates/](./github/specs/templates/)                                        | Reusable artifact templates                               |
+| [.github/specs/checklists/](./github/specs/checklists/)                                      | Definition of Ready & Definition of Done                  |
+| [.github/instructions/copilot-instructions.md](.github/instructions/copilot-instructions.md) | Copilot behavior rules                                    |
 
-## Repo Memory
+### Feature Work
 
-The current repo-memory model is intentionally compact:
+All feature work lives under `artifacts/features/<feature-slug>/`:
 
-```text
-memories/repo/constitution.md
-memories/repo/project-knowledge-base.md
-```
+- [artifacts/](artifacts/) → Feature specifications and plans
+- [memories/repo/](memories/repo/) → Durable repository knowledge
+- [memories/session/](memories/session/) → Session-specific notes (per-conversation)
 
-- `constitution.md` stores durable rules and guardrails
-- `project-knowledge-base.md` stores durable descriptive context
+---
 
-## Feature Artifacts
+## Quick Start Examples
 
-Each feature lives under:
-
-```text
-artifacts/features/<feature-slug>/
-  analysis.md
-  spec.md
-  requirements-review.md
-  design.md
-  plan.md
-  tasks.md
-  review.md
-```
-
-Not every feature needs every file. `analysis.md`, `design.md`, and `review.md` are used when they reduce ambiguity or create useful durable evidence.
-
-## Standard Workflow
-
-```text
-┌─ FOUNDATION ─────────────────────────┐
-│ /constitution                         │
-│         ↓                             │
-│ /project-knowledge-base               │
-└───────────────────────────────────────┘
-                ↓
-┌─ DISCOVERY & ANALYSIS ────────────────┐
-│ /analyze                              │
-└───────────────────────────────────────┘
-                ↓
-┌─ SPECIFICATION & DESIGN ──────────────┐
-│ /spec-requirement                     │
-│         ↓                             │
-│ /spec-review-requirements             │
-│         ↓                             │
-│ /spec-design        (when needed)     │
-└───────────────────────────────────────┘
-                ↓
-┌─ PLANNING & DELIVERY ─────────────────┐
-│ /spec-plan                            │
-│         ↓                             │
-│ /spec-tasks                           │
-└───────────────────────────────────────┘
-                ↓
-┌─ IMPLEMENTATION & QUALITY ────────────┐
-│ /spec-implement                       │
-│         ↓                             │
-│ /spec-review                          │
-└───────────────────────────────────────┘
-```
-
-Feature flow:
-
-```text
-repo memory (Foundation)
-  ↓
-analysis (Discovery & Analysis)
-  ↓
-specification (Specification & Design)
-  ↓
-requirements review (Specification & Design)
-  ↓
-design (optional, Specification & Design)
-  ↓
-plan (Planning & Delivery)
-  ↓
-tasks (Planning & Delivery)
-  ↓
-implementation (Implementation & Quality)
-  ↓
-review (Implementation & Quality)
-```
-
-## Quick Start
-
-### For A New Repository
-
-Start here to establish durable baseline knowledge:
+### Example 1: New Repository Setup
 
 ```bash
-1. /constitution
-   └─→ Establish repo-wide rules, testing expectations, safety constraints
+# Create durable repository knowledge
+/constitution
+  → memories/repo/constitution.md (repo rules, guardrails)
 
-2. /project-knowledge-base
-   └─→ Capture subsystem boundaries, integration patterns, durable watchouts
+/project-knowledge-base
+  → memories/repo/project-knowledge-base.md (subsystems, patterns, integrations)
 ```
 
-### For A New Feature
+### Example 2: Simple Feature
 
-Follow this path for a typical new feature:
+For a feature `add-dark-mode`:
 
 ```bash
-1. /spec-requirement
-   Write what should change and why
-   └─→ artifacts/features/<slug>/spec.md
+/spec-requirement
+  → artifacts/features/add-dark-mode/spec.md
 
-2. /spec-review-requirements
-   Check if spec is ready for planning
-   └─→ artifacts/features/<slug>/requirements-review.md
+/spec-review-requirements
+  → artifacts/features/add-dark-mode/requirements-review.md
 
-3. /spec-plan  [or skip if simple change]
-   Create execution strategy
-   └─→ artifacts/features/<slug>/plan.md
+/spec-plan
+  → artifacts/features/add-dark-mode/plan.md
 
-4. /spec-tasks
-   Break into bounded work units
-   └─→ artifacts/features/<slug>/tasks.md
+/spec-tasks
+  → artifacts/features/add-dark-mode/tasks.md
 
-5. /spec-implement
-   Build and validate
-   └─→ code changes + task updates
+/spec-implement
+  → Code changes + test updates
 
-6. /spec-review
-   Verify against approved artifacts
-   └─→ artifacts/features/<slug>/review.md (optional)
+/spec-review
+  → artifacts/features/add-dark-mode/review.md
 ```
+
+### Example 3: Complex/Risky Feature
+
+For a feature `payment-processing`:
+
+```bash
+/analyze
+  → artifacts/features/payment-processing/analysis.md (risks, current state)
+
+/spec-requirement
+  → artifacts/features/payment-processing/spec.md
+
+/spec-review-requirements
+  → artifacts/features/payment-processing/requirements-review.md
+
+/spec-design
+  → artifacts/features/payment-processing/design.md (payment API integration, data flow)
+
+/spec-plan
+  → artifacts/features/payment-processing/plan.md
+
+/spec-tasks
+  → artifacts/features/payment-processing/tasks.md
+
+/spec-implement
+  → Code changes, tests, security review
+
+/spec-review
+  → artifacts/features/payment-processing/review.md
+```
+
+---
+
+## Traceability & Cross-Referencing
+
+All artifacts use a consistent ID scheme for linking:
+
+- `REQ-###` — Functional requirements from spec
+- `AC-###` — Acceptance criteria
+- `TASK-###` — Implementation tasks
+- `RISK-###` — Identified risks
+- `FILE-###` — File references
+- `DEP-###` — Dependencies
+
+This allows complete traceability from user stories → requirements → design decisions → tasks → code.
+
+---
+
+## Quality Gates
+
+### Definition of Ready (Before Implementation)
+
+A feature is ready for `/spec-tasks` when:
+- [ ] Problem statement is clear and specific
+- [ ] Target users/stakeholders identified
+- [ ] Success criteria are measurable
+- [ ] In-scope items listed
+- [ ] Out-of-scope items listed
+- [ ] Functional requirements are concrete
+- [ ] Non-functional requirements identified
+- [ ] Dependencies and constraints known
+- [ ] Risks and open questions documented
+- [ ] Implementation approach is clear enough
+- [ ] Task breakdown is actionable
+- [ ] IDs can be traced (REQ-, AC-, TASK-, etc.)
+
+See [.github/specs/checklists/definition-of-ready.md](.github/specs/checklists/definition-of-ready.md)
+
+### Definition of Done (Before Shipping)
+
+A feature is done when:
+- [ ] All acceptance criteria satisfied
+- [ ] Code matches spec and plan
+- [ ] Tests added or updated
+- [ ] Manual verification completed
+- [ ] Limitations and follow-up work documented
+- [ ] Logging, monitoring, ops concerns addressed
+- [ ] Security, privacy, performance reviewed
+- [ ] Documentation updated
+- [ ] Decision logs reflect final state
+- [ ] Partial work clearly recorded for next session
+
+See [.github/specs/checklists/definition-of-done.md](.github/specs/checklists/definition-of-done.md)
+
+---
+
+## Configuration & Discipline
+
+### Canonical Paths
+
+- **Durable repo memory:** `memories/repo/` only (not `memories/*.md`)
+- **Feature work:** `artifacts/features/<feature-slug>/` only
+- **Agent definitions:** `.github/agents/` (source of truth)
+- **Prompts:** `.github/prompts/` (agent execution rules)
+
+### Required Context Before Work
+
+Before planning, implementation, or review, read:
+- `memories/repo/constitution.md` (if it exists)
+- `memories/repo/project-knowledge-base.md` (if it exists)
+- Current feature artifact set in `artifacts/features/<feature-slug>/`
+
+### Working Style
+
+- **Prefer reversible changes** — Small, tested, documented changes over big rewrites
+- **Validate before moving on** — Run tests and verify scope before proceeding downstream
+- **Avoid speculation** — Use analysis (`/analyze`) to establish facts before planning
+- **Update as you go** — Keep artifacts current with implementation progress
+- **Resist feature creep** — If scope changes, update artifacts explicitly
+
+---
+
+## What Changed From The Older Model
+
+This kit evolved from a 13-agent model. Key changes:
+
+| Old                              | New                                 | Approach                                                               |
+| -------------------------------- | ----------------------------------- | ---------------------------------------------------------------------- |
+| Separate `/discover` command     | Bounded `/analyze`                  | Discovery is time-boxed, findings become durable memory later          |
+| Separate `/architecture` command | Combined with `/spec-design`        | Architecture clarity is just design, not a separate command            |
+| Separate `/patterns` command     | Stored in `/project-knowledge-base` | Patterns are durable descriptive knowledge                             |
+| Separate `/archive` command      | Removed                             | Artifact history is preserved by timestamping; no extra cleanup needed |
+
+All discovery, architecture, and pattern knowledge still gets captured—just through the current agent set.
+
+---
+
+## How This Repository Is Structured
+
+```
+├── README.md                                (you are here)
+├── artifacts/
+│   └── features/
+│       └── <feature-slug>/                 (feature work artifacts)
+│           ├── analysis.md
+│           ├── spec.md
+│           ├── requirements-review.md
+│           ├── design.md
+│           ├── plan.md
+│           ├── tasks.md
+│           └── review.md
+├── docs/                                   (documentation)
+│   ├── README.md                           (nav hub)
+│   ├── guides/
+│   ├── workflows/
+│   ├── agents/
+│   ├── reference/
+│   └── memory-system/
+├── memories/
+│   ├── repo/                               (durable repository knowledge)
+│   │   ├── constitution.md
+│   │   └── project-knowledge-base.md
+│   ├── session/                            (per-conversation notes)
+│   └── user/                               (user preferences)
+└── .github/
+    ├── agents/                             (10 agent definitions)
+    ├── prompts/                            (agent prompting config)
+    ├── specs/
+    │   ├── templates/                      (artifact templates)
+    │   └── checklists/                     (quality gates)
+    └── instructions/
+        └── copilot-instructions.md         (copilot behavior rules)
+```
+
+---
+
+## Next Steps
 
 ### For Brownfield or Risky Work
 

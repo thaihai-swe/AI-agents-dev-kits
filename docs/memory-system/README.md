@@ -1,76 +1,166 @@
 # Memory System
 
-The current workflow keeps durable memory intentionally small.
+The workflow maintains two types of memory: repository memory (durable, shared) and feature artifacts (temporary, feature-specific).
 
-## Repo Memory
+## Repository Memory Structure
 
-Repo memory lives in:
+Durable repo memory lives under `memories/repo/`:
 
-```text
-memories/repo/constitution.md
-memories/repo/project-knowledge-base.md
+```
+memories/repo/
+├── constitution.md              # Repo-wide rules (normative)
+└── project-knowledge-base.md    # Durable descriptive context
 ```
 
-### `constitution.md`
+## Constitution (`constitution.md`)
 
-Stores durable repo-wide rules:
+**Nature:** Normative — establishes rules that MUST be followed
 
-- testing expectations
-- compatibility rules
-- migration safety requirements
-- architecture guardrails
-- review or release constraints
-- AI agent operating constraints
+**Purpose:** Prevent scope creep, quality degradation, and risky patterns by establishing repo-wide guardrails
 
-This artifact is normative:
+**Stores:**
+- Testing expectations (unit tests, integration tests, etc.)
+- Compatibility rules (backward compatibility policy, deprecation strategy)
+- Migration safety requirements (data integrity, downtime rules)
+- Architecture guardrails (layering, service boundaries)
+- Review and rollout expectations
+- Security and compliance constraints
+- AI agent behavioral constraints
+- Code quality and style standards
 
-- it defines what future work should follow by default
-- it should use durable rule identifiers when the repo adopts them
-- it should not be used for descriptive repository notes or one-off feature policy
+**Examples of constitutional rules:**
+- "All database changes must include migration scripts"
+- "No feature ships without automated tests"
+- "All API changes require versioning"
+- "Security review required for any auth or data handling changes"
 
-### `project-knowledge-base.md`
+**Discipline:** Constitution is about "what MUST be true" not "what IS true"
 
-Stores durable descriptive context:
+## Project Knowledge Base (`project-knowledge-base.md`)
 
-- subsystem boundaries
-- integration seams
-- recurring implementation patterns
-- stable testing patterns
-- durable brownfield watchouts
+**Nature:** Descriptive — documents what IS true about the system
 
-## What Changed
+**Purpose:** Help teams understand architecture and avoid repeatedly discovering the same gotchas
 
-Older docs described a broader memory model that depended on separate discovery, architecture, pattern, and archive commands. The current codebase consolidates that approach.
+**Stores:**
+- Subsystem boundaries and responsibilities
+- Integration seams and external dependencies
+- Recurring implementation patterns
+- Stable testing patterns that work well
+- Durable brownfield watchouts ("if you change X, always check Y")
+- Known constraints (capacity, performance, compatibility)
+- Historical context for major decisions
 
-Now:
+**Examples of project knowledge:**
+- "Auth lives in /services/auth, manages tokens and sessions"
+- "Database migrations live in /db/migrations and must be backward compatible"
+- "Async jobs use Bull queue; check consumers in /workers"
+- "When changing user model, update legacy data mapper in /compat module"
+- "Cache invalidation is handled by edge service X"
 
-- bounded discovery belongs in `analysis.md`
-- durable rules belong in `constitution.md`
-- durable descriptive knowledge belongs in `project-knowledge-base.md`
+**Discipline:** Only save information that:
+- Is durable (true across many features)
+- Is grounded in code (observed, not speculated)
+- Is useful to future teams (not historic curiosity)
 
-## When To Update Repo Memory
+## Constitution vs Project Knowledge
 
-Update repo memory only when the information is:
+| Aspect         | Constitution        | Project Knowledge           |
+| -------------- | ------------------- | --------------------------- |
+| **Type**       | Normative rule      | Descriptive fact            |
+| **Says**       | "MUST be this way"  | "IS this way"               |
+| **Enforced**   | Yes, mandatory      | Informational only          |
+| **Examples**   | Tests required      | How auth subsystem works    |
+| **Violating?** | Block work          | Inform but don't block      |
+| **Update**     | Rarely (big change) | Regularly (patterns emerge) |
+| **Scope**      | Repository-wide     | Repository-wide             |
+| **Replaces**   | Nothing             | Feature repetition          |
 
-- durable across future work
-- grounded in repository evidence
-- useful beyond a single feature
+## Memory Lifecycle
 
-Do not promote temporary findings or feature-specific decisions into repo memory.
-Do not let `project-knowledge-base.md` override constitutional rules; descriptive memory must remain subordinate to normative policy.
+### Creation
+
+1. **Initial Setup** (once per repo):
+   - Run `/constitution` to establish rules
+   - Run `/project-knowledge-base` to document architecture
+
+2. **During Feature Work**:
+   - Discoveries in `/analyze` may reveal durable patterns
+   - If finding is durable → Add to project-knowledge-base
+   - If finding is a rule violation → Update constitution
+   - If finding is feature-specific → Keep in `artifacts/features/<slug>/`
+
+### Maintenance
+
+- **Review quarterly** - Is information still true?
+- **Keep updated** - Delete what's outdated
+- **Consolidate** - Merge redundant entries
+- **Link** - Reference from specs and plans
+
+### Archival
+
+- Don't "archive" memory; just delete what's no longer true
+- Feature artifacts are preserved by timestamping
+- No separate archive command needed
+
+## When Memory Conflicts
+
+**Subordination rule:** Project-knowledge-base NEVER overrides constitution
+
+```
+Constitution (normative rules)
+        ↑
+  (must not violate)
+        ↑
+Project Knowledge Base (descriptive facts)
+```
+
+Example:
+- Constitution says: "All features need tests"
+- Project Knowledge says: "We tested feature X manually"
+- Result: That's outdated project knowledge. Update it.
 
 ## Relationship To Feature Artifacts
 
-Repo memory helps every feature.
+**Repo Memory** (shared, durable):
+- `constitution.md` - Rules for all features
+- `project-knowledge-base.md` - Context for all features
+- Written rarely, used constantly
 
-Feature artifacts help one feature:
+**Feature Artifacts** (per-feature, temporary):
+- `analysis.md` - Investigation for THIS feature
+- `spec.md` - Requirements for THIS feature
+- `design.md` - Technical decisions for THIS feature
+- `plan.md` - Execution strategy for THIS feature
+- `tasks.md` - Work breakdown for THIS feature
+- `review.md` - Validation for THIS feature
+- Written constantly, archived after feature ships
 
-- `analysis.md`
-- `spec.md`
-- `requirements-review.md`
-- `design.md`
-- `plan.md`
-- `tasks.md`
-- `review.md`
+**Key difference:** Repo memory is shared across all future work. Feature artifacts help one feature.
 
-That separation keeps durable knowledge compact and feature work bounded.
+## Common Mistakes
+
+❌ **Too much in memory** - Every observation gets saved
+✅ **Selective** - Only durable, broadly useful knowledge
+
+❌ **Feature-specific in memory** - "Feature X uses pattern Y"
+✅ **General pattern** - "We always use pattern Y for this type of work"
+
+❌ **Outdated memory** - Never reviewed or cleaned
+✅ **Current** - Quarterly audit, delete what's stale
+
+❌ **Subordinating constitution** - "We usually follow rule X"
+✅ **Enforcing constitution** - "Rule X is not negotiable"
+
+❌ **Storing decisions** - "We decided X"
+✅ **Storing patterns** - "This is how X is typically done"
+
+## Memory Workflow
+
+```
+Feature Investigation (/analyze)
+       ↓
+Find durable pattern?
+  ├─ Yes → Update project-knowledge-base
+  ├─ No → Keep in feature artifact
+  └─ Is it a rule? → Update constitut
