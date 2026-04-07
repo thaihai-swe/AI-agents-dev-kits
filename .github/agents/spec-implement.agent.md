@@ -34,9 +34,11 @@ Follow this workflow for implementation:
 4. **Project Setup Verification**: Verify/create necessary configuration and ignore files
 5. **Parse Task Structure**: Extract phases, dependencies, and execution sequences from tasks.md
 6. **Execute Phase-by-Phase**: Work through Setup → Foundational → Feature Phases → Polish
-7. **Track Progress**: Update task status, report completion, capture blockers
-8. **Handle Failures**: Stop on blockers, continue parallel work, report errors clearly
-9. **Validate Completion**: Verify tasks complete, tests pass, spec/AC satisfied
+   - During execution: Keep focus on single task; parallelization only if [P] marked and dependencies clear
+   - After completion: Update task status field to `Status: Done` in tasks.md immediately
+7. **Track Progress**: Update task status in tasks.md after each task completion, report changes, capture blockers
+8. **Handle Failures**: For blocked tasks, update status to "Blocked" with reason; surface clearly
+9. **Validate Completion**: Verify tasks complete, update tasks.md status, tests pass, spec/AC satisfied
 
 ## Purpose
 
@@ -99,7 +101,13 @@ Follow this structured approach to task execution:
 
 ### During Task Execution
 
-1. **Update status**: Move task from "Not Started" to "In Progress"
+1. **Update task checkbox and status field in tasks.md immediately**: Change checkbox to IN PROGRESS state
+   - **Checkbox update**: Convert `- [ ] [TASK-ID]` to `- [-] [TASK-ID]` (dash indicates in-progress)
+   - **Status field update**: Change `Status: Not Started` to `Status: In Progress`
+   - Find the task block by TASK ID (e.g., `- [ ] TASK-005`)
+   - Update BOTH the checkbox AND the Status field in tasks.md
+   - Edit tasks.md immediately before starting implementation work
+   - This signals to observers that work is underway on this specific task
 2. **Single task focus**: Work on one unblocked task at a time by default
 3. **Parallelization**: Only execute multiple tasks concurrently if:
    - Tasks are marked [P] in tasks.md
@@ -109,14 +117,31 @@ Follow this structured approach to task execution:
 4. **Scope discipline**: Implement ONLY what the task describes; defer scope creep to other tasks
 5. **Validation as-you-go**: Add tests and validation during implementation, not as afterthought
 6. **Traceability**: Keep implementation linked to requirement (REQ-###) and acceptance criterion (AC-###)
+7. **Continuous status tracking**: If tasks.md includes detailed status field (from template), update it with progress notes
 
 ### After Task Completion
 
 1. **Verify outcome**: Task description outcomes are achieved
 2. **Validation pass**: All logical tests for the task pass
-3. **Update status**: Move task from "In Progress" to "Done"
-4. **Resume context**: Update resume notes for next task if workflow expects tracking
-5. **Blockers**: If task hit blockers, move to "Blocked" and document reason
+3. **Update task checkbox and status field in tasks.md IMMEDIATELY**: Mark task as DONE
+   - **Checkbox update**: Convert `- [-] [TASK-ID]` to `- [X] [TASK-ID]` (X indicates completed)
+   - **Status field update**: Change `Status: In Progress` to `Status: Done`
+   - Find the task block by TASK ID in tasks.md
+   - Update BOTH the checkbox (from `[-]` or `[ ]` to `[X]`) AND the Status field
+   - Edit tasks.md immediately after validation passes; do NOT defer
+   - Reference format from `.github/specs/templates/tasks-template.md` task structure
+   - Do NOT modify Summary, dependencies, or other fields; only change checkbox and Status value
+   - Close task immediately: update tasks.md before moving to next task
+4. **Update resume context**: In tasks.md "Resume Notes" section, update:
+   - Current phase: [phase just completed]
+   - Next recommended task: [next TASK-ID to work on]
+   - Last validation evidence added: [test results or validation note]
+5. **Handle blockers**: If task hit blockers and cannot complete:
+   - Update task checkbox to `- [BLOCKED]` or leave as `- [ ]` (not checked)
+   - Update task Status field to `Status: Blocked`
+   - Document reason in task's "Session note:" field
+   - Mark with estimated resolution time
+6. **Mandatory status closure**: Every task must have one of: `Status: Done`, `Status: Blocked`, or `Status: Deferred`
 
 ### Handling Scope Drift
 
@@ -136,11 +161,116 @@ If implementation reveals the task is significantly larger, more complex, or cro
 4. **Keep implementation scoped**: Only implement what the selected task describes
 5. **Execute one task at a time** by default; only batch/parallelize when dependencies permit ([P] marked)
 6. **Preserve task isolation**: Keep completed work reviewable as coherent task-sized slices
-7. **Update task status**: Move to "In Progress" when work begins, "Done" when complete
-8. **Maintain traceability**: Link code changes to requirements, AC, and tasks (REQ-### → AC-### → TASK-###)
-9. **Validate during implementation**: Add tests as part of task execution, not afterward
-10. **Surface upstream defects**: If implementation reveals spec/plan/task defects, stop and surface clearly
-11. **Prefer small coherent changes**: Avoid speculative refactors; stay focused on task outcome
+7. **Update task checkbox and status in tasks.md**:
+   - When STARTING: Change `- [ ]` to `- [-]` and `Status: Not Started` to `Status: In Progress`
+   - When DONE: Change `- [-]` to `- [X]` and `Status: In Progress` to `Status: Done`
+   - When BLOCKED: Change `- [ ]` to `- [ ]` (unchecked) and set `Status: Blocked`
+   - Edit tasks.md file directly AND immediately—before starting work, after validation passes
+8. **Mandatory task closure**: Every task must have Status field explicitly set to one of: `Not Started`, `In Progress`, `Done`, `Blocked`, or `Deferred`
+9. **Maintain traceability**: Link code changes to requirements, AC, and tasks (REQ-### → AC-### → TASK-###)
+10. **Validate during implementation**: Add tests as part of task execution, not afterward
+11. **Surface upstream defects**: If implementation reveals spec/plan/task defects, stop and surface clearly
+12. **Prefer small coherent changes**: Avoid speculative refactors; stay focused on task outcome
+
+## Task Status Update Protocol
+
+This protocol ensures every task in tasks.md has explicit, traceable status through its lifecycle.
+
+### Task Checkbox States
+
+Every task in tasks.md uses a checkbox to indicate progress state:
+
+- `- [ ] [TASK-ID]` = **Not Started** (unchecked, no work begun)
+- `- [-] [TASK-ID]` = **In Progress** (dash indicates work underway)
+- `- [X] [TASK-ID]` = **Done** (X indicates completed and validated)
+- `- [ ] [TASK-ID]` with `Status: Blocked` = **Blocked** (unchecked but status field shows blocker)
+- `- [ ] [TASK-ID]` with `Status: Deferred` = **Deferred** (unchecked; marked deferred in status)
+
+### Mandatory Status Field
+
+Every task MUST also include a `Status:` field within its task block. Valid values:
+
+- `Status: Not Started` — Task has not begun
+- `Status: In Progress` — Work is underway; code may be partially landed
+- `Status: Done` — Implementation complete and validation passed
+- `Status: Blocked` — Execution blocked; reason documented in "Session note:"
+- `Status: Deferred` — Task intentionally postponed; reason and reschedule documented
+
+### Dual Update Requirement
+
+**CRITICAL**: When task status changes, BOTH the checkbox AND the Status field MUST be updated together:
+
+```markdown
+BEFORE (Not Started):
+- [ ] TASK-005 [P] [US1] Create User authentication service in src/services/auth_service.py
+  Status: Not Started
+  Summary: Implement JWT-based auth service
+  ...
+
+AFTER Starting Work (In Progress):
+- [-] TASK-005 [P] [US1] Create User authentication service in src/services/auth_service.py
+  Status: In Progress
+  Summary: Implement JWT-based auth service
+  ...
+
+AFTER Validation (Done):
+- [X] TASK-005 [P] [US1] Create User authentication service in src/services/auth_service.py
+  Status: Done
+  Summary: Implement JWT-based auth service
+  ...
+```
+
+### Timing Requirements
+
+**Immediate updates are mandatory**:
+
+1. **Before starting implementation work**:
+   - Update checkbox from `[ ]` to `[-]`
+   - Update Status field from `Not Started` to `In Progress`
+   - Edit tasks.md NOW, before writing code
+   - Action: Edit tasks.md with checkpoint and Status changes
+
+2. **Immediately after validation passes**:
+   - Update checkbox from `[-]` to `[X]`
+   - Update Status field from `In Progress` to `Done`
+   - Edit tasks.md NOW, do not defer
+   - Action: Edit tasks.md with checkbox and Status changes
+
+3. **Do NOT batch status updates** — Update each task's status as you complete it; do not wait until all tasks done
+
+### Validation Checkpoints Before Marking Done
+
+Before updating a task to `Status: Done`:
+
+- [ ] Implementation matches task description exactly (no scope creep)
+- [ ] All tests for this task pass (unit, integration, or both as appropriate)
+- [ ] Code quality checks pass (lint, type checks, style)
+- [ ] Changes are linked to AC and requirements (in commit messages or code)
+- [ ] Resume Notes section will be updated with next recommended task
+- [ ] No red flags present (see Red Flags section)
+
+### Blocking a Task
+
+If a task cannot proceed:
+
+1. Keep checkbox unchecked: `- [ ]` (not started state)
+2. Update Status field to: `Status: Blocked`
+3. Document blocker in task's "Session note:" field:
+   ```markdown
+   Session note: Blocked on database schema migration (DEP-TASK-003).
+   Estimate: 2 hours for prerequisite. Reschedule after TASK-003 complete.
+   ```
+4. Do NOT progress the checkbox state
+5. Update Resume Notes with blocker explanation
+
+### Task Status Audit
+
+Before marking feature complete, audit all tasks:
+
+- All task checkboxes must be `[X]` (done) OR have explicit blocker/deferral reason
+- All Status fields must be one of: `Done`, `Blocked`, or `Deferred`
+- Every deferred/blocked task must have reason documented
+- Every done task must have validation evidence
 
 ## Implementation Standards
 
@@ -223,9 +353,20 @@ Validation is part of task completion, not optional. Don't mark "Done" without v
 When completing implementation:
 
 - **Modify code and tests**: Create/update repository files as needed for the task
-- **Update task status**: Mark task as [X] (done) in tasks.md when complete
+- **Update task checkbox and status field in tasks.md IMMEDIATELY**: Change checkbox and Status when task lifecycle changes
+  - Action: Edit tasks.md and update BOTH task checkbox AND Status field
+  - Format checkbox: `- [ ]` → `- [-]` (in progress) or `- [-]` → `- [X]` (done)
+  - Format status: Update `Status: Not Started` → `Status: In Progress` → `Status: Done`
+  - Timing: Update BEFORE starting work, and immediately AFTER validation passes; never batch
+  - Verification: Confirm tasks.md shows updated checkbox AND Status value in next read
+  - Use format from `.github/specs/templates/tasks-template.md` task structure
 - **Document blockers**: If task hits a blocker, record it in tasks.md with clear explanation
+  - Status: Mark task as "Blocked" (not checked; keep `- [ ]`)
+  - Reason: Add blocker explanation in task notes section
+  - Retry: Estimate when blocker will be resolved; reschedule task
 - **Resume context**: Update next recommended task and any session context in tasks.md
+  - Add to "Resume Notes" section: current completed task ID, next task ID, any session state
+  - This enables workflow continuation if interrupted
 - **Do not rewrite intent**: Don't silently change what the task description asked for
 - **Do not scope creep**: Don't implement work not covered by selected task(s)
 - **Document deviations**: If implementation required deviation from task/plan, document clearly and recommend revisiting upstream artifact
@@ -233,14 +374,17 @@ When completing implementation:
 
 ### Progress Reporting
 
-After each completed task, provide:
+After each task lifecycle change (starting work or completing work), provide:
 
-- Task ID and status
+- Task ID and current Status field value (`Status: In Progress`, `Status: Done`, `Status: Blocked`, etc.)
+- Current checkbox state (`[X]` = done, `[-]` = in progress, `[ ]` = not started/blocked/deferred)
+- Confirmation that tasks.md was edited with BOTH checkbox AND Status updated
 - Lines/files changed or created
-- Tests run/added
-- Any blockers or deferrals
-- Next recommended task (if known)
-- Session context for resuming
+- Tests run/added and validation results
+- Any blockers or deferrals (with reason and resolution estimate)
+- Next recommended task ID (if known)
+- Session context update: Resume Notes section (Current phase, Next recommended task, Last validation evidence)
+- Task completion evidence (test results, validation notes, file paths)
 
 ### Integration Notes
 
@@ -268,7 +412,7 @@ Implementation is complete for a task when:
 Implementation for the entire feature is complete when:
 
 ✅ **All phases complete**: Setup → Foundational → Feature → Polish all done
-✅ **All tasks done**: Every task in tasks.md is marked [X] or [Deferred] with reason
+✅ **All tasks done**: Every task in tasks.md has Status field updated to `Done` or `Deferred` (with reason documented)
 ✅ **All AC verified**: Every acceptance criterion is validated against implementation
 ✅ **All tests pass**: Unit, integration, and any other tests required by plan
 ✅ **Requirements met**: Feature delivers what spec.md defined
@@ -279,14 +423,14 @@ Implementation for the entire feature is complete when:
 
 ## Red Flags
 
-**Do not mark a task Done if:**
+**Do not mark a task Status: Done if:**
 - Tests are incomplete or failing
 - Validation was skipped or deferred
 - Scope drifted from task description without documentation
 - Implementation contradicts spec/plan without explanation
 - Changes touch files not listed in task without clear necessity
 - Code changes are cosmetic refactoring unrelated to task
-- Blocker exists but task marked Done anyway
+- Blocker exists but task Status marked Done anyway (mark Status: Blocked instead)
 - Task isolation is broken; unrelated changes bundled together
 
 **Do not complete the entire feature if:**

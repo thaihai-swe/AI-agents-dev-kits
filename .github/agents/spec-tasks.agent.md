@@ -50,6 +50,7 @@ Read if present:
 - `artifacts/features/${input:slug}/spec.md` (REQUIRED - user stories, priorities, AC)
 - `artifacts/features/${input:slug}/plan.md` (REQUIRED - phases, sequencing, dependencies)
 - `artifacts/features/${input:slug}/design.md` (optional - technical decisions)
+- `.github/specs/templates/tasks-template.md` (REQUIRED - use as template structure)
 - Any data-model.md, contracts/, research.md, or quickstart.md available
 
 ## Preconditions
@@ -80,29 +81,6 @@ STOP when:
 - Unresolved questions or design gaps block task sequencing
 - Acceptance criteria have no validation direction
 
-## Task Format Requirements (MANDATORY)
-
-**All tasks MUST strictly follow this format**:
-
-```
-- [ ] [TaskID] [P?] [Story?] Description with exact file path or module
-```
-
-### Format Components
-
-1. **Checkbox**: Always `- [ ]`
-2. **Task ID**: T001, T002, T003 (sequential, execution order)
-3. **[P] marker**: Include ONLY if parallelizable (different files, independent)
-4. **[Story] label**: [US1], [US2], etc. REQUIRED for user story phases ONLY
-5. **Description**: Action verb + exact file path/module
-
-### Format Examples
-
-✅ `- [ ] T001 Create project structure per implementation plan`
-✅ `- [ ] T005 [P] Implement authentication middleware in src/middleware/auth.py`
-✅ `- [ ] T012 [P] [US1] Create User model in src/models/user.py`
-❌ `- [ ] Create User model` (missing ID and path)
-❌ `T001 [US1] Create model` (missing checkbox and path)
 
 ## Task Organization Rules
 
@@ -117,13 +95,6 @@ STOP when:
 - Integration with other components
 - Validation and testing
 
-## Phase Structure
-
-- **Phase 1: Setup** — Project initialization, build config
-- **Phase 2: Foundational** — Blocking prerequisites for all stories
-- **Phase 3+: User Stories** — By priority (P1, P2, P3, etc.)
-- **Final: Polish & Cross-Cutting** — Documentation, integration tests, optimization
-
 ## Task Decomposition Rules
 
 1. Break into smallest reviewable outcomes
@@ -137,67 +108,53 @@ STOP when:
 9. Complete traceability to phases, requirements, AC
 10. Avoid bundling unrelated work
 
-## Suggested Structure for `tasks.md`
+## Task Block Structure
+
+Every task in tasks.md MUST include the following fields to support implementation tracking:
 
 ```markdown
-# Tasks
+- [ ] [TASK-ID] [P?] [Story?] Task description with file path
 
-## Overview
-Feature description, tasking strategy, scope.
-
-## Implementation Strategy
-MVP scope, parallelization opportunities, testing approach.
-
-## Phase 1: Setup
-**Goal**: Initialize project structure and environment
-**Completion Criteria**: Project builds, dependencies resolved
-
-- [ ] T001 Create project structure per implementation plan
-- [ ] T002 Configure build tooling and CI/CD pipeline
-
-## Phase 2: Foundational
-**Goal**: Blocking prerequisites for all user stories
-**Completion Criteria**: Core infrastructure ready
-
-- [ ] T003 [P] Implement authentication framework
-- [ ] T004 [P] Set up database schema
-
-## Phase 3: User Story 1 (P1)
-**Goal**: [From spec.md]
-**Scenario**: [Key scenario]
-**AC**: [AC-001, AC-002, AC-003]
-
-- [ ] T005 [P] [US1] Create User model in src/models/user.py
-- [ ] T006 [P] [US1] Implement UserService in src/services/user_service.py
-- [ ] T007 [US1] Create API endpoint in src/routes/users.py
-- [ ] T008 [US1] Write integration tests for US1
-
-## Phase 4: User Story 2 (P2)
-... similarly organized ...
-
-## Phase N: Polish & Cross-Cutting
-- [ ] T0XX [P] Write end-to-end tests
-- [ ] T0XX [P] Update documentation
-
-## Dependency Graph
-Sequencing: Setup → Foundational → [US1, US2, US3 parallel] → Polish
-
-## Parallelization Opportunities
-- All Phase 3+ can run in parallel if dependencies met
-- Setup and Foundational must run sequentially
-
-## Task Status
-- Not Started
-- In Progress
-- Blocked
-- Done
-- Deferred
-
-## Resume Notes
-Current phase: [N]
-Next task: [T0XX]
-Blockers: [if any]
+  Status: Not Started
+  Summary: One-line summary of what needs to be done
+  Plan reference: [Which phase from plan.md this task supports]
+  Linked requirement(s): [REQ-001, REQ-002, etc., or N/A]
+  Linked acceptance criteria: [AC-001, AC-002, etc., or N/A]
+  Affected file(s) or module(s): [Specific files/modules this task touches]
+  Depends on: [Task IDs like TASK-001, TASK-002, or "None"]
+  Can run in parallel: [true/false - only true if marked [P]]
+  Validation note: [How this task will be validated/tested]
+  Session note: [Leave blank for new tasks; update during implementation]
 ```
+
+### Critical Fields for Status Tracking
+
+Three fields are essential for tracking task progress through implementation:
+
+1. **Task checkbox** (`- [ ]`): Visual indicator of task progress state
+   - `[ ]` = Not started, in progress, blocked, or deferred (checkbox empty)
+   - `[X]` = Done (checkbox marked)
+
+2. **Status field**: Explicit status label for clarity
+   - Must be present on every task
+   - Initialize to `Status: Not Started`
+   - Implementation agent will update to: `In Progress`, `Done`, `Blocked`, or `Deferred`
+
+3. **Session note field**: Blocks notes during implementation
+   - Used to document progress, blockers, or issues
+   - Initialize to empty or minimal value
+   - Implementation agent updates with session context
+
+**WARNING**: If any of these three fields is missing, implementation agent cannot properly track task completion.
+
+### Notes Per Task Section
+Keep from template - add detailed execution notes for each task ID
+
+### Completion Notes Section
+Keep from template - track deliverables, deferrals, follow-ups
+
+### Resume Notes Section
+Keep from template - track current phase, next task, blockers, validation status
 
 ## Validation Checklist
 
@@ -207,6 +164,14 @@ Blockers: [if any]
 - [ ] [P] marker only on parallelizable tasks
 - [ ] [Story] label present for user story tasks, absent for Setup/Foundational/Polish
 - [ ] Every description includes specific file path/module
+- [ ] Every task includes a `Status:` field within the task block
+- [ ] All Status field values are one of: `Not Started`, `In Progress`, `Done`, `Blocked`, `Deferred`
+
+### Status Field Validation
+- [ ] Every task block includes `Status: Not Started` (default for new tasks)
+- [ ] Status field is present in every phase's tasks
+- [ ] Status field uses consistent indentation and formattin within task blocks
+- [ ] Tasks align with template format from `.github/specs/templates/tasks-template.md`
 
 ### Coverage Validation
 - [ ] Every plan phase represented in tasks
@@ -261,9 +226,14 @@ Task list is ready when it:
 - Do not finalize if upstream planning is weak—say so clearly
 - Do not publish tasks leaving major AC uncovered
 - State which precondition failed if stopping
+- **CRITICAL FOR IMPLEMENTATION**: Ensure every task includes `Status: Not Started` field (initialize to this value)
+- **CRITICAL FOR IMPLEMENTATION**: Ensure every task uses checkpoint format `- [ ] [TASK-ID]` (checkbox must be present)
+- **CRITICAL FOR IMPLEMENTATION**: Ensure every task has `Session note:` field (can be empty) for implementation agent to use
+- Validate that all tasks follow the strict block structure defined in "Task Block Structure" section
+- Use `.github/specs/templates/tasks-template.md` as reference for proper formatting and structure
 
 ## Next Step
 
 After tasks are validated and ready:
 
-`spec-implement`
+`spec-implement` — Implementation agent will process tasks.md and update checkbox/Status fields as work progresses
