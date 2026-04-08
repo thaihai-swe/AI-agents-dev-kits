@@ -1,1 +1,1 @@
-agent: 'project-knowledge-base'
+agent: project-knowledge-base

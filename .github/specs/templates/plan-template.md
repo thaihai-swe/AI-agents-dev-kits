@@ -13,6 +13,7 @@
 ## Summary
 
 Describe the execution approach in a few sentences and point to `design.md` when it exists.
+Keep the level of detail proportional to feature size and delivery risk.
 
 ## Constitution Alignment
 
@@ -28,14 +29,30 @@ Describe the execution approach in a few sentences and point to `design.md` when
 - Brownfield execution constraints or greenfield assumptions:
 - Unchanged behavior that must be preserved during delivery:
 
+## Technical Approach
+
+- Chosen approach:
+- Architectural or integration shape:
+- Key interfaces or contracts:
+- Operational considerations:
+
+## Decision Rationale
+
+- Why this approach was selected:
+- Existing patterns reused:
+- Alternatives considered:
+- Why rejected:
+
 ## Requirements And Constraints
 
 - REQ-001:
   Implementation note:
   Planned validation:
+  Linked scenario or outcome:
 - REQ-002:
   Implementation note:
   Planned validation:
+  Linked scenario or outcome:
 - NFR-001:
   Implementation note:
 - CON-001:
@@ -64,11 +81,17 @@ Describe the execution approach in a few sentences and point to `design.md` when
 - DEP-002 External dependency:
   Why it matters:
 
+## Implementation Prerequisites
+
+- PREREQ-001:
+- PREREQ-002:
+
 ## Implementation Phases
 
 ### Phase 1
 
 Goal:
+Enabled user scenario(s) or outcome(s):
 
 Tasks:
 
@@ -85,6 +108,7 @@ Completion criteria:
 ### Phase 2
 
 Goal:
+Enabled user scenario(s) or outcome(s):
 
 Tasks:
 
@@ -108,6 +132,7 @@ Completion criteria:
 
 ## Traceability Matrix
 
+- Scenario or outcome -> Plan phase(s):
 - REQ-001 -> Plan phase / task IDs:
 - REQ-002 -> Plan phase / task IDs:
 - AC-001 -> Validation step(s):

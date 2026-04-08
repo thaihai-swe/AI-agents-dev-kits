@@ -1,1 +1,1 @@
-agent: 'spec-implement'
+agent: spec-implement

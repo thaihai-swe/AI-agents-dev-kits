@@ -1,1 +1,1 @@
-agent: 'constitution'
+agent: constitution

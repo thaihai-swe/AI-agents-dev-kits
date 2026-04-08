@@ -1,1 +1,1 @@
-agent: 'spec-tasks'
+agent: spec-tasks

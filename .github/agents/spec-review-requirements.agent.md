@@ -1,5 +1,4 @@
 ---
-category: Specification & Design
 description: Review a feature specification for clarity, completeness, scope control, and testability before design or planning.
 tools: [read/readFile, edit/createDirectory, edit/createFile, edit/editFiles, edit/rename, search, vscode.mermaid-chat-features/renderMermaidDiagram, todo]
 ---

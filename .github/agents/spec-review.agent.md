@@ -1,5 +1,4 @@
 ---
-category: Implementation & Quality
 description: Review implemented feature work against the specification, task outcomes, and repository quality expectations.
 tools: [read/readFile, edit/createDirectory, edit/createFile, edit/editFiles, edit/rename, search, vscode.mermaid-chat-features/renderMermaidDiagram, todo]
 ---

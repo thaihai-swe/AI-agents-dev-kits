@@ -1,1 +1,1 @@
-agent: 'spec-design'
+agent: spec-design

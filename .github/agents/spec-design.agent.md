@@ -1,5 +1,4 @@
 ---
-category: Specification & Design
 description: Create a design artifact for features that need architectural clarification, interface decisions, or risk reduction before planning and implementation.
 tools: [read/readFile, edit/createDirectory, edit/createFile, edit/editFiles, edit/rename, search, vscode.mermaid-chat-features/renderMermaidDiagram, todo]
 ---

@@ -16,9 +16,20 @@
 - Record blockers and dependencies explicitly.
 - Link every task back to requirement and acceptance criteria IDs.
 - Link every task back to the plan task or phase it came from.
+- Link each phase or task group back to the user scenario or outcome it enables when relevant.
 - Mark tasks that can run in parallel when they have no dependency relationship.
+- Only mark tasks as parallel-safe when they do not create obvious write conflicts or contract conflicts.
 - Prefer explicit file or module targets when known from the plan.
 - Use these task states consistently: `Not Started`, `In Progress`, `Blocked`, `Done`, `Deferred`.
+
+## Status Tracking Requirements
+
+Every task MUST have both a checkbox and a Status field for implementation tracking:
+
+- **Checkbox format**: `- [ ] TASK-ID` (three states: `[ ]` = not started/blocked/deferred, `[-]` = in progress, `[X]` = done)
+- **Status field**: `Status: [Not Started|In Progress|Done|Blocked|Deferred]` (initialized to `Not Started`)
+- **Session note**: Field for implementation agent to track blockers, progress, or issues
+- **Implementation contract**: Implementation agent will update BOTH checkbox AND Status field as work progresses
 
 ## Phase 1: Foundations
 
@@ -30,7 +41,8 @@ Completion criteria:
 
 Tasks:
 
-- [ ] TASK-001 Status: Not Started
+- [ ] TASK-001
+  Status: Not Started
   Summary:
   Plan reference:
   Linked requirement(s):
@@ -41,7 +53,8 @@ Tasks:
   Validation note:
   Session note:
 
-- [ ] TASK-002 Status: Not Started
+- [ ] TASK-002
+  Status: Not Started
   Summary:
   Plan reference:
   Linked requirement(s):
@@ -62,7 +75,8 @@ Completion criteria:
 
 Tasks:
 
-- [ ] TASK-003 Status: Not Started
+- [ ] TASK-003
+  Status: Not Started
   Summary:
   Plan reference:
   Linked requirement(s):
@@ -73,7 +87,8 @@ Tasks:
   Validation note:
   Session note:
 
-- [ ] TASK-004 Status: Not Started
+- [ ] TASK-004
+  Status: Not Started
   Summary:
   Plan reference:
   Linked requirement(s):
@@ -94,7 +109,8 @@ Completion criteria:
 
 Tasks:
 
-- [ ] TASK-005 Status: Not Started
+- [ ] TASK-005
+  Status: Not Started
   Summary:
   Plan reference:
   Linked requirement(s):
@@ -105,7 +121,8 @@ Tasks:
   Validation note:
   Session note:
 
-- [ ] TASK-006 Status: Not Started
+- [ ] TASK-006
+  Status: Not Started
   Summary:
   Plan reference:
   Linked requirement(s):
@@ -116,7 +133,8 @@ Tasks:
   Validation note:
   Session note:
 
-- [ ] TASK-007 Status: Not Started
+- [ ] TASK-007
+  Status: Not Started
   Summary:
   Plan reference:
   Linked requirement(s):

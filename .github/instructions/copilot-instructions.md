@@ -35,4 +35,4 @@
 - Do not skip tests or validation steps when the repository already implies them.
 - Avoid feature-specific details in repository memory.
 - Avoid speculative architecture in durable memory unless uncertainty is clearly marked.
-- Update `README.md` or `USAGE-GUIDE.md` when workflow entrypoints or file locations change.
+- Update `README.md` or documentation in `docs/` when workflow entrypoints or file locations change.

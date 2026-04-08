@@ -38,6 +38,11 @@ What problem are we solving, for whom, and why now?
 - Primary users:
 - Secondary stakeholders:
 
+## User Stories And Key Scenarios
+
+- US-001:
+- US-002:
+
 ## Current Context
 
 For brownfield work, summarize the relevant current behavior, impacted boundaries, and unchanged behavior that must be preserved.
@@ -81,6 +86,10 @@ Acceptance notes:
 - Business constraints:
 - Delivery constraints:
 
+## Assumptions
+
+- ASM-001:
+
 ## Risks
 
 - RISK-001 Risk:
@@ -95,9 +104,11 @@ Acceptance notes:
 ## Acceptance Criteria
 
 - [ ] AC-001 Linked requirement(s): REQ-001
+  Linked user story or scenario:
   Linked success criteria:
   Validation method:
 - [ ] AC-002 Linked requirement(s): REQ-002
+  Linked user story or scenario:
   Linked success criteria:
   Validation method:
 

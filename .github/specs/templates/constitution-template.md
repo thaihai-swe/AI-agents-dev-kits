@@ -17,45 +17,46 @@ Define where the constitution applies:
 
 ## Core Principles
 
-- Principle 1:
+- CC-001 Principle 1:
   Why it matters:
-- Principle 2:
+- CC-002 Principle 2:
   Why it matters:
-- Principle 3:
+- CC-003 Principle 3:
   Why it matters:
 
 ## Delivery Rules
 
-- Rule 1:
-- Rule 2:
-- Rule 3:
+- CC-101 Rule 1:
+- CC-102 Rule 2:
+- CC-103 Rule 3:
 
 ## Quality And Validation Gates
 
-- Gate 1:
-- Gate 2:
-- Gate 3:
+- CC-201 Gate 1:
+- CC-202 Gate 2:
+- CC-203 Gate 3:
 
 ## Architectural Guardrails
 
-- Guardrail 1:
-- Guardrail 2:
-- Guardrail 3:
+- CC-301 Guardrail 1:
+- CC-302 Guardrail 2:
+- CC-303 Guardrail 3:
 
 ## Brownfield Safety Rules
 
-- Safety rule 1:
-- Safety rule 2:
-- Safety rule 3:
+- CC-401 Safety rule 1:
+- CC-402 Safety rule 2:
+- CC-403 Safety rule 3:
 
 ## AI Agent Operating Rules
 
-- Agents must:
-- Agents must not:
-- Required artifact usage:
+- CC-501 Agents must:
+- CC-502 Agents must not:
+- CC-503 Required artifact usage:
 
 ## Amendment Process
 
 - How this document should be updated:
 - Who should approve changes:
 - When amendments are required:
+- Which downstream artifacts may need review after amendment:
