@@ -1,163 +1,123 @@
 # Commands Reference
 
-This is the current command set implemented by the files in [`.github/agents/`](../../.github/agents/), organized into 5 categories.
+## `/constitution`
 
-## Current Commands
+Use when:
+- setting durable repo-wide rules
 
-### Foundation
+Output:
+- `memories/repo/constitution.md`
 
-```text
-/constitution
-/project-knowledge-base
-```
+Stop when:
+- rules are still vague or not truly repo-wide
 
-### Discovery & Analysis
+## `/project-knowledge-base`
 
-```text
-/analyze
-```
+Use when:
+- capturing durable descriptive repository context
 
-### Specification & Design
+Output:
+- `memories/repo/project-knowledge-base.md`
 
-```text
-/spec-requirement
-/spec-review-requirements
-/spec-design
-```
+Stop when:
+- findings are feature-specific rather than durable
 
-### Planning & Delivery
+## `/analyze`
 
-```text
-/spec-plan
-/spec-tasks
-```
+Use when:
+- current system behavior is unclear
+- brownfield constraints need investigation
+- a bug or regression needs evidence first
 
-### Implementation & Quality
+Output:
+- `artifacts/features/<slug>/analysis.md`
 
-```text
-/spec-implement
-/spec-review
-```
+Stop when:
+- critical unknowns still block confident specification
 
-## Command Details
+## `/spec-requirement`
 
-### `/analyze`
+Use when:
+- defining what should change and why
+- resolving blocking clarification before requirements review
 
-- Agent file: `analyze.agent.md`
-- Primary output: `artifacts/features/<slug>/analysis.md`
-- Use when: the current system, risk, or constraints are not yet clear
+Output:
+- `artifacts/features/<slug>/spec.md`
 
-Example:
+Stop when:
+- users, scope, success outcomes, or acceptance criteria are still blocked
 
-```text
-/analyze
-Feature slug: magic-link-login
+## `/spec-review-requirements`
 
-Investigate the current authentication flow, session handling, token usage, and email integration boundaries.
-```
+Use when:
+- judging whether `spec.md` is ready for design or planning
 
-### `/constitution`
+Output:
+- `artifacts/features/<slug>/requirements-review.md`
 
-- Agent file: `constitution.agent.md`
-- Primary output: `memories/repo/constitution.md`
-- Use when: we need durable repo-wide rules, guardrails, quality gates, or AI operating constraints that should govern future work by default
+Stop when:
+- the spec is not ready and must be revised upstream
 
-### `/project-knowledge-base`
+## `/spec-design`
 
-- Agent file: `project-knowledge-base.agent.md`
-- Primary output: `memories/repo/project-knowledge-base.md`
-- Use when: we need to capture durable descriptive repository knowledge
+Use when:
+- planning depends on technical clarification
+- interfaces, migrations, or cross-boundary tradeoffs need explicit treatment
 
-### `/spec-requirement`
+Output:
+- `artifacts/features/<slug>/design.md`
 
-- Agent file: `spec-requirement.agent.md`
-- Primary output: `artifacts/features/<slug>/spec.md`
-- Use when: we need to define what should change, why it matters, and resolve blocking ambiguity before requirements review
+## `/spec-plan`
 
-Example:
+Use when:
+- the spec is approved and clarified
+- you need pre-plan analysis plus execution strategy
 
-```text
-/spec-requirement
-Feature slug: magic-link-login
+Output:
+- `artifacts/features/<slug>/plan.md`
 
-Create a feature specification for passwordless email login via one-time magic links.
-```
+Stop when:
+- blocking clarification remains
+- design is required but missing
+- safe sequencing is not yet possible
 
-### `/spec-review-requirements`
+## `/spec-tasks`
 
-- Agent file: `spec-review-requirements.agent.md`
-- Primary output: `artifacts/features/<slug>/requirements-review.md`
-- Use when: we want an explicit readiness check before design or planning
+Use when:
+- the plan is ready to decompose
 
-### `/spec-design`
+Output:
+- `artifacts/features/<slug>/tasks.md`
 
-- Agent file: `spec-design.agent.md`
-- Primary output: `artifacts/features/<slug>/design.md`
-- Use when: planning depends on architecture, interface, migration, or integration decisions
+Stop when:
+- the plan is not taskable
+- validation direction is missing
+- traceability would be incomplete
 
-### `/spec-plan`
+## `/spec-implement`
 
-- Agent file: `spec-plan.agent.md`
-- Primary output: `artifacts/features/<slug>/plan.md`
-- Use when: the feature intent is approved and clarified, and we need pre-plan analysis, technical approach, sequencing, dependencies, validation, and rollout strategy defined clearly enough for task generation
+Use when:
+- the next unblocked task is ready to execute
 
-### `/spec-tasks`
+Inputs:
+- `spec.md`
+- `plan.md`
+- `tasks.md`
 
-- Agent file: `spec-tasks.agent.md`
-- Primary output: `artifacts/features/<slug>/tasks.md`
-- Use when: the plan is ready and we need phased, traceable, implementation-ready task slices with explicit dependencies, validation notes, and a final taskability/traceability check
+Output:
+- code and test changes
+- updated task status in `tasks.md`
 
-### `/spec-implement`
+## `/spec-review`
 
-- Agent file: `spec-implement.agent.md`
-- Primary inputs: `spec.md`, `plan.md`, and `tasks.md`
-- Use when: we are ready to execute the next unblocked planned task or a specifically selected set of tasks, with status updates and validation evidence
+Use when:
+- implementation work has been attempted and needs verification
 
-Example:
+Output:
+- review findings
+- optional `artifacts/features/<slug>/review.md`
 
-```text
-/spec-implement
-Feature slug: magic-link-login
-
-Implement TASK-001 and TASK-002. Update task status and run the validation appropriate to the change.
-```
-
-### `/spec-review`
-
-- Agent file: `spec-review.agent.md`
-- Optional durable output: `artifacts/features/<slug>/review.md`
-- Use when: we want the implementation quality gate to verify delivered work against approved artifacts, validation evidence, task state, and repository rules
-- Core review lenses: completeness, correctness, and coherence
-
-## Recommended Sequences
-
-### New Feature
-
-```text
-/analyze
-/spec-requirement
-/spec-review-requirements
-/spec-design        (if needed)
-/spec-plan
-/spec-tasks
-/spec-implement
-/spec-review
-```
-
-### Localized Change
-
-```text
-/spec-requirement
-/spec-review-requirements
-/spec-plan
-/spec-tasks
-/spec-implement
-/spec-review
-```
-
-### Repo Setup
-
-```text
-/constitution
-/project-knowledge-base
-```
+Core review lenses:
+- completeness
+- correctness
+- coherence

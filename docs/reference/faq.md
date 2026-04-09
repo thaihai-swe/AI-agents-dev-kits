@@ -19,24 +19,10 @@ Stay in `/spec-requirement` when the product intent itself is still ambiguous.
 ### Q: When should I run `/analyze`?
 
 Run it when:
-
 - the repo is brownfield
 - there is bug or behavior uncertainty
 - planning depends on understanding existing code
 - you suspect hidden constraints or risks
-
-### Q: When is `/spec-design` necessary?
-
-Use it when the feature changes interfaces, crosses subsystem boundaries, introduces migration or compatibility risk, or has multiple plausible technical approaches.
-
-### Q: What is the difference between `constitution.md` and `project-knowledge-base.md`?
-
-- `constitution.md` is for durable rules
-- `project-knowledge-base.md` is for durable descriptive context
-
-### Q: Can I go straight to `/spec-implement`?
-
-Not safely for most non-trivial work. `spec-implement` assumes `spec.md`, `plan.md`, and `tasks.md` already exist and are usable.
 
 ### Q: What if the requirements review says the spec is not ready?
 
@@ -46,31 +32,13 @@ Go back to `/spec-requirement`, fix the gaps in `spec.md`, and run `/spec-review
 
 Inside `/spec-requirement`. That agent now owns clarification during spec authoring. `spec-review-requirements` should stay a judge, not silently rewrite the spec.
 
-### Q: What if implementation reveals an upstream mistake?
+### Q: Can I go straight to `/spec-implement`?
 
-Pause and fix the right artifact. Do not silently work around a bad spec, bad design, or weak plan.
+Not safely for most non-trivial work. `spec-implement` assumes `spec.md`, `plan.md`, and `tasks.md` already exist and are usable.
 
-### Q: Where did the old discovery and archive commands go?
+### Q: Where do I learn the workflow?
 
-They were part of the retired 13-agent model. In the current workflow:
-
-- discovery is handled by `/analyze`
-- durable architecture and pattern knowledge belongs in `/project-knowledge-base`
-- durable rules belong in `/constitution`
-
-### Q: Do I need a written `review.md` every time?
-
-No. `spec-review` can return concise findings without creating a durable review artifact unless a written review is useful.
-
-### Q: What is the safest default workflow?
-
-```text
-/analyze
-/spec-requirement
-/spec-review-requirements
-/spec-design        (if needed)
-/spec-plan
-/spec-tasks
-/spec-implement
-/spec-review
-```
+Start with:
+- [Overview](../explanation/overview.md)
+- [Quick Start](../guides/quick-start.md)
+- [Canonical Feature Example](../examples/canonical-feature.md)
