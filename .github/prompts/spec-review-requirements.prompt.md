@@ -1,5 +1,5 @@
 ---
-mode: agent
+
 agent: spec-review-requirements
 description: Review a feature specification for clarity, completeness, scope control, and testability before design or planning.
 ---

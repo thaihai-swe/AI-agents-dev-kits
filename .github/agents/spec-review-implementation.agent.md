@@ -41,8 +41,15 @@ Before starting review, verify:
 - `plan.md` exists
 - `tasks.md` exists
 - implementation work for the feature has actually been attempted
+- `tasks.md` reflects a reviewable state: completed tasks are marked `Done`, remaining work is explicitly `Blocked` or `Deferred`, and task state is not obviously stale
+- there is enough validation evidence to assess the delivered change against the relevant acceptance criteria
 
 If these preconditions are not met, stop and say exactly what is missing.
+
+This review may still be run on partial implementation work, but the verdict must reflect that reality:
+
+- use a final approval verdict only when the delivered scope is actually review-ready
+- if implementation is partial, blocked, or still actively in progress, call that out explicitly and avoid treating the feature as fully ready
 
 ## Review Workflow
 

@@ -1,5 +1,5 @@
 ---
-mode: agent
+
 agent: spec-plan
 description: Turn an approved and clarified specification into a traceable implementation plan with domain, risk, validation, rollout, and rollback guidance.
 ---

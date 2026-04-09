@@ -1,5 +1,5 @@
 ---
-mode: agent
+
 agent: spec-requirement
 description: Create or refine a feature specification, including clarification of blocking ambiguity before requirements review.
 ---

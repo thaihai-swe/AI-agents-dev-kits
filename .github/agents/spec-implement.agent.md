@@ -35,7 +35,7 @@ Follow this workflow for implementation:
 3. **Load Implementation Context**: Read spec, plan, design, and all relevant documents
 4. **Project Setup Verification**: Verify/create necessary configuration and ignore files
 5. **Parse Task Structure**: Extract phases, dependencies, and execution sequences from tasks.md
-6. **Execute Phase-by-Phase**: Work through Setup → Foundational → Feature Phases → Polish
+6. **Execute Phase-by-Phase**: Work through the `PHASE-###` sequence defined by `plan.md` and decomposed in `tasks.md`
    - During execution: Keep focus on single task; parallelization only if [P] marked and dependencies clear
    - After completion: Update task status field to `Status: Done` in tasks.md immediately
 7. **Track Progress**: Update task status in tasks.md after each task completion, report changes, capture blockers
@@ -58,7 +58,7 @@ Implement the planned work while preserving scope control and validation discipl
 ### Task Quality
 - [ ] Tasks use strict format: `- [ ] [TaskID] [P?] [Story?] Description + file path`
 - [ ] All task dependencies are explicit
-- [ ] Phase sequencing is clear (Setup → Foundational → Feature → Polish)
+- [ ] Phase sequencing is clear and matches the `PHASE-###` sequence in `plan.md`
 - [ ] No unresolved [NEEDS CLARIFICATION] markers in tasks
 - [ ] Prerequisites documented in plan are in place
 
@@ -97,7 +97,7 @@ Follow this structured approach to task execution:
 ### Before Starting a Task
 1. **Verify prerequisites**: Check plan.md for required setup or prior phases
 2. **Current status**: Confirm task is "Not Started" (not already "Done" or "Blocked")
-3. **Dependencies**: Ensure all prerequisite tasks ([T00X]) are complete
+3. **Dependencies**: Ensure all prerequisite tasks (`[TASK-###]`) are complete
 4. **Clarification**: If task is ambiguous, stop and request clarification from plan/spec rather than guessing
 5. **Scope confirmation**: Ensure implementation scope matches task description exactly
 
@@ -106,7 +106,7 @@ Follow this structured approach to task execution:
 1. **Update task checkbox and status field in tasks.md immediately**: Record that work is IN PROGRESS
    - **Checkbox update**: Keep `- [ ] [TASK-ID]` while work is in progress
    - **Status field update**: Change `Status: Not Started` to `Status: In Progress`
-   - Find the task block by TASK ID (e.g., `- [ ] TASK-005`)
+   - Find the task block by TASK ID (e.g., `- [ ] [TASK-005]`)
    - Update the Status field immediately and keep the checkbox/Status pair aligned
    - Edit tasks.md immediately before starting implementation work
    - This signals to observers that work is underway on this specific task
@@ -204,19 +204,19 @@ Every task MUST also include a `Status:` field within its task block. Valid valu
 
 ```markdown
 BEFORE (Not Started):
-- [ ] TASK-005 [P] [US1] Create User authentication service in src/services/auth_service.py
+- [ ] [TASK-005] [P] [US1] Create User authentication service in src/services/auth_service.py
   Status: Not Started
   Summary: Implement JWT-based auth service
   ...
 
 AFTER Starting Work (In Progress):
-- [ ] TASK-005 [P] [US1] Create User authentication service in src/services/auth_service.py
+- [ ] [TASK-005] [P] [US1] Create User authentication service in src/services/auth_service.py
   Status: In Progress
   Summary: Implement JWT-based auth service
   ...
 
 AFTER Validation (Done):
-- [X] TASK-005 [P] [US1] Create User authentication service in src/services/auth_service.py
+- [X] [TASK-005] [P] [US1] Create User authentication service in src/services/auth_service.py
   Status: Done
   Summary: Implement JWT-based auth service
   ...
@@ -413,7 +413,7 @@ Implementation is complete for a task when:
 
 Implementation for the entire feature is complete when:
 
-✅ **All phases complete**: Setup → Foundational → Feature → Polish all done
+✅ **All phases complete**: All planned `PHASE-###` work is complete or explicitly deferred with rationale
 ✅ **All tasks done**: Every task in tasks.md has Status field updated to `Done` or `Deferred` (with reason documented)
 ✅ **All AC verified**: Every acceptance criterion is validated against implementation
 ✅ **All tests pass**: Unit, integration, and any other tests required by plan

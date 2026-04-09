@@ -1,5 +1,5 @@
 ---
-mode: agent
+
 agent: analyze
 description: Investigate unclear system behavior, brownfield constraints, or risks and produce one bounded analysis artifact.
 ---

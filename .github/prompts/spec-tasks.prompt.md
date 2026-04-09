@@ -1,5 +1,5 @@
 ---
-mode: agent
+
 agent: spec-tasks
 description: Break an approved plan into bounded, reviewable, traceable tasks with validation coverage and safe sequencing.
 ---

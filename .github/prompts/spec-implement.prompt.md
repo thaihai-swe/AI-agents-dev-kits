@@ -1,5 +1,5 @@
 ---
-mode: agent
+
 agent: spec-implement
 description: Execute approved implementation tasks from tasks.md with status updates, validation, and scope discipline.
 ---

@@ -51,8 +51,8 @@ The artifact should help answer questions like:
 
 Typical next steps after this agent are:
 - `spec-requirement` when the change intent is now clear
-- `spec-design` when architecture or interfaces still need clarification
-- `spec-plan` only when the work is already well-scoped and planning-safe
+- `spec-requirement` first, then `spec-design`, when architecture or interfaces still need clarification
+- `spec-plan` only when the work is already well-scoped, planning-safe, and already has an adequate specification
 
 ## Suggested structure for `analysis.md`
 
@@ -95,11 +95,12 @@ Only when warranted:
 
 1. Separate observed facts from inferences.
 2. Do not silently turn analysis into a spec, design doc, or cross-artifact readiness review.
-3. Do not update repo-memory files directly.
-4. Keep the analysis bounded to the investigation goal.
-5. If brownfield context is important, map only the parts relevant to the current change.
-6. Prefer useful synthesis over exhaustive inventories.
-7. Prefer repository evidence over process-checking; this agent studies the system, not downstream artifact completeness.
+3. Do not recommend `spec-design` as the immediate next step unless a usable `spec.md` already exists.
+4. Do not update repo-memory files directly.
+5. Keep the analysis bounded to the investigation goal.
+6. If brownfield context is important, map only the parts relevant to the current change.
+7. Prefer useful synthesis over exhaustive inventories.
+8. Prefer repository evidence over process-checking; this agent studies the system, not downstream artifact completeness.
 
 ## Output rules
 

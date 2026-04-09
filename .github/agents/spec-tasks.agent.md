@@ -31,9 +31,9 @@ Follow this workflow to generate the task list:
 1. **Validate Preconditions**: Verify required artifacts exist and are complete
 2. **Load Design Artifacts**: Read spec, plan, and optional design documents
 3. **Extract Execution Context**: User stories, phases, tech stack, constraints, data models
-4. **Organize by User Story**: Map requirements, contracts, and data to user stories
-5. **Generate Phase Groups**: Create Setup → Foundational → User Stories (by priority) → Polish
-6. **Decompose into Tasks**: Break each phase into bounded tasks
+4. **Preserve Plan Phase Model**: Treat `PHASE-###` entries in `plan.md` as the authoritative execution sequence
+5. **Organize Within Phases**: Map requirements, contracts, and data to tasks inside each plan phase
+6. **Decompose into Tasks**: Break each plan phase into bounded tasks
 7. **Mark Parallelization**: Identify safely parallel tasks
 8. **Create Dependency Graph**: Show sequencing and gating
 9. **Run Taskability Check**: Ensure plan phases are actionable, validation is clear, and decomposition is safe
@@ -71,7 +71,7 @@ Read if present:
 - [ ] Scope is bounded
 
 ### Plan Quality
-- [ ] Phases are clear and sequenced
+- [ ] `PHASE-###` entries are clear and sequenced
 - [ ] Dependencies are explicit
 - [ ] Phase objectives map to user stories or acceptance criteria
 - [ ] No unresolved [NEEDS CLARIFICATION] markers blocking decomposition
@@ -102,11 +102,11 @@ If any of these fail, stop and explain what must improve in `plan.md` first.
 
 ## Task Organization Rules
 
-**Primary**: Organize by user story (from spec.md priorities)
-**Secondary**: Map contracts, data models, infrastructure
-**Result**: Setup → Foundational → User Stories (P1→P2→P3) → Polish phases
+**Primary**: Preserve the `PHASE-###` execution sequence from `plan.md`
+**Secondary**: Within each plan phase, organize tasks by user story, dependency, or technical slice as needed
+**Result**: `tasks.md` should decompose the plan, not replace it with a different phase model
 
-### Within Each User Story Phase
+### Within Each Plan Phase
 - Models and data structures
 - Business logic and services
 - API endpoints or interfaces
@@ -132,7 +132,7 @@ If any of these fail, stop and explain what must improve in `plan.md` first.
 Every task in tasks.md MUST include the following fields to support implementation tracking:
 
 ```markdown
-- [ ] [TASK-ID] [P?] [Story?] Task description with file path
+- [ ] [TASK-001] [P?] [Story?] Task description with file path
 
   Status: Not Started
   Summary: One-line summary of what needs to be done
@@ -150,7 +150,7 @@ Every task in tasks.md MUST include the following fields to support implementati
 
 Three fields are essential for tracking task progress through implementation:
 
-1. **Task checkbox** (`- [ ]`): Visual indicator of task progress state
+1. **Task checkbox** (`- [ ] [TASK-001] ...`): Visual indicator of task progress state
    - `[ ]` = Not started, in progress, blocked, or deferred
    - `[X]` = Done (checkbox marked)
 
@@ -178,7 +178,7 @@ Keep from template - track current phase, next task, blockers, validation status
 ## Validation Checklist
 
 ### Format Validation
-- [ ] All tasks use strict format: `- [ ] [ID] [P?] [Story?] Description + file`
+- [ ] All tasks use strict format: `- [ ] [TASK-001] [P?] [Story?] Description + file`
 - [ ] Task IDs sequential (TASK-001, TASK-002, TASK-003)
 - [ ] [P] marker only on parallelizable tasks
 - [ ] [Story] label present for user story tasks, absent for Setup/Foundational/Polish
@@ -193,7 +193,7 @@ Keep from template - track current phase, next task, blockers, validation status
 - [ ] Tasks align with template format from `.github/specs/templates/tasks-template.md`
 
 ### Coverage Validation
-- [ ] Every plan phase represented in tasks
+- [ ] Every `PHASE-###` from `plan.md` is represented in tasks
 - [ ] Every requirement (REQ-###) maps to task
 - [ ] Every acceptance criterion (AC-###) maps to task
 - [ ] Validation tasks explicitly included
@@ -236,7 +236,7 @@ Task list is ready when it:
 ✅ Makes execution order and dependencies unambiguous
 ✅ Preserves complete traceability: Story → AC → Task → Validation
 ✅ Uses strict checklist format consistently
-✅ Organizes by user story (primary) and phase (secondary)
+✅ Preserves `plan.md` phase sequence and organizes bounded tasks within those phases
 ✅ Is specific enough for implementation without inventing scope
 ✅ Can execute in sequence OR in parallel (with dependencies respected)
 ✅ Includes a final traceability audit confirming REQ → AC → TASK → validation coverage

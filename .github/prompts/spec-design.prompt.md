@@ -1,5 +1,5 @@
 ---
-mode: agent
+
 agent: spec-design
 description: Create a technical design artifact when planning depends on explicit architecture, interface, migration, or boundary decisions.
 ---

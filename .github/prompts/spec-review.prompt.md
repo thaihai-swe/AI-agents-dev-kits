@@ -1,12 +1,9 @@
 ---
-
 agent: spec-review-implementation
 description: Review implemented work against the approved artifacts, validation evidence, task state, and repository rules.
 ---
 
 Use this prompt when implementation work has been attempted and you want the post-implementation quality gate.
-
-This prompt is a compatibility alias for the implementation review step and should use the `spec-review-implementation` agent.
 
 The agent should:
 - review delivered work against `spec.md`, `plan.md`, and `tasks.md`

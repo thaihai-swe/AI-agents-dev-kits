@@ -1,5 +1,5 @@
 ---
-mode: agent
+
 agent: project-knowledge-base
 description: Create or refine the durable project knowledge base that captures stable architecture context, boundaries, and reusable patterns.
 ---

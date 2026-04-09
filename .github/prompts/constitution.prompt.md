@@ -1,5 +1,5 @@
 ---
-mode: agent
+
 agent: constitution
 description: Create or refine the durable repository constitution that defines repo-wide rules, guardrails, and quality expectations.
 ---
