@@ -57,12 +57,12 @@ In practice, the kit helps teams use AI more like a disciplined implementation p
 
 ## Start Here
 
-- Learn the model: [Documentation Home](/Users/haint/Desktop/spec-driven-development-kit/docs/README.md)
-- Quick start: [Quick Start](/Users/haint/Desktop/spec-driven-development-kit/docs/guides/quick-start.md)
-- New feature flow: [New Feature Guide](/Users/haint/Desktop/spec-driven-development-kit/docs/guides/new-feature.md)
-- End-to-end example: [Canonical Feature Example](/Users/haint/Desktop/spec-driven-development-kit/docs/examples/canonical-feature.md)
-- Commands and artifacts: [Reference](/Users/haint/Desktop/spec-driven-development-kit/docs/reference/README.md)
+- Learn the model: [Documentation Home](docs/README.md)
+- Quick start: [Quick Start](docs/guides/quick-start.md)
+- New feature flow: [New Feature Guide](docs/guides/new-feature.md)
+- End-to-end example: [Canonical Feature Example](docs/examples/canonical-feature.md)
+- Commands and artifacts: [Reference](docs/reference/README.md)
 
 ## Copilot Note
 
-GitHub Copilot should use [`.github/copilot-instructions.md`](/Users/haint/Desktop/spec-driven-development-kit/.github/copilot-instructions.md) as the repository-wide entrypoint, then follow the contracts in [`.github/agents/`](/Users/haint/Desktop/spec-driven-development-kit/.github/agents/).
+GitHub Copilot should use [`.github/copilot-instructions.md`](.github/copilot-instructions.md) as the repository-wide entrypoint, then follow the contracts in [`.github/agents/`](.github/agents/).
