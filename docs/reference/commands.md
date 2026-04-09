@@ -72,7 +72,7 @@ Investigate the current authentication flow, session handling, token usage, and 
 
 - Agent file: `spec-requirement.agent.md`
 - Primary output: `artifacts/features/<slug>/spec.md`
-- Use when: we need to define what should change and why
+- Use when: we need to define what should change, why it matters, and resolve blocking ambiguity before requirements review
 
 Example:
 
@@ -99,13 +99,13 @@ Create a feature specification for passwordless email login via one-time magic l
 
 - Agent file: `spec-plan.agent.md`
 - Primary output: `artifacts/features/<slug>/plan.md`
-- Use when: the feature intent is approved and we need the technical approach, sequencing, dependencies, validation, and rollout strategy defined clearly enough for task generation
+- Use when: the feature intent is approved and clarified, and we need pre-plan analysis, technical approach, sequencing, dependencies, validation, and rollout strategy defined clearly enough for task generation
 
 ### `/spec-tasks`
 
 - Agent file: `spec-tasks.agent.md`
 - Primary output: `artifacts/features/<slug>/tasks.md`
-- Use when: the plan is ready and we need phased, traceable, implementation-ready task slices with explicit dependencies and validation notes
+- Use when: the plan is ready and we need phased, traceable, implementation-ready task slices with explicit dependencies, validation notes, and a final taskability/traceability check
 
 ### `/spec-implement`
 
@@ -126,7 +126,8 @@ Implement TASK-001 and TASK-002. Update task status and run the validation appro
 
 - Agent file: `spec-review.agent.md`
 - Optional durable output: `artifacts/features/<slug>/review.md`
-- Use when: we want to verify implementation against the intended artifacts and repo rules
+- Use when: we want the implementation quality gate to verify delivered work against approved artifacts, validation evidence, task state, and repository rules
+- Core review lenses: completeness, correctness, and coherence
 
 ## Recommended Sequences
 

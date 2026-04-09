@@ -14,6 +14,7 @@ No. Small changes often use:
 ```
 
 Use `/analyze` and `/spec-design` when the current system or technical approach is unclear.
+Stay in `/spec-requirement` when the product intent itself is still ambiguous.
 
 ### Q: When should I run `/analyze`?
 
@@ -40,6 +41,10 @@ Not safely for most non-trivial work. `spec-implement` assumes `spec.md`, `plan.
 ### Q: What if the requirements review says the spec is not ready?
 
 Go back to `/spec-requirement`, fix the gaps in `spec.md`, and run `/spec-review-requirements` again.
+
+### Q: Where should clarification happen?
+
+Inside `/spec-requirement`. That agent now owns clarification during spec authoring. `spec-review-requirements` should stay a judge, not silently rewrite the spec.
 
 ### Q: What if implementation reveals an upstream mistake?
 

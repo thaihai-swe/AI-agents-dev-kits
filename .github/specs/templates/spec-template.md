@@ -98,6 +98,7 @@ Acceptance notes:
 ## Open Questions
 
 - Q-001 Question:
+  Type: Blocking | Non-blocking
   Owner:
   Next step:
 

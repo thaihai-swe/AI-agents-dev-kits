@@ -9,11 +9,11 @@ This repo currently defines 10 agents organized into 5 categories.
 | **Foundation**               | `/constitution`             | `constitution.agent.md`             | `memories/repo/constitution.md`           |
 |                              | `/project-knowledge-base`   | `project-knowledge-base.agent.md`   | `memories/repo/project-knowledge-base.md` |
 | **Discovery & Analysis**     | `/analyze`                  | `analyze.agent.md`                  | `analysis.md`                             |
-| **Specification & Design**   | `/spec-requirement`         | `spec-requirement.agent.md`         | user-focused `spec.md`                    |
+| **Specification & Design**   | `/spec-requirement`         | `spec-requirement.agent.md`         | user-focused `spec.md` plus clarification |
 |                              | `/spec-review-requirements` | `spec-review-requirements.agent.md` | `requirements-review.md`                  |
 |                              | `/spec-design`              | `spec-design.agent.md`              | `design.md`                               |
-| **Planning & Delivery**      | `/spec-plan`                | `spec-plan.agent.md`                | `plan.md`                                 |
-|                              | `/spec-tasks`               | `spec-tasks.agent.md`               | `tasks.md`                                |
+| **Planning & Delivery**      | `/spec-plan`                | `spec-plan.agent.md`                | `plan.md` with pre-plan analysis          |
+|                              | `/spec-tasks`               | `spec-tasks.agent.md`               | `tasks.md` with taskability checks        |
 | **Implementation & Quality** | `/spec-implement`           | `spec-implement.agent.md`           | code, tests, task status updates          |
 |                              | `/spec-review`              | `spec-review.agent.md`              | review findings, optionally `review.md`   |
 
@@ -48,5 +48,6 @@ The current agent set intentionally consolidates several older responsibilities:
 - there is no separate archive or memory-promotion command in the current codebase
 
 The `spec.md` artifact should stay product-focused: target users, key scenarios, intended experience, bounded requirements, acceptance criteria, and success outcomes belong here before technical planning starts.
+Clarification belongs in `spec-requirement`; readiness judgment belongs in `spec-review-requirements`.
 
 Treat the files under `.github/agents/` as the source of truth.

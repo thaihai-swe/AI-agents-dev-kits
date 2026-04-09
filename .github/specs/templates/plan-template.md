@@ -10,10 +10,11 @@
 - Status: Draft | In Review | Approved | In Progress | Done
 - Last updated:
 
-## Summary
+## Plan Summary
 
 Describe the execution approach in a few sentences and point to `design.md` when it exists.
 Keep the level of detail proportional to feature size and delivery risk.
+Include the primary technical approach, major risks, validation posture, and rollout/rollback stance.
 
 ## Constitution Alignment
 
@@ -66,6 +67,18 @@ Keep the level of detail proportional to feature size and delivery risk.
 - UI or UX:
 - Infrastructure or deployment:
 - Documentation:
+
+## Affected Domains And Integration Boundaries
+
+- Domain or subsystem:
+  Why it matters:
+- Integration boundary or touchpoint:
+  Why it matters:
+
+## Protected Behavior
+
+- Behavior that must not regress:
+  Protection approach:
 
 ## Affected Files
 

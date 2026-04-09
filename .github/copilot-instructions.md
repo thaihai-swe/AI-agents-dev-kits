@@ -1,17 +1,28 @@
 # AI Dev Kit Copilot Instructions
 
+This file is the repository-wide GitHub Copilot instructions file for this repository.
+
 ## Canonical Paths
 
 - Treat `memories/repo/` as the only durable repository-memory location.
 - Treat `artifacts/features/<feature-slug>/` as the source of truth for feature work.
 - Do not invent alternate memory paths such as `memories/*.md` for repository-wide memory.
 
+## Canonical Models
+
+- Use the current two-file repository memory model only:
+  - `memories/repo/constitution.md`
+  - `memories/repo/project-knowledge-base.md`
+- Do not create or rely on split durable-memory files such as `legacy-system-watchouts.md`, `architecture-decisions.md`, or `integration-points.md`.
+- Put temporary or feature-specific findings in `artifacts/features/<feature-slug>/analysis.md` or other feature artifacts until they are proven durable.
+- Promote durable brownfield watchouts, architecture notes, and integration guidance into `memories/repo/project-knowledge-base.md`.
+
 ## Required Context Before Work
 
 - Read `memories/repo/constitution.md` if it exists before planning, implementation, or review.
 - Read `memories/repo/project-knowledge-base.md` if it exists before planning, implementation, or review.
-- For brownfield work, also read relevant files in `memories/repo/legacy-system-watchouts.md`, `memories/repo/architecture-decisions.md`, and `memories/repo/integration-points.md` when they exist.
 - Before continuing existing feature work, read the current artifact set in `artifacts/features/<feature-slug>/`.
+- For brownfield work, read `analysis.md` for the current feature when it exists, then promote only durable findings into `project-knowledge-base.md`.
 
 ## Artifact Discipline
 
@@ -25,9 +36,14 @@
 
 - Put durable rules in `memories/repo/constitution.md`.
 - Put durable descriptive context and reusable patterns in `memories/repo/project-knowledge-base.md`.
-- Put stable brownfield gotchas in `memories/repo/legacy-system-watchouts.md`.
-- Put reusable integration guidance in `memories/repo/integration-points.md`.
-- Put inferred architectural reasoning and trade-offs in `memories/repo/architecture-decisions.md`.
+- Keep durable brownfield gotchas, integration guidance, and architectural context inside `memories/repo/project-knowledge-base.md`.
+- Do not split durable repository memory across extra files unless the repository documentation is explicitly changed to support a new canonical model.
+
+## Source Of Truth
+
+- Treat `.github/agents/` as the canonical agent contract.
+- Treat `.github/copilot-instructions.md` as the canonical repository-wide Copilot instructions file.
+- If path-specific instructions are later added, store them under `.github/instructions/` using the `NAME.instructions.md` naming pattern.
 
 ## Working Style
 

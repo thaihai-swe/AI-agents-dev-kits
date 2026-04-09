@@ -35,7 +35,7 @@ Start `/spec-implement` when:
 1. Select next unblocked task (or specifically request tasks)
 2. Execute task according to acceptance criteria
 3. Add or update validation (tests, verification)
-4. Update task status and validation evidence
+4. Update the task `Status:` field immediately and mark the checkbox done only when validation passes
 5. Resume notes for handoff or continuation
 6. Repeat until feature is done
 
@@ -43,7 +43,7 @@ Start `/spec-implement` when:
 - ✅ Execute only selected or next unblocked tasks
 - ✅ Keep scope matching approved spec/plan (no silent rewrites)
 - ✅ Add validation evidence for every change
-- ✅ Update task status after each cycle
+- ✅ Keep checkbox and `Status:` tracking current after each cycle
 - ✅ Include resume/handoff notes for clarity
 - ✅ Flag scope drift or blockers
 - ✅ Stop if upstream artifacts are weak or contradictory
@@ -57,7 +57,7 @@ Start `/spec-implement` when:
 
 ## `/spec-review` [Quality Gate 2]
 
-**Purpose:** Verify that implemented work matches approved spec, plan, and repo rules. Second formal quality gate.
+**Purpose:** Verify that implemented work matches approved spec, plan, tasks, validation expectations, and repo rules. Second formal quality gate.
 
 **When to run:**
 - After implementation tasks are done
@@ -73,18 +73,16 @@ Use `review.md` when:
 - Lessons learned should guide similar work
 
 **Checks:**
-- ✅ All requirements from spec are covered
-- ✅ Acceptance criteria from spec are satisfied
-- ✅ Code matches approved plan and design
-- ✅ Tasks match implementation
-- ✅ Validation is thorough and passed
-- ✅ No scope drift from approved spec
-- ✅ Follows repo rules (constitution)
-- ✅ Tests added or updated
-- ✅ Documentation updated if user-facing
-- ✅ Security/privacy/performance reviewed
-- ✅ Monitoring/logging concerns addressed
-- ✅ Partial or deferred work is documented
+- ✅ Completeness: approved scope is covered and no critical behavior is silently missing
+- ✅ Correctness: delivered behavior and validation evidence support the intended outcome
+- ✅ Coherence: artifacts, task status, and implementation all tell the same story
+- ✅ Requirements and acceptance criteria are satisfied or explicitly called out as gaps
+- ✅ Validation evidence matches the risk of the change
+- ✅ Tasks, task status, and implementation reality align
+- ✅ No scope drift from approved artifacts
+- ✅ Repo rules from the constitution are respected
+- ✅ Follow-up work is distinguished from blocking defects
+- ✅ Deferred work, limitations, and handoff notes are documented
 
 ## Workflow Pattern
 

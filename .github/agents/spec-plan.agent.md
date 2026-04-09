@@ -36,7 +36,8 @@ Follow this workflow to create or update the plan:
 
 3. **Gate Evaluation** (ERROR if conditions below are not satisfied):
    - Specification is clear, bounded, and not contradictory
-   - If requirements-review exists, it does not recommend "Needs Revision"
+   - Specification does not contain unresolved blocking clarification markers
+   - If requirements-review exists, its verdict is not `not ready`
    - If feature is complex/cross-cutting and no design exists, STOP and request design
    - No major unresolved product or technical conflicts blocking planning
 
@@ -46,25 +47,32 @@ Follow this workflow to create or update the plan:
    - Consolidate research findings and resolve blocking decisions
    - Document assumptions vs. facts into appropriate sections
 
-5. **Technical Approach Definition**:
+5. **Pre-Plan Analysis**:
+   - Identify affected domains or subsystems
+   - Identify integration boundaries and external touchpoints
+   - Identify regression-sensitive behavior that must be protected
+   - Identify rollout risk and rollback expectations
+   - Identify candidates for durable memory promotion after implementation
+
+6. **Technical Approach Definition**:
    - Derive or review the technical approach from spec + design + repository patterns
    - Make architectural and stack choices explicit
    - Document why existing patterns are reused or intentionally not reused
    - Call out alternatives considered and decision rationale
 
-6. **Plan Assembly**:
+7. **Plan Assembly**:
    - Build phase sequence with dependencies and measurable criteria
    - Map requirements and AC to phases and validation
    - Identify affected files, modules, and regression-sensitive areas
    - Define validation strategy, rollout, and rollback guidance
 
-7. **Traceability Validation**:
+8. **Traceability Validation**:
    - Verify each REQ maps to AC and phases
    - Verify each AC maps to VAL items
    - Verify each phase is independently understandable
    - Check that risks, assumptions, and dependencies are traceable
 
-8. **Quality Checklist**:
+9. **Quality Checklist**:
    - Confirm plan meets completeness, specificity, and safety standards
    - Verify no red flags are present
    - Ensure plan is ready for task generation
@@ -107,6 +115,7 @@ Before writing, read the most relevant context in this order:
 9. any existing `artifacts/features/<feature-slug>/plan.md` if present
 
 Also inspect any obviously relevant repository files, modules, interfaces, or prior examples needed to plan safely.
+If `spec.md` still contains unresolved blocking clarification markers, stop and send the work back to specification refinement before planning.
 
 # Stop Conditions
 
@@ -115,11 +124,14 @@ Also inspect any obviously relevant repository files, modules, interfaces, or pr
 - **Missing specification**: `artifacts/features/<feature-slug>/spec.md` does not exist
   - *Action*: Stop immediately. Specification is a prerequisite for planning.
 
-- **Specification not approved**: `requirements-review.md` exists and its recommendation is `Needs Revision`
+- **Specification not approved**: `requirements-review.md` exists and its verdict is `not ready`
   - *Action*: Stop. Spec must be revised and re-reviewed before planning.
 
 - **Specification quality issues**: The specification is too vague, contradictory, or incomplete
   - *Action*: Stop and identify specific gaps (e.g., success outcomes not measurable, requirements not testable, scope boundaries unclear).
+
+- **Unresolved blocking clarification**: `spec.md` still contains unresolved clarification that materially affects scope, security/privacy, or core user experience
+  - *Action*: Stop. Clarification must be resolved in the specification before planning can proceed safely.
 
 - **Design required but missing**: Feature is complex or cross-cutting, requires `design.md`, and design artifact does not exist
   - *Action*: Stop and state which design decisions are required before planning continues. See "Design Requirement Decision Rule" for criteria.
@@ -188,6 +200,7 @@ The plan must:
 - make each phase independently understandable and incrementally verifiable
 - include stack, architecture, compliance, performance, legacy-integration, or organizational constraints that materially govern implementation
 - make each phase decomposable into bounded, independently testable tasks
+- make affected domains, integration boundaries, and protected behavior explicit for large-codebase work
 
 # Assumptions and Ambiguity
 
@@ -231,6 +244,19 @@ When ambiguity exists:
 - Record assumption as assumption, not approved fact: "Assuming X; if different, plan changes to..."
 - If multiple viable approaches remain, either compare them explicitly or state why one is preferred
 - Stop if unresolved product decisions materially affect sequencing, interfaces, validation, or rollout
+
+# Required Plan Content
+
+Every completed `plan.md` should make these items easy to find:
+
+- **Plan Summary**: scope, primary technical approach, major risks, validation approach, rollout/rollback posture
+- **Affected Domains / Subsystems**: where the change lands and what it touches
+- **Integration Boundaries**: contracts, services, modules, or workflows that must remain coherent
+- **Protected Behavior**: existing behavior that must not regress
+- **Phase Traceability**: which REQ and AC each phase supports
+- **Validation Strategy**: how each phase and requirement family will be validated
+
+If the feature is small, keep these concise. If the feature is cross-cutting or risky, make them explicit.
 
 # Requirements Review Handling
 

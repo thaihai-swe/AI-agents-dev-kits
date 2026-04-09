@@ -21,15 +21,17 @@
 - Only mark tasks as parallel-safe when they do not create obvious write conflicts or contract conflicts.
 - Prefer explicit file or module targets when known from the plan.
 - Use these task states consistently: `Not Started`, `In Progress`, `Blocked`, `Done`, `Deferred`.
+- Make regression-sensitive or protected behavior explicit in validation or safeguard tasks when relevant.
+- Do not finalize task lists until REQ -> AC -> TASK -> validation coverage is complete.
 
 ## Status Tracking Requirements
 
 Every task MUST have both a checkbox and a Status field for implementation tracking:
 
-- **Checkbox format**: `- [ ] TASK-ID` (three states: `[ ]` = not started/blocked/deferred, `[-]` = in progress, `[X]` = done)
+- **Checkbox format**: `- [ ] TASK-ID` or `- [X] TASK-ID` (`[ ]` = not done yet, `[X]` = done)
 - **Status field**: `Status: [Not Started|In Progress|Done|Blocked|Deferred]` (initialized to `Not Started`)
 - **Session note**: Field for implementation agent to track blockers, progress, or issues
-- **Implementation contract**: Implementation agent will update BOTH checkbox AND Status field as work progresses
+- **Implementation contract**: Implementation agent will keep checkbox and Status field aligned as work progresses
 
 ## Phase 1: Foundations
 

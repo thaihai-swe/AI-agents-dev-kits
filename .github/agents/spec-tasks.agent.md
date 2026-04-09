@@ -36,8 +36,10 @@ Follow this workflow to generate the task list:
 6. **Decompose into Tasks**: Break each phase into bounded tasks
 7. **Mark Parallelization**: Identify safely parallel tasks
 8. **Create Dependency Graph**: Show sequencing and gating
-9. **Validate Completeness**: Ensure all AC covered, all phases represented
-10. **Output Tasks**: Generate well-formatted tasks.md
+9. **Run Taskability Check**: Ensure plan phases are actionable, validation is clear, and decomposition is safe
+10. **Validate Completeness**: Ensure all AC covered, all phases represented
+11. **Run Final Traceability Audit**: Verify REQ -> AC -> TASK -> validation chain is complete
+12. **Output Tasks**: Generate well-formatted tasks.md
 
 ## Inputs
 
@@ -50,6 +52,10 @@ Read if present:
 - `artifacts/features/${input:slug}/design.md` (optional - technical decisions)
 - `.github/specs/templates/tasks-template.md` (REQUIRED - use as template structure)
 - Any data-model.md, contracts/, research.md, or quickstart.md available
+
+## Skills To Use
+
+- `task-traceability-audit` - run as a finalization step to verify that `REQ -> AC -> TASK -> validation` coverage is complete before `tasks.md` is considered done
 
 ## Preconditions
 
@@ -78,6 +84,20 @@ STOP when:
 - Material requirements not mapped to any phase
 - Unresolved questions or design gaps block task sequencing
 - Acceptance criteria have no validation direction
+- Plan phases are not independently actionable
+- Cross-task dependencies are too unclear to build a safe execution sequence
+
+## Taskability Check
+
+Before generating tasks, verify:
+
+- each plan phase is independently actionable
+- implementation slices are small enough to review safely
+- each acceptance criterion has validation direction
+- integration or regression-sensitive work is visible in the task structure
+- dependencies are clear enough to support sequential or parallel execution
+
+If any of these fail, stop and explain what must improve in `plan.md` first.
 
 
 ## Task Organization Rules
@@ -105,6 +125,7 @@ STOP when:
 8. Resumable across sessions
 9. Complete traceability to phases, requirements, AC
 10. Avoid bundling unrelated work
+11. Protect regression-sensitive behavior with explicit validation or safeguard tasks when relevant
 
 ## Task Block Structure
 
@@ -130,7 +151,7 @@ Every task in tasks.md MUST include the following fields to support implementati
 Three fields are essential for tracking task progress through implementation:
 
 1. **Task checkbox** (`- [ ]`): Visual indicator of task progress state
-   - `[ ]` = Not started, in progress, blocked, or deferred (checkbox empty)
+   - `[ ]` = Not started, in progress, blocked, or deferred
    - `[X]` = Done (checkbox marked)
 
 2. **Status field**: Explicit status label for clarity
@@ -158,7 +179,7 @@ Keep from template - track current phase, next task, blockers, validation status
 
 ### Format Validation
 - [ ] All tasks use strict format: `- [ ] [ID] [P?] [Story?] Description + file`
-- [ ] Task IDs sequential (T001, T002, T003)
+- [ ] Task IDs sequential (TASK-001, TASK-002, TASK-003)
 - [ ] [P] marker only on parallelizable tasks
 - [ ] [Story] label present for user story tasks, absent for Setup/Foundational/Polish
 - [ ] Every description includes specific file path/module
@@ -176,6 +197,7 @@ Keep from template - track current phase, next task, blockers, validation status
 - [ ] Every requirement (REQ-###) maps to task
 - [ ] Every acceptance criterion (AC-###) maps to task
 - [ ] Validation tasks explicitly included
+- [ ] Protected behavior or regression-sensitive areas represented when relevant
 - [ ] No orphaned work
 
 ### Dependency Validation
@@ -189,6 +211,7 @@ Keep from template - track current phase, next task, blockers, validation status
 - [ ] Each task links to requirement(s)
 - [ ] Each task links to acceptance criterion(ia)
 - [ ] Chain complete: User Story → AC → Task → Validation
+- [ ] Final `task-traceability-audit` pass completed before finalizing `tasks.md`
 
 ## Red Flags
 
@@ -200,6 +223,8 @@ Keep from template - track current phase, next task, blockers, validation status
 - Parallelization marks on dependent tasks
 - Plan phases not represented
 - Upstream plan unclear—tasks invented to fill gaps
+- Task slices are too large to review safely
+- Cross-boundary or regression-sensitive work lacks explicit protection
 
 ## Completion Standards
 
@@ -214,6 +239,7 @@ Task list is ready when it:
 ✅ Organizes by user story (primary) and phase (secondary)
 ✅ Is specific enough for implementation without inventing scope
 ✅ Can execute in sequence OR in parallel (with dependencies respected)
+✅ Includes a final traceability audit confirming REQ → AC → TASK → validation coverage
 ✅ Passes all validation checklist items
 ✅ Has no red flags
 

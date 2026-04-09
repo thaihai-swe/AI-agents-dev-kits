@@ -12,6 +12,8 @@ memories/repo/
 └── project-knowledge-base.md    # Durable descriptive context
 ```
 
+This is the canonical repository-memory model for the current kit. Durable brownfield watchouts, architecture notes, and integration guidance are folded into `project-knowledge-base.md` rather than split into additional repo-memory files.
+
 ## Constitution (`constitution.md`)
 
 **Nature:** Normative — establishes rules that MUST be followed

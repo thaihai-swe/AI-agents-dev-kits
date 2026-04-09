@@ -5,6 +5,7 @@ Step-by-step walkthroughs and how-to guides for working with the 10-agent workfl
 ## Available Guides
 
 - **[Getting Started](getting-started.md)** - 30-second overview and your first feature walkthrough
+- **[GitHub Copilot Adoption](github-copilot-adoption.md)** - How to apply this kit with GitHub Copilot in practice
 
 ## How to Use These Guides
 
@@ -24,6 +25,7 @@ Step-by-step walkthroughs and how-to guides for working with the 10-agent workfl
    - [Commands Reference](../reference/commands.md) - What each command does
    - [Workflows](../workflows/README.md) - Decision rules for your specific situation
    - [Terminology](../reference/terminology.md) - Definitions of key terms
+   - [GitHub Copilot Adoption](github-copilot-adoption.md) - How the workflow maps onto Copilot usage
 
 ### For Setting Up a New Repository
 
@@ -71,6 +73,7 @@ See [Workflow Example](../WORKFLOW-EXAMPLE.md) for a complete walkthrough.
    - [How It Works](../how%20it%20work.md)
    - [Workflows](../workflows/README.md)
    - [Memory System](../memory-system/README.md)
+   - [GitHub Copilot Adoption](github-copilot-adoption.md)
 
 3. **Reference Materials** (as needed)
    - [Commands Reference](../reference/commands.md)
@@ -85,5 +88,6 @@ See [Workflow Example](../WORKFLOW-EXAMPLE.md) for a complete walkthrough.
 ## Next Steps
 
 - **Ready to start?** → Go to [Getting Started](getting-started.md)
+- **Using GitHub Copilot?** → Go to [GitHub Copilot Adoption](github-copilot-adoption.md)
 - **Want to see an example?** → Go to [Workflow Example](../WORKFLOW-EXAMPLE.md)
 - **Need quick answers?** → Go to [FAQ](../reference/faq.md)

@@ -1,319 +1,113 @@
 # Project Memory System
 
-**Your project's institutional knowledge lives here.**
+This folder stores durable repository memory and supporting session context for the AI Dev Kit.
 
-This folder stores knowledge that compounds over time: patterns learned, gotchas discovered, architecture decisions made. It prevents rediscovery and helps new team members onboard.
+## Canonical Repository Memory
 
----
+The current kit uses a two-file durable memory model under `memories/repo/`:
 
-## 📁 What Goes Where
+- `constitution.md` - Repository-wide rules, guardrails, and non-negotiables
+- `project-knowledge-base.md` - Durable descriptive repository knowledge, patterns, boundaries, and reusable context
 
-### `repo/constitution.md` — Project Rules
+In the current model, durable brownfield watchouts, architecture notes, and integration guidance are consolidated into `project-knowledge-base.md` instead of being split across separate repository-memory files.
 
-Project-wide standards and non-negotiables:
-- Code style requirements
-- Technology choices (lock in decisions)
-- Security requirements
-- Deployment standards
-- Testing requirements
+## What Goes Where
 
-**When**: Fill during project setup
-**Owner**: Tech lead
-**Update**: Rarely (only major decisions)
+### `repo/constitution.md`
 
----
+Use this file for normative repository rules such as:
 
-### `repo/project-knowledge-base.md` — Patterns & Conventions
+- testing expectations
+- security and compliance rules
+- migration and rollback requirements
+- review and release guardrails
+- AI operating constraints that should always apply
 
-Patterns your team has proven work:
-- Naming conventions
-- Common design patterns
-- API conventions
-- Error handling approach
-- Authentication patterns
-- Configuration approach
+Update it rarely and deliberately.
 
-**When**: Start after first sprint
-**Owner**: Team
-**Update**: Every sprint (add patterns as they emerge)
+### `repo/project-knowledge-base.md`
 
----
+Use this file for durable facts and reusable repository context such as:
 
-### `repo/legacy-system-watchouts.md` — Gotchas
+- subsystem boundaries
+- recurring implementation patterns
+- stable integration seams
+- brownfield watchouts that future work should know
+- architectural context grounded in repository evidence
+- stable testing patterns
 
-Things about the existing system that can break new features:
-- What quirks exist?
-- What unusual constraints?
-- What's been broken before?
-- Why did previous attempts fail?
-- How to work around each gotcha?
+Update it whenever durable knowledge emerges from real work.
 
-**When**: Fill during discovery phase (use `analyze` agent)
-**Owner**: Whoever discovers them
-**Update**: Add new items as they're discovered
+### `session/`
 
----
+Use this area for per-conversation or temporary working context when needed. Do not treat it as durable repository memory.
 
-### `repo/architecture-decisions.md` — Design Choices
+### `user/`
 
-Why the system is built the way it is:
-- Technology stack (and why)
-- Key trade-offs made
-- Design principles
-- Scaling assumptions
-- Integration patterns
+Use this area for user-specific preferences or collaboration notes when needed. Do not treat it as repository-wide source of truth.
 
-**When**: Fill during discovery (use `analyze` agent)
-**Owner**: Architects
-**Update**: Annually or when architecture changes
+## How To Use Memory
 
----
+### New Repository Setup
 
-### `repo/integration-points.md` — Where Features Connect
+1. Create `repo/constitution.md`
+2. Create `repo/project-knowledge-base.md`
 
-Where and how new features integrate:
-- Entry points for new features
-- Key files typically modified
-- Contracts/services/interfaces to respect
-- Gotchas specific to each integration point
-- Effort estimates or complexity notes
+### Brownfield Or Risky Work
 
-**When**: Fill during discovery (use `analyze` agent)
-**Owner**: Feature teams
-**Update**: Add new integration points as features are built
+1. Run `/analyze` to establish current-state facts for the feature
+2. Keep feature-specific findings in `artifacts/features/<slug>/analysis.md`
+3. Promote only durable findings into `repo/project-knowledge-base.md`
+4. Promote only true repository-wide rules into `repo/constitution.md`
 
----
+### Ongoing Maintenance
 
-## 🚀 How to Use This System
+- remove stale or disproven durable knowledge
+- merge duplicate notes into concise summaries
+- prefer grounded patterns over historical storytelling
+- keep feature-specific details in feature artifacts, not repo memory
 
-### For New Projects (Greenfield)
+## What To Read Before Feature Work
 
-1. **Initialize** (Day 1):
-   - Fill `repo/constitution.md` with project rules
-   - Fill `repo/project-knowledge-base.md` with initial patterns
-
-2. **First sprint**: Add patterns as you discover them
-
-3. **Quarterly review**: Update patterns to match what you've learned
-
-### For Existing Projects (Brownfield)
-
-1. **Discovery phase** (start here):
-   - Use `/analyze` agent to investigate existing systems
-   - Agent will help fill `legacy-system-watchouts.md`, `architecture-decisions.md`, and `integration-points.md`
-   - Review findings and save stable patterns to repo memory
-
-2. **Regular feature work** after discovery:
-   - Follow Greenfield workflow above
-   - Reference memory files before creating specs
-
-3. **Continuous updates**:
-   - As you discover new gotchas → add to `legacy-system-watchouts.md`
-   - As you learn new patterns → add to `project-knowledge-base.md`
-   - As you build new features → document integration points
-
-1. **Discovery phase** (start here with brownfield projects):
-   ```
-   @analyze Map [system name]
-   → Outputs: investigation findings about existing system
-   → Review and save key findings to memory files:
-      - Legacy gotchas → legacy-system-watchouts.md
-      - Architecture insights → architecture-decisions.md
-      - Integration points → integration-points.md
-   ```
-
-2. **Regular use**:
-   - Read these files before writing specs
-   - Extract constraints into your feature design
-   - Reference gotchas to understand what could break
-
-3. **Update regularly**:
-   - When you discover a new gotcha → add it
-   - When you learn a new pattern → add it
-   - When architecture changes → update it
-
----
-
-## 📚 Reading Memory Before Feature Work
-
-Before creating a feature spec, always check:
+Before planning, implementation, or review, read:
 
 ```bash
-# Quick scan (2 min)
 cat repo/constitution.md
-cat repo/legacy-system-watchouts.md
-cat repo/integration-points.md
-
-# Deep dive (5 min)
-cat repo/architecture-decisions.md
 cat repo/project-knowledge-base.md
 ```
 
-**These tell you**:
-- What rules to follow (constitution)
-- What gotchas to avoid (watchouts)
-- Where to integrate (integration-points)
-- Why it's built this way (architecture)
-- What patterns to use (knowledge-base)
+For ongoing feature work, also read the current artifact set under `artifacts/features/<slug>/`.
 
----
+## Promotion Rules
 
-## ✍️ Keeping Memory Updated
+Promote a finding into repo memory only when it is:
 
-### After Discovery Phase (using /analyze agent)
-- Use `/analyze` agent findings to fill:
-  - `legacy-system-watchouts.md` – Gotchas discovered
-  - `architecture-decisions.md` – Design insights
-  - `integration-points.md` – Where features integrate
-- **You**: Review findings and decide what's stable enough to keep
+- durable across multiple future changes
+- grounded in repository evidence
+- useful to future contributors or agents
+- descriptive rather than speculative
 
-### During Feature Work
-- **Find a gotcha**: Add to `legacy-system-watchouts.md`
-- **Learn a pattern**: Add to `project-knowledge-base.md`
-- **Integrate somewhere new**: Add to `integration-points.md`
+If it is feature-specific, temporary, or uncertain, keep it in the feature artifacts instead.
 
-### End of Session
-- Update repo memory files with any new patterns, gotchas, or insights
-- Keep memory files current so future features benefit from your discoveries
+## File Format
 
----
-
-## 🔄 Memory Workflow Example
-
-### Session 1: Exploring Auth System
-
-```
-@analyze: Map auth system
-→ Finds: Redis session format, JWT TTL quirk, architecture trade-offs
-
-You review findings and save:
-→ legacy-system-watchouts.md: "Redis uses non-standard session format..."
-→ architecture-decisions.md: "Redis chosen for..."
-
-Result: Team now knows about auth gotchas and design decisions
-```
-
-### Session 2: Building SSO Feature
-
-```
-User reads: legacy-system-watchouts.md
-  → "Ah, Redis session format is non-standard. Must respect that."
-
-User reads: architecture-decisions.md
-  → "SSO needs to work with Redis session storage, not replace it."
-
-@spec-requirement: Add SSO feature
-  → Agent reads memory files automatically
-  → Spec includes: Must respect Redis format, integrate with existing sessions
-
-Result: Feature design respects learned constraints
-```
-
-### Session 3: Continued SSO Implementation
-
-```
-@spec-implement continues from Session 2
-  → Agent reads memory files for context
-  → Implementation builds on previous session's findings
-
-After implementation:
-  → Save new discoveries (OAuth integration approach) to memory files
-  → Update project-knowledge-base.md with patterns learned
-
-Result: Next session picks up with all context preserved
-```
-
----
-
-## 💾 File Format
-
-Each file uses simple Markdown:
+Both durable memory files can stay simple and readable. A typical entry can include:
 
 ```markdown
-# File Title
-
-## Topic or Item 1
+## Topic
 
 **What**: Description
-**Why**: Why this matters
-**How**: How to handle/use it
-**Impact**: What breaks if you ignore this?
-**References**: Links to relevant files
-
----
-
-## Topic or Item 2
-...
+**Why**: Why it matters
+**How**: How future work should account for it
+**References**: Relevant files or artifacts
 ```
 
----
+## Best Practices
 
-## 🎯 Best Practices
+- read memory before planning or implementation
+- keep repository memory compact
+- update durable knowledge as the repo changes
+- avoid duplicating the same idea across multiple files
+- do not let descriptive memory override the constitution
 
-### ✅ Do
-
-- **Read memory before specs**: It shapes better designs
-- **Promote findings regularly**: End-of-session promotion
-- **Document gotchas even if small**: They save debugging time
-- **Update when facts change**: Mark with date and explanation
-- **Link to code**: Include file paths and line numbers
-- **Mark confidence levels**: Found (HIGH), Suspected (MEDIUM), Heard (LOW)
-
-### ❌ Don't
-
-- **Add every thought**: Only stable, durable knowledge
-- **Forget to update**: Out-of-date memory is worse than no memory
-- **Leave low-confidence items**: Mark them if included
-- **Treat as immutable**: Update when you learn better info
-- **Leave session notes here**: Promote, don't accumulate
-- **Duplicate across files**: Link instead of repeating
-
----
-
-## 📋 Checklist: Starting a New Feature
-
-Before writing `artifacts/features/<feature>/spec.md`:
-
-- [ ] Read `constitution.md` — Know project rules
-- [ ] Read `legacy-system-watchouts.md` — Avoid known gotchas
-- [ ] Read `integration-points.md` — Understand where to integrate
-- [ ] Read `architecture-decisions.md` — Understand why it's built this way
-- [ ] Read `project-knowledge-base.md` — Use proven patterns
-
----
-
-## 🔍 Searching Memory
-
-**"What gotchas affect me?"**
-→ Search `legacy-system-watchouts.md`
-
-**"Where do features typically integrate?"**
-→ Search `integration-points.md`
-
-**"Why was this technology chosen?"**
-→ Search `architecture-decisions.md`
-
-**"What patterns should I follow?"**
-→ Search `project-knowledge-base.md`
-
-**"What are the project rules?"**
-→ Read `constitution.md`
-
----
-
-## 🎓 Learn More
-
-- **For documentation overview**: See [docs/README.md](../docs/README.md)
-- **For memory system details**: See [docs/memory-system/README.md](../docs/memory-system/README.md)
-- **For agent reference**: See [docs/reference/commands.md](../docs/reference/commands.md)
-- **Getting started**: See [docs/guides/getting-started.md](../docs/guides/getting-started.md)
-
----
-
-## Quick Links
-
-- [Constitution Template](../.github/specs/templates/constitution-template.md)
-- [Project Knowledge Base Template](../.github/specs/templates/project-knowledge-base-template.md)
-- [Legacy System Watchouts Template](../.github/specs/templates/legacy-system-watchouts-template.md)
-- [Architecture Decisions Template](../.github/specs/templates/architecture-decisions-template.md)
-- [Integration Points Template](../.github/specs/templates/integration-points-template.md)
+For the current repository-memory contract, also see [`memories/repo/README.md`](repo/README.md) and [`docs/memory-system/README.md`](../docs/memory-system/README.md).

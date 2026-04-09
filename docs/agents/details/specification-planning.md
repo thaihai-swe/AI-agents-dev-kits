@@ -6,9 +6,9 @@ This phase turns vague intentions into clear specifications and execution-ready 
 
 ### Specification & Design (3 agents)
 
-Define what should change and clarify technical approach:
+Define what should change, clarify ambiguity, and shape the technical approach:
 
-- **`/spec-requirement`** — Define what to build, for whom, and why
+- **`/spec-requirement`** — Define what to build, for whom, why, and resolve blocking clarification
 - **`/spec-review-requirements`** — Check if spec is ready for downstream work (quality gate)
 - **`/spec-design`** — Clarify technical approach (only when planning needs clarity)
 
@@ -16,8 +16,8 @@ Define what should change and clarify technical approach:
 
 Create execution strategy and bounded work:
 
-- **`/spec-plan`** — Define how to build: sequencing, dependencies, validation, rollout
-- **`/spec-tasks`** — Break plan into bounded, independent implementation units
+- **`/spec-plan`** — Define how to build: pre-plan analysis, sequencing, dependencies, validation, rollout
+- **`/spec-tasks`** — Break plan into bounded, independent implementation units and verify taskability
 
 ## Process Flow
 
@@ -43,7 +43,7 @@ Analysis (if needed) ──→ Specification
 
 ### `/spec-requirement`
 
-**Purpose:** Define what should change and why. User-focused, not technical.
+**Purpose:** Define what should change and why. User-focused, not technical. This step also owns clarification during specification authoring.
 
 **Inputs:**
 - Analysis (if investigation was needed)
@@ -61,8 +61,9 @@ Analysis (if needed) ──→ Specification
 - In-scope items
 - Out-of-scope items
 - Success metrics
+- Open questions when only non-blocking uncertainty remains
 
-**Discipline:** Keep it user-focused. "Who benefits and how?" Not "how will we build it?"
+**Discipline:** Keep it user-focused. "Who benefits and how?" Not "how will we build it?" Resolve blocking ambiguity here instead of pushing it into planning.
 
 ### `/spec-review-requirements` [Quality Gate]
 
@@ -80,8 +81,6 @@ Analysis (if needed) ──→ Specification
 - ✅ Acceptance criteria are specific
 - ✅ Dependencies identified
 - ✅ Risks surfaced
-- ✅ Implementation approach is clear enough
-- ✅ Task breakdown is actionable
 - ✅ Traceability IDs present (REQ-*, AC-*)
 
 **If not ready:** Return to `/spec-requirement`, fix gaps, rerun review.
@@ -122,7 +121,7 @@ Analysis (if needed) ──→ Specification
 
 ### `/spec-plan`
 
-**Purpose:** Define execution strategy, sequencing, and validation.
+**Purpose:** Define execution strategy, sequencing, validation, and pre-plan technical analysis.
 
 **Inputs:**
 - Spec (what to build)
@@ -132,7 +131,10 @@ Analysis (if needed) ──→ Specification
 **Output:** `artifacts/features/<slug>/plan.md`
 
 **Contains:**
+- Plan summary
 - Technical approach overview
+- Affected domains and integration boundaries
+- Protected behavior / regression-sensitive areas
 - Execution phases with sequencing
 - Phase dependencies
 - Validation strategy for each phase
@@ -142,7 +144,7 @@ Analysis (if needed) ──→ Specification
 - Success criteria per phase
 - Traceability (REQ-* ↔ PHASE-*)
 
-**Discipline:** Strategy level, not implementation details. Clear enough for tasks to decompose.
+**Discipline:** Strategy level, not implementation details. Clear enough for tasks to decompose without inventing missing technical strategy.
 
 ### `/spec-tasks`
 
@@ -161,10 +163,11 @@ Analysis (if needed) ──→ Specification
 - Status tracking
 - Acceptance criteria per task
 - Validation notes
+- Protected-behavior and regression coverage when relevant
 - Resume/handoff guidance
 - Traceability (REQ-* ↔ AC-* ↔ TASK-*)
 
-**Discipline:** Tasks are independent slices. Small enough to review, large enough to be meaningful.
+**Discipline:** Tasks are independent slices. Small enough to review, large enough to be meaningful, and explicit enough that implementation does not need to guess sequencing or validation.
 
 ## Decision Rules
 
@@ -172,11 +175,11 @@ Analysis (if needed) ──→ Specification
 | ------------------------------- | -------------------------------------------- |
 | Spec is vague or incomplete     | ❌ Don't plan. Return to `/spec-requirement`. |
 | Spec review says "not ready"    | ❌ Don't proceed. Fix spec first.             |
-| Planning feels uncertain        | ❓ Do you need `/spec-design`?                |
+| Planning feels uncertain        | ❓ Do you need `/spec-design` or better clarification in `spec.md`? |
 | Multiple valid approaches exist | ✅ May benefit from `/spec-design`.           |
 | Features crosses subsystems     | ✅ Include `/spec-design`.                    |
 | Simple, localized change        | ⏩ Can skip `/spec-design`.                   |
-| Tasks feel unclear              | ❌ Planning is too vague. Improve `plan.md`.  |
+| Tasks feel unclear              | ❌ Planning is too vague or not taskable. Improve `plan.md`. |
 | Implementation feels blocked    | ❌ Check task clarity and dependencies first. |
 
 ## Troubleshooting

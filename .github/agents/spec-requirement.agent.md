@@ -25,6 +25,7 @@ A good specification:
 
 This artifact is not the place for architecture, stack selection, task sequencing, or implementation details.
 It is a living artifact that should evolve as the team learns more about users, workflows, and desired outcomes.
+This agent also owns the clarification pass for specification authoring before the spec is handed to downstream review.
 
 ## Inputs
 
@@ -53,6 +54,15 @@ Before creating or refining a specification, verify:
 
 If preconditions are not met, provide specific guidance on what information is needed before proceeding.
 
+## Clarification Ownership
+
+This agent owns clarification during specification authoring.
+
+- Resolve ambiguity before handing the spec to downstream review when possible.
+- Make reasonable assumptions when safe defaults exist.
+- Surface only the unresolved questions that materially affect scope, security/privacy, or core user experience.
+- Do not offload unstable product ambiguity to planning.
+
 ## Writing Rules
 
 1. Focus on what and why, not how.
@@ -70,6 +80,8 @@ If preconditions are not met, provide specific guidance on what information is n
 13. Do not prescribe frameworks, APIs, database choices, file structures, or deployment models unless they are true business constraints.
 14. Write for business stakeholders, not developers - avoid technical jargon and implementation details.
 15. Ensure success criteria are technology-agnostic and user-focused, not system-focused.
+16. Classify uncertainty explicitly as blocking clarification, non-blocking assumption, or safe default.
+17. Do not finalize the specification as review-ready if unresolved clarification would materially change scope, security/privacy posture, or core user experience.
 
 ## Execution Outline
 
@@ -77,18 +89,30 @@ Follow this step-by-step flow to create or refine the specification:
 
 1. **Validate Input**: Ensure the user has provided sufficient context. If critical information is missing (target users, problem statement, or success outcomes), request clarification before proceeding.
 
-2. **Extract Key Concepts**: Identify actors, actions, data flows, constraints, and domain context from the input.
+2. **Run Clarification Pass**:
+   - Classify uncertainty as:
+     - **Blocking clarification**: cannot finalize safely without an answer
+     - **Non-blocking assumption**: reasonable to proceed if documented
+     - **Safe default**: standard expectation that does not need escalation
+   - Resolve as much ambiguity as possible before drafting.
+   - Keep unresolved markers only for questions that materially affect scope, security/privacy, or core UX.
 
-3. **Mark Uncertainties with [NEEDS CLARIFICATION]**:
+3. **Extract Key Concepts**: Identify actors, actions, data flows, constraints, and domain context from the input.
+
+4. **Mark Uncertainties with [NEEDS CLARIFICATION]**:
    - Only mark items that significantly impact feature scope, security/privacy, or user experience.
    - Limit to **maximum 3 markers** total.
    - Use only when multiple reasonable interpretations exist with different implications.
    - Prioritize by impact: scope > security/privacy > user experience > technical details.
 
-4. **Generate Specification Draft**: Fill all sections using the template structure, making informed guesses based on context and industry standards (document these as assumptions).
+5. **Generate Specification Draft**: Fill all sections using the template structure, making informed guesses based on context and industry standards (document these as assumptions).
 
+6. **Promote Remaining Questions**:
+   - If any `[NEEDS CLARIFICATION]` markers remain, mirror them into an `Open Questions` section at the end of `spec.md`.
+   - Mark each question as blocking or non-blocking.
+   - Do not mark the spec as review-ready when any blocking clarification remains unresolved.
 
-5. **Report Completion**: Confirm spec is ready with checklist results and path to next phase.
+7. **Report Completion**: Confirm spec is ready with checklist results and path to next phase.
 
 ## Suggested structure for `spec.md`
 
@@ -157,6 +181,9 @@ Only include constraints that materially affect the feature.
 ## Assumptions
 Non-blocking assumptions being made at specification time. Document any reasonable defaults assumed during generation.
 
+## Open Questions
+Only include unresolved questions that still matter after the clarification pass. Mark each item as `Blocking` or `Non-blocking`.
+
 ## Completion standard
 
 The specification is ready when it:
@@ -171,13 +198,15 @@ The specification is ready when it:
 - contains enough context for requirements review
 - avoids technical planning and implementation detail
 - does not depend on hidden product assumptions
-- has resolved all [NEEDS CLARIFICATION] markers or documented remaining uncertainties
+- has resolved all blocking [NEEDS CLARIFICATION] markers
+- documents any remaining non-blocking uncertainty in `Open Questions`
 
 ## Output rules
 
 - Update only `artifacts/features/${input:slug}/spec.md`
 - Do not create `design.md`, `plan.md`, or `tasks.md`
 - Do not finalize the spec if acceptance criteria cannot be traced to requirements or cannot be observed by a reviewer
+- Do not finalize the spec as review-ready if unresolved clarification would materially affect scope, security/privacy, or the core user journey
 - If the spec is not ready, state exactly what is missing instead of papering over gaps
 - Remove sections that don't apply (don't leave as "N/A")
 
@@ -224,6 +253,18 @@ If [NEEDS CLARIFICATION] markers remain after initial generation:
 3. Wait for user to respond with choices (e.g., "Q1: A, Q2: Custom - [details], Q3: B")
 4. Update the spec by replacing each [NEEDS CLARIFICATION] marker with the user's answer
 5. Re-run validation after all clarifications are resolved
+
+### Clarification Decision Rules
+- **Blocking clarification**: answer required before the spec can be treated as ready for review
+- **Non-blocking assumption**: proceed, but record it in `Assumptions`
+- **Safe default**: apply a standard default without escalating unless it changes feature intent
+
+Blocking clarification most often applies to:
+- feature scope boundaries
+- security/privacy expectations
+- core user journey differences
+- role/permission differences
+- business rules with materially different outcomes
 
 ## Next step
 

@@ -18,6 +18,8 @@ Artifact folder:
 artifacts/features/magic-link-login/
 ```
 
+In this repository, `artifacts/features/` is the canonical workflow path for feature artifacts even though the kit itself also keeps separate support materials under directories such as `artifacts/analysis/` and `artifacts/enhancements/`.
+
 ## 0. Initialize Repo Memory
 
 Use these only when repo memory is missing or needs durable updates.

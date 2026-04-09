@@ -12,6 +12,8 @@ artifacts/features/<slug>/analysis.md
         ↓
 artifacts/features/<slug>/spec.md
         ↓
+clarification resolved or explicitly marked non-blocking
+        ↓
 artifacts/features/<slug>/requirements-review.md
         ↓
 artifacts/features/<slug>/design.md        (optional)
@@ -29,10 +31,13 @@ artifacts/features/<slug>/review.md        (optional)
 
 - Start with repo memory only when durable repository context is missing or outdated
 - Use `analysis.md` for brownfield discovery and risk reduction
-- Do not plan from a vague spec
+- Do not plan from a vague or still-blocked spec
 - Use `design.md` only when it reduces planning ambiguity
+- Let `spec-requirement` own clarification before review
 - Make `plan.md` explicit enough that `spec-tasks` can break work down without inventing technical strategy
+- Make `plan.md` explicit about affected domains, integration boundaries, protected behavior, and validation
 - Make `tasks.md` explicit enough that `spec-implement` can execute selected tasks without inventing missing scope, ordering, or validation
+- Make `tasks.md` explicit enough to pass a final REQ -> AC -> TASK -> validation audit
 - Use `spec-implement` to execute the next unblocked task by default, and stop instead of coding through unresolved blockers
 - Implement from `tasks.md`, not from vague chat intent
 - Review implementation against approved artifacts, not against memory alone

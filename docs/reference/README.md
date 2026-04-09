@@ -47,12 +47,14 @@ Is work:
 ├─ Defining what to build?
 │  └─ Use: /spec-requirement + /spec-review-requirements
 │     [Specification & Design](../agents/details/specification-planning.md)
+│     Clarification happens inside /spec-requirement before review
 ├─ Complex/risky that needs technical planning?
 │  └─ Add: /spec-design
 │     [When Design Is Required](../workflows/README.md#when-design-is-required)
 ├─ Ready to create execution strategy?
 │  └─ Use: /spec-plan + /spec-tasks
 │     [Planning & Delivery](../agents/details/specification-planning.md)
+│     /spec-plan analyzes boundaries first; /spec-tasks checks taskability
 ├─ Time to build?
 │  └─ Use: /spec-implement
 │     [Implementation & Delivery](../agents/details/implementation-delivery.md)
@@ -64,7 +66,7 @@ Is work:
 ## Documentation by Category
 
 ### 🏗️ Foundation (Repository Setup)
-- [Foundation & Setup guidedetails](../agents/details/foundation-setup.md)
+- [Foundation & Setup guide](../agents/details/foundation-setup.md)
 - Commands: `/constitution`, `/project-knowledge-base`
 
 ### 🔍 Discovery & Analysis (Understanding)

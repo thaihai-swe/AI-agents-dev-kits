@@ -30,7 +30,7 @@ Complete reference for all 10 agents organized by category. Each agent has a spe
 
 - Agent file: `spec-requirement.agent.md`
 - Output: `artifacts/features/<slug>/spec.md`
-- Use for: defining what should change and why
+- Use for: defining what should change and why, and resolving blocking clarification before review
 
 ### `/spec-review-requirements`
 
@@ -50,13 +50,13 @@ Complete reference for all 10 agents organized by category. Each agent has a spe
 
 - Agent file: `spec-plan.agent.md`
 - Output: `artifacts/features/<slug>/plan.md`
-- Use for: execution sequencing, validation strategy, and risk handling
+- Use for: pre-plan analysis, execution sequencing, validation strategy, and risk handling
 
 ### `/spec-tasks`
 
 - Agent file: `spec-tasks.agent.md`
 - Output: `artifacts/features/<slug>/tasks.md`
-- Use for: bounded, reviewable implementation units
+- Use for: bounded, reviewable implementation units with final taskability and traceability checks
 
 ## Implementation & Quality
 

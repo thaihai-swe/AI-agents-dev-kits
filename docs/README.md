@@ -11,6 +11,7 @@ Welcome to the AI Agents Development Kit documentation. This is your complete gu
 | If You Want               | Start With                                   |
 | ------------------------- | -------------------------------------------- |
 | 30-second overview        | [Getting Started](guides/getting-started.md) |
+| Apply it with Copilot     | [GitHub Copilot Adoption](guides/github-copilot-adoption.md) |
 | See a workflow in action  | [Workflow Example](WORKFLOW-EXAMPLE.md)      |
 | Understand the philosophy | [How It Works](how%20it%20work.md)           |
 | Choose your workflow      | [Workflow Guide](workflows/README.md)        |
@@ -25,6 +26,7 @@ Welcome to the AI Agents Development Kit documentation. This is your complete gu
 Quick-start guides for common scenarios.
 
 - [getting-started.md](guides/getting-started.md) — 30-second overview and first-time setup
+- [github-copilot-adoption.md](guides/github-copilot-adoption.md) — Practical GitHub Copilot setup and usage guidance
 - [README.md](guides/README.md) — All available guides
 
 ### 🔄 Workflows
@@ -76,8 +78,8 @@ Understanding the memory model.
 | ---------------------------- | ---------------------------------------------------------------- | ------------------------------------------ |
 | **Foundation**               | `/constitution`, `/project-knowledge-base`                       | Establish durable repo rules and knowledge |
 | **Discovery & Analysis**     | `/analyze`                                                       | Investigate systems before making changes  |
-| **Specification & Design**   | `/spec-requirement`, `/spec-review-requirements`, `/spec-design` | Define what to build and how               |
-| **Planning & Delivery**      | `/spec-plan`, `/spec-tasks`                                      | Create execution strategy and tasks        |
+| **Specification & Design**   | `/spec-requirement`, `/spec-review-requirements`, `/spec-design` | Define what to build, clarify ambiguity, and resolve technical shape |
+| **Planning & Delivery**      | `/spec-plan`, `/spec-tasks`                                      | Create execution strategy and reviewable tasks |
 | **Implementation & Quality** | `/spec-implement`, `/spec-review`                                | Build, test, and verify                    |
 
 **Full reference:** [agents/AGENTS-REFERENCE.md](agents/AGENTS-REFERENCE.md)
@@ -106,6 +108,12 @@ Most features follow this path:
 /spec-review
 ```
 
+Key responsibilities in this flow:
+- `/spec-requirement` owns clarification during spec authoring.
+- `/spec-review-requirements` judges readiness without silently rewriting the spec.
+- `/spec-plan` performs pre-plan technical analysis before sequencing work.
+- `/spec-tasks` verifies taskability and `REQ -> AC -> TASK -> validation` coverage before finalizing `tasks.md`.
+
 **Choose your workflow:**
 - Simple change? [Skip analysis and design](workflows/README.md#small-change-flow)
 - Complex change? [Include all steps](workflows/README.md#default-feature-flow)
@@ -121,12 +129,14 @@ Every feature creates one or more of these files under `artifacts/features/<feat
 | Artifact                 | Created By                  | Purpose                              |
 | ------------------------ | --------------------------- | ------------------------------------ |
 | `analysis.md`            | `/analyze`                  | Discovery findings (what's true now) |
-| `spec.md`                | `/spec-requirement`         | User-focused specification           |
+| `spec.md`                | `/spec-requirement`         | User-focused specification plus clarification outcomes |
 | `requirements-review.md` | `/spec-review-requirements` | Readiness verification               |
 | `design.md`              | `/spec-design`              | Technical decisions and architecture |
-| `plan.md`                | `/spec-plan`                | Execution strategy                   |
-| `tasks.md`               | `/spec-tasks`               | Bounded work units                   |
+| `plan.md`                | `/spec-plan`                | Execution strategy with pre-plan analysis |
+| `tasks.md`               | `/spec-tasks`               | Bounded work units with taskability and traceability checks |
 | `review.md`              | `/spec-review`              | Implementation verification          |
+
+In this kit repository, you may also see supporting directories such as `artifacts/analysis/` and `artifacts/enhancements/`. Those are repository-maintenance artifacts, not the canonical destination for per-feature workflow files.
 
 ---
 
@@ -155,7 +165,7 @@ Work proceeds through explicit gates:
 - **Definition of Ready** — Before implementation starts
 - **Definition of Done** — Before shipping
 
-See [.github/specs/checklists/](../. github/specs/checklists/) or the detailed guide in [quality-knowledge.md](agents/details/quality-knowledge.md).
+See [definition-of-ready.md](../.github/specs/checklists/definition-of-ready.md), [definition-of-done.md](../.github/specs/checklists/definition-of-done.md), or the detailed guide in [quality-knowledge.md](agents/details/quality-knowledge.md).
 
 ### Traceability IDs
 
@@ -179,13 +189,15 @@ This creates end-to-end traceability from user stories through implementation.
 1. [Pick a slug](guides/getting-started.md) (e.g., `add-dark-mode`)
 2. [Choose your workflow](workflows/README.md)
 3. [Run `/spec-requirement`](reference/commands.md#spec-requirement)
-4. [Follow the path](workflows/README.md#default-feature-flow)
+4. Resolve any blocking clarification before treating the spec as review-ready
+5. [Follow the path](workflows/README.md#default-feature-flow)
 
 ### I'm investigating a bug
 
 1. [Run `/analyze`](reference/commands.md#analyze) to understand current behavior
 2. [Run `/spec-requirement`](reference/commands.md#spec-requirement) to define the fix
-3. [Skip to `/spec-plan`](workflows/README.md#bug-fix-flow) and continue
+3. Resolve any blocking clarification in `spec.md`
+4. [Skip to `/spec-plan`](workflows/README.md#bug-fix-flow) and continue
 
 ### I'm setting up a new repository
 
@@ -302,5 +314,4 @@ For a detailed explanation of the framework:
 - **Technical question:** Check [terminology.md](reference/terminology.md) or [faq.md](reference/faq.md)
 - **Workflow question:** See [workflows/README.md](workflows/README.md) or [WORKFLOW-EXAMPLE.md](WORKFLOW-EXAMPLE.md)
 - **About an agent:** Read [agents/AGENTS-REFERENCE.md](agents/AGENTS-REFERENCE.md) or the relevant [details/](agents/details/) file
-- **Missing something?** All agents are defined in [.github/agents/](.../.github/agents/)
-
+- **Missing something?** All agents are defined in [`.github/agents/`](../.github/agents/)

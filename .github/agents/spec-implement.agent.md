@@ -22,6 +22,10 @@ Optional inputs:
 - `memories/repo/constitution.md`
 - `memories/repo/project-knowledge-base.md`
 
+## Skills To Use
+
+- `task-traceability-audit` - use when confirming the selected task still traces cleanly to requirements, acceptance criteria, and validation before marking work done
+
 ## Execution Outline
 
 Follow this workflow for implementation:
@@ -99,11 +103,11 @@ Follow this structured approach to task execution:
 
 ### During Task Execution
 
-1. **Update task checkbox and status field in tasks.md immediately**: Change checkbox to IN PROGRESS state
-   - **Checkbox update**: Convert `- [ ] [TASK-ID]` to `- [-] [TASK-ID]` (dash indicates in-progress)
+1. **Update task checkbox and status field in tasks.md immediately**: Record that work is IN PROGRESS
+   - **Checkbox update**: Keep `- [ ] [TASK-ID]` while work is in progress
    - **Status field update**: Change `Status: Not Started` to `Status: In Progress`
    - Find the task block by TASK ID (e.g., `- [ ] TASK-005`)
-   - Update BOTH the checkbox AND the Status field in tasks.md
+   - Update the Status field immediately and keep the checkbox/Status pair aligned
    - Edit tasks.md immediately before starting implementation work
    - This signals to observers that work is underway on this specific task
 2. **Single task focus**: Work on one unblocked task at a time by default
@@ -122,10 +126,10 @@ Follow this structured approach to task execution:
 1. **Verify outcome**: Task description outcomes are achieved
 2. **Validation pass**: All logical tests for the task pass
 3. **Update task checkbox and status field in tasks.md IMMEDIATELY**: Mark task as DONE
-   - **Checkbox update**: Convert `- [-] [TASK-ID]` to `- [X] [TASK-ID]` (X indicates completed)
+   - **Checkbox update**: Convert `- [ ] [TASK-ID]` to `- [X] [TASK-ID]` (X indicates completed)
    - **Status field update**: Change `Status: In Progress` to `Status: Done`
    - Find the task block by TASK ID in tasks.md
-   - Update BOTH the checkbox (from `[-]` or `[ ]` to `[X]`) AND the Status field
+   - Update BOTH the checkbox and the Status field
    - Edit tasks.md immediately after validation passes; do NOT defer
    - Reference format from `.github/specs/templates/tasks-template.md` task structure
    - Do NOT modify Summary, dependencies, or other fields; only change checkbox and Status value
@@ -135,7 +139,7 @@ Follow this structured approach to task execution:
    - Next recommended task: [next TASK-ID to work on]
    - Last validation evidence added: [test results or validation note]
 5. **Handle blockers**: If task hit blockers and cannot complete:
-   - Update task checkbox to `- [BLOCKED]` or leave as `- [ ]` (not checked)
+   - Keep task checkbox as `- [ ]` (not checked)
    - Update task Status field to `Status: Blocked`
    - Document reason in task's "Session note:" field
    - Mark with estimated resolution time
@@ -160,8 +164,8 @@ If implementation reveals the task is significantly larger, more complex, or cro
 5. **Execute one task at a time** by default; only batch/parallelize when dependencies permit ([P] marked)
 6. **Preserve task isolation**: Keep completed work reviewable as coherent task-sized slices
 7. **Update task checkbox and status in tasks.md**:
-   - When STARTING: Change `- [ ]` to `- [-]` and `Status: Not Started` to `Status: In Progress`
-   - When DONE: Change `- [-]` to `- [X]` and `Status: In Progress` to `Status: Done`
+   - When STARTING: Keep `- [ ]` and change `Status: Not Started` to `Status: In Progress`
+   - When DONE: Change `- [ ]` to `- [X]` and `Status: In Progress` to `Status: Done`
    - When BLOCKED: Change `- [ ]` to `- [ ]` (unchecked) and set `Status: Blocked`
    - Edit tasks.md file directly AND immediately—before starting work, after validation passes
 8. **Mandatory task closure**: Every task must have Status field explicitly set to one of: `Not Started`, `In Progress`, `Done`, `Blocked`, or `Deferred`
@@ -178,8 +182,8 @@ This protocol ensures every task in tasks.md has explicit, traceable status thro
 
 Every task in tasks.md uses a checkbox to indicate progress state:
 
-- `- [ ] [TASK-ID]` = **Not Started** (unchecked, no work begun)
-- `- [-] [TASK-ID]` = **In Progress** (dash indicates work underway)
+- `- [ ] [TASK-ID]` with `Status: Not Started` = **Not Started**
+- `- [ ] [TASK-ID]` with `Status: In Progress` = **In Progress**
 - `- [X] [TASK-ID]` = **Done** (X indicates completed and validated)
 - `- [ ] [TASK-ID]` with `Status: Blocked` = **Blocked** (unchecked but status field shows blocker)
 - `- [ ] [TASK-ID]` with `Status: Deferred` = **Deferred** (unchecked; marked deferred in status)
@@ -206,7 +210,7 @@ BEFORE (Not Started):
   ...
 
 AFTER Starting Work (In Progress):
-- [-] TASK-005 [P] [US1] Create User authentication service in src/services/auth_service.py
+- [ ] TASK-005 [P] [US1] Create User authentication service in src/services/auth_service.py
   Status: In Progress
   Summary: Implement JWT-based auth service
   ...
@@ -223,13 +227,13 @@ AFTER Validation (Done):
 **Immediate updates are mandatory**:
 
 1. **Before starting implementation work**:
-   - Update checkbox from `[ ]` to `[-]`
+   - Keep checkbox as `[ ]`
    - Update Status field from `Not Started` to `In Progress`
    - Edit tasks.md NOW, before writing code
    - Action: Edit tasks.md with checkpoint and Status changes
 
 2. **Immediately after validation passes**:
-   - Update checkbox from `[-]` to `[X]`
+   - Update checkbox from `[ ]` to `[X]`
    - Update Status field from `In Progress` to `Done`
    - Edit tasks.md NOW, do not defer
    - Action: Edit tasks.md with checkbox and Status changes
@@ -352,8 +356,8 @@ When completing implementation:
 
 - **Modify code and tests**: Create/update repository files as needed for the task
 - **Update task checkbox and status field in tasks.md IMMEDIATELY**: Change checkbox and Status when task lifecycle changes
-  - Action: Edit tasks.md and update BOTH task checkbox AND Status field
-  - Format checkbox: `- [ ]` → `- [-]` (in progress) or `- [-]` → `- [X]` (done)
+  - Action: Edit tasks.md and update the task Status field immediately; mark checkbox done only when the task is complete
+  - Format checkbox: `- [ ]` stays unchecked until done, then becomes `- [X]`
   - Format status: Update `Status: Not Started` → `Status: In Progress` → `Status: Done`
   - Timing: Update BEFORE starting work, and immediately AFTER validation passes; never batch
   - Verification: Confirm tasks.md shows updated checkbox AND Status value in next read
@@ -375,8 +379,8 @@ When completing implementation:
 After each task lifecycle change (starting work or completing work), provide:
 
 - Task ID and current Status field value (`Status: In Progress`, `Status: Done`, `Status: Blocked`, etc.)
-- Current checkbox state (`[X]` = done, `[-]` = in progress, `[ ]` = not started/blocked/deferred)
-- Confirmation that tasks.md was edited with BOTH checkbox AND Status updated
+- Current checkbox state (`[X]` = done, `[ ]` = not started/in progress/blocked/deferred)
+- Confirmation that tasks.md was edited and the Status field is current
 - Lines/files changed or created
 - Tests run/added and validation results
 - Any blockers or deferrals (with reason and resolution estimate)

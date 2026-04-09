@@ -31,7 +31,7 @@
 - [Contract 1]
 - [Contract 2]
 
-**Gotchas from `legacy-system-watchouts.md`**:
+**Durable watchouts from `project-knowledge-base.md`**:
 - [Gotcha 1]: How we handle it
 - [Gotcha 2]: How we handle it
 
@@ -161,10 +161,10 @@ None (or list any changes to existing endpoints)
 
 ## Related Documents
 
-- **Gotchas**: [Link to memories/repo/legacy-system-watchouts.md](#)
-- **Integration points**: [Link to memories/repo/integration-points.md](#)
-- **Architecture decisions**: [Link to memories/repo/architecture-decisions.md](#)
-- **Gotchwise specifics**: [See specific gotchas below]
+- **Repository rules**: [Link to memories/repo/constitution.md](#)
+- **Durable repository knowledge**: [Link to memories/repo/project-knowledge-base.md](#)
+- **Feature analysis**: [Link to artifacts/features/<slug>/analysis.md](#)
+- **Feature-specific constraints**: [See specific notes below]
 
 ---
 
@@ -221,8 +221,8 @@ None (or list any changes to existing endpoints)
 
 Before integration, verify:
 
-- [ ] All gotchas from watchouts understood and handled
-- [ ] Integration points from integration-points.md respected
+- [ ] Durable watchouts from project-knowledge-base.md understood and handled
+- [ ] Relevant integration boundaries from project-knowledge-base.md respected
 - [ ] Existing system tests still pass
 - [ ] No performance degradation
 - [ ] Deployment plan includes rollback

@@ -25,6 +25,11 @@ Use this for most meaningful feature work:
 /spec-review
 ```
 
+Flow notes:
+- `/spec-requirement` owns clarification and should resolve blocking ambiguity before review.
+- `/spec-plan` should stop if `spec.md` still contains unresolved blocking clarification.
+- `/spec-tasks` should stop if the plan is not decomposable into review-sized, validation-backed tasks.
+
 Artifacts produced along the way:
 
 - `/analyze` -> `analysis.md`
@@ -112,15 +117,16 @@ If those conditions are absent, go straight from requirements review to planning
 - Skip `/spec-review-requirements` only when the change is very small and the spec is obviously complete.
 - Skip `/spec-design` only when planning can proceed safely without architectural clarification.
 - Do not skip `/spec-plan` or `/spec-tasks` if you want bounded, traceable implementation work.
+- Do not treat `spec.md` as ready if blocking clarification is still unresolved.
 
 ## Outputs By Phase
 
 | Phase               | Artifact                 | Why it exists                                         |
 | ------------------- | ------------------------ | ----------------------------------------------------- |
 | Analysis            | `analysis.md`            | Capture observed facts, risks, and next-step guidance |
-| Specification       | `spec.md`                | Define users, scenarios, requirements, and outcomes   |
+| Specification       | `spec.md`                | Define users, scenarios, requirements, outcomes, and clarification state |
 | Requirements Review | `requirements-review.md` | Check whether downstream work is safe to start        |
 | Design              | `design.md`              | Resolve technical ambiguity before planning           |
-| Planning            | `plan.md`                | Define execution strategy, sequencing, and validation |
-| Tasks               | `tasks.md`               | Break work into bounded outcomes                      |
+| Planning            | `plan.md`                | Define execution strategy, pre-plan analysis, sequencing, and validation |
+| Tasks               | `tasks.md`               | Break work into bounded outcomes with taskability and traceability checks |
 | Review              | `review.md`              | Record verification findings when needed              |

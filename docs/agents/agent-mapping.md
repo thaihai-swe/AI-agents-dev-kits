@@ -38,8 +38,8 @@ This page shows how the 10 agents depend on each other, what artifacts they prod
 
 - **Foundation:** Establishes durable context; run first for new repos
 - **Discovery & Analysis:** Investigates unclear systems or risks
-- **Specification & Design:** Defines what to build and technical approach
-- **Planning & Delivery:** Creates execution strategy and bounded tasks
+- **Specification & Design:** Defines what to build, resolves blocking clarification, and shapes technical approach
+- **Planning & Delivery:** Creates execution strategy, pre-plan analysis, and bounded tasks
 - **Implementation & Quality:** Builds code and verifies against artifacts
 
 ## Artifact Dependencies
@@ -48,6 +48,8 @@ This page shows how the 10 agents depend on each other, what artifacts they prod
 analysis.md
     ↓ informs
 spec.md
+    ↓ clarified by
+clarification pass in spec-requirement
     ↓ reviewed by
 requirements-review.md
     ↓ gates
@@ -65,11 +67,11 @@ review.md (optional)
 ## Responsibility Split
 
 - `/analyze` captures observed facts, risks, and next-step guidance
-- `/spec-requirement` defines what should change and why
+- `/spec-requirement` defines what should change and why, and resolves blocking clarification
 - `/spec-review-requirements` checks whether the spec is safe to use downstream
 - `/spec-design` resolves technical ambiguity before planning
-- `/spec-plan` defines sequencing, dependencies, validation, rollout, and rollback
-- `/spec-tasks` creates bounded implementation units
+- `/spec-plan` defines pre-plan analysis, sequencing, dependencies, validation, rollout, and rollback
+- `/spec-tasks` creates bounded implementation units and enforces taskability/traceability expectations
 - `/spec-implement` changes code and validation while staying traceable to tasks
 - `/spec-review` evaluates whether the implementation matched the intended change
 

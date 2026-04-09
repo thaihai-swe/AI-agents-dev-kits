@@ -70,7 +70,7 @@ The 10 agents are organized into 5 categories:
 ## Why The Workflow Is Split
 
 - `analyze` is for understanding what is true now
-- `spec-requirement` is for deciding what should change and why
+- `spec-requirement` is for deciding what should change and why, and resolving blocking clarification
 - `spec-design` is for settling technical decisions only when that extra clarity is needed
 - `spec-plan` and `spec-tasks` keep implementation bounded and traceable
 - `spec-review` checks the delivered work against the intended artifacts
@@ -85,7 +85,7 @@ Use these rules to navigate the workflow safely:
 - **Skip `/spec-review-requirements`** only when the change is very small and spec is obviously complete
 - **Skip `/spec-design`** only when planning can proceed safely without architectural clarification
 - **Never skip `/spec-plan` or `/spec-tasks`** if you want bounded, traceable implementation work
-- **Do not plan from a vague spec** - if spec review says "not ready", stop and fix it first
+- **Do not plan from a vague or still-blocked spec** - if blocking clarification remains or spec review says "not ready", stop and fix it first
 - **Implement from `tasks.md`, not from vague chat intent**
 
 ## Workflow Scenarios
@@ -145,6 +145,12 @@ When addressing unexpected behavior:
 ```
 
 `/analyze` captures "what went wrong". Add `/spec-review-requirements` if scope boundaries are ambiguous.
+
+## New Clarification And Planning Expectations
+
+- Clarification belongs inside `/spec-requirement`, not inside the requirements review gate.
+- `/spec-plan` should make domains, integration boundaries, protected behavior, and validation strategy explicit.
+- `/spec-tasks` should only finalize when the plan is decomposable into review-sized tasks with full `REQ -> AC -> TASK -> validation` coverage.
 
 ## When Design Is Required
 

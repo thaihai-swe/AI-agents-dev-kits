@@ -70,6 +70,10 @@ Before updating the knowledge base, read if present:
 
 Ground updates in direct repository evidence whenever possible.
 
+## Skills To Use
+
+- `memory-promotion` - use when deciding whether findings from `analysis.md` or other feature artifacts should be promoted into durable repository memory, left in feature artifacts, or escalated into the constitution
+
 ## Behavior
 
 When updating the knowledge base:

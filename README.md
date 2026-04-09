@@ -1,5 +1,7 @@
 # AI Agents Development Kit
 
+A comprehensive collection of prompts, instruction files, and templates designed to enhance GitHub Copilot's capabilities in Agent Mode, with a focus on  development and best practices.
+
 A structured framework for AI-assisted software development that separates durable repository knowledge from feature-specific delivery artifacts, ensuring work is reviewable, resumable, and traceable.
 
 ---
@@ -169,7 +171,7 @@ Not every feature needs every file—some are optional and used to reduce ambigu
 
 | Agent                    | Command                     | Output                                             | Purpose                                                                 |
 | ------------------------ | --------------------------- | -------------------------------------------------- | ----------------------------------------------------------------------- |
-| Spec Requirement         | `/spec-requirement`         | `artifacts/features/<slug>/spec.md`                | Define what should change, for whom, and why (user-focused)             |
+| Spec Requirement         | `/spec-requirement`         | `artifacts/features/<slug>/spec.md`                | Define what should change, for whom, why, and resolve blocking clarification |
 | Spec Review Requirements | `/spec-review-requirements` | `artifacts/features/<slug>/requirements-review.md` | Quality gate: Check if spec is ready for design/planning                |
 | Spec Design              | `/spec-design`              | `artifacts/features/<slug>/design.md`              | Technical decisions & architectural clarification (optional, if needed) |
 
@@ -177,8 +179,8 @@ Not every feature needs every file—some are optional and used to reduce ambigu
 
 | Agent      | Command       | Output                               | Purpose                                                                   |
 | ---------- | ------------- | ------------------------------------ | ------------------------------------------------------------------------- |
-| Spec Plan  | `/spec-plan`  | `artifacts/features/<slug>/plan.md`  | Execution strategy: sequencing, phases, dependencies, rollout, validation |
-| Spec Tasks | `/spec-tasks` | `artifacts/features/<slug>/tasks.md` | Decompose plan into bounded, independent, traceable implementation units  |
+| Spec Plan  | `/spec-plan`  | `artifacts/features/<slug>/plan.md`  | Execution strategy: pre-plan analysis, sequencing, phases, dependencies, rollout, validation |
+| Spec Tasks | `/spec-tasks` | `artifacts/features/<slug>/tasks.md` | Decompose plan into bounded, independent, traceable implementation units with taskability and validation coverage |
 
 ### Implementation & Quality (2 agents)
 
@@ -208,7 +210,7 @@ Follow this path for typical feature work:
 ```
 /analyze                            (if system is unclear or risky)
   ↓
-/spec-requirement                   → Define what to build
+/spec-requirement                   → Define what to build and resolve blocking clarification
   ↓
 /spec-review-requirements           → Quality gate: Is spec ready?
   ↓
@@ -248,10 +250,11 @@ Skip analysis and design for low-risk, well-understood changes:
 1. **Artifacts First** — Decisions are only real when written down and reviewed. Chat history is not enough.
 2. **Durable Memory** — Repository knowledge is deliberately compact. Only genuinely durable context gets saved.
 3. **Bounded Exploration** — Investigation (`/analyze`) is for learning, not planning. Technical decisions happen in design/planning phases.
-4. **Quality Gates** — Specs are reviewed before planning. Implementations are reviewed before shipping.
-5. **Explicit Boundaries** — Each agent has one job, enforced by preconditions and scope rules. No silent scope creep.
-6. **Safe Defaults** — Agents stop at dependency points. Missing upstream work is surfaced, not worked around.
-7. **Testable Scope** — Each artifact tier (spec → design → plan → tasks) is reviewed before moving downstream.
+4. **Clarify Before Judging** — `spec-requirement` owns clarification; `spec-review-requirements` remains a pure readiness gate.
+5. **Quality Gates** — Specs are reviewed before planning. Implementations are reviewed before shipping.
+6. **Explicit Boundaries** — Each agent has one job, enforced by preconditions and scope rules. No silent scope creep.
+7. **Safe Defaults** — Agents stop at dependency points. Missing upstream work is surfaced, not worked around.
+8. **Testable Scope** — Each artifact tier (spec → design → plan → tasks) is reviewed before moving downstream.
 
 ---
 
@@ -276,21 +279,32 @@ Skip analysis and design for low-risk, well-understood changes:
 
 ### Configuration Files
 
-| File                                                                                         | Purpose                                                   |
-| -------------------------------------------------------------------------------------------- | --------------------------------------------------------- |
-| [.github/agents/](./github/agents/)                                                          | 10 agent definitions (YAML frontmatter + execution rules) |
-| [.github/prompts/](./github/prompts/)                                                        | Prompt configurations for each agent                      |
-| [.github/specs/templates/](./github/specs/templates/)                                        | Reusable artifact templates                               |
-| [.github/specs/checklists/](./github/specs/checklists/)                                      | Definition of Ready & Definition of Done                  |
-| [.github/instructions/copilot-instructions.md](.github/instructions/copilot-instructions.md) | Copilot behavior rules                                    |
+| File                                                               | Purpose                                                   |
+| ------------------------------------------------------------------ | --------------------------------------------------------- |
+| [.github/agents/](./github/agents/)                                | 10 agent definitions (YAML frontmatter + execution rules) |
+| [.github/prompts/](./github/prompts/)                              | Prompt configurations for each agent                      |
+| [.github/specs/templates/](./github/specs/templates/)              | Reusable artifact templates                               |
+| [.github/specs/checklists/](./github/specs/checklists/)            | Definition of Ready & Definition of Done                  |
+| [.github/copilot-instructions.md](.github/copilot-instructions.md) | Repository-wide GitHub Copilot instructions               |
 
 ### Feature Work
 
-All feature work lives under `artifacts/features/<feature-slug>/`:
+Canonical per-feature workflow artifacts live under `artifacts/features/<feature-slug>/`:
 
-- [artifacts/](artifacts/) → Feature specifications and plans
+- [artifacts/](artifacts/) → Workflow artifacts used by this kit and adopting repos
 - [memories/repo/](memories/repo/) → Durable repository knowledge
 - [memories/session/](memories/session/) → Session-specific notes (per-conversation)
+
+This repository also includes support artifact areas such as `artifacts/analysis/` and `artifacts/enhancements/` for evolving the kit itself. Those are not the canonical destination for per-feature delivery artifacts.
+
+### GitHub Copilot Model
+
+- Repository-wide Copilot instructions live at `.github/copilot-instructions.md`
+- Durable repository memory uses exactly two canonical files:
+  - `memories/repo/constitution.md`
+  - `memories/repo/project-knowledge-base.md`
+- Brownfield discoveries start in feature artifacts such as `analysis.md`; only durable findings are promoted into `project-knowledge-base.md`
+- `.github/agents/` remains the source of truth for agent contracts
 
 ---
 
@@ -421,8 +435,10 @@ See [.github/specs/checklists/definition-of-done.md](.github/specs/checklists/de
 ### Canonical Paths
 
 - **Durable repo memory:** `memories/repo/` only (not `memories/*.md`)
+- **Canonical repo memory files:** `memories/repo/constitution.md` and `memories/repo/project-knowledge-base.md`
 - **Feature work:** `artifacts/features/<feature-slug>/` only
 - **Agent definitions:** `.github/agents/` (source of truth)
+- **Repository-wide Copilot instructions:** `.github/copilot-instructions.md`
 - **Prompts:** `.github/prompts/` (agent execution rules)
 
 ### Required Context Before Work
@@ -462,8 +478,11 @@ All discovery, architecture, and pattern knowledge still gets captured—just th
 ```
 ├── README.md                                (you are here)
 ├── artifacts/
+│   ├── README.md                           (artifact conventions for this kit)
+│   ├── analysis/                           (supporting analysis artifacts for this repo)
+│   ├── enhancements/                       (repo-evolution artifacts for this repo)
 │   └── features/
-│       └── <feature-slug>/                 (feature work artifacts)
+│       └── <feature-slug>/                 (canonical per-feature workflow artifacts)
 │           ├── analysis.md
 │           ├── spec.md
 │           ├── requirements-review.md
@@ -486,12 +505,11 @@ All discovery, architecture, and pattern knowledge still gets captured—just th
 │   └── user/                               (user preferences)
 └── .github/
     ├── agents/                             (10 agent definitions)
+    ├── copilot-instructions.md             (repository-wide Copilot instructions)
     ├── prompts/                            (agent prompting config)
     ├── specs/
     │   ├── templates/                      (artifact templates)
     │   └── checklists/                     (quality gates)
-    └── instructions/
-        └── copilot-instructions.md         (copilot behavior rules)
 ```
 
 ---

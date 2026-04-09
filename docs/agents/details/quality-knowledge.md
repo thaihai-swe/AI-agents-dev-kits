@@ -38,7 +38,7 @@ The workflow has explicit quality checkpoints at two critical points to prevent 
 
 **Possible outcomes:**
 - ✅ **Ready** → Proceed to `/spec-design` or `/spec-plan`
-- 🔄 **Needs revision** → Return to `/spec-requirement`, fix gaps, review again
+- 🔄 **Not ready** → Return to `/spec-requirement`, fix gaps, review again
 - ⚠️ **Too risky** → May need `/analyze` first to clarify unknowns
 
 ### Gate 2: `/spec-review` (After Implementation)
@@ -49,44 +49,60 @@ The workflow has explicit quality checkpoints at two critical points to prevent 
 
 **Output:** `artifacts/features/<slug>/review.md` (optional, save when findings are important)
 
+**Preconditions:**
+- `spec.md` exists
+- `plan.md` exists
+- `tasks.md` exists
+- implementation work has actually been attempted
+
 **Checks:**
 
-**Scope Alignment:**
-- [ ] All approved requirements are implemented
-- [ ] All acceptance criteria are satisfied
-- [ ] No scope drift from approved spec
-- [ ] Feature matches described use cases
+**Review Lens: Completeness**
+- [ ] Requirements and acceptance criteria that should be covered are actually covered
+- [ ] No important part of approved scope is silently missing
+- [ ] Validation exists for the behavior that was supposed to change
 
-**Code Quality:**
-- [ ] Code matches approved design and plan
-- [ ] Follows repo constitution (rules and guardrails)
-- [ ] Code style and patterns consistent with codebase
-- [ ] No technical debt introduced without documentation
+**Review Lens: Correctness**
+- [ ] Implemented behavior matches the approved intent
+- [ ] Validation evidence supports the observed claims
+- [ ] Important edge cases, regressions, and failure paths are handled appropriately
 
-**Validation:**
-- [ ] Automated tests are comprehensive
-- [ ] Manual verification completed where appropriate
-- [ ] Edge cases are handled
-- [ ] Error cases are handled gracefully
+**Review Lens: Coherence**
+- [ ] `spec.md`, `plan.md`, `tasks.md`, task state, and code tell the same story
+- [ ] Reviewers can trace requirements to tasks to delivered behavior
+- [ ] Handoff notes, deferred work, and final status are internally consistent
 
-**Documentation & Operations:**
-- [ ] User-facing documentation updated
-- [ ] Developer documentation updated
-- [ ] Logging and monitoring in place
-- [ ] Performance impact assessed
-- [ ] Security/privacy impacts addressed
+**Requirement Coverage:**
+- [ ] Requirements appear fully, partially, or not satisfied based on evidence
+- [ ] Acceptance criteria are actually observable in implementation or validation
+- [ ] User-visible behavior matches approved intent
 
-**Traceability:**
-- [ ] Each requirement links to implementation
-- [ ] Each task links to code changes
-- [ ] Acceptance criteria are verified
-- [ ] Changes are auditable end-to-end
+**Validation Quality:**
+- [ ] Automated tests were added or updated when appropriate
+- [ ] Manual verification exists when appropriate
+- [ ] Validation matches the risk of the change
+- [ ] Important edge cases and regressions are not ignored
+
+**Scope Control:**
+- [ ] Implementation stays within approved scope
+- [ ] Task outcomes and actual implementation align
+- [ ] Task `Status:` fields reflect reality
+- [ ] No undeclared refactors or hidden behavior changes slipped in
+
+**Quality And Safety:**
+- [ ] Repository rules from `constitution.md` were followed
+- [ ] Stable repository patterns were respected
+- [ ] Compatibility, migration, security, privacy, performance, logging, and operational concerns were handled when relevant
+
+**Documentation And Handoff:**
+- [ ] Deferred work and limitations are clearly documented
+- [ ] Reviewers can understand what shipped and what did not
+- [ ] Traceability records remain usable for future contributors
 
 **Possible outcomes:**
-- ✅ **Ready to ship** → Merge/release
-- 🔄 **Needs fixes** → Return to `/spec-implement`, fix issues, review again
-- ⚠️ **Scope mismatch** → Update spec, planning, or implementation accordingly
-- 📋 **Follow-up work discovered** → Document for post-release work
+- ✅ **Approved** → Merge/release according to repository norms
+- ✅ **Approved with follow-ups** → Acceptable to merge/ship, but non-blocking follow-up work remains
+- 🔄 **Changes required** → Return to `/spec-implement` and fix blocking issues before approval
 
 ## Full Quality Flow
 
@@ -151,6 +167,23 @@ Before shipping (`/spec-review` pass), verify using the Definition of Done check
 
 **If not done:** Return to implementation. Don't ship incomplete work.
 
+## Blocking vs Follow-Up Issues
+
+**Blocking issues** prevent approval. Typical reasons:
+- a requirement or acceptance criterion is unmet or unverifiable
+- validation is too weak for the risk of the change
+- implementation materially diverges from approved scope
+- repository rules are violated
+- task state or handoff state is misleading enough to create delivery risk
+
+**Follow-up issues** do not invalidate the delivered change. Typical examples:
+- documentation cleanup
+- observability improvements
+- robustness improvements that are useful but not required for approval
+- non-critical polish work
+
+Reviews should keep these categories separate.
+
 ## Why Two Gates?
 
 ### Gate 1 Prevents
@@ -166,6 +199,7 @@ Before shipping (`/spec-review` pass), verify using the Definition of Done check
 ❌ Scope drift during execution  
 ❌ Missing tests or validation  
 ❌ Poor code quality shipped  
+❌ Misleading task status or handoff records  
 ❌ Undocumented decisions or limitations  
 
 ## When Quality Gates Can Be Skipped
@@ -191,7 +225,7 @@ Common reasons:
 
 **Action:** Return to `/spec-requirement`. Fix the roots of the ambiguity.
 
-**Gate 2: "Not ready to ship"**
+**Gate 2: "changes required"**
 
 Common reasons:
 - Implementation differs from spec (missing requirements)

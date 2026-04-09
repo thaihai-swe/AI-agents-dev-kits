@@ -53,7 +53,7 @@ A bounded investigation artifact used to capture observed facts, risks, unknowns
 
 ## Specification
 
-The statement of what should change and why. Stored as `spec.md`.
+The statement of what should change and why, including clarification outcomes and any remaining non-blocking open questions. Stored as `spec.md`.
 
 ## Requirements Review
 
@@ -65,11 +65,11 @@ The technical explanation of how a feature should work when planning depends on 
 
 ## Plan
 
-The execution strategy for a feature. It covers sequencing, dependencies, validation, and risk handling. Stored as `plan.md`.
+The execution strategy for a feature. It covers pre-plan analysis, sequencing, dependencies, validation, protected behavior, and risk handling. Stored as `plan.md`.
 
 ## Tasks
 
-The bounded execution units derived from the plan. Stored as `tasks.md`.
+The bounded execution units derived from the plan, with explicit validation and traceability coverage. Stored as `tasks.md`.
 
 ## Review
 

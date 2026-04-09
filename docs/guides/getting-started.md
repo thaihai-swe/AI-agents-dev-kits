@@ -33,6 +33,8 @@ Feature slug: user-profile
 Create a feature specification for the user profile feature.
 ```
 
+Resolve any blocking clarification here before treating the spec as ready for review.
+
 ### 3. Review the requirements
 
 ```text
@@ -96,13 +98,13 @@ Run these first when the repo has no durable memory yet:
 - `analyze` learns what is true now before making changes
 
 **Specification & Design:**
-- `spec-requirement` defines what should change and why
+- `spec-requirement` defines what should change, why, and resolves blocking clarification
 - `spec-review-requirements` checks whether the spec is ready downstream
 - `spec-design` clarifies how the system should work when planning needs technical decisions
 
 **Planning & Delivery:**
-- `spec-plan` turns intent into execution strategy
-- `spec-tasks` creates bounded work units
+- `spec-plan` turns intent into execution strategy and pre-plan analysis
+- `spec-tasks` creates bounded work units and confirms taskability/traceability
 
 **Implementation & Quality:**
 - `spec-implement` executes the planned tasks
@@ -111,6 +113,7 @@ Run these first when the repo has no durable memory yet:
 ## Safe Defaults
 
 - If the system is unclear, run `/analyze`.
+- If the spec still has blocking ambiguity, stay in `/spec-requirement`.
 - If planning feels ambiguous, run `/spec-design`.
 - If the spec is weak, do not continue past `/spec-review-requirements`.
 - If implementation uncovers an upstream mistake, fix the right artifact first.

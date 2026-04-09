@@ -11,12 +11,11 @@
 
 ## Review Summary
 
-- Overall readiness:
+- Verdict: ready | ready with minor issues | not ready
 - Short summary:
 
 ## Readiness Assessment
 
-- Definition of ready status: Ready | Partially Ready | Not Ready
 - Strengths:
 - Main concerns:
 
@@ -57,5 +56,4 @@
 
 ## Recommendation
 
-- Recommendation: Approved | Approved With Notes | Needs Revision
 - Next step:

@@ -20,7 +20,7 @@
 - [Contract 1]: [What must be true?]
 - [Contract 2]: [What format is required?]
 
-**Gotchas to avoid**: [References to legacy-system-watchouts.md]
+**Durable watchouts to respect**: [Reference relevant sections in project-knowledge-base.md]
 
 **Example flow**:
 [How does data flow through the integration?]
@@ -33,4 +33,3 @@
 ## By Component
 
 <!-- Document each integration point below -->
-
