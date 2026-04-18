@@ -56,6 +56,7 @@ If context supports reasonable assumptions or safe defaults, proceed and documen
 - Focus on what and why, not how.
 - Keep requirements testable and acceptance criteria observable.
 - Preserve stable identifiers when the repo already uses them.
+- Identify 3-7 major scenario areas, capability slices, or user-journey segments before writing detailed requirements when the feature is broad enough to need decomposition.
 - Keep scope bounded; move future ideas to `Non-Goals` or `Open Questions`.
 - Separate current-state observations from future-state requirements.
 - Avoid prescribing frameworks, APIs, databases, file structures, or deployment details unless they are true business constraints.
@@ -84,15 +85,34 @@ Rules for unresolved markers:
 - mirror each one into `Open Questions`
 - do not treat the spec as review-ready while blocking clarification remains
 
+## Iteration Rules
+
+- When ambiguity is high, refine one section at a time instead of forcing a full stable spec in one pass.
+- Stabilize upstream sections first: users, problem, goals, and scenarios should be coherent before detailed requirements multiply.
+- If the request is still evolving, prefer a clearly marked draft with explicit assumptions and open questions over a falsely complete spec.
+- Re-check requirement and acceptance-criteria traceability after each major refinement pass, not only at the end.
+
+## Research-Informed Specification
+
+When `analysis.md` exists:
+
+- treat it as the current-state evidence baseline for the feature
+- compare proposed future behavior against observed current behavior before finalizing requirements
+- make unchanged protected behavior explicit when the change is brownfield or regression-sensitive
+- distinguish repository facts from product decisions; analysis informs the spec but does not replace product intent
+- if analysis and requested behavior conflict, surface the conflict explicitly instead of smoothing it over
+
 ## Workflow
 
 1. Validate that the request has enough product context to proceed.
 2. Read repo memory and current feature artifacts for the slug.
-3. Extract users, problem, scenarios, constraints, and desired outcomes.
-4. Resolve what you can with safe defaults and documented assumptions.
-5. Draft or refine `spec.md` with bounded, testable requirements.
-6. Check that acceptance criteria trace back to requirements and are observable by a reviewer.
-7. If blocking clarification remains, stop and say exactly what is missing.
+3. If `analysis.md` exists, summarize the current-state baseline, affected boundaries, and protected behavior that matter for the spec.
+4. Extract users, problem, major scenario areas, constraints, and desired outcomes.
+5. Decompose the feature into 3-7 major scenario areas or capability slices when the request is broad enough to benefit from structured breakdown.
+6. Resolve what you can with safe defaults and documented assumptions.
+7. Draft or refine `spec.md` section by section, stabilizing problem framing and scenarios before expanding detailed requirements.
+8. Check that acceptance criteria trace back to requirements and are observable by a reviewer.
+9. If blocking clarification remains, stop and say exactly what is missing.
 
 ## References
 
