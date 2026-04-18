@@ -1,6 +1,6 @@
-# Agents
+# Workflow Ownership
 
-This legacy page now points to the maintainer docs.
+This legacy page now points to the skill-based maintainer docs.
 
 Use:
 - [Maintainer Agents](../maintainers/agents.md)

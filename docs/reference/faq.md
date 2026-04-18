@@ -1,6 +1,6 @@
 # FAQ
 
-### Q: Do I need all 10 agents for every change?
+### Q: Do I need all 10 workflow skills for every change?
 
 No. Small changes often use:
 
@@ -30,7 +30,11 @@ Go back to `/spec-requirement`, fix the gaps in `spec.md`, and run `/spec-review
 
 ### Q: Where should clarification happen?
 
-Inside `/spec-requirement`. That agent now owns clarification during spec authoring. `spec-review-requirements` should stay a judge, not silently rewrite the spec.
+Inside `/spec-requirement`. That skill owns clarification during spec authoring. `spec-review-requirements` should stay a judge, not silently rewrite the spec.
+
+### Q: Is `/spec-review` the same as `spec-review-implementation`?
+
+Yes. `/spec-review` is the command-style workflow step, and `spec-review-implementation` is the portable skill that performs that review.
 
 ### Q: Can I go straight to `/spec-implement`?
 

@@ -1,8 +1,8 @@
-# Agents
+# Workflow Ownership
 
 ## Purpose
 
-This page explains which agent owns which part of the workflow.
+This page explains which skill owns which part of the workflow.
 
 ## Workflow Ownership
 
@@ -16,6 +16,11 @@ This page explains which agent owns which part of the workflow.
 - `/spec-tasks` -> `tasks.md`
 - `/spec-implement` -> implementation and task status updates
 - `/spec-review` -> implementation review findings
+  Skill: `spec-review-implementation`
+
+Helper skills used across the workflow:
+- `memory-promotion` -> durable-memory promotion decisions
+- `task-traceability-audit` -> `REQ -> AC -> TASK -> validation` coverage checks
 
 ## Key Contracts
 
@@ -23,7 +28,7 @@ This page explains which agent owns which part of the workflow.
 - `spec-review-requirements` is a pure readiness gate
 - `spec-plan` owns pre-plan analysis and execution strategy
 - `spec-tasks` owns taskability and traceability coverage
-- `spec-review` owns completeness, correctness, and coherence review
+- `spec-review-implementation` owns completeness, correctness, and coherence review
 
 ## Source Of Truth
 

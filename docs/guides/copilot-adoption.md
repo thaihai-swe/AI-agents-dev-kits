@@ -1,4 +1,4 @@
-# Copilot Adoption
+# Copilot And Agent Adoption
 
 ## When To Use This Guide
 
@@ -46,6 +46,7 @@ Skills should be the reusable workflow entrypoints:
 - stop on unresolved blocking clarification
 - stop when a quality gate rejects the upstream artifact
 - implement from `tasks.md`, not from vague intent
+- treat `/spec-review` as the review command that maps to the `spec-review-implementation` skill
 
 ## Stop Conditions
 
@@ -61,5 +62,5 @@ Skills should be the reusable workflow entrypoints:
 
 ## Read Next
 
-- [Copilot Usage](../explanation/copilot-usage.md)
+- [Skill Usage](../explanation/copilot-usage.md)
 - [Commands](../reference/commands.md)

@@ -15,5 +15,6 @@ Use guides when you want executable workflow guidance rather than conceptual exp
 
 1. [Quick Start](quick-start.md)
 2. [New Feature Guide](new-feature.md)
-3. [Canonical Feature Example](../examples/canonical-feature.md)
-4. [Reference](../reference/README.md)
+3. [Full Skill Workflow Example](../examples/full-skill-workflow.md)
+4. [Canonical Feature Example](../examples/canonical-feature.md)
+5. [Reference](../reference/README.md)

@@ -12,7 +12,7 @@ Most meaningful work follows this flow:
 /spec-plan                  (pre-plan analysis + execution strategy)
 /spec-tasks                 (bounded implementation tasks)
 /spec-implement             (execute tasks)
-/spec-review                (verify delivered work)
+/spec-review                (run `spec-review-implementation`)
 ```
 
 ## What Each Stage Does
@@ -70,7 +70,7 @@ It should only finalize tasks when:
 ### Implementation and Review
 
 `/spec-implement` executes tasks.
-`/spec-review` checks completeness, correctness, and coherence against the approved artifacts.
+`/spec-review` runs the `spec-review-implementation` skill to check completeness, correctness, and coherence against the approved artifacts.
 
 ## What Changes the Flow
 

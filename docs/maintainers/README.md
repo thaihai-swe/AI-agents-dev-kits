@@ -4,7 +4,7 @@ This section is for people extending or maintaining the kit itself.
 
 ## Pages
 
-- [Agents](agents.md)
+- [Workflow Ownership](agents.md)
 - [Skills](prompts.md)
 - [Templates](templates.md)
 - [Memory Maintenance](memory-maintenance.md)
@@ -12,10 +12,10 @@ This section is for people extending or maintaining the kit itself.
 
 ## What Belongs Here
 
-- agent responsibilities
+- workflow skill responsibilities
 - skill-to-artifact relationships
 - template ownership
 - durable memory maintenance
 - documentation update rules
 
-User-facing docs should not duplicate full agent contracts.
+User-facing docs should not duplicate full skill contracts.

@@ -7,10 +7,11 @@ Structured documentation, portable skills, and templates for running spec-driven
 This kit helps teams turn AI-assisted work into written artifacts that are reviewable, resumable, and traceable.
 
 It gives you:
-- a 10-skill workflow
+- a 10-step skill workflow
 - durable repo memory under `memories/repo/`
 - per-feature artifacts under `artifacts/features/<slug>/`
-- portable skills under `skills/`
+- 12 portable skills under `skills/`:
+  10 core workflow skills and 2 helper skills
 
 ## Introduction
 
@@ -52,7 +53,7 @@ In practice, the kit helps teams use AI more like a disciplined implementation p
 /spec-plan                  (pre-plan analysis + execution strategy)
 /spec-tasks                 (bounded implementation tasks)
 /spec-implement             (execute tasks)
-/spec-review                (verify completeness, correctness, coherence)
+/spec-review                (run `spec-review-implementation`)
 ```
 
 ## Start Here
@@ -66,3 +67,19 @@ In practice, the kit helps teams use AI more like a disciplined implementation p
 ## Skills
 
 Portable workflow contracts now live under [`skills/`](skills/). Each skill packages the workflow instructions plus any bundled `references/` files needed to support Claude, Codex, and other Agent Skills-compatible tools.
+
+Core workflow skills:
+- `constitution`
+- `project-knowledge-base`
+- `analyze`
+- `spec-requirement`
+- `spec-review-requirements`
+- `spec-design`
+- `spec-plan`
+- `spec-tasks`
+- `spec-implement`
+- `spec-review-implementation`
+
+Helper skills:
+- `memory-promotion`
+- `task-traceability-audit`

@@ -52,5 +52,5 @@ From a maintainer perspective:
 
 ## Read Next
 
-- [Copilot Adoption Guide](../guides/copilot-adoption.md)
+- [Copilot And Agent Adoption](../guides/copilot-adoption.md)
 - [Commands Reference](../reference/commands.md)

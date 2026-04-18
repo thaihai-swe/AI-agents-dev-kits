@@ -96,6 +96,7 @@ Stop conditions:
 
 Owner:
 - `/spec-review`
+  Skill: `spec-review-implementation`
 
 Purpose:
 - preserve implementation review findings when useful
@@ -104,3 +105,7 @@ Core review lenses:
 - completeness
 - correctness
 - coherence
+
+Note:
+- `/spec-review` is the command-style workflow step
+- `spec-review-implementation` is the portable skill that performs that review

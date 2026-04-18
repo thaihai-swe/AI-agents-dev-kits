@@ -153,6 +153,9 @@ Stop when:
 Use when:
 - implementation work has been attempted and needs verification
 
+Skill mapping:
+- `spec-review-implementation`
+
 Required inputs:
 - feature slug
 - implemented work to review
