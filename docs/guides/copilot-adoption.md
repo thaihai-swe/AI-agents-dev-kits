@@ -2,12 +2,11 @@
 
 ## When To Use This Guide
 
-Use this guide when applying the kit in a repository with GitHub Copilot.
+Use this guide when applying the kit in a repository with GitHub Copilot or another agent that can consume the shared `skills/` folder.
 
 ## Prerequisites
 
-- `.github/copilot-instructions.md` exists
-- `.github/agents/` and `.github/prompts/` are available
+- `skills/` exists
 - `memories/repo/` and `artifacts/features/` are present
 
 ## Command Sequence
@@ -27,16 +26,15 @@ Use the same workflow as the regular feature guides:
 
 ## Flow Guidance
 
-### What Copilot should treat as source of truth
+### What an agent should treat as source of truth
 
-- `.github/copilot-instructions.md`
-- the relevant agent contract in `.github/agents/`
+- the relevant skill in `skills/`
 - repo memory in `memories/repo/`
 - the current feature artifact folder
 
-### What prompt files should do
+### What skills should do
 
-Prompt files should be the user-facing entrypoints:
+Skills should be the reusable workflow entrypoints:
 - when to use the workflow step
 - required inputs
 - expected outputs
@@ -51,9 +49,9 @@ Prompt files should be the user-facing entrypoints:
 
 ## Stop Conditions
 
-- Copilot is planning around a weak or blocked spec
-- Copilot is generating tasks from a plan that is not taskable
-- Copilot is treating chat history as more authoritative than the artifacts
+- the agent is planning around a weak or blocked spec
+- the agent is generating tasks from a plan that is not taskable
+- the agent is treating chat history as more authoritative than the artifacts
 
 ## If Blocked
 

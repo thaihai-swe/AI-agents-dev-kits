@@ -1,16 +1,16 @@
 # AI Agents Development Kit
 
-Structured documentation, prompts, agents, and templates for running spec-driven development with GitHub Copilot and other coding agents.
+Structured documentation, portable skills, and templates for running spec-driven development with Claude, Codex, and other coding agents.
 
 ## What It Is
 
 This kit helps teams turn AI-assisted work into written artifacts that are reviewable, resumable, and traceable.
 
 It gives you:
-- a 10-agent workflow
+- a 10-skill workflow
 - durable repo memory under `memories/repo/`
 - per-feature artifacts under `artifacts/features/<slug>/`
-- prompts, agents, and templates for GitHub Copilot
+- portable skills under `skills/`
 
 ## Introduction
 
@@ -40,7 +40,7 @@ In practice, the kit helps teams use AI more like a disciplined implementation p
 - teams using AI to build real product features
 - brownfield repositories with hidden constraints
 - quality-first teams that want explicit gates before planning and shipping
-- maintainers building an internal Copilot workflow kit
+- maintainers building an internal skill-based workflow kit
 
 ## 60-Second Workflow
 
@@ -63,6 +63,6 @@ In practice, the kit helps teams use AI more like a disciplined implementation p
 - End-to-end example: [Canonical Feature Example](docs/examples/canonical-feature.md)
 - Commands and artifacts: [Reference](docs/reference/README.md)
 
-## Copilot Note
+## Skills
 
-GitHub Copilot should use [`.github/copilot-instructions.md`](.github/copilot-instructions.md) as the repository-wide entrypoint, then follow the contracts in [`.github/agents/`](.github/agents/).
+Portable workflow contracts now live under [`skills/`](skills/). Each skill packages the workflow instructions plus any bundled `references/` files needed to support Claude, Codex, and other Agent Skills-compatible tools.

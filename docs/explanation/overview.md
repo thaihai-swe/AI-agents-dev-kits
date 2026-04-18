@@ -8,7 +8,7 @@ It is not an application. It is a way to organize:
 - durable repository knowledge
 - feature-specific artifacts
 - quality gates
-- GitHub Copilot prompts and agents
+- portable workflow skills
 
 ## Why It Exists
 
@@ -48,10 +48,10 @@ Per-feature work lives in `artifacts/features/<slug>/`:
 - `tasks.md`
 - `review.md`
 
-### Agents and Prompts
+### Skills
 
-Agents define workflow behavior under `.github/agents/`.
-Prompts make that behavior easier to invoke in Copilot under `.github/prompts/`.
+Skills define workflow behavior under `skills/`.
+Each skill provides the reusable contract for one workflow step and may bundle `references/` files for heavier structural guidance.
 
 ## What This Kit Is Not
 

@@ -33,4 +33,4 @@ Use the `memory-promotion` skill mindset:
 
 ## Source Of Truth
 
-Use `.github/copilot-instructions.md` and the relevant agent contracts.
+Use `skills/` and the relevant memory-maintenance skills.

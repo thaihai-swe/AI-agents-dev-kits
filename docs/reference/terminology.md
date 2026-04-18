@@ -1,12 +1,12 @@
 # Terminology
 
-## Agent
+## Skill
 
-A workflow contract stored in `.github/agents/*.agent.md`.
+A workflow contract stored in `skills/*/SKILL.md`.
 
-## Prompt
+## Reference
 
-A user-facing invocation file stored in `.github/prompts/*.prompt.md`.
+A bundled support file stored in `skills/*/references/`.
 
 ## Repo Memory
 

@@ -1,27 +1,27 @@
-# Copilot Usage
+# Skill Usage
 
-## How Copilot Fits Into This Kit
+## How Skills Fit Into This Kit
 
-GitHub Copilot uses two main layers in this repository:
+This repository now uses portable skills as the main workflow contract:
 
-- `.github/copilot-instructions.md` for repository-wide operating rules
-- `.github/prompts/` and `.github/agents/` for workflow entrypoints and contracts
+- `skills/` for workflow entrypoints and contracts
+- `memories/repo/` and `artifacts/features/<slug>/` for durable and feature-specific context
 
 For users, the key idea is simple:
-- prompt files are the easiest way to invoke the workflow
-- agent files are the deeper source of truth
+- skills are the main reusable workflow surface
+- artifacts remain the source of truth for actual feature work
 
-## What Copilot Should Read First
+## What Agents Should Read First
 
-For meaningful feature work, Copilot should use:
-- `.github/copilot-instructions.md`
+For meaningful feature work, an agent should use:
+- the relevant skill in `skills/`
 - `memories/repo/constitution.md`
 - `memories/repo/project-knowledge-base.md`
 - the current feature artifact folder under `artifacts/features/<slug>/`
 
-## How Users Should Work With Copilot
+## How Users Should Work With Skills
 
-Use Copilot to produce or update artifacts one stage at a time.
+Use skills to produce or update artifacts one stage at a time.
 
 Good pattern:
 1. create or refine the next artifact
@@ -31,19 +31,19 @@ Good pattern:
 Avoid:
 - jumping straight into implementation without artifacts
 - treating chat history as the source of truth
-- letting Copilot invent missing planning details
+- letting an agent invent missing planning details
 
-## Prompt Files vs Agent Files
+## Skills And Artifacts
 
 From a user perspective:
-- prompt files tell you how to invoke a workflow step
-- agent files define what that step must do
+- the skill tells you how to invoke a workflow step
+- the artifact records the durable outcome of that step
 
 From a maintainer perspective:
-- prompt files are a thin entry layer
-- agent files carry the real contract
+- `SKILL.md` carries the behavioral contract
+- `references/` carries heavier structural material when that helps keep the main skill lean
 
-## What Copilot Should Not Do
+## What Agents Should Not Do
 
 - silently rewrite a weak spec during requirements review
 - plan around unresolved blocking clarification

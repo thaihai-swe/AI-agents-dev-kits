@@ -27,4 +27,4 @@ This page explains which agent owns which part of the workflow.
 
 ## Source Of Truth
 
-Use `.github/agents/` as the canonical contract.
+Use `skills/` as the canonical workflow contract.

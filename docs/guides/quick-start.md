@@ -6,7 +6,7 @@ Use this guide when you want the shortest safe path through the kit.
 
 ## Prerequisites
 
-- repository has `.github/copilot-instructions.md`
+- repository has the shared workflow skills under `skills/`
 - repo memory exists or you are ready to create it
 - you have chosen a feature slug
 

@@ -5,7 +5,7 @@ This section is for people extending or maintaining the kit itself.
 ## Pages
 
 - [Agents](agents.md)
-- [Prompts](prompts.md)
+- [Skills](prompts.md)
 - [Templates](templates.md)
 - [Memory Maintenance](memory-maintenance.md)
 - [Doc Governance](doc-governance.md)
@@ -13,7 +13,7 @@ This section is for people extending or maintaining the kit itself.
 ## What Belongs Here
 
 - agent responsibilities
-- prompt-to-agent relationships
+- skill-to-artifact relationships
 - template ownership
 - durable memory maintenance
 - documentation update rules

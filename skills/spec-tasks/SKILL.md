@@ -4,7 +4,7 @@ description: Create or refine a task breakdown in artifacts/features/<slug>/task
 compatibility: Designed for Claude, Codex, and other Agent Skills-compatible tools working in spec-driven repositories that use memories/repo/ and artifacts/features/<slug>/.
 metadata:
   author: spec-driven-development-kit
-  source-agent: .github/agents/spec-tasks.agent.md
+  legacy_contract_name: spec-tasks
 ---
 
 # Spec Tasks

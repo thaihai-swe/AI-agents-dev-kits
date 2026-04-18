@@ -4,7 +4,7 @@ description: Create or refine an implementation plan in artifacts/features/<slug
 compatibility: Designed for Claude, Codex, and other Agent Skills-compatible tools working in spec-driven repositories that use memories/repo/ and artifacts/features/<slug>/.
 metadata:
   author: spec-driven-development-kit
-  source-agent: .github/agents/spec-plan.agent.md
+  legacy_contract_name: spec-plan
 ---
 
 # Spec Plan
@@ -22,7 +22,7 @@ Read these inputs in this order when they exist:
 - `artifacts/features/<slug>/design.md`
 - `memories/repo/constitution.md`
 - `memories/repo/project-knowledge-base.md`
-- `.github/specs/checklists/definition-of-ready.md`
+- `references/definition-of-ready.md`
 - `references/plan-template.md`
 - any existing `artifacts/features/<slug>/plan.md`
 

@@ -1,23 +1,23 @@
-# Prompts
+# Skills
 
 ## Purpose
 
-Prompt files are the user-facing entry layer for Copilot.
+Skills are the reusable workflow entry layer for the kit.
 
-## Relationship To Agents
+## Relationship To Artifacts
 
-- prompt files live in `.github/prompts/`
-- agent contracts live in `.github/agents/`
-- prompts should summarize invocation, inputs, outputs, and stop conditions
-- agents should define the deeper behavior contract
+- skills live in `skills/`
+- artifacts live under `artifacts/features/<slug>/`
+- `SKILL.md` should summarize invocation, inputs, outputs, and stop conditions
+- `references/` should hold heavier structural material when that helps keep `SKILL.md` lean
 
-## Prompt Design Rules
+## Skill Design Rules
 
-- keep prompts short and actionable
+- keep skills short and actionable
 - point users to the right artifact path
 - mention stop conditions explicitly
-- do not duplicate the full agent file
+- do not duplicate large reference material in the main skill body
 
 ## Source Of Truth
 
-If prompt and agent wording drift, the agent contract wins.
+If skill wording and bundled references drift, fix both so the contract remains coherent.

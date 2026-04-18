@@ -6,7 +6,7 @@ Templates define the expected artifact shapes used by the workflow.
 
 ## Location
 
-Templates live in `.github/specs/templates/`.
+Templates live in the relevant skill under `skills/*/references/`.
 
 ## Maintainer Rules
 
