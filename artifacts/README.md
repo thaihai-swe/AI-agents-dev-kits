@@ -18,11 +18,6 @@ Typical files include:
 - `tasks.md`
 - `review.md`
 
-## Other Artifact Areas In This Repository
+## Notes
 
-This kit repository also includes supporting artifact areas used for repo evolution and analysis:
-
-- `artifacts/analysis/`
-- `artifacts/enhancements/`
-
-Those directories are not the canonical destination for per-feature delivery artifacts in adopting repositories.
+In this repository, `artifacts/features/` remains the canonical destination for feature-scoped delivery artifacts.

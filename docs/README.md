@@ -18,9 +18,11 @@ Start here if you want to understand what the kit is and how the workflow fits t
 Start here if you want step-by-step instructions.
 
 - [Quick Start](guides/quick-start.md)
+- [Bootstrap And Adoption](guides/bootstrap-adoption.md)
 - [New Feature Guide](guides/new-feature.md)
 - [Brownfield Change Guide](guides/brownfield-change.md)
 - [Bug Fix Guide](guides/bug-fix.md)
+- [Team And Multi-Agent Collaboration](guides/team-collaboration.md)
 - [Decision Rules](guides/decision-rules.md)
 - [Skill Adoption](guides/skill-adoption.md)
 
@@ -30,6 +32,8 @@ Start here if you learn best from realistic scenarios.
 
 - [Canonical Feature Example](examples/canonical-feature.md)
 - [Full Skill Workflow Example](examples/full-skill-workflow.md)
+- [Complexity Tier Examples](examples/complexity-tiers.md)
+- [Tiny Change Example](examples/tiny-change-example.md)
 - [Bug Fix Example](examples/bug-fix-example.md)
 - [Brownfield Example](examples/brownfield-example.md)
 

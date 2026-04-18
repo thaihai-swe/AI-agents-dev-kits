@@ -44,6 +44,23 @@ Use this guide when choosing which workflow path to run.
 
 - planning can proceed safely without extra technical clarification
 
+### Escalate to a fuller workflow when
+
+- the change is broader than it first appeared
+- current behavior is less clear than expected
+- the spec is no longer obviously complete
+- design decisions or interface concerns appear
+- the plan cannot be sequenced safely
+- task decomposition would require inventing missing strategy
+
+Practical escalation pattern:
+
+- tiny change -> standard feature workflow
+- standard feature -> add `analyze`
+- standard feature -> add `spec-design`
+- bug fix -> add `spec-review-requirements` when the fix is user-visible, ambiguous, or broader than expected
+- any workflow -> stop and repair the upstream artifact before continuing
+
 ### Stop planning when
 
 - blocking clarification remains in `spec.md`

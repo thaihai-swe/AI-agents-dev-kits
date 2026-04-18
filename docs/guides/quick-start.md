@@ -63,3 +63,4 @@ Expected artifacts:
 
 - [New Feature Guide](new-feature.md)
 - [Decision Rules](decision-rules.md)
+- [Bootstrap And Adoption](bootstrap-adoption.md)

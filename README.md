@@ -60,8 +60,10 @@ In practice, the kit helps teams use AI more like a disciplined implementation p
 
 - Learn the model: [Documentation Home](docs/README.md)
 - Quick start: [Quick Start](docs/guides/quick-start.md)
+- Adopt in a repo: [Bootstrap And Adoption](docs/guides/bootstrap-adoption.md)
 - New feature flow: [New Feature Guide](docs/guides/new-feature.md)
-- End-to-end example: [Canonical Feature Example](docs/examples/canonical-feature.md)
+- Team workflow: [Team And Multi-Agent Collaboration](docs/guides/team-collaboration.md)
+- End-to-end example: [Full Skill Workflow Example](docs/examples/full-skill-workflow.md)
 - Commands and artifacts: [Reference](docs/reference/README.md)
 
 ## Skills
