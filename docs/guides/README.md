@@ -8,7 +8,7 @@ Use guides when you want executable workflow guidance rather than conceptual exp
 - [New Feature Guide](new-feature.md)
 - [Brownfield Change Guide](brownfield-change.md)
 - [Bug Fix Guide](bug-fix.md)
-- [Copilot Adoption](copilot-adoption.md)
+- [Skill Adoption](skill-adoption.md)
 - [Decision Rules](decision-rules.md)
 
 ## Suggested Reading Order

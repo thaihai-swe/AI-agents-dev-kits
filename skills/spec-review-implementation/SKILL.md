@@ -4,7 +4,6 @@ description: Review implemented feature work against spec.md, plan.md, tasks.md,
 compatibility: Designed for Claude, Codex, and other Agent Skills-compatible tools working in spec-driven repositories that use memories/repo/ and artifacts/features/<slug>/.
 metadata:
   author: spec-driven-development-kit
-  legacy_contract_name: spec-review-implementation
 ---
 
 # Spec Review Implementation

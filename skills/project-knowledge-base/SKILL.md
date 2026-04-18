@@ -4,7 +4,6 @@ description: Create or maintain memories/repo/project-knowledge-base.md as durab
 compatibility: Designed for Claude, Codex, and other Agent Skills-compatible tools working in spec-driven repositories that use memories/repo/.
 metadata:
   author: spec-driven-development-kit
-  legacy_contract_name: project-knowledge-base
 ---
 
 # Project Knowledge Base

@@ -4,7 +4,6 @@ description: Create or maintain memories/repo/constitution.md as the repositoryâ
 compatibility: Designed for Claude, Codex, and other Agent Skills-compatible tools working in spec-driven repositories that use memories/repo/.
 metadata:
   author: spec-driven-development-kit
-  legacy_contract_name: constitution
 ---
 
 # Constitution

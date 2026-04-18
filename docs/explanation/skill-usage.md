@@ -52,5 +52,5 @@ From a maintainer perspective:
 
 ## Read Next
 
-- [Copilot And Agent Adoption](../guides/copilot-adoption.md)
+- [Skill Adoption](../guides/skill-adoption.md)
 - [Commands Reference](../reference/commands.md)

@@ -4,7 +4,6 @@ description: Review artifacts/features/<slug>/spec.md for readiness before desig
 compatibility: Designed for Claude, Codex, and other Agent Skills-compatible tools working in spec-driven repositories that use memories/repo/ and artifacts/features/<slug>/.
 metadata:
   author: spec-driven-development-kit
-  legacy_contract_name: spec-review-requirements
 ---
 
 # Spec Review Requirements

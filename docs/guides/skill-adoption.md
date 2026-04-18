@@ -1,8 +1,8 @@
-# Copilot And Agent Adoption
+# Skill Adoption
 
 ## When To Use This Guide
 
-Use this guide when applying the kit in a repository with GitHub Copilot or another agent that can consume the shared `skills/` folder.
+Use this guide when applying the kit in a repository with GitHub Copilot, Codex, Claude, or another agent that can consume the shared `skills/` folder.
 
 ## Prerequisites
 
@@ -62,5 +62,5 @@ Skills should be the reusable workflow entrypoints:
 
 ## Read Next
 
-- [Skill Usage](../explanation/copilot-usage.md)
+- [Skill Usage](../explanation/skill-usage.md)
 - [Commands](../reference/commands.md)

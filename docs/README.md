@@ -11,7 +11,7 @@ Start here if you want to understand what the kit is and how the workflow fits t
 - [Overview](explanation/overview.md)
 - [Workflow Model](explanation/workflow-model.md)
 - [Artifact Model](explanation/artifact-model.md)
-- [Skill Usage](explanation/copilot-usage.md)
+- [Skill Usage](explanation/skill-usage.md)
 
 ## Run A Workflow
 
@@ -22,7 +22,7 @@ Start here if you want step-by-step instructions.
 - [Brownfield Change Guide](guides/brownfield-change.md)
 - [Bug Fix Guide](guides/bug-fix.md)
 - [Decision Rules](guides/decision-rules.md)
-- [Copilot And Agent Adoption](guides/copilot-adoption.md)
+- [Skill Adoption](guides/skill-adoption.md)
 
 ## See Examples
 
