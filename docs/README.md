@@ -46,6 +46,10 @@ Use these when you already know the model and just need fast lookup.
 - [Terminology](reference/terminology.md)
 - [FAQ](reference/faq.md)
 
+Post-delivery testing support:
+- [Full Skill Workflow Example](examples/full-skill-workflow.md)
+- [Commands](reference/commands.md)
+
 ## Maintainers
 
 If you are extending the kit itself, use the maintainer docs instead of the user guides.

@@ -54,6 +54,7 @@ In practice, the kit helps teams use AI more like a disciplined implementation p
 /spec-tasks                 (bounded implementation tasks)
 /spec-implement             (execute tasks)
 /spec-review                (run `spec-review-implementation`)
+/spec-testing-scenarios     (create human-run manual test guide)
 ```
 
 ## Start Here
@@ -81,6 +82,7 @@ Core workflow skills:
 - `spec-tasks`
 - `spec-implement`
 - `spec-review-implementation`
+- `spec-testing-scenarios`
 
 Helper skills:
 - `memory-promotion`

@@ -109,3 +109,18 @@ Core review lenses:
 Note:
 - `/spec-review` is the command-style workflow step
 - `spec-review-implementation` is the portable skill that performs that review
+
+## `testing-scenarios.md`
+
+Owner:
+- `/spec-testing-scenarios`
+  Skill: `spec-testing-scenarios`
+
+Purpose:
+- provide a human-run manual testing guide for delivered behavior
+
+Must include:
+- prerequisites and setup
+- scenario steps
+- expected outcomes
+- regression checks when relevant

@@ -13,6 +13,7 @@ Most meaningful work follows this flow:
 /spec-tasks                 (bounded implementation tasks)
 /spec-implement             (execute tasks)
 /spec-review                (run `spec-review-implementation`)
+/spec-testing-scenarios     (optional manual test guide)
 ```
 
 ## What Each Stage Does
@@ -71,6 +72,7 @@ It should only finalize tasks when:
 
 `/spec-implement` executes tasks.
 `/spec-review` runs the `spec-review-implementation` skill to check completeness, correctness, and coherence against the approved artifacts.
+`/spec-testing-scenarios` can optionally package the delivered behavior into a human-run manual testing guide for QA, users, or reviewers.
 
 ## What Changes the Flow
 

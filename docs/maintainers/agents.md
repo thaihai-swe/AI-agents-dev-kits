@@ -17,6 +17,8 @@ This page explains which skill owns which part of the workflow.
 - `/spec-implement` -> implementation and task status updates
 - `/spec-review` -> implementation review findings
   Skill: `spec-review-implementation`
+- `/spec-testing-scenarios` -> manual testing guide
+  Skill: `spec-testing-scenarios`
 
 Helper skills used across the workflow:
 - `memory-promotion` -> durable-memory promotion decisions

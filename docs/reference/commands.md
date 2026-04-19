@@ -172,3 +172,19 @@ Core review lenses:
 Stop when:
 - implementation has not actually been attempted
 - required review artifacts are missing
+
+## `/spec-testing-scenarios`
+
+Use when:
+- implementation or reviewed delivered behavior needs a human-run manual testing guide
+
+Required inputs:
+- feature slug
+- delivered or reviewable feature behavior
+
+Output:
+- `artifacts/features/<slug>/testing-scenarios.md`
+
+Stop when:
+- implementation is too incomplete to describe meaningful manual scenarios
+- setup steps or expected outcomes are still too unclear to test safely

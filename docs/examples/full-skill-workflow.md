@@ -361,6 +361,34 @@ Stop here if:
 - task state is stale or misleading
 - requirements are unmet or unverifiable
 
+## Phase 6: Manual Testing Guide
+
+### 13. `spec-testing-scenarios`
+
+Use:
+
+```text
+/spec-testing-scenarios
+Feature slug: magic-link-login
+```
+
+Output:
+
+- `artifacts/features/magic-link-login/testing-scenarios.md`
+
+What this skill produces:
+
+- setup prerequisites
+- manual test scenarios
+- expected outcomes
+- regression-sensitive checks
+- tester sign-off guidance
+
+Use this after:
+
+- `spec-implement` when you need a tester-facing guide immediately
+- `spec-review` when you want the guide grounded in reviewed delivered scope
+
 ## End-To-End Summary
 
 The full sequence looks like this:
@@ -378,6 +406,7 @@ spec-tasks
 task-traceability-audit            (helper, used during task finalization and review)
 spec-implement
 spec-review-implementation
+spec-testing-scenarios             (optional post-delivery manual test guide)
 ```
 
 ## Practical Notes
