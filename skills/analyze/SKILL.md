@@ -51,6 +51,7 @@ Do not use this skill for:
 - Do not silently turn analysis into a spec, design doc, or readiness review.
 - Do not update repo-memory files directly.
 - If brownfield context matters, map only the parts relevant to the current change.
+- Use analysis to capture current-state maps when they reduce ambiguity, but keep them scoped and evidence-based rather than turning them into a standalone repo-wide `projectmap.md`.
 
 ## Suggested Output Shape
 
@@ -58,6 +59,7 @@ When useful, organize `analysis.md` with:
 
 - `Scope`
 - `Current State`
+- `Relevant System Map`
 - `Findings`
 - `Risks and Unknowns`
 - `Brownfield Notes`
@@ -71,9 +73,9 @@ Only include sections that materially help the next step.
 
 1. Clarify the investigation target and output path.
 2. Read repo memory, related artifacts, and the most relevant repository evidence.
-3. Capture current behavior, key findings, risks, and unknowns.
+3. Capture current behavior, any relevant subsystem or flow map, key findings, risks, and unknowns.
 4. Distinguish facts from inferences and note where evidence is weak.
-5. Recommend the next artifact or workflow step.
+5. Recommend the next artifact or workflow step, including promotion candidates when a local system map reveals durable repository structure.
 6. If warranted, identify promotion candidates for the constitution or project knowledge base without updating them directly.
 
 ## Output Standard

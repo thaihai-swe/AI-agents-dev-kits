@@ -46,6 +46,8 @@ For highly localized changes, prefer a short design or recommend proceeding dire
 - Keep implementation detail limited to what downstream planning needs.
 - Focus on decisions, interfaces, flows, and tradeoffs.
 - For each major design choice, include the decision, rationale, alternatives, affected boundaries, and risks introduced or reduced.
+- Treat `design.md` as the feature's primary decision log for non-obvious technical choices.
+- When a design decision becomes durable repository knowledge, call it out for later promotion into `memories/repo/project-knowledge-base.md` instead of creating a standalone `DECISIONS.md`.
 - Keep the design proportional to the feature complexity.
 
 ## References
@@ -60,7 +62,7 @@ For highly localized changes, prefer a short design or recommend proceeding dire
 2. Read repo memory and any relevant analysis.
 3. Identify the technical drivers, boundaries, and risky decisions.
 4. Describe the proposed architecture, interfaces, and major flows.
-5. Record alternatives considered and the rationale for the chosen approach.
+5. Record alternatives considered, the rationale for the chosen approach, and any promotion-worthy decisions.
 6. Surface open decisions that still matter for planning.
 
 ## Output Standard

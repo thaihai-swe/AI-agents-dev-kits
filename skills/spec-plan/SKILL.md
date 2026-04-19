@@ -81,6 +81,7 @@ Require design first when the work includes one or more of these:
 - Prefer reversible, phased changes over risky big-bang rewrites.
 - Make clear what changes, what stays unchanged, and what must be protected from regression.
 - Surface unresolved questions instead of silently resolving them.
+- Respect the recorded design decisions in `design.md`; only add planning-level rationale that affects sequencing, rollout, or validation.
 - Keep the plan implementation-ready without collapsing into source-code-level design or a task checklist.
 
 ## Research And Ambiguity
@@ -99,6 +100,7 @@ When planning reveals gaps:
 4. Stop if the unresolved issue materially affects sequencing, interfaces, validation, or rollout.
 
 Never present a major assumption as settled fact.
+Do not create a standalone `DECISIONS.md`; keep feature design choices in `design.md` and promote only durable repo-wide conclusions through repo memory.
 
 ## Workflow
 

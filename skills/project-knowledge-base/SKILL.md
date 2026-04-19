@@ -30,6 +30,7 @@ Use this skill when the user needs to:
 - document recurring implementation patterns
 - capture important boundaries, watchouts, or integration seams
 - preserve reusable brownfield context for future feature work
+- maintain durable architecture notes, project-map summaries, or promoted decision records
 
 Do not use this skill for:
 
@@ -46,6 +47,8 @@ Do not use this skill for:
 - Prefer patterns and boundaries over file-by-file inventories.
 - Capture observed architecture and integration behavior, not roadmap speculation.
 - Do not encode normative rules as facts.
+- Use this file as the canonical home for durable architecture context, project-map summaries, and repo-wide decision history instead of splitting them into standalone `ARCHITECTURE.md`, `projectmap.md`, or `DECISIONS.md` files.
+- Promote only decisions that remain useful beyond a single feature; keep feature-local rationale in feature artifacts.
 
 Use the repository’s `memory-promotion` skill when available to decide whether a finding belongs here, should stay in feature artifacts, or should move to the constitution.
 
@@ -59,7 +62,7 @@ Use the repository’s `memory-promotion` skill when available to decide whether
 
 1. Read current durable memory, the constitution, and relevant repository evidence.
 2. Decide whether the candidate knowledge is durable, descriptive, and reusable.
-3. Merge it into existing sections or create a concise new section when warranted.
+3. Merge it into existing sections or create a concise new section when warranted, including architecture notes, project maps, or durable decision summaries when they clear the promotion bar.
 4. Remove duplication and keep the file useful for future agents with no chat history.
 5. If no durable update is warranted, stop and say so plainly.
 

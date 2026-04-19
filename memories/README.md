@@ -9,7 +9,8 @@ The current kit uses a two-file durable memory model under `memories/repo/`:
 - `constitution.md` - Repository-wide rules, guardrails, and non-negotiables
 - `project-knowledge-base.md` - Durable descriptive repository knowledge, patterns, boundaries, and reusable context
 
-In the current model, durable brownfield watchouts, architecture notes, and integration guidance are consolidated into `project-knowledge-base.md` instead of being split across separate repository-memory files.
+In the current model, durable brownfield watchouts, architecture notes, project-map summaries, and promoted decision history are consolidated into `project-knowledge-base.md` instead of being split across separate repository-memory files.
+Likewise, non-negotiable AI operating rules belong in `constitution.md` instead of a separate `AI_CONTRACT.md`.
 
 ## What Goes Where
 
@@ -22,6 +23,7 @@ Use this file for normative repository rules such as:
 - migration and rollback requirements
 - review and release guardrails
 - AI operating constraints that should always apply
+- non-negotiable agent and automation rules that some teams might otherwise call an AI contract
 
 Update it rarely and deliberately.
 
@@ -34,6 +36,8 @@ Use this file for durable facts and reusable repository context such as:
 - stable integration seams
 - brownfield watchouts that future work should know
 - architectural context grounded in repository evidence
+- durable project-map summaries of important modules, flows, or seams
+- promoted summaries of non-obvious repo-wide design decisions
 - stable testing patterns
 
 Update it whenever durable knowledge emerges from real work.
@@ -109,5 +113,6 @@ Both durable memory files can stay simple and readable. A typical entry can incl
 - update durable knowledge as the repo changes
 - avoid duplicating the same idea across multiple files
 - do not let descriptive memory override the constitution
+- do not create competing durable files such as `AI_CONTRACT.md`, `ARCHITECTURE.md`, `DECISIONS.md`, or `projectmap.md` unless the repository intentionally changes its canonical memory model
 
 For the current repository-memory contract, also see [`memories/repo/README.md`](repo/README.md) and [`docs/memory-system/README.md`](../docs/memory-system/README.md).

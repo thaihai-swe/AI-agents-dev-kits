@@ -8,6 +8,9 @@ Owner:
 Purpose:
 - capture bounded discovery about the current system
 
+May include:
+- a scoped current-state subsystem or flow map when that reduces ambiguity for the next step
+
 Required when:
 - current behavior, constraints, or risks are unclear
 
@@ -54,6 +57,9 @@ Purpose:
 
 Required when:
 - boundaries, interfaces, migrations, or major tradeoffs need explicit treatment
+
+Also acts as:
+- the feature's primary record of non-obvious technical decisions and rationale
 
 ## `plan.md`
 

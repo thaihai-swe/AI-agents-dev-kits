@@ -30,6 +30,7 @@ Use this skill when the user needs to:
 - add durable quality gates or delivery rules
 - tighten architectural guardrails
 - clarify how future agents should operate across the repository
+- capture or revise the repository's effective AI contract inside the constitution
 
 Do not use this skill for:
 
@@ -63,6 +64,7 @@ If the bump is ambiguous, explain the reasoning before finalizing it.
 - Use [references/constitution-template.md](references/constitution-template.md) as the bundled structure.
 - Ensure placeholder tokens are fully replaced with concrete text.
 - Keep rules declarative, testable, and action-oriented.
+- Treat the constitution as the canonical home for non-negotiable AI operating rules instead of creating a separate `AI_CONTRACT.md`.
 
 ## Workflow
 
