@@ -90,6 +90,18 @@ Why it exists:
 What it is not:
 - mandatory for every tiny change
 
+### `testing-scenarios.md`
+
+What it is:
+- a human-run manual testing guide for delivered behavior
+
+Why it exists:
+- turn implemented or reviewed scope into clear tester-facing scenarios
+
+What it is not:
+- an automated test suite
+- a replacement for implementation review
+
 ## Repo Memory vs Feature Artifacts
 
 Repo memory lives in `memories/repo/`.

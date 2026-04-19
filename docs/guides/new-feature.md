@@ -21,6 +21,7 @@ Use this guide for a normal feature that introduces or changes user-visible beha
 /spec-tasks
 /spec-implement
 /spec-review
+/spec-testing-scenarios     (optional manual test guide)
 ```
 
 ## Expected Artifacts
@@ -32,6 +33,7 @@ Use this guide for a normal feature that introduces or changes user-visible beha
 - `plan.md` with pre-plan analysis and execution strategy
 - `tasks.md` with bounded, traceable tasks
 - optional `review.md`
+- optional `testing-scenarios.md`
 
 ## Flow Guidance
 
@@ -73,6 +75,10 @@ Use `/spec-tasks` to produce:
 ### 7. Implement and review
 
 Implement from `tasks.md`, then verify against the approved artifacts.
+
+### 8. Package manual testing when useful
+
+Use `/spec-testing-scenarios` when testers, QA, or reviewers need a human-run guide grounded in delivered behavior.
 
 ## Stop Conditions
 

@@ -1,6 +1,6 @@
 # FAQ
 
-### Q: Do I need all 10 workflow skills for every change?
+### Q: Do I need every workflow skill for every change?
 
 No. Small changes often use:
 

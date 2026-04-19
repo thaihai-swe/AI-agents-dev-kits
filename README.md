@@ -7,11 +7,11 @@ Structured documentation, portable skills, and templates for running spec-driven
 This kit helps teams turn AI-assisted work into written artifacts that are reviewable, resumable, and traceable.
 
 It gives you:
-- a 10-step skill workflow
+- an end-to-end skill workflow from repo memory through delivery review
 - durable repo memory under `memories/repo/`
 - per-feature artifacts under `artifacts/features/<slug>/`
-- 12 portable skills under `skills/`:
-  10 core workflow skills and 2 helper skills
+- 13 portable skills under `skills/`:
+  11 core workflow skills and 2 helper skills
 
 ## Introduction
 

@@ -17,6 +17,7 @@ Typical files include:
 - `plan.md`
 - `tasks.md`
 - `review.md`
+- `testing-scenarios.md`
 
 ## Notes
 

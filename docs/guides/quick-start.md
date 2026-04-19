@@ -34,6 +34,7 @@ Expected artifacts:
 /spec-tasks
 /spec-implement
 /spec-review
+/spec-testing-scenarios     (optional manual test guide)
 ```
 
 Expected artifacts:
@@ -44,6 +45,7 @@ Expected artifacts:
 - `plan.md`
 - `tasks.md`
 - optional `review.md`
+- optional `testing-scenarios.md`
 
 ## Stop Conditions
 

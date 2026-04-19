@@ -165,6 +165,8 @@ Example:
 Use `skills/` as the canonical workflow contract.
 
 Workflow:
+- `/constitution` -> `skills/constitution/SKILL.md`
+- `/project-knowledge-base` -> `skills/project-knowledge-base/SKILL.md`
 - `/analyze` -> `skills/analyze/SKILL.md`
 - `/spec-requirement` -> `skills/spec-requirement/SKILL.md`
 - `/spec-review-requirements` -> `skills/spec-review-requirements/SKILL.md`
@@ -173,6 +175,7 @@ Workflow:
 - `/spec-tasks` -> `skills/spec-tasks/SKILL.md`
 - `/spec-implement` -> `skills/spec-implement/SKILL.md`
 - `/spec-review` -> `skills/spec-review-implementation/SKILL.md`
+- `/spec-testing-scenarios` -> `skills/spec-testing-scenarios/SKILL.md`
 ```
 
 Keep the file short and route detail back to the skills themselves.
@@ -185,6 +188,8 @@ Recommended adapter files:
 
 ```text
 CLAUDE.md
+.claude/commands/constitution.md
+.claude/commands/project-knowledge-base.md
 .claude/commands/analyze.md
 .claude/commands/spec-requirement.md
 .claude/commands/spec-review-requirements.md
@@ -193,6 +198,7 @@ CLAUDE.md
 .claude/commands/spec-tasks.md
 .claude/commands/spec-implement.md
 .claude/commands/spec-review.md
+.claude/commands/spec-testing-scenarios.md
 ```
 
 ## What To Put In `CLAUDE.md`

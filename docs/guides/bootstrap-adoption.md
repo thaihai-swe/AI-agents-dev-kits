@@ -29,7 +29,7 @@ Copy the `skills/` directory into the target repository.
 
 This gives the repository:
 
-- 10 core workflow skills
+- 11 core workflow skills
 - 2 helper skills
 
 ## Step 2: Create The Core Working Folders
@@ -84,6 +84,7 @@ Then follow the normal workflow:
 /spec-tasks
 /spec-implement
 /spec-review
+/spec-testing-scenarios     (optional manual test guide)
 ```
 
 ## Adoption Modes

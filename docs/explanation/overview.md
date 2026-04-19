@@ -47,6 +47,7 @@ Per-feature work lives in `artifacts/features/<slug>/`:
 - `plan.md`
 - `tasks.md`
 - `review.md`
+- `testing-scenarios.md`
 
 ### Skills
 
