@@ -6,6 +6,12 @@ Structured documentation, portable skills, and templates for running spec-driven
 
 This kit helps teams turn AI-assisted work into written artifacts that are reviewable, resumable, and traceable.
 
+Its core stance is:
+
+- artifacts are the durable source of truth
+- skills are the reusable workflow contract
+- adapter files such as `AGENTS.md` should stay thin
+
 It gives you:
 - an end-to-end skill workflow from repo memory through delivery review
 - durable repo memory under `memories/repo/`
@@ -46,15 +52,19 @@ In practice, the kit helps teams use AI more like a disciplined implementation p
 ## 60-Second Workflow
 
 ```text
+/constitution               (if durable repo rules do not exist yet)
+/project-knowledge-base     (if durable repo context does not exist yet)
 /analyze                    (if current system behavior is unclear)
 /spec-requirement           (define intent and resolve blocking clarification)
 /spec-review-requirements   (check readiness)
 /spec-design                (only when technical ambiguity needs design)
 /spec-plan                  (pre-plan analysis + execution strategy)
 /spec-tasks                 (bounded implementation tasks)
+/task-traceability-audit    (when traceability confidence needs checking)
 /spec-implement             (execute tasks)
 /spec-review                (run `spec-review-implementation`)
 /spec-testing-scenarios     (create human-run manual test guide)
+/memory-promotion           (when deciding what belongs in durable repo memory)
 ```
 
 Treat this as an operating sequence, not a menu of loosely related prompts.
@@ -67,14 +77,13 @@ Treat this as an operating sequence, not a menu of loosely related prompts.
 
 ## Start Here
 
-- Learn the model: [Documentation Home](docs/README.md)
-- Quick start: [Quick Start](docs/guides/quick-start.md)
-- Adopt in a repo: [Bootstrap And Adoption](docs/guides/bootstrap-adoption.md)
-- New feature flow: [New Feature Guide](docs/guides/new-feature.md)
-- Team workflow: [Team And Multi-Agent Collaboration](docs/guides/team-collaboration.md)
-- Release baseline: [Release Baseline Example](docs/examples/release-baseline.md)
-- End-to-end example: [Full Skill Workflow Example](docs/examples/full-skill-workflow.md)
-- Commands and artifacts: [Reference](docs/reference/README.md)
+- Docs home: [Docs](docs/README.md)
+- Quick start: [Getting Started](docs/getting-started.md)
+- Workflow: [Workflow](docs/workflow.md)
+- Adoption: [Adoption](docs/adoption.md)
+- Examples: [Examples](docs/examples.md)
+- Reference: [Reference](docs/reference.md)
+- Maintainers: [Maintainers](docs/maintainers.md)
 
 ## Minimum Adoption
 
@@ -98,6 +107,22 @@ Then initialize:
 ```
 
 After that, start with one real feature and follow the normal workflow.
+
+## Product Stance
+
+This kit is designed to be:
+
+- artifact-first, not chat-history-first
+- portable across agents, not tied to one client
+- disciplined about verification and review
+- small enough to maintain without turning every concern into a separate skill
+
+This kit is not trying to be:
+
+- a general orchestration platform
+- a CLI-heavy generator
+- a plugin marketplace
+- a large autonomous multi-agent framework
 
 ## Skills
 
