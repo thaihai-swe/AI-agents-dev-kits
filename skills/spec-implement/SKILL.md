@@ -1,6 +1,6 @@
 ---
 name: spec-implement
-description: Execute approved implementation work from artifacts/features/<slug>/tasks.md using spec.md and plan.md as source-of-truth context. Use when the next unblocked task, or a selected set of task IDs, is ready to implement with dependency checks, task status updates, scoped code changes, validation, and traceability back to requirements and acceptance criteria.
+description: Execute approved implementation work from artifacts/features/<slug>/tasks.md using spec.md and plan.md as source-of-truth context. Use when the next unblocked task, or a selected set of task IDs, is ready to implement with dependency checks, task status updates, scoped code changes, test-first validation for behavior changes, and traceability back to requirements and acceptance criteria.
 compatibility: Designed for Claude, Codex, and other Agent Skills-compatible tools working in spec-driven repositories that use memories/repo/ and artifacts/features/<slug>/.
 metadata:
   author: spec-driven-development-kit
@@ -78,6 +78,11 @@ When stopping, identify:
 - Implement only what the selected task describes.
 - Add tests and validation during implementation, not afterthought.
 - Surface upstream defects instead of working around them silently.
+- When behavior changes, write or update the targeted failing test first unless the task is strictly non-behavioral.
+- Verify the failing test fails for the expected reason before relying on it as proof.
+- Prefer minimal code that satisfies the task and its tests over speculative cleanup or extra features.
+- Do not claim completion from plausible code alone; fresh verification evidence is required.
+- If the repo starts from a dirty or unstable baseline that affects the task, say so explicitly before continuing.
 
 ## Task Status Protocol
 
@@ -115,16 +120,38 @@ If implementation reveals that a task is materially larger, more ambiguous, or m
 3. Recommend revisiting `tasks.md` or upstream artifacts.
 4. Do not silently expand the implementation slice.
 
+## Verification Discipline
+
+Before claiming a task is done:
+
+- identify which command or commands prove the task outcome
+- run those commands fresh after the change
+- read the full output rather than inferring success from partial signals
+- base the task status on observed evidence, not confidence
+
+Examples of acceptable evidence include targeted tests, relevant integration tests, lint or typecheck runs, and other repository quality gates that actually prove the task outcome.
+
 ## Workflow
 
 1. Validate that the required artifacts and prerequisites exist.
 2. Select the next unblocked task, or confirm the user-selected task IDs are executable.
 3. Update the task status in `tasks.md` to `In Progress`.
-4. Implement only the scoped task outcome.
-5. Add or update tests and validation needed for that task.
-6. Confirm the task outcome matches its linked requirements and acceptance criteria.
-7. Mark the task `Done` immediately after validation passes, or `Blocked` with a reason if it cannot complete.
-8. Update resume context in `tasks.md` before moving on.
+4. If the task changes behavior, write or update the most targeted failing test first and verify it fails for the expected reason.
+5. Implement only the scoped task outcome.
+6. Add or update any additional tests and validation needed for that task.
+7. Run the proving verification commands and confirm the task outcome matches its linked requirements and acceptance criteria.
+8. Mark the task `Done` immediately after validation passes, or `Blocked` with a reason if it cannot complete.
+9. Update resume context in `tasks.md` before moving on.
+
+## Self-Review
+
+Before marking the task done, verify:
+
+- the code change stayed inside the selected task boundary
+- test-first behavior was followed when the task changed behavior
+- any parallel execution assumptions remained safe
+- verification was fresh and directly relevant to the task
+- no hidden scope expansion or unrecorded blocker remains
 
 ## Validation Standard
 
@@ -135,6 +162,7 @@ Before marking a task done, verify:
 - lint, type checks, or repo quality gates pass when applicable
 - changed behavior still aligns with `spec.md`, `plan.md`, and the selected task
 - evidence exists for the linked acceptance criteria
+- task status in `tasks.md` matches the actual verification outcome
 
 Use the repository’s `task-traceability-audit` skill when available to confirm the selected task still traces cleanly to requirements, acceptance criteria, and validation.
 
@@ -146,6 +174,7 @@ Implementation work is ready only when it:
 - respects dependencies and sequencing
 - updates task status immediately and correctly
 - includes validation with the code change
+- uses test-first validation for behavior changes when practical
 - preserves traceability from `REQ-*` and `AC-*` to the implemented task
 - surfaces blockers or upstream defects clearly instead of masking them
 

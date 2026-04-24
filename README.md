@@ -57,6 +57,14 @@ In practice, the kit helps teams use AI more like a disciplined implementation p
 /spec-testing-scenarios     (create human-run manual test guide)
 ```
 
+Treat this as an operating sequence, not a menu of loosely related prompts.
+
+- start with the skill that matches the current uncertainty instead of improvising from chat history
+- do not skip forward when the upstream artifact is still weak
+- use the current feature artifacts under `artifacts/features/<slug>/` as the working source of truth
+- do not claim implementation is complete until the relevant verification has been run and read
+- when debugging, investigate root cause before proposing fixes
+
 ## Start Here
 
 - Learn the model: [Documentation Home](docs/README.md)
@@ -70,6 +78,13 @@ In practice, the kit helps teams use AI more like a disciplined implementation p
 ## Skills
 
 Portable workflow contracts now live under [`skills/`](skills/). Each skill packages the workflow instructions plus any bundled `references/` files needed to support Claude, Codex, and other Agent Skills-compatible tools.
+
+The intended agent behavior is:
+
+- check whether an existing skill matches the task before improvising
+- prefer the matching artifact-driven workflow over freeform execution
+- escalate backward to the missing upstream artifact when the current phase is blocked
+- keep activation and adapter files thin; keep detailed behavior in `skills/`
 
 Core workflow skills:
 - `constitution`

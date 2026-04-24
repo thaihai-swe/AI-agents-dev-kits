@@ -1,6 +1,6 @@
 ---
 name: analyze
-description: Investigate a problem, feature area, bug, or brownfield subsystem and produce one bounded analysis artifact grounded in repository evidence. Use when the work is exploratory and the answer is not yet a specification, design, plan, or implementation task.
+description: Investigate a problem, feature area, bug, or brownfield subsystem and produce one bounded analysis artifact grounded in repository evidence. Use when the work is exploratory, when root cause is not yet known, or when current-state behavior must be understood before specification, design, planning, or implementation.
 compatibility: Designed for Claude, Codex, and other Agent Skills-compatible tools working in spec-driven repositories that use memories/repo/ and artifacts/features/<slug>/.
 metadata:
   author: spec-driven-development-kit
@@ -52,6 +52,11 @@ Do not use this skill for:
 - Do not update repo-memory files directly.
 - If brownfield context matters, map only the parts relevant to the current change.
 - Use analysis to capture current-state maps when they reduce ambiguity, but keep them scoped and evidence-based rather than turning them into a standalone repo-wide `projectmap.md`.
+- For bugs, failures, and unexpected behavior, investigate root cause before proposing fixes.
+- Reproduce the issue consistently when possible; if reproduction is not yet reliable, state that clearly and gather more evidence instead of guessing.
+- Check recent changes, relevant boundaries, and environment or configuration propagation before concluding where the problem lives.
+- In multi-step flows, collect evidence at component boundaries so the failure location is demonstrated rather than assumed.
+- Do not present a likely explanation as established root cause unless the evidence supports it.
 
 ## Suggested Output Shape
 
@@ -73,10 +78,21 @@ Only include sections that materially help the next step.
 
 1. Clarify the investigation target and output path.
 2. Read repo memory, related artifacts, and the most relevant repository evidence.
-3. Capture current behavior, any relevant subsystem or flow map, key findings, risks, and unknowns.
-4. Distinguish facts from inferences and note where evidence is weak.
-5. Recommend the next artifact or workflow step, including promotion candidates when a local system map reveals durable repository structure.
-6. If warranted, identify promotion candidates for the constitution or project knowledge base without updating them directly.
+3. If the work involves a bug, failure, or unexpected behavior, reproduce it, inspect recent changes, and gather evidence at the relevant boundaries before proposing explanations.
+4. Capture current behavior, any relevant subsystem or flow map, key findings, risks, and unknowns.
+5. Distinguish facts from inferences, call out the confidence level of any root-cause claim, and note where evidence is weak.
+6. Recommend the next artifact or workflow step, including promotion candidates when a local system map reveals durable repository structure.
+7. If warranted, identify promotion candidates for the constitution or project knowledge base without updating them directly.
+
+## Self-Review
+
+Before finalizing the analysis, verify:
+
+- the investigation stayed within the stated scope
+- facts and inferences are clearly separated
+- root-cause claims are backed by observed evidence or explicitly labeled as hypotheses
+- important unknowns, weak evidence, and boundary risks are visible
+- the recommended next step follows from the findings rather than jumping ahead
 
 ## Output Standard
 
@@ -85,6 +101,7 @@ The analysis is ready only when it:
 - stays scoped to the investigation goal
 - is grounded in repository evidence
 - separates facts from inference
+- identifies root cause carefully when debugging-oriented analysis was requested
 - reduces ambiguity for the next workflow step
 - makes important uncertainty and risk visible
 

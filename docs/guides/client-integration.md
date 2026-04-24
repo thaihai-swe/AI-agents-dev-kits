@@ -10,6 +10,13 @@ As of April 19, 2026, these clients do not all consume the same repository files
 2. add thin client-specific adapter files for each tool
 3. avoid maintaining separate workflow logic by hand in multiple places
 
+Client adapters should also bias the agent toward activating the right existing skill before acting. The adapter layer should teach:
+
+- use the closest matching skill before freeform work
+- prefer current feature artifacts over chat-history summaries
+- move backward to the missing upstream artifact when the current phase is blocked
+- require fresh verification evidence before claiming implementation is complete
+
 ## Recommended Integration Model
 
 Treat the repository like this:
@@ -107,6 +114,8 @@ Recommended contents:
 - `artifacts/features/<slug>/` is the feature work location
 - feature work should follow the spec-driven sequence
 - Copilot should prefer the relevant skill and current artifacts over chat history
+- Copilot should not skip ahead when the required upstream artifact is missing or weak
+- completion claims should be based on fresh verification evidence, not plausible diffs
 
 ## What To Put In `.github/instructions/*.instructions.md`
 
@@ -156,6 +165,8 @@ Include:
   - `artifacts/features/<slug>/`
 - the normal workflow order
 - a short mapping from command-style steps to skills
+- a short rule that agents should prefer the matching existing skill before acting freeform
+- a short rule that implementation completion requires fresh verification evidence
 
 Example:
 
@@ -209,6 +220,8 @@ Keep `CLAUDE.md` focused on:
 - canonical locations
 - working style expectations
 - the fact that `skills/` is the workflow source of truth
+- the expectation that the agent should route through the matching skill before acting
+- the expectation that evidence, not plausibility, gates completion claims
 
 ## What To Put In `.claude/commands/*.md`
 

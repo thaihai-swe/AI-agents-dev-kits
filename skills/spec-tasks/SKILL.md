@@ -74,6 +74,9 @@ When stopping, say which precondition failed and which artifact needs revision.
 - Make regression-sensitive or protected behavior explicit in safeguard or validation tasks when relevant.
 - Mark only truly parallel-safe tasks with `[P]`.
 - Prefer explicit file or module targets when they are known.
+- A task is not parallel-safe if it shares write ownership, contracts, migrations, or sequencing-sensitive behavior with another task.
+- When parallel work is allowed, make reintegration and follow-up verification explicit instead of assuming the merge point is trivial.
+- Include the intended proof of completion in the task body or validation notes, not just the implementation action.
 
 ## References
 
@@ -87,10 +90,20 @@ When stopping, say which precondition failed and which artifact needs revision.
 2. Read the spec, plan, optional design, and supporting context.
 3. Preserve the phase order from `plan.md`.
 4. Decompose each phase into bounded tasks by story, dependency, or technical slice.
-5. Add explicit dependencies and mark safe parallel work with `[P]`.
-6. Include validation tasks and regression protection tasks where needed.
+5. Add explicit dependencies, file or module ownership where known, and mark safe parallel work with `[P]` only when boundaries are truly independent.
+6. Include validation tasks, regression protection tasks, and reintegration checks where needed.
 7. Check that every requirement and acceptance criterion is covered.
 8. Run a final traceability pass for `REQ -> AC -> TASK -> validation`.
+
+## Self-Review
+
+Before finalizing `tasks.md`, verify:
+
+- no task is too large or vague to execute in one bounded slice
+- tasks marked `[P]` do not create obvious shared-write or shared-contract conflicts
+- validation and reintegration work are explicit where they need to be
+- task ordering still respects the plan rather than introducing a new hidden phase model
+- a future implementer could tell what to do next without guessing
 
 ## Validation Checklist
 
@@ -102,6 +115,7 @@ Before finalizing `tasks.md`, verify:
 - every task includes `Status: Not Started`
 - every task includes `Session note:`
 - parallel markers appear only on truly independent tasks
+- parallel-safe tasks have clear ownership boundaries
 - every material `REQ-*` maps to one or more tasks
 - every material `AC-*` maps to one or more tasks or validation steps
 - validation tasks are explicit

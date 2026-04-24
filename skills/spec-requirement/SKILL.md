@@ -50,6 +50,12 @@ If one of those is missing and cannot be safely inferred, stop and state exactly
 
 If context supports reasonable assumptions or safe defaults, proceed and document them in `Assumptions`.
 
+Assess scope before drafting in detail.
+
+- If the request spans multiple loosely coupled capabilities, user journeys, or delivery tracks, do not force them into one oversized spec.
+- Decompose the work into smaller feature candidates, explain the split, and continue only with the highest-priority slice when the user has not named a narrower scope.
+- Treat "one spec" as "one reviewable product change" rather than "everything mentioned in the request."
+
 ## Writing Rules
 
 - Focus on what and why, not how.
@@ -69,6 +75,8 @@ This skill owns clarification during specification authoring.
 - Make reasonable assumptions when safe defaults exist.
 - Surface only unresolved questions that materially affect scope, security/privacy, or core user experience.
 - Do not push unstable product ambiguity downstream into planning.
+- When clarification is needed, ask one material question at a time instead of sending a broad questionnaire.
+- Prefer constrained options when the likely answer space is small enough to guide the user without biasing the outcome.
 
 Classify uncertainty as:
 
@@ -84,12 +92,19 @@ Rules for unresolved markers:
 - mirror each one into `Open Questions`
 - do not treat the spec as review-ready while blocking clarification remains
 
+For non-trivial product choices, do not jump straight from ambiguity to detailed requirements.
+
+- Briefly outline 2-3 viable product-shaping options when different choices would materially change user experience, scope, or validation strategy.
+- Lead with the recommended option and explain the tradeoff in plain language.
+- Record the chosen direction in `Notes` or `Assumptions` when it affects how the spec should be interpreted later.
+
 ## Iteration Rules
 
 - When ambiguity is high, refine one section at a time instead of forcing a full stable spec in one pass.
 - Stabilize upstream sections first: users, problem, goals, and scenarios should be coherent before detailed requirements multiply.
 - If the request is still evolving, prefer a clearly marked draft with explicit assumptions and open questions over a falsely complete spec.
 - Re-check requirement and acceptance-criteria traceability after each major refinement pass, not only at the end.
+- Present the draft back to the user before treating it as stable when the request required meaningful clarification, decomposition, or product-direction choices.
 
 ## Research-Informed Specification
 
@@ -105,13 +120,16 @@ When `analysis.md` exists:
 
 1. Validate that the request has enough product context to proceed.
 2. Read repo memory and current feature artifacts for the slug.
-3. If `analysis.md` exists, summarize the current-state baseline, affected boundaries, and protected behavior that matter for the spec.
-4. Extract users, problem, major scenario areas, constraints, and desired outcomes.
-5. Decompose the feature into 3-7 major scenario areas or capability slices when the request is broad enough to benefit from structured breakdown.
+3. Assess whether the request is small enough for one reviewable feature spec; if not, decompose it and continue with the selected slice only.
+4. If `analysis.md` exists, summarize the current-state baseline, affected boundaries, and protected behavior that matter for the spec.
+5. Extract users, problem, major scenario areas, constraints, and desired outcomes.
 6. Resolve what you can with safe defaults and documented assumptions.
-7. Draft or refine `spec.md` section by section, stabilizing problem framing and scenarios before expanding detailed requirements.
-8. Check that acceptance criteria trace back to requirements and are observable by a reviewer.
-9. If blocking clarification remains, stop and say exactly what is missing.
+7. When non-trivial product choices remain, present 2-3 viable approaches with tradeoffs and confirm the preferred direction before locking detailed requirements.
+8. Draft or refine `spec.md` section by section, stabilizing problem framing and scenarios before expanding detailed requirements.
+9. Run a self-review for placeholders, contradictions, unbounded scope, ambiguous wording, and weak requirement-to-acceptance traceability.
+10. Present the drafted spec or key sections back to the user when review gating is needed, then incorporate feedback.
+11. Check that acceptance criteria trace back to requirements and are observable by a reviewer.
+12. If blocking clarification remains, stop and say exactly what is missing.
 
 ## References
 
@@ -132,9 +150,18 @@ The spec is ready only when it:
 - avoids technical planning and implementation detail
 - resolves all blocking clarification
 
+Before considering the artifact ready, verify:
+
+- no placeholder text remains unless explicitly intentional and called out as blocking
+- requirements do not contradict each other or the stated outcomes
+- scope is still narrow enough to hand off as one feature
+- acceptance criteria are concrete enough for a reviewer to verify without guessing
+- the document stays in requirement space and does not drift into design or implementation planning
+
 ## Output Rules
 
 - Update only `artifacts/features/<slug>/spec.md`.
 - Do not create `design.md`, `plan.md`, or `tasks.md`.
 - Do not finalize the spec if requirements or acceptance criteria are not reviewable.
+- Do not finalize one oversized spec when the request should be split into multiple feature artifacts.
 - If the spec is not ready, state exactly what is missing instead of guessing.

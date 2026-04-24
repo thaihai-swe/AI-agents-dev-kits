@@ -1,6 +1,6 @@
 ---
 name: spec-review-implementation
-description: Review implemented feature work against spec.md, plan.md, tasks.md, and repository quality expectations. Use when implementation has been attempted and you need an evidence-based verdict on requirement coverage, validation quality, scope control, traceability, and readiness to merge or ship.
+description: Review implemented feature work against spec.md, plan.md, tasks.md, and repository quality expectations. Use when implementation has been attempted and you need an evidence-based verdict on requirement coverage, validation quality, scope control, traceability, task-state accuracy, and readiness to merge or ship.
 compatibility: Designed for Claude, Codex, and other Agent Skills-compatible tools working in spec-driven repositories that use memories/repo/ and artifacts/features/<slug>/.
 metadata:
   author: spec-driven-development-kit
@@ -60,6 +60,10 @@ If those are not true, stop and say exactly what is missing.
 - Use repository rules and stable patterns when relevant.
 - Be precise about gaps, risks, regressions, and misleading task state.
 - Keep the review proportional to the feature’s size and risk.
+- Prefer fresh verification evidence over implementation plausibility or agent claims.
+- Treat missing, stale, or weak verification as a review finding, not a paperwork issue.
+- Call out when task status says `Done` but the evidence does not support that claim.
+- Do not silently rewrite scope drift as “acceptable interpretation” when the implementation materially diverged from the approved artifacts.
 
 ## References
 
@@ -80,11 +84,22 @@ Choose `changes required` when requirements are unmet, validation is too weak fo
 ## Workflow
 
 1. Read the approved feature artifacts and any relevant repo memory.
-2. Inspect the repository changes, tests, docs, and touched files.
-3. Compare implementation against requirements, acceptance criteria, task outcomes, and repo rules.
-4. Classify issues as blocking or follow-up.
-5. Produce a verdict based on evidence.
-6. Write `review.md` only when a durable written review is useful.
+2. Inspect the repository changes, tests, docs, touched files, and the current task-state evidence.
+3. Identify which verification commands or artifacts actually prove the delivered behavior and prefer fresh evidence when available.
+4. Compare implementation against requirements, acceptance criteria, task outcomes, and repo rules.
+5. Classify issues as blocking or follow-up.
+6. Produce a verdict based on evidence.
+7. Write `review.md` only when a durable written review is useful.
+
+## Self-Review
+
+Before finalizing the review, verify:
+
+- each finding points to evidence rather than intuition
+- requirement coverage, verification quality, and scope control were all checked
+- task-state accuracy was reviewed alongside the code changes
+- the verdict matches the severity of the findings
+- absence of findings is stated explicitly when nothing material is wrong
 
 ## Output Standard
 
@@ -94,6 +109,7 @@ The review is ready only when it:
 - ties findings to evidence
 - distinguishes blocking issues from follow-ups
 - covers requirement coverage, validation quality, scope control, and handoff state
+- makes misleading completion claims or stale task state visible when present
 
 ## Output Rules
 

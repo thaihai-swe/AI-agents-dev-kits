@@ -1,6 +1,6 @@
 ---
 name: spec-design
-description: Create or refine artifacts/features/<slug>/design.md when a feature needs architectural clarification, interface decisions, flow design, or risk reduction before planning. Use for cross-boundary, interface-changing, data-shaping, or otherwise technically consequential work where a design artifact materially reduces ambiguity.
+description: Create or refine artifacts/features/<slug>/design.md when a feature needs architectural clarification, interface decisions, flow design, or risk reduction before planning. Use for cross-boundary, interface-changing, data-shaping, or otherwise technically consequential work where comparing alternatives and documenting decisions materially reduces ambiguity.
 compatibility: Designed for Claude, Codex, and other Agent Skills-compatible tools working in spec-driven repositories that use memories/repo/ and artifacts/features/<slug>/.
 metadata:
   author: spec-driven-development-kit
@@ -49,6 +49,10 @@ For highly localized changes, prefer a short design or recommend proceeding dire
 - Treat `design.md` as the feature's primary decision log for non-obvious technical choices.
 - When a design decision becomes durable repository knowledge, call it out for later promotion into `memories/repo/project-knowledge-base.md` instead of creating a standalone `DECISIONS.md`.
 - Keep the design proportional to the feature complexity.
+- For non-trivial design choices, compare 2-3 viable approaches before locking the recommended one.
+- Lead with the recommended option and make the tradeoff explicit in plain language.
+- Present large or risky designs in reviewable sections instead of one undifferentiated wall of content.
+- Do not treat the design as stable while the key approach or boundaries are still unresolved.
 
 ## References
 
@@ -61,9 +65,21 @@ For highly localized changes, prefer a short design or recommend proceeding dire
 1. Confirm the spec and its review state are ready for design.
 2. Read repo memory and any relevant analysis.
 3. Identify the technical drivers, boundaries, and risky decisions.
-4. Describe the proposed architecture, interfaces, and major flows.
-5. Record alternatives considered, the rationale for the chosen approach, and any promotion-worthy decisions.
-6. Surface open decisions that still matter for planning.
+4. For non-trivial choices, compare 2-3 viable approaches and confirm the preferred direction before finalizing detailed design content.
+5. Describe the proposed architecture, interfaces, and major flows.
+6. Record alternatives considered, the rationale for the chosen approach, and any promotion-worthy decisions.
+7. Present the draft design back in reviewable sections when the design introduced material tradeoffs or cross-boundary changes.
+8. Surface open decisions that still matter for planning.
+
+## Self-Review
+
+Before finalizing the design, verify:
+
+- the design answers the technical ambiguity that justified writing it
+- major boundaries, interfaces, and flows are coherent with the spec
+- the chosen approach is explicit and alternatives are summarized where they matter
+- hidden coupling, contradictory decisions, and design drift into task-level detail are removed
+- remaining open questions are real planning blockers or clearly bounded follow-ups
 
 ## Output Standard
 
@@ -72,6 +88,7 @@ The design is ready only when it:
 - reduces ambiguity for planning
 - captures key technical decisions and tradeoffs
 - identifies major interfaces and risks
+- is stable enough that planning does not need to re-open core design choices
 - stays proportional to the feature size
 
 ## Output Rules

@@ -83,6 +83,9 @@ Require design first when the work includes one or more of these:
 - Surface unresolved questions instead of silently resolving them.
 - Respect the recorded design decisions in `design.md`; only add planning-level rationale that affects sequencing, rollout, or validation.
 - Keep the plan implementation-ready without collapsing into source-code-level design or a task checklist.
+- Plan validation as part of execution, not as a cleanup phase after coding.
+- Call out when workspace isolation, branch discipline, or a clean baseline check is important before implementation starts.
+- If work may run in parallel later, shape phases so ownership boundaries and reintegration points are obvious.
 
 ## Research And Ambiguity
 
@@ -108,10 +111,22 @@ Do not create a standalone `DECISIONS.md`; keep feature design choices in `desig
 2. Read the spec, review findings, design inputs, and repository memory.
 3. Identify affected domains, integration boundaries, dependencies, and protected behavior.
 4. Define the technical approach and note any important alternatives or rationale.
-5. Build execution phases with sequencing, dependencies, and measurable completion criteria.
-6. Map `REQ-*` and `AC-*` to phases and validation steps.
-7. Add validation, rollout, rollback, risks, assumptions, and open questions.
-8. Check that the plan is safe, traceable, and ready for task generation.
+5. Build execution phases with sequencing, dependencies, ownership boundaries, and measurable completion criteria.
+6. Make testing, verification, and regression protection explicit inside the phases that introduce behavior changes.
+7. Identify any phases or slices that could later run safely in parallel and note the required boundaries or reintegration checkpoints.
+8. Map `REQ-*` and `AC-*` to phases and validation steps.
+9. Add validation, rollout, rollback, risks, assumptions, and open questions.
+10. Check that the plan is safe, traceable, and ready for task generation.
+
+## Self-Review
+
+Before finalizing the plan, verify:
+
+- each phase is actionable and sequenced for safe execution
+- validation is embedded in the plan rather than deferred to the end
+- parallelizable work, if any, has clear ownership and reintegration boundaries
+- rollback, rollout, and protected behavior are proportional to actual risk
+- nothing in the plan requires implementation to invent core approach details
 
 ## References
 
@@ -130,6 +145,7 @@ The plan is ready only when it:
 - preserves regression-sensitive behavior explicitly
 - maps requirements and acceptance criteria to phases and validation
 - includes assumptions, risks, rollout, and rollback guidance proportional to risk
+- is structured so tasks can be split without creating unsafe parallel work by accident
 - is decomposable into bounded tasks without rewriting the plan
 
 ## Output Rules
