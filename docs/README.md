@@ -2,12 +2,24 @@
 
 This documentation set is intentionally small.
 
+Each page has one job:
+
+- [Getting Started](getting-started.md): first successful run
+- [Memory](memory.md): durable repo memory
+- [Workflow](workflow.md): stage responsibilities and gates
+- [Adoption](adoption.md): repo rollout and team usage
+- [Integrations](integrations.md): client entrypoints and packaging
+- [Examples](examples.md): copyable scenario flows
+- [Reference](reference.md): fast lookup
+- [Maintainers](maintainers.md): governance and release operation
+
 Use these pages:
 
 - [Getting Started](getting-started.md)
 - [Memory](memory.md)
 - [Workflow](workflow.md)
 - [Adoption](adoption.md)
+- [Integrations](integrations.md)
 - [Examples](examples.md)
 - [Reference](reference.md)
 - [Maintainers](maintainers.md)
@@ -25,7 +37,8 @@ If you are adopting the kit in a real repository:
 
 1. read [Adoption](adoption.md)
 2. read [Memory](memory.md)
-3. read [Reference](reference.md)
+3. read [Integrations](integrations.md)
+4. read [Reference](reference.md)
 
 If you maintain the kit itself:
 

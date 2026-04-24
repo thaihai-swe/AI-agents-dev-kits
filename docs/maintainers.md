@@ -15,6 +15,8 @@ Current skill surface:
 - feature workflow skills: `analyze`, `spec-requirement`, `spec-review-requirements`, `spec-design`, `spec-plan`, `spec-tasks`, `spec-implement`, `spec-review-implementation`, `spec-testing-scenarios`
 - helper skills: `memory-promotion`, `task-traceability-audit`
 
+Maintain docs coverage for all three groups. User-facing docs should not make the kit look like it only contains the feature-delivery middle.
+
 ## Release Checklist
 
 Before release:
@@ -49,6 +51,7 @@ During the dry run, check:
 - no downstream step depends on hidden maintainer knowledge
 - examples and docs do not teach behavior the skills do not require
 - helper skills are described accurately and only where they materially help the workflow
+- foundation skills are included wherever the docs describe the full workflow
 
 ## Doc Governance
 
@@ -72,6 +75,50 @@ Do one final prose pass for:
 - examples that imply more capabilities than the kit actually provides
 - bloated explanation where a shorter rule would do
 
+Each page should have one primary job:
+
+- `getting-started.md`: first successful run
+- `memory.md`: durable repo memory model
+- `workflow.md`: stage responsibilities and gates
+- `adoption.md`: repo rollout and team usage
+- `integrations.md`: client entrypoints and packaging
+- `examples.md`: copyable scenario flows
+- `reference.md`: lookup
+- `maintainers.md`: governance and release operation
+
+## Skill And Doc Design Rules
+
+Keep each `SKILL.md` lean and operational.
+
+Each skill should make these elements easy to find:
+
+- trigger or use-when
+- required inputs and preconditions
+- stop conditions or move-backward conditions
+- the core workflow
+- expected outputs or owned artifacts
+- quality checks that prevent weak downstream handoffs
+
+Use `references/` for:
+
+- templates
+- checklists
+- output shapes
+- examples that would otherwise bloat the skill body
+
+Do not turn docs into a second competing source of workflow truth. If a rule belongs to the contract, update the owning skill first and then align the docs.
+
+## Progressive Disclosure
+
+Prefer this information depth:
+
+1. `README.md` for orientation
+2. docs pages for workflow explanation and adoption
+3. `SKILL.md` for the operational contract
+4. `references/` for structural detail and reusable shapes
+
+When a page starts carrying too many secondary concerns, split or trim it before adding more.
+
 ## Customization Rules
 
 Teams may customize:
@@ -89,3 +136,5 @@ They should not change these without updating the owning skills and docs:
 - canonical durable memory locations
 
 For memory maintenance rules, use [Memory](memory.md).
+
+For client entrypoint and packaging rules, use [Integrations](integrations.md).

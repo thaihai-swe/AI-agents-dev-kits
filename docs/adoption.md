@@ -44,12 +44,11 @@ The expected discovery sequence is:
 
 Recommended order:
 
-1. copy `skills/`
-2. create `memories/repo/` and `artifacts/features/`
-3. add `AGENTS.md` or the equivalent adapter when needed
-4. run `/constitution`
-5. run `/project-knowledge-base`
-6. start one real feature
+1. copy `skills/` and create the canonical folders, or run `scripts/bootstrap-kit.sh`
+2. add `AGENTS.md` or the equivalent adapter when needed
+3. run `/constitution`
+4. run `/project-knowledge-base`
+5. start one real feature
 
 ## Existing Repository Adoption
 
@@ -66,6 +65,17 @@ Use helper skills during adoption when needed:
 
 - `memory-promotion` to decide whether a discovery should become durable repo memory
 - `task-traceability-audit` to validate that task generation stays trustworthy during early adoption
+
+## Integration Hand-Off
+
+After the repository is bootstrapped:
+
+1. make sure the client entrypoint is in place
+2. verify the entrypoint points back to `skills/`
+3. verify memory and artifact paths are canonical
+4. run one bounded feature through the workflow
+
+For client-specific details, use [Integrations](integrations.md).
 
 ## Good First Feature
 
@@ -98,6 +108,11 @@ Unsafe customization unless you also update the owning skills and docs:
 - command-to-skill mappings
 - canonical memory locations
 
+Safe packaging pattern:
+
+- keep `skills/` intact
+- adapt only entrypoint files and repo-specific memory contents
+
 ## Team And Multi-Agent Rule
 
 When multiple people or agents work in the same repo:
@@ -106,8 +121,11 @@ When multiple people or agents work in the same repo:
 - treat `spec.md`, `requirements-review.md`, `design.md`, `plan.md`, and `tasks.md` as shared truth
 - serialize edits to shared planning artifacts
 - parallelize only bounded implementation tasks with clear file boundaries
+- assign one owner per parallel task batch
+- avoid shared-write implementation batches when a simpler boundary exists
 - do not mark tasks done without validation evidence
 - use `task-traceability-audit` when split ownership makes coverage less obvious
+- reintegrate by re-running review and relevant validation after parallel work lands
 
 ## What To Avoid
 

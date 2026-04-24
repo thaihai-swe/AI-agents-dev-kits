@@ -74,13 +74,17 @@ Treat this as an operating sequence, not a menu of loosely related prompts.
 - use the current feature artifacts under `artifacts/features/<slug>/` as the working source of truth
 - do not claim implementation is complete until the relevant verification has been run and read
 - when debugging, investigate root cause before proposing fixes
+- after implementation, expect a normal `implement -> validate -> review -> fix -> re-review` loop
+- for behavior-changing work, prefer a failing test or other failing proof before the fix when practical
 
 ## Start Here
 
 - Docs home: [Docs](docs/README.md)
 - Quick start: [Getting Started](docs/getting-started.md)
+- Memory: [Memory](docs/memory.md)
 - Workflow: [Workflow](docs/workflow.md)
 - Adoption: [Adoption](docs/adoption.md)
+- Integrations: [Integrations](docs/integrations.md)
 - Examples: [Examples](docs/examples.md)
 - Reference: [Reference](docs/reference.md)
 - Maintainers: [Maintainers](docs/maintainers.md)
@@ -107,6 +111,14 @@ Then initialize:
 ```
 
 After that, start with one real feature and follow the normal workflow.
+
+If you want a lightweight setup helper, use:
+
+```text
+scripts/bootstrap-kit.sh
+```
+
+It creates the canonical folders when missing, creates a thin `AGENTS.md` stub when missing, and prints the next workflow steps.
 
 ## Product Stance
 

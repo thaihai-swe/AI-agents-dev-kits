@@ -25,6 +25,12 @@ AGENTS.md                 # or another client adapter entrypoint, when needed
 If your client uses a repo entrypoint file, add `AGENTS.md` first.
 Its job is to point the agent to `skills/`, `memories/repo/`, and `artifacts/features/` without copying the workflow into the adapter.
 
+If you want a lightweight setup helper, run:
+
+```text
+scripts/bootstrap-kit.sh
+```
+
 ## First Commands
 
 If durable memory does not exist yet, start here:
@@ -82,6 +88,32 @@ Continue only after the resulting artifact is strong enough for the next stage.
 
 Use helper skills only when they solve a specific promotion or audit question. They do not replace the main artifact flow.
 
+## Verification Rule
+
+Do not mark a task done or describe a feature as complete until the relevant verification has been run and read.
+
+That proof can be:
+
+- a targeted automated test
+- a focused manual check
+- a bounded review finding with confirming evidence
+
+The size of the proof can change with the task. The need for fresh evidence does not.
+
+## Implementation Loop
+
+After `tasks.md` exists, use this loop:
+
+1. select the next unblocked task
+2. confirm the upstream artifacts still support it
+3. implement the bounded change
+4. run the proving validation
+5. update task state from evidence
+6. run `/spec-review`
+7. fix findings and re-review until the result is coherent
+
+For behavior-changing work, start with a failing test or other failing proof when practical. For tiny or non-behavioral changes, use the smallest proof that still demonstrates the outcome.
+
 ## If Blocked
 
 Move backward to the missing upstream artifact:
@@ -91,6 +123,7 @@ Move backward to the missing upstream artifact:
 - requirements review says `not ready`: fix `spec.md`
 - design ambiguity blocks planning: add `/spec-design`
 - weak plan: fix `plan.md` before `/spec-tasks`
+- a bug is not understood yet: return to `/analyze` and follow the debugging path
 - weak completion evidence: return to `/spec-implement` or `/spec-review`
 
 ## FAQ

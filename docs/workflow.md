@@ -139,6 +139,41 @@ Use `memory-promotion` after analysis, design, implementation, or review when du
 
 Use `task-traceability-audit` after task generation, during implementation, or during implementation review when traceability confidence matters.
 
+## Verification First
+
+Do not treat a plausible diff as completion.
+
+At implementation and review time:
+
+- identify the concrete proof for the current task
+- run the proof after the change, not just before it
+- read the output before updating task state or review verdicts
+- move backward when the evidence does not support the claimed outcome
+
+Fresh verification evidence is part of the workflow contract, not an optional courtesy.
+
+## Test-First Default
+
+For behavior-changing work, prefer starting with a failing test or other failing proof when practical.
+
+That default is strong, but not dogmatic:
+
+- use a targeted failing automated test when the change is testable that way
+- use the smallest bounded failing proof available when the work is manual, UI-heavy, or integration-heavy
+- do not force heavyweight scaffolding onto tiny or non-behavioral changes
+
+## Debugging Path
+
+When the requested change is a bug fix or brownfield repair:
+
+1. reproduce the symptom or gather the strongest available evidence
+2. inspect the boundary where the wrong behavior becomes visible
+3. trace backward until the root cause is clearer than the symptom
+4. define the narrow repair in `spec.md`, `plan.md`, and `tasks.md`
+5. verify the fix against the observed failure mode
+
+Do not treat error suppression, retries, or defensive patches as a fix unless the artifacts explicitly justify that approach.
+
 ## When Steps Are Optional
 
 `/constitution` and `/project-knowledge-base` are required only when durable repo memory does not already exist or needs amendment.
@@ -161,6 +196,21 @@ Stop and move backward when:
 - the plan is not decomposable into safe tasks
 - the selected task is broader or more ambiguous than the artifacts claim
 - implementation evidence is too weak to support completion
+
+## Implementation And Review Loop
+
+After `tasks.md` exists, the normal delivery loop is:
+
+1. select the next unblocked task
+2. verify the task preconditions and upstream artifacts still match reality
+3. implement only the bounded task
+4. run the proving validation
+5. update task state from evidence
+6. run implementation review
+7. fix findings or reopen the upstream artifact if the issue is not local
+8. re-review until the evidence and artifacts agree
+
+That loop is normal. Re-review is not a failure mode.
 
 ## Quality Bar
 

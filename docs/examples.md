@@ -42,6 +42,19 @@ Good enough to hand off means:
 - implementation has fresh verification evidence
 - review is evidence-based
 
+Test-first stance for this baseline:
+
+- for behavior-changing work, prefer a failing automated test or another failing proof before the repair
+- keep the proof narrow enough to match the current task boundary
+
+Normal delivery loop after planning:
+
+1. implement one bounded task
+2. validate it with fresh evidence
+3. run implementation review
+4. fix findings or reopen the upstream artifact
+5. re-review until the artifacts and evidence agree
+
 Typical prompt shape:
 
 ```text
@@ -69,6 +82,12 @@ Create a technical design for token issuance, verification, session creation, an
 Run task-traceability-audit on magic-link-login to confirm REQ -> AC -> TASK -> validation coverage before finalizing tasks.md.
 ```
 
+Skip conditions:
+
+- skip `/constitution` and `/project-knowledge-base` only when durable repo memory already exists and is still trustworthy
+- skip `/spec-design` only when planning does not depend on unresolved technical choices
+- skip `/spec-testing-scenarios` only when the change is too small to justify a separate manual guide
+
 ## New Feature Example
 
 Use the release baseline above as the canonical new-feature example.
@@ -93,6 +112,7 @@ Good enough to hand off:
 - protected unchanged behavior is explicit
 - the chosen integration seam is clear
 - any durable boundary findings are either promoted or explicitly kept local
+- the review loop checks that the chosen seam did not break protected behavior
 
 Typical prompt shape:
 
@@ -137,6 +157,15 @@ Good enough to hand off:
 - the plan keeps the repair scope narrow
 - verification proves the link is generated correctly
 - any traceability or completion claim is supported by task state and validation evidence
+- review explicitly checks that the fix addresses the root cause rather than masking the failure
+
+Recommended debugging pattern:
+
+1. reproduce the broken link behavior
+2. inspect the value boundary where the link is built
+3. identify the configuration or code mismatch
+4. write the narrow repair task
+5. verify the repaired link and re-review
 
 Typical prompt shape:
 
@@ -168,6 +197,7 @@ Good enough to hand off:
 - the visible change is explicit
 - unchanged behavior is called out briefly
 - implementation evidence is proportional to the tiny scope
+- the review step still checks that task state and verification match
 
 Even in tiny changes, `task-traceability-audit` can help if task coverage is unclear or the implementation review finds suspicious task-state drift.
 

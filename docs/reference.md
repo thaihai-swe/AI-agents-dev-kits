@@ -71,6 +71,52 @@
 - use when checking `REQ -> AC -> TASK -> validation` coverage during tasks, implementation, or review
 - stop when the underlying artifacts are too incomplete to audit meaningfully
 
+## Quick Operating Rules
+
+Verification:
+
+- completion claims require fresh evidence
+- task states should reflect observed results, not optimistic intent
+- review verdicts should match the current evidence, not the size of the diff
+
+Debugging:
+
+- reproduce first when practical
+- inspect boundaries before proposing repairs
+- fix the root cause, not only the visible symptom
+
+Implementation loop:
+
+- implement one bounded task
+- validate it
+- review it
+- fix or reopen the upstream artifact
+- re-review until the record is coherent
+
+## Command Groups
+
+Foundation:
+
+- `/constitution`
+- `/project-knowledge-base`
+
+Feature workflow:
+
+- `/analyze`
+- `/spec-requirement`
+- `/spec-review-requirements`
+- `/spec-design`
+- `/spec-plan`
+- `/spec-tasks`
+- `/spec-implement`
+- `/spec-review`
+- `/spec-testing-scenarios`
+
+Helpers:
+
+- `memory-promotion`
+- `task-traceability-audit`
+
 ## Artifact Roles
 
 `constitution.md`
@@ -118,9 +164,6 @@ Skill
 
 Reference
 - a bundled support file stored in `skills/*/references/`
-
-Repo memory
-- durable shared context stored under `memories/repo/`
 
 Constitution
 - the normative repo-memory file
