@@ -19,9 +19,11 @@
 - Link each phase or task group back to the user scenario or outcome it enables when relevant.
 - Mark tasks that can run in parallel when they have no dependency relationship.
 - Only mark tasks as parallel-safe when they do not create obvious write conflicts or contract conflicts.
+- If a task is marked `[P]`, state the ownership boundary and any reintegration expectation explicitly.
 - Prefer explicit file or module targets when known from the plan.
 - Use these task states consistently: `Not Started`, `In Progress`, `Blocked`, `Done`, `Deferred`.
 - Make regression-sensitive or protected behavior explicit in validation or safeguard tasks when relevant.
+- For behavior-changing tasks, prefer validation notes that name the failing proof or targeted test expected before the fix.
 - Do not finalize task lists until REQ -> AC -> TASK -> validation coverage is complete.
 
 ## Status Tracking Requirements

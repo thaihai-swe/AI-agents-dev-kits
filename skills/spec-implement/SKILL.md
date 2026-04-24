@@ -74,7 +74,7 @@ When stopping, identify:
 - Work from `tasks.md`, not vague chat intent.
 - Respect phase order, task dependencies, and resume notes.
 - Execute one task at a time by default.
-- Parallelize only when tasks are marked `[P]`, have no shared file boundaries, and have no data or dependency conflicts.
+- Parallelize only when tasks are marked `[P]`, have no shared file boundaries, have no data or dependency conflicts, and have explicit ownership or reintegration notes.
 - Implement only what the selected task describes.
 - Add tests and validation during implementation, not afterthought.
 - Surface upstream defects instead of working around them silently.
@@ -83,6 +83,7 @@ When stopping, identify:
 - Prefer minimal code that satisfies the task and its tests over speculative cleanup or extra features.
 - Do not claim completion from plausible code alone; fresh verification evidence is required.
 - If the repo starts from a dirty or unstable baseline that affects the task, say so explicitly before continuing.
+- If implementation review later disproves a `Done` task, reopen it immediately instead of leaving misleading task state behind.
 
 ## Task Status Protocol
 
@@ -110,6 +111,12 @@ If work is intentionally postponed rather than blocked:
 - change `Status:` to `Deferred`
 - record the deferral reason in `Session note:`
 
+If a completed task must be reopened after review or failed follow-up validation:
+
+- change the checkbox from `- [X]` back to `- [ ]`
+- change `Status:` from `Done` to `In Progress` or `Blocked`
+- record the reason in `Session note:`
+
 Do not batch these updates. Change task status at the moment work starts and at the moment validation completes.
 
 ## References
@@ -134,6 +141,7 @@ Before claiming a task is done:
 - run those commands fresh after the change
 - read the full output rather than inferring success from partial signals
 - base the task status on observed evidence, not confidence
+- keep the task open when review findings or failed follow-up checks still contradict the claimed outcome
 
 Examples of acceptable evidence include targeted tests, relevant integration tests, lint or typecheck runs, and other repository quality gates that actually prove the task outcome.
 
@@ -147,7 +155,9 @@ Examples of acceptable evidence include targeted tests, relevant integration tes
 6. Add or update any additional tests and validation needed for that task.
 7. Run the proving verification commands and confirm the task outcome matches its linked requirements and acceptance criteria.
 8. Mark the task `Done` immediately after validation passes, or `Blocked` with a reason if it cannot complete.
-9. Update resume context in `tasks.md` before moving on.
+9. Run implementation review when the slice is ready for review.
+10. If review finds local issues, reopen the task, fix them, rerun the proof, and only then return it to `Done`.
+11. Update resume context in `tasks.md` before moving on.
 
 ## Self-Review
 
@@ -157,6 +167,7 @@ Before marking the task done, verify:
 - test-first behavior was followed when the task changed behavior
 - any parallel execution assumptions remained safe
 - verification was fresh and directly relevant to the task
+- task state would still be truthful if another agent reviewed it immediately
 - no hidden scope expansion or unrecorded blocker remains
 
 ## Validation Standard

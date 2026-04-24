@@ -16,6 +16,7 @@ It gives you:
 - an end-to-end skill workflow from repo memory through delivery review
 - durable repo memory under `memories/repo/`
 - per-feature artifacts under `artifacts/features/<slug>/`
+- thin adapter examples under [`adapters/`](adapters/)
 - 13 portable skills under `skills/`:
   11 core workflow skills and 2 helper skills
 

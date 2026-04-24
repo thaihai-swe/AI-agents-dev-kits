@@ -37,6 +37,8 @@ CLAUDE.md
 .github/copilot-instructions.md
 ```
 
+Use [../adapters](../adapters/README.md) for thin starter examples.
+
 ## Entry Point Rules
 
 An entrypoint file should:

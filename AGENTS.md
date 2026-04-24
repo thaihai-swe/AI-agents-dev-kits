@@ -23,6 +23,22 @@ These rules override everything else in this file when in conflict:
 3. **Never fabricate.** Not file paths, not commit hashes, not API names, not test results, not library functions. If you don't know, read the file, run the command, or say "I don't know, let me check."
 4. **Stop when confused.** If the task has two plausible interpretations, ask. Do not pick silently and proceed.
 5. **Touch only what you must.** Every changed line must trace directly to the user's request. No drive-by refactors, reformatting, or "while I was in there" cleanups.
+6. **Use the matching skill before freeform work.** In this repo, `skills/` is the workflow contract. Do not improvise around it when an existing skill applies.
+
+---
+
+## 0.5 Workflow activation
+
+For meaningful work in this repository, use this order:
+
+1. Read `AGENTS.md`.
+2. Choose the matching skill under `skills/`.
+3. Read `memories/repo/constitution.md` and `memories/repo/project-knowledge-base.md` when relevant.
+4. Read the current feature artifacts under `artifacts/features/<slug>/` when the task is feature-specific.
+5. Operate one stage at a time.
+6. Move backward to the missing upstream artifact when blocked.
+
+Do not treat chat history as the durable source of truth when an artifact or skill already exists.
 
 ---
 
@@ -165,35 +181,38 @@ Boris Cherny (creator of Claude Code) keeps his team's file around 100 lines. Un
 **Fill this in per project. Keep it specific. Delete sections that don't apply.**
 
 ### Stack
-- Language and version:
-- Framework(s):
-- Package manager:
-- Runtime / deployment target:
+- Language and version: Markdown plus repository-local skill contracts (`SKILL.md`)
+- Framework(s): Agent Skills-style workflow packaging
+- Package manager: none
+- Runtime / deployment target: repository consumed by AI coding agents
 
 ### Commands
-- Install: `TODO`
-- Build: `TODO`
-- Test (all): `TODO`
-- Test (single file): `TODO`
-- Lint: `TODO`
-- Typecheck: `TODO`
-- Run locally: `TODO`
+- Install: `none`
+- Build: `none`
+- Test (all): `bash scripts/bootstrap-kit.sh`
+- Test (single file): `sed -n '1,220p' <file>`
+- Lint: `rg -n "TODO|FIXME|TBD" docs skills README.md AGENTS.md`
+- Typecheck: `none`
+- Run locally: `none`
 
 Prefer single-file or single-test runs during iteration. Full suites are for the final verification pass.
 
 ### Layout
-- Source lives in: `TODO`
-- Tests live in: `TODO`
-- Do not modify: `TODO` (generated code, vendored deps, legacy areas)
+- Source lives in: `skills/`, `docs/`, `memories/`, `scripts/`, `README.md`, `AGENTS.md`
+- Tests live in: no dedicated automated test suite; verify with targeted script runs and consistency checks
+- Do not modify: no generated or vendored areas today; still avoid unrelated churn
 
 ### Conventions specific to this repo
-- Naming: `TODO`
-- Import style: `TODO`
-- Error handling pattern: `TODO`
-- Testing pattern and framework: `TODO`
+- Naming: keep skill names, artifact names, verdict names, and task states stable unless the owning skill and docs change together
+- Import style: not applicable
+- Error handling pattern: not applicable
+- Testing pattern and framework: validate by checking skill-template-doc alignment and running lightweight repo scripts when present
 
 ### Forbidden
-- `TODO`: things that look reasonable but will break this project.
+- creating a new workflow outside `skills/` without updating the owning contract
+- renaming canonical artifact or memory paths in docs only
+- teaching one client a different workflow order than the core kit
+- adding docs that compete with or contradict `SKILL.md`
 
 ---
 
@@ -204,6 +223,7 @@ Prefer single-file or single-test runs during iteration. Full suites are for the
 When the user corrects your approach, append a one-line rule here before ending the session. Write it concretely ("Always use X for Y"), never abstractly ("be careful with Y"). If an existing line already covers the correction, tighten it instead of adding a new one. Remove lines when the underlying issue goes away (model upgrades, refactors, process changes).
 
 - (empty)
+- When updating workflow behavior, align the owning `SKILL.md`, any affected `references/`, and the user-facing docs in the same change.
 
 ---
 
@@ -212,7 +232,7 @@ When the user corrects your approach, append a one-line rule here before ending 
 This boilerplate synthesizes:
 - Sean Donahoe's IJFW ("It Just F\*cking Works") principles: one install, working code, no ceremony.
 - Andrej Karpathy's observations on LLM coding pitfalls (the four principles: think-first, simplicity, surgical changes, goal-driven execution).
-- Forrest Chang's distilled Andrej Karpathy skills file (`andrej-karpathy-skills/CLAUDE.md`), especially its terse reminders and goal-to-verification examples.
+
 - Boris Cherny's public Claude Code workflow (reactive pruning, keep it ~100 lines, only rules that fix real mistakes).
 - Anthropic's official Claude Code best practices (explore-plan-code-commit, verification loops, context as the scarce resource).
 - Community anti-sycophancy patterns (explicit banned phrases, direct-not-diplomatic).

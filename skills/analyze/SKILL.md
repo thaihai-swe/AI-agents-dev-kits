@@ -57,6 +57,8 @@ Do not use this skill for:
 - Check recent changes, relevant boundaries, and environment or configuration propagation before concluding where the problem lives.
 - In multi-step flows, collect evidence at component boundaries so the failure location is demonstrated rather than assumed.
 - Do not present a likely explanation as established root cause unless the evidence supports it.
+- When the bug spans multiple boundaries, identify the first boundary where expected and observed behavior diverge.
+- If root cause is still uncertain, end with the strongest supported hypothesis plus the next proving check rather than an overstated conclusion.
 
 ## Suggested Output Shape
 
@@ -79,10 +81,11 @@ Only include sections that materially help the next step.
 1. Clarify the investigation target and output path.
 2. Read repo memory, related artifacts, and the most relevant repository evidence.
 3. If the work involves a bug, failure, or unexpected behavior, reproduce it, inspect recent changes, and gather evidence at the relevant boundaries before proposing explanations.
-4. Capture current behavior, any relevant subsystem or flow map, key findings, risks, and unknowns.
-5. Distinguish facts from inferences, call out the confidence level of any root-cause claim, and note where evidence is weak.
-6. Recommend the next artifact or workflow step, including promotion candidates when a local system map reveals durable repository structure.
-7. If warranted, identify promotion candidates for the constitution or project knowledge base without updating them directly.
+4. Trace the issue from visible symptom to the first failing boundary, then continue only as far upstream as the evidence supports.
+5. Capture current behavior, any relevant subsystem or flow map, key findings, risks, and unknowns.
+6. Distinguish facts from inferences, call out the confidence level of any root-cause claim, and note where evidence is weak.
+7. Recommend the next artifact or workflow step, including promotion candidates when a local system map reveals durable repository structure.
+8. If warranted, identify promotion candidates for the constitution or project knowledge base without updating them directly.
 
 ## Self-Review
 
@@ -91,6 +94,7 @@ Before finalizing the analysis, verify:
 - the investigation stayed within the stated scope
 - facts and inferences are clearly separated
 - root-cause claims are backed by observed evidence or explicitly labeled as hypotheses
+- the first failing boundary is visible when debugging-oriented analysis was requested
 - important unknowns, weak evidence, and boundary risks are visible
 - the recommended next step follows from the findings rather than jumping ahead
 

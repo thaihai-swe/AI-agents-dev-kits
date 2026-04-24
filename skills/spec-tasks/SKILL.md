@@ -75,14 +75,16 @@ When stopping, say which precondition failed and which artifact needs revision.
 - Mark only truly parallel-safe tasks with `[P]`.
 - Prefer explicit file or module targets when they are known.
 - A task is not parallel-safe if it shares write ownership, contracts, migrations, or sequencing-sensitive behavior with another task.
+- If a task is marked `[P]`, name the ownership boundary clearly enough that another implementer can tell what is safe to edit.
 - When parallel work is allowed, make reintegration and follow-up verification explicit instead of assuming the merge point is trivial.
 - Include the intended proof of completion in the task body or validation notes, not just the implementation action.
+- For behavior-changing tasks, prefer validation notes that name the failing proof or targeted test expected before the fix.
 
 ## References
 
 - Use [references/tasks-template.md](references/tasks-template.md) as the bundled task structure.
 - Preserve its implementation-tracking fields exactly.
-- Every task must include a checkbox line, `Status: Not Started`, and `Session note:`.
+- Every task must include a checkbox line, `Status: Not Started`, `Session note:`, and explicit parallel ownership or reintegration fields when relevant.
 
 ## Workflow
 
@@ -101,6 +103,7 @@ Before finalizing `tasks.md`, verify:
 
 - no task is too large or vague to execute in one bounded slice
 - tasks marked `[P]` do not create obvious shared-write or shared-contract conflicts
+- tasks marked `[P]` have clear ownership and reintegration instructions
 - validation and reintegration work are explicit where they need to be
 - task ordering still respects the plan rather than introducing a new hidden phase model
 - a future implementer could tell what to do next without guessing
@@ -116,6 +119,7 @@ Before finalizing `tasks.md`, verify:
 - every task includes `Session note:`
 - parallel markers appear only on truly independent tasks
 - parallel-safe tasks have clear ownership boundaries
+- reintegration expectations are explicit where parallel work exists
 - every material `REQ-*` maps to one or more tasks
 - every material `AC-*` maps to one or more tasks or validation steps
 - validation tasks are explicit

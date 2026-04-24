@@ -63,7 +63,9 @@ If those are not true, stop and say exactly what is missing.
 - Prefer fresh verification evidence over implementation plausibility or agent claims.
 - Treat missing, stale, or weak verification as a review finding, not a paperwork issue.
 - Call out when task status says `Done` but the evidence does not support that claim.
+- Call out when the implementation should reopen a task instead of carrying a misleading `Done` state.
 - Do not silently rewrite scope drift as “acceptable interpretation” when the implementation materially diverged from the approved artifacts.
+- Re-review is normal when findings are fixed; do not treat the first review pass as the only meaningful gate.
 
 ## References
 
@@ -86,10 +88,11 @@ Choose `changes required` when requirements are unmet, validation is too weak fo
 1. Read the approved feature artifacts and any relevant repo memory.
 2. Inspect the repository changes, tests, docs, touched files, and the current task-state evidence.
 3. Identify which verification commands or artifacts actually prove the delivered behavior and prefer fresh evidence when available.
-4. Compare implementation against requirements, acceptance criteria, task outcomes, and repo rules.
-5. Classify issues as blocking or follow-up.
-6. Produce a verdict based on evidence.
-7. Write `review.md` only when a durable written review is useful.
+4. Check whether any claimed `Done` task should be reopened because the evidence is stale, weak, contradicted, or missing.
+5. Compare implementation against requirements, acceptance criteria, task outcomes, and repo rules.
+6. Classify issues as blocking or follow-up.
+7. Produce a verdict based on evidence.
+8. Write `review.md` only when a durable written review is useful.
 
 ## Self-Review
 
@@ -98,6 +101,7 @@ Before finalizing the review, verify:
 - each finding points to evidence rather than intuition
 - requirement coverage, verification quality, and scope control were all checked
 - task-state accuracy was reviewed alongside the code changes
+- any reopen-needed task state is called out clearly
 - the verdict matches the severity of the findings
 - absence of findings is stated explicitly when nothing material is wrong
 
@@ -109,6 +113,7 @@ The review is ready only when it:
 - ties findings to evidence
 - distinguishes blocking issues from follow-ups
 - covers requirement coverage, validation quality, scope control, and handoff state
+- identifies misleading completion claims when present
 - makes misleading completion claims or stale task state visible when present
 
 ## Output Rules
