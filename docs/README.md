@@ -7,6 +7,7 @@ Each page has one job:
 - [Getting Started](getting-started.md): first successful run
 - [Memory](memory.md): durable repo memory
 - [Workflow](workflow.md): stage responsibilities and gates
+- [Visual Workflow](visual-workflow.md): Mermaid diagram of the workflow
 - [Adoption](adoption.md): repo rollout and team usage
 - [Integrations](integrations.md): client entrypoints and packaging
 - [Examples](examples.md): copyable scenario flows
@@ -18,6 +19,7 @@ Use these pages:
 - [Getting Started](getting-started.md)
 - [Memory](memory.md)
 - [Workflow](workflow.md)
+- [Visual Workflow](visual-workflow.md)
 - [Adoption](adoption.md)
 - [Integrations](integrations.md)
 - [Examples](examples.md)
@@ -31,7 +33,8 @@ If you are new to the kit:
 1. read [Getting Started](getting-started.md)
 2. read [Memory](memory.md)
 3. read [Workflow](workflow.md)
-4. read [Examples](examples.md)
+4. read [Visual Workflow](visual-workflow.md)
+5. read [Examples](examples.md)
 
 If you are adopting the kit in a real repository:
 
