@@ -9,6 +9,7 @@ This section is for people extending or maintaining the kit itself.
 - [Templates](templates.md)
 - [Memory Maintenance](memory-maintenance.md)
 - [Doc Governance](doc-governance.md)
+- [Release Checklist](release-checklist.md)
 
 ## What Belongs Here
 

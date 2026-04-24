@@ -9,6 +9,25 @@ Use this guide when you want the shortest safe path through the kit.
 - repository has the shared workflow skills under `skills/`
 - repo memory exists or you are ready to create it
 - you have chosen a feature slug
+- an agent entrypoint file such as `AGENTS.md` is in place when your client needs one
+
+## Minimum Setup
+
+The shortest safe starting point is:
+
+```text
+skills/
+memories/repo/
+artifacts/features/
+AGENTS.md                 # or another client adapter entrypoint, when needed
+```
+
+If durable memory does not exist yet, start with:
+
+```text
+/constitution
+/project-knowledge-base
+```
 
 ## Command Sequence
 
@@ -60,9 +79,18 @@ Expected artifacts:
 - technical ambiguity: add `spec-design`
 - unclear current system: run `analyze`
 - weak task list: improve `plan.md` before regenerating tasks
+- weak completion evidence: return to `spec-implement` or `spec-review`
+
+## Good Usage Pattern
+
+- start with the skill that matches the current uncertainty
+- rely on the current feature artifacts, not chat-history summaries
+- stop and move backward when the current phase is blocked
+- do not treat a plausible diff as completion without fresh verification
 
 ## Read Next
 
 - [New Feature Guide](new-feature.md)
 - [Decision Rules](decision-rules.md)
 - [Bootstrap And Adoption](bootstrap-adoption.md)
+- [Release Baseline Example](../examples/release-baseline.md)

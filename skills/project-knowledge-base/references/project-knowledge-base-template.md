@@ -150,7 +150,7 @@ Capture important project terms, aliases, and naming conventions agents should r
 ## Promotion Rules
 
 - What belongs here:
-- What should stay in `artifacts/knowledge/`:
+- What should stay in feature artifacts under `artifacts/features/<slug>/`:
 - What should instead go to `memories/repo/constitution.md`:
 - When a finding is durable enough to promote:
 - How to record confidence or provenance when evidence is partial:

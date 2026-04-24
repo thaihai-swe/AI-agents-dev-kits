@@ -30,6 +30,7 @@ Start here if you want step-by-step instructions.
 
 Start here if you learn best from realistic scenarios.
 
+- [Release Baseline Example](examples/release-baseline.md)
 - [Canonical Feature Example](examples/canonical-feature.md)
 - [Full Skill Workflow Example](examples/full-skill-workflow.md)
 - [Complexity Tier Examples](examples/complexity-tiers.md)

@@ -19,6 +19,18 @@ For meaningful feature work, an agent should use:
 - `memories/repo/project-knowledge-base.md`
 - the current feature artifact folder under `artifacts/features/<slug>/`
 
+If the client needs an entrypoint file, that file should point the agent to this order instead of duplicating the skill bodies.
+
+## How Agents Discover Skills
+
+The intended discovery pattern is:
+
+1. read the repo entrypoint such as `AGENTS.md` when the client uses one
+2. identify the workflow step that matches the current uncertainty
+3. read the matching skill under `skills/`
+4. read repo memory and the current feature artifacts
+5. update one artifact or execute one bounded implementation step
+
 ## How Users Should Work With Skills
 
 Use skills to produce or update artifacts one stage at a time.

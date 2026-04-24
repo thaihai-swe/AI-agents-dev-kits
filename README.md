@@ -72,8 +72,32 @@ Treat this as an operating sequence, not a menu of loosely related prompts.
 - Adopt in a repo: [Bootstrap And Adoption](docs/guides/bootstrap-adoption.md)
 - New feature flow: [New Feature Guide](docs/guides/new-feature.md)
 - Team workflow: [Team And Multi-Agent Collaboration](docs/guides/team-collaboration.md)
+- Release baseline: [Release Baseline Example](docs/examples/release-baseline.md)
 - End-to-end example: [Full Skill Workflow Example](docs/examples/full-skill-workflow.md)
 - Commands and artifacts: [Reference](docs/reference/README.md)
+
+## Minimum Adoption
+
+For a new repository, the minimum safe setup is:
+
+```text
+skills/
+memories/repo/
+artifacts/features/
+AGENTS.md                 # or another client adapter entrypoint, when needed
+```
+
+If your client uses a repo entrypoint file, add `AGENTS.md` first.
+Its job is to point the agent at `skills/`, `memories/repo/`, and `artifacts/features/` without copying the full workflow into the adapter.
+
+Then initialize:
+
+```text
+/constitution
+/project-knowledge-base
+```
+
+After that, start with one real feature and follow the normal workflow.
 
 ## Skills
 

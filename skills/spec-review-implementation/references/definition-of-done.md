@@ -10,5 +10,5 @@ Use this checklist before closing or shipping a change.
 - Logging, monitoring, or operational concerns were addressed if needed.
 - Security, privacy, and performance impacts were reviewed if relevant.
 - User-facing or developer-facing documentation was updated if needed.
-- Decision logs and task status reflect the final state.
+- Feature artifacts and task status reflect the final state.
 - Partial completion or deferred work is clearly recorded for the next session.

@@ -11,6 +11,7 @@ By the end, the repository should have:
 - `skills/`
 - `memories/repo/`
 - `artifacts/features/`
+- one agent entrypoint file such as `AGENTS.md` when the client needs one
 - enough durable memory to start feature work safely
 
 ## Minimum Repository Shape
@@ -21,6 +22,7 @@ memories/
   repo/
 artifacts/
   features/
+AGENTS.md                 # or another client adapter entrypoint, when needed
 ```
 
 ## Step 1: Add The Shared Skills
@@ -31,6 +33,34 @@ This gives the repository:
 
 - 11 core workflow skills
 - 2 helper skills
+
+If your team asks which file to add first for agent activation, the answer is:
+
+- `AGENTS.md` when your client uses a repo entrypoint file
+
+## Step 1.5: Add A Thin Agent Entrypoint
+
+Add the client adapter your tooling expects.
+
+Minimum recommendation:
+
+```text
+AGENTS.md
+```
+
+Keep it thin:
+
+- point back to `skills/` as the workflow source of truth
+- point to `memories/repo/` and `artifacts/features/`
+- remind the agent to use the matching skill before freeform work
+- remind the agent that implementation completion requires fresh verification evidence
+
+Expected discovery pattern:
+
+1. read `AGENTS.md`
+2. choose the closest matching skill in `skills/`
+3. read repo memory and the current feature artifacts
+4. execute the current stage without skipping quality gates
 
 ## Step 2: Create The Core Working Folders
 
@@ -87,6 +117,18 @@ Then follow the normal workflow:
 /spec-testing-scenarios     (optional manual test guide)
 ```
 
+Good first-feature choices:
+
+- a small but real product feature
+- a bounded brownfield improvement
+- a bug fix with clear reproduction
+
+Avoid using the first run for:
+
+- a sweeping multi-subsystem initiative
+- a repo-wide migration
+- a feature with no clear owner or outcome
+
 ## Adoption Modes
 
 ### New Repository
@@ -133,12 +175,15 @@ Recommended order:
 - `skills/` is present
 - `memories/repo/` exists
 - `artifacts/features/` exists
+- `AGENTS.md` or an equivalent client adapter exists when needed
 - `constitution.md` exists or has an explicit plan to be created immediately
 - `project-knowledge-base.md` exists or has an explicit plan to be created immediately
 - the team has chosen one feature slug to test the workflow
+- the team has one release-baseline example or equivalent feature flow to validate the setup
 
 ## Read Next
 
 - [Quick Start](quick-start.md)
 - [Skill Adoption](skill-adoption.md)
 - [Full Skill Workflow Example](../examples/full-skill-workflow.md)
+- [Release Baseline Example](../examples/release-baseline.md)

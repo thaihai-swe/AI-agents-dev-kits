@@ -104,6 +104,12 @@ If blocked:
 - change `Status:` to `Blocked`
 - record the reason in `Session note:`
 
+If work is intentionally postponed rather than blocked:
+
+- keep the checkbox unchecked
+- change `Status:` to `Deferred`
+- record the deferral reason in `Session note:`
+
 Do not batch these updates. Change task status at the moment work starts and at the moment validation completes.
 
 ## References
