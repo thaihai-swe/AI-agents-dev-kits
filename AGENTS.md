@@ -3,6 +3,7 @@
 Drop-in operating instructions for coding agents. Read this file before every task.
 
 **Working code only. Finish the job. Plausibility is not correctness.**
+**Tradeoff: these instructions bias toward caution over speed. For trivial tasks, use judgment.**
 
 This file follows the [AGENTS.md](https://agents.md) open standard (Linux Foundation / Agentic AI Foundation). Claude Code, Codex, Cursor, Windsurf, Copilot, Aider, Devin, Amp read it natively. For tools that look elsewhere, symlink:
 
@@ -29,11 +30,14 @@ These rules override everything else in this file when in conflict:
 
 **Goal: understand the problem and the codebase before producing a diff.**
 
+- Think before coding. Don't assume. Don't hide confusion. Surface tradeoffs.
 - State your plan in one or two sentences before editing. For anything non-trivial, produce a numbered list of steps with a verification check for each.
 - Read the files you will touch. Read the files that call the files you will touch. Claude Code: use subagents for exploration so the main context stays clean.
 - Match existing patterns in the codebase. If the project uses pattern X, use pattern X, even if you'd do it differently in a greenfield repo.
 - Surface assumptions out loud: "I'm assuming you want X, Y, Z. If that's wrong, say so." Do not bury assumptions inside the implementation.
+- If a simpler approach exists, say so. Push back when warranted.
 - If two approaches exist, present both with tradeoffs. Do not pick one silently. Exception: trivial tasks (typo, rename, log line) where the diff fits in one sentence.
+- If something is unclear, stop. Name what's confusing. Ask.
 
 ---
 
@@ -77,12 +81,22 @@ Rewrite vague asks into verifiable goals before starting:
 - "Refactor X" becomes "Ensure the existing test suite passes before and after, and no public API changes."
 - "Make it faster" becomes "Benchmark the current hot path, identify the bottleneck with profiling, change it, show the benchmark is faster."
 
+For multi-step tasks, state a brief plan in this shape:
+
+```text
+1. [Step] -> verify: [check]
+2. [Step] -> verify: [check]
+3. [Step] -> verify: [check]
+```
+
 For every task:
 
 1. State the success criteria before writing code.
 2. Write the verification (test, script, benchmark, screenshot diff) where practical.
 3. Run the verification. Read the output. Do not claim success without checking.
 4. If the verification fails, fix the cause, not the test.
+
+Strong success criteria let you loop independently. Weak criteria like "make it work" create avoidable back-and-forth and late clarifications.
 
 ---
 
@@ -198,6 +212,7 @@ When the user corrects your approach, append a one-line rule here before ending 
 This boilerplate synthesizes:
 - Sean Donahoe's IJFW ("It Just F\*cking Works") principles: one install, working code, no ceremony.
 - Andrej Karpathy's observations on LLM coding pitfalls (the four principles: think-first, simplicity, surgical changes, goal-driven execution).
+- Forrest Chang's distilled Andrej Karpathy skills file (`andrej-karpathy-skills/CLAUDE.md`), especially its terse reminders and goal-to-verification examples.
 - Boris Cherny's public Claude Code workflow (reactive pruning, keep it ~100 lines, only rules that fix real mistakes).
 - Anthropic's official Claude Code best practices (explore-plan-code-commit, verification loops, context as the scarce resource).
 - Community anti-sycophancy patterns (explicit banned phrases, direct-not-diplomatic).
