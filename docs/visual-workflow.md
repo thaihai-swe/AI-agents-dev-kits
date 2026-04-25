@@ -295,6 +295,8 @@ flowchart TD
 - **Task-traceability-audit** is a helper check around task quality, not a replacement for planning or implementation
 - The kit supports backward loops: if review finds a missing requirement, go back to spec-requirement; if implementation finds a design flaw, go back to spec-design
 
+**To decide which path applies to your specific change,** see [Use Case Workflows](use-case-workflows.md). That page shows repository bootstrap scenarios and feature delivery paths with concrete examples and a decision tree.
+
 ## Common Loop Scenarios
 
 ### "Requirements were incomplete"

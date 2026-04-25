@@ -2,6 +2,8 @@
 
 This page shows common entry paths through the kit, with concrete scenarios and decision trees for different team situations and change types.
 
+**To understand how each stage works and why feedback loops occur,** see [Visual Workflow](visual-workflow.md). That page explains the full workflow diagram, stage responsibilities, and common looping scenarios with detailed reasoning.
+
 ## Repository Start Paths
 
 ```mermaid
