@@ -1,1 +1,0 @@
-agent: spec-review-requirements
