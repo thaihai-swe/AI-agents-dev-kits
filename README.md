@@ -85,6 +85,7 @@ Treat this as an operating sequence, not a menu of loosely related prompts.
 - Memory: [Memory](docs/memory.md)
 - Workflow: [Workflow](docs/workflow.md)
 - Visual workflow: [Visual Workflow](docs/visual-workflow.md)
+- Use cases: [Use Case Workflows](docs/use-case-workflows.md)
 - Adoption: [Adoption](docs/adoption.md)
 - Integrations: [Integrations](docs/integrations.md)
 - Examples: [Examples](docs/examples.md)

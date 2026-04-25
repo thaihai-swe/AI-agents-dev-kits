@@ -8,6 +8,7 @@ Each page has one job:
 - [Memory](memory.md): durable repo memory
 - [Workflow](workflow.md): stage responsibilities and gates
 - [Visual Workflow](visual-workflow.md): Mermaid diagram of the workflow
+- [Use Case Workflows](use-case-workflows.md): Mermaid diagrams for common scenarios
 - [Adoption](adoption.md): repo rollout and team usage
 - [Integrations](integrations.md): client entrypoints and packaging
 - [Examples](examples.md): copyable scenario flows
@@ -20,6 +21,7 @@ Use these pages:
 - [Memory](memory.md)
 - [Workflow](workflow.md)
 - [Visual Workflow](visual-workflow.md)
+- [Use Case Workflows](use-case-workflows.md)
 - [Adoption](adoption.md)
 - [Integrations](integrations.md)
 - [Examples](examples.md)
@@ -34,7 +36,8 @@ If you are new to the kit:
 2. read [Memory](memory.md)
 3. read [Workflow](workflow.md)
 4. read [Visual Workflow](visual-workflow.md)
-5. read [Examples](examples.md)
+5. read [Use Case Workflows](use-case-workflows.md)
+6. read [Examples](examples.md)
 
 If you are adopting the kit in a real repository:
 
