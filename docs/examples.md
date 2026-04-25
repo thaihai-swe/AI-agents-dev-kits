@@ -372,3 +372,97 @@ Good enough to hand off:
 - steps are observable, not implementation-centric
 - expected outcomes are explicit
 - known limitations or deferred areas are visible
+
+## Helper Skills Examples
+
+Helper skills do not own fixed artifacts. They run alongside the main workflow when specific questions arise.
+
+### Memory-Promotion Example
+
+**Trigger:** After finishing a brownfield feature, the team discovers a reusable pattern.
+
+**Scenario:**
+
+- After implementing audit logging for account status changes, the team realizes that *all* legacy entities in the system follow the same boundary pattern
+- This pattern should be durable repo memory so future features don't have to rediscover it
+
+**When to use:**
+
+- After analysis, if you spot a pattern that will repeat
+- After design or implementation, if a solution generalizes beyond one feature
+- After review, if a boundary discovery or integration seam deserves promotion
+
+**Typical prompt:**
+
+```text
+memory-promotion
+Feature slug: legacy-account-status-audit
+
+Determine whether the discovered legacy entity boundary pattern should be promoted to project-knowledge-base.md, added to constitution.md, or kept in feature artifacts.
+```
+
+**Good handoff:**
+
+- the decision is clear (promote, keep local, or escalate to constitution)
+- if promoted, the memory update is concise and durable
+- the feature artifacts still contain the local context when needed
+
+### Task-Traceability-Audit Example
+
+**Trigger:** During task generation or implementation, traceability confidence is unclear.
+
+**Scenario 1: Complex feature with overlapping concerns**
+
+- Magic link login requires TOTP support, SMS fallback, and force-enrollment logic
+- Task list has 12 items and the team is new to spec-driven work
+- Reviewers want to verify that every requirement → acceptance criterion → task → validation path is complete
+
+**When to use:**
+
+- After generating tasks for a complex feature
+- During implementation review if task coverage feels gaps or feels incomplete
+- When team changes hands mid-feature and new implementers need to trust the task list
+
+**Typical prompt:**
+
+```text
+task-traceability-audit
+Feature slug: magic-link-login-plus-mfa
+
+Audit the REQ -> AC -> TASK -> validation mapping to ensure:
+- Every requirement in spec.md has at least one acceptance criterion
+- Every acceptance criterion maps to at least one task
+- Every task has a clear validation point
+- No task is orphaned or unmapped
+```
+
+**Good handoff:**
+
+- audit identifies gaps in traceability
+- report maps requirement IDs to task IDs
+- weak areas are flagged for refinement before implementation continues
+
+**Scenario 2: Task-state drift during implementation**
+
+- Implementation is halfway done
+- Some task IDs in commits don't match the task.md file
+- Review wants to verify the current task state is coherent before proceeding
+
+**Typical prompt:**
+
+```text
+task-traceability-audit
+Feature slug: payment-webhook-receiver
+
+Audit current implementation against tasks.md to verify:
+- Implemented commits reference the correct task IDs
+- Task states in tasks.md match observed implementation progress
+- All completed tasks have validation evidence
+- No tasks have been silently split or merged
+```
+
+**Good handoff:**
+
+- audit catches task-state drift early
+- corrections happen before final review
+- traceability is trustworthy at hand-off

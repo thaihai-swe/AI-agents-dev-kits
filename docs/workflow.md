@@ -186,6 +186,20 @@ Do not treat error suppression, retries, or defensive patches as a fix unless th
 
 `/spec-testing-scenarios` is optional when a manual testing guide is unnecessary.
 
+## Team And Multi-Agent Coordination
+
+When multiple people or agents work in the same repository, artifact-first discipline becomes critical.
+
+**Key principles:**
+
+- stabilize upstream artifacts (`spec.md`, `plan.md`, `tasks.md`) before parallelizing implementation
+- serialize edits to shared planning artifacts
+- parallelize only bounded implementation tasks with clear file boundaries
+- assign one owner per parallel task batch
+- revalidate after parallel work lands
+
+For detailed coordination rules, including how to avoid race conditions and task-state drift, see [Adoption → Team And Multi-Agent Rule](adoption.md#team-and-multi-agent-rule).
+
 ## Stop Conditions
 
 Stop and move backward when:

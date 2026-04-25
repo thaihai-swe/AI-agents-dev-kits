@@ -12,7 +12,7 @@ Each page has one job:
 - [Adoption](adoption.md): repo rollout and team usage
 - [Integrations](integrations.md): client entrypoints and packaging
 - [Examples](examples.md): copyable scenario flows
-- [Reference](reference.md): fast lookup
+- [Reference](reference.md): fast lookup and glossary
 - [Maintainers](maintainers.md): governance and release operation
 
 Use these pages:
