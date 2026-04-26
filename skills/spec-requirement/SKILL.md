@@ -64,8 +64,24 @@ Assess scope before drafting in detail.
 - Identify 3-7 major scenario areas, capability slices, or user-journey segments before writing detailed requirements when the feature is broad enough to need decomposition.
 - Keep scope bounded; move future ideas to `Non-Goals` or `Open Questions`.
 - Separate current-state observations from future-state requirements.
+- Capture external dependencies, integration touchpoints, and policy or compliance constraints in requirement language when they materially shape scope or acceptance.
+- Define non-functional expectations only when they matter to the user, business, risk posture, or review readiness; keep them specific enough to verify.
 - Avoid prescribing frameworks, APIs, databases, file structures, or deployment details unless they are true business constraints.
 - Write for business stakeholders and reviewers, not implementers.
+
+## Requirements Analysis Lens
+
+Before treating the spec as stable, make sure it covers the relevant parts of this checklist:
+
+- Functional requirements: the concrete behaviors or outcomes the change must deliver
+- Non-functional requirements: performance, reliability, security, accessibility, observability, or compliance expectations that materially affect acceptance
+- Users and stakeholders: primary users, affected secondary actors, and who experiences the risk or value
+- User journeys and scenarios: the key flows, edge conditions, and failure cases that shape scope
+- Success criteria: measurable signals that the feature solved the stated problem
+- Dependencies and external touchpoints: upstream systems, third-party services, manual processes, or cross-team interactions that affect the requirement boundary
+- Current-state gap: what exists today, what must change, and what must stay unchanged for brownfield work
+
+This is a coverage aid, not a mandate to bloat the document. Omit categories that do not materially affect the feature.
 
 ## Clarification Rules
 
@@ -116,17 +132,19 @@ When `analysis.md` exists:
 - distinguish repository facts from product decisions; analysis informs the spec but does not replace product intent
 - if analysis and requested behavior conflict, surface the conflict explicitly instead of smoothing it over
 
+When `analysis.md` does not exist but the work is brownfield, still check whether the spec needs a short current-state summary to make the requirement boundary understandable.
+
 ## Workflow
 
 1. Validate that the request has enough product context to proceed.
 2. Read repo memory and current feature artifacts for the slug.
 3. Assess whether the request is small enough for one reviewable feature spec; if not, decompose it and continue with the selected slice only.
 4. If `analysis.md` exists, summarize the current-state baseline, affected boundaries, and protected behavior that matter for the spec.
-5. Extract users, problem, major scenario areas, constraints, and desired outcomes.
+5. Extract users, problem, major scenario areas, constraints, desired outcomes, dependencies, external touchpoints, and any material quality expectations.
 6. Resolve what you can with safe defaults and documented assumptions.
 7. When non-trivial product choices remain, present 2-3 viable approaches with tradeoffs and confirm the preferred direction before locking detailed requirements.
 8. Draft or refine `spec.md` section by section, stabilizing problem framing and scenarios before expanding detailed requirements.
-9. Run a self-review for placeholders, contradictions, unbounded scope, ambiguous wording, and weak requirement-to-acceptance traceability.
+9. Run a self-review for placeholders, contradictions, unbounded scope, ambiguous wording, missing requirement categories, and weak requirement-to-acceptance traceability.
 10. Present the drafted spec or key sections back to the user when review gating is needed, then incorporate feedback.
 11. Check that acceptance criteria trace back to requirements and are observable by a reviewer.
 12. If blocking clarification remains, stop and say exactly what is missing.
@@ -143,6 +161,7 @@ The spec is ready only when it:
 
 - clearly defines the problem, users, and value
 - captures the intended experience and highest-value scenarios
+- captures the meaningful constraints, dependencies, and quality expectations that shape the requirement boundary
 - has bounded scope
 - includes testable requirements
 - includes verifiable acceptance criteria
@@ -155,6 +174,7 @@ Before considering the artifact ready, verify:
 - no placeholder text remains unless explicitly intentional and called out as blocking
 - requirements do not contradict each other or the stated outcomes
 - scope is still narrow enough to hand off as one feature
+- material dependency, integration, and quality expectations are either captured or intentionally omitted
 - acceptance criteria are concrete enough for a reviewer to verify without guessing
 - the document stays in requirement space and does not drift into design or implementation planning
 

@@ -102,7 +102,7 @@ Use feature artifacts for:
 - investigates current behavior, bugs, and brownfield constraints
 
 `/spec-requirement`
-- defines what should change and why
+- defines what should change and why, including the requirement boundary, key scenarios, constraints, and acceptance clarity
 
 `/spec-review-requirements`
 - judges whether the spec is ready for design or planning

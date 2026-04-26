@@ -14,8 +14,9 @@ Current skill surface:
 - foundation skills: `constitution`, `project-knowledge-base`
 - feature workflow skills: `analyze`, `spec-requirement`, `spec-review-requirements`, `spec-design`, `spec-plan`, `spec-tasks`, `spec-implement`, `spec-review-implementation`, `spec-testing-scenarios`
 - helper skills: `memory-promotion`, `task-traceability-audit`
+- utility skills: `refactor-cleaner`
 
-Maintain docs coverage for all three groups. User-facing docs should not make the kit look like it only contains the feature-delivery middle.
+Maintain docs coverage for all four groups. User-facing docs should not make the kit look like it only contains the feature-delivery middle.
 
 ## Release Checklist
 

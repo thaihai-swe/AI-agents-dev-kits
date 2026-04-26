@@ -86,6 +86,8 @@ Create or refine the feature specification for this change.
 
 Continue only after the resulting artifact is strong enough for the next stage.
 
+In practice that means `spec.md` should cover the problem, users, key scenarios, meaningful constraints or dependencies, and reviewable acceptance criteria before you move on.
+
 Use helper skills only when they solve a specific promotion or audit question. They do not replace the main artifact flow.
 
 ## Verification Rule

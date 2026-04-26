@@ -47,6 +47,11 @@ What problem are we solving, for whom, and why now?
 
 For brownfield work, summarize the relevant current behavior, impacted boundaries, and unchanged behavior that must be preserved.
 
+## Dependencies And External Touchpoints
+
+- DEP-001:
+- DEP-002:
+
 ## Functional Requirements
 
 ### REQ-001
@@ -54,6 +59,8 @@ For brownfield work, summarize the relevant current behavior, impacted boundarie
 Requirement:
 
 Why it matters:
+
+Impacted users or scenarios:
 
 Related success criteria:
 
@@ -67,6 +74,8 @@ Requirement:
 
 Why it matters:
 
+Impacted users or scenarios:
+
 Related success criteria:
 
 Acceptance notes:
@@ -75,10 +84,10 @@ Acceptance notes:
 
 - NFR-001 Performance:
 - NFR-002 Reliability:
-- NFR-003 Security:
+- NFR-003 Security or Privacy:
 - NFR-004 Accessibility:
-- NFR-005 Observability:
-- NFR-006 Compliance:
+- NFR-005 Observability or Supportability:
+- NFR-006 Compliance or Policy:
 
 ## Constraints
 

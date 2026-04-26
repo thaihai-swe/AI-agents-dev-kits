@@ -19,7 +19,7 @@
 
 `/spec-requirement`
 - creates or updates `artifacts/features/<slug>/spec.md`
-- use when defining what should change and why
+- use when defining what should change and why, including users, scenarios, constraints, dependencies, and acceptance criteria
 - stop when users, scope, success outcomes, or acceptance criteria are still blocked
 
 `/spec-review-requirements`

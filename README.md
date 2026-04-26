@@ -17,8 +17,8 @@ It gives you:
 - durable repo memory under `memories/repo/`
 - per-feature artifacts under `artifacts/features/<slug>/`
 - thin adapter examples under [`adapters/`](adapters/)
-- 13 portable skills under `skills/`:
-  11 core workflow skills and 2 helper skills
+- 14 portable skills under `skills/`:
+  11 core workflow skills, 2 helper skills, and 1 utility skill
 
 ## Introduction
 
@@ -56,7 +56,7 @@ In practice, the kit helps teams use AI more like a disciplined implementation p
 /constitution               (if durable repo rules do not exist yet)
 /project-knowledge-base     (if durable repo context does not exist yet)
 /analyze                    (if current system behavior is unclear)
-/spec-requirement           (define intent and resolve blocking clarification)
+/spec-requirement           (define intent, scope, constraints, and acceptance clarity)
 /spec-review-requirements   (check readiness)
 /spec-design                (only when technical ambiguity needs design)
 /spec-plan                  (pre-plan analysis + execution strategy)
@@ -166,3 +166,6 @@ Core workflow skills:
 Helper skills:
 - `memory-promotion`
 - `task-traceability-audit`
+
+Utility skills:
+- `refactor-cleaner`
