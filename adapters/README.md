@@ -10,6 +10,7 @@ Rules:
 - point the agent to `memories/repo/` and `artifacts/features/`
 - tell the agent to choose the matching skill before freeform work
 - keep completion claims tied to fresh verification evidence
+- keep command aliases mapped to existing skills only
 - do not duplicate full skill bodies into the adapter
 
 Included examples:

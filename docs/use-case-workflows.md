@@ -35,27 +35,27 @@ flowchart LR
 
 **When to use:** You're starting a greenfield project with a new team or fresh codebase.
 
-**Path:** `constitution` → `project-knowledge-base` → first feature
+**Path:** `/constitution` → `/project-knowledge-base` → first feature
 
 **What happens:**
 1. **Constitution** establishes team principles, coding standards, and architectural guidelines
 2. **Project Knowledge Base** documents the project structure, critical decisions, and development patterns
 3. Both become durable repo memory that all future features reference
 
-**Example:** A startup building a SaaS product from scratch uses `constitution` to define tech stack choices, naming conventions, and deployment patterns. Then `project-knowledge-base` captures the initial API structure and data model decisions.
+**Example:** A startup building a SaaS product from scratch uses `/constitution` to define tech stack choices, naming conventions, and deployment patterns. Then `/project-knowledge-base` captures the initial API structure and data model decisions.
 
 ### Existing Project Scenario
 
 **When to use:** You're adding features to an established repository with existing patterns and decisions.
 
-**Path:** `analyze` → `project-knowledge-base` → first feature (optionally loop back to `constitution` if rules are missing)
+**Path:** `/analyze` → `/project-knowledge-base` → first feature (optionally loop back to `/constitution` if rules are missing)
 
 **What happens:**
 1. **Analyze** surveys the existing codebase to identify patterns, gaps, and working practices
 2. **Project Knowledge Base** either documents found patterns or flags where constitution rules should be created
 3. Features then proceed with clearer context
 
-**Example:** A team inheriting a 3-year-old Django app runs `analyze` to understand authentication flows, database patterns, and API conventions. They update `project-knowledge-base` with findings, and future features follow those patterns consistently.
+**Example:** A team inheriting a 3-year-old Django app runs `/analyze` to understand authentication flows, database patterns, and API conventions. They update `/project-knowledge-base` with findings, and future features follow those patterns consistently.
 
 ## Feature Delivery Paths
 
@@ -73,11 +73,11 @@ flowchart TD
     Design[spec-design]
     Plan[spec-plan]
     Tasks[spec-tasks]
-    Audit[task-traceability-audit]
+    Audit[/task-traceability-audit]
     Implement[spec-implement]
-    Review[spec-review-implementation]
+    Review[/spec-review]
     Testing[spec-testing-scenarios]
-    Promote[memory-promotion]
+    Promote[/memory-promotion]
 
     Feature --> NewFeature --> Analyze
     Feature --> Brownfield --> Analyze
@@ -115,7 +115,7 @@ flowchart TD
 
 **When to use:** Building a feature that doesn't exist in the codebase yet and affects multiple systems or user paths.
 
-**Path:** `analyze` → `spec-requirement` → `spec-review-requirements` → `spec-design` (if needed) → `spec-plan` → `spec-tasks` → `spec-implement` → `spec-review-implementation` → `spec-testing-scenarios`
+**Path:** `/analyze` → `/spec-requirement` → `/spec-review-requirements` → `/spec-design` (if needed) → `/spec-plan` → `/spec-tasks` → `/spec-implement` → `/spec-review` → `/spec-testing-scenarios`
 
 **Typical duration:** 2–4 weeks for a mid-sized feature
 
@@ -129,7 +129,7 @@ flowchart TD
     Review -->|yes| Plan
     Plan --> Tasks[spec-tasks]
     Tasks --> Implement[spec-implement]
-    Implement --> CodeReview[spec-review<br/>-implementation]
+    Implement --> CodeReview[/spec-review]
     CodeReview -->|approved| Testing[spec-testing<br/>-scenarios]
     CodeReview -->|needs changes| Implement
     Testing --> Done([Ready to merge])
@@ -158,7 +158,7 @@ flowchart TD
 
 **When to use:** Adding to or improving an existing feature area; the feature partially exists or touches established patterns.
 
-**Path:** `analyze` → `spec-requirement` → `spec-review-requirements` → optional `spec-design` → `spec-plan` → `spec-tasks` → `spec-implement` → `spec-review-implementation` → `spec-testing-scenarios`
+**Path:** `/analyze` → `/spec-requirement` → `/spec-review-requirements` → optional `/spec-design` → `/spec-plan` → `/spec-tasks` → `/spec-implement` → `/spec-review` → `/spec-testing-scenarios`
 
 **Typical duration:** 1–3 weeks
 
@@ -172,7 +172,7 @@ flowchart TD
     Design --> Plan
     Plan --> Tasks[spec-tasks]
     Tasks --> Implement[spec-implement]
-    Implement --> CodeReview[spec-review<br/>-implementation]
+    Implement --> CodeReview[/spec-review]
     CodeReview -->|approved| Testing[spec-testing<br/>-scenarios]
     CodeReview -->|needs changes| Implement
     Testing --> Done([Ready to merge])
@@ -199,7 +199,7 @@ flowchart TD
 
 **When to use:** Fixing a defect with clear reproduction steps and a known impact.
 
-**Path:** `analyze` (understand root cause) → `spec-requirement` (define the fix) → optional `spec-design` → `spec-plan` → `spec-tasks` → `spec-implement` → `spec-review-implementation` → `spec-testing-scenarios`
+**Path:** `/analyze` (understand root cause) → `/spec-requirement` (define the fix) → optional `/spec-design` → `/spec-plan` → `/spec-tasks` → `/spec-implement` → `/spec-review` → `/spec-testing-scenarios`
 
 **Typical duration:** A few hours to 2 days
 
@@ -213,7 +213,7 @@ flowchart TD
     SpecDesign --> Plan
     Plan --> Tasks[spec-tasks]
     Tasks --> Implement[spec-implement]
-    Implement --> CodeReview[spec-review<br/>-implementation]
+    Implement --> CodeReview[/spec-review]
     CodeReview -->|approved| Testing[spec-testing<br/>-scenarios]
     CodeReview -->|needs changes| Implement
     Testing --> Done([Ready to merge])
@@ -240,7 +240,7 @@ flowchart TD
 
 **When to use:** Small, low-risk changes: typo fixes, config tweaks, simple style improvements, or adding a single utility function.
 
-**Path:** `spec-requirement` → `spec-plan` → `spec-tasks` → `spec-implement` → `spec-review-implementation` (optional)
+**Path:** `/spec-requirement` → `/spec-plan` → `/spec-tasks` → `/spec-implement` → `/spec-review` (optional)
 
 **Typical duration:** 15 minutes to 1 hour
 
@@ -279,19 +279,18 @@ flowchart TD
 | Scenario | Path | Rationale |
 |----------|------|-----------|
 | Fixing a typo in a comment | Tiny change → implement directly | No traceability required; low risk |
-| Adding a new payment method to existing checkout | Brownfield → analyze → spec → implement | Touches existing code; new variant of known pattern |
-| Building a real-time collaboration feature | New feature → analyze → spec → design → plan | Complex, spans multiple teams, novel interaction patterns |
-| Disabling a deprecated API endpoint | Tiny change → spec → implement | Simple but should document deprecation reason |
-| Fixing reported user auth timeout | Bug fix → analyze → spec → implement → test | Needs root cause and reproduction |
-| Adding a new export format to reports | Brownfield → analyze → spec → implement | Known report structure; new format variant |
-| Updating npm dependencies | Tiny change → implement → test | Routine maintenance; check for breaking changes |
-| Redesigning the admin dashboard | New feature → analyze → spec → design → plan | High visibility; needs design review and buy-in |
+| Adding a new payment method to existing checkout | Brownfield -> `/analyze` -> `/spec-requirement` -> `/spec-implement` | Touches existing code; new variant of known pattern |
+| Building a real-time collaboration feature | New feature -> `/analyze` -> `/spec-requirement` -> `/spec-design` -> `/spec-plan` | Complex, spans multiple teams, novel interaction patterns |
+| Disabling a deprecated API endpoint | Tiny change -> `/spec-requirement` -> `/spec-implement` | Simple but should document deprecation reason |
+| Fixing reported user auth timeout | Bug fix -> `/analyze` -> `/spec-requirement` -> `/spec-implement` -> `/spec-review` | Needs root cause and reproduction |
+| Adding a new export format to reports | Brownfield -> `/analyze` -> `/spec-requirement` -> `/spec-implement` | Known report structure; new format variant |
+| Updating npm dependencies | Tiny change -> `/spec-implement` -> `/spec-review` | Routine maintenance; check for breaking changes |
+| Redesigning the admin dashboard | New feature -> `/analyze` -> `/spec-requirement` -> `/spec-design` -> `/spec-plan` | High visibility; needs design review and buy-in |
 
 ## Quick Reading Guide
 
 - use the first diagram when deciding how to bootstrap the kit in a repository
 - use the second diagram when deciding how much workflow a specific change needs
-- `memory-promotion` appears only when a local finding becomes durable repo knowledge (e.g., "we always use factory pattern for mocks")
-- `task-traceability-audit` is a quality check around task decomposition, not a mandatory step for every tiny change
+- `/memory-promotion` appears only when a local finding becomes durable repo knowledge (e.g., "we always use factory pattern for mocks")
+- `/task-traceability-audit` is a quality check around task decomposition, not a mandatory step for every tiny change
 - when in doubt between two paths, choose the more detailed one; the kit is built to skip steps if they add no value
-

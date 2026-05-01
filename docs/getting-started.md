@@ -31,6 +31,13 @@ If you want a lightweight setup helper, run:
 scripts/bootstrap-kit.sh
 ```
 
+It creates the canonical folders, starter repo-memory files, and a thin `AGENTS.md` stub when those files are missing.
+
+The starter repo-memory files are:
+
+- `memories/repo/constitution.md`
+- `memories/repo/project-knowledge-base.md`
+
 ## First Commands
 
 If durable memory does not exist yet, start here:
@@ -48,8 +55,13 @@ my-first-feature
 
 Helper skills you may use alongside the main flow:
 
-- `memory-promotion` when deciding whether a finding belongs in durable repo memory
-- `task-traceability-audit` when checking `REQ -> AC -> TASK -> validation` coverage
+- `/memory-promotion` when deciding whether a finding belongs in durable repo memory
+- `/task-traceability-audit` when checking `REQ -> AC -> TASK -> validation` coverage
+
+Thin command aliases stay close to the skill names:
+
+- `/spec-review` is the public command for implementation review
+- `/memory-promotion` and `/task-traceability-audit` are already the public skill names
 
 ## Core Workflow
 

@@ -8,6 +8,8 @@ metadata:
 
 # Spec Testing Scenarios
 
+## Overview
+
 Use this skill to create or refine `artifacts/features/<slug>/testing-scenarios.md`.
 
 This skill packages delivered feature behavior into a human-run testing guide for users, testers, QA, or reviewers. It is a post-implementation artifact, not a replacement for tests or implementation review.
@@ -28,7 +30,7 @@ Read these inputs when they exist:
 
 Also inspect the implemented behavior, relevant docs, setup steps, and user-visible flows that the testing guide needs to validate.
 
-## Use This Skill When
+## When to Use
 
 Use this skill when the user needs to:
 
@@ -43,6 +45,8 @@ Do not use this skill for:
 - reviewing whether implementation is approved
 - guessing behavior that has not been implemented or approved
 
+If the implementation is not reviewable yet, route back to `spec-review-implementation` before presenting a full testing guide.
+
 ## Preconditions
 
 Do not finalize testing scenarios unless these are true:
@@ -53,6 +57,20 @@ Do not finalize testing scenarios unless these are true:
 - setup and expected outcomes can be described concretely
 
 If `spec-review-implementation` found blocking issues, either stop or clearly mark the guide as draft and limit it to the reviewable delivered scope.
+
+## Stop Conditions
+
+Stop and explain what blocks a useful manual test guide when:
+
+- implementation has not been attempted
+- delivered behavior is too incomplete to describe concrete tester steps
+- setup or expected outcomes are still too unclear to write honest scenarios
+
+When stopping, say:
+
+- what delivered scope is missing
+- whether the correct next step is `spec-implement` or `spec-review`
+- whether a draft-only guide would still be useful
 
 ## Core Rules
 
@@ -78,6 +96,29 @@ If `spec-review-implementation` found blocking issues, either stop or clearly ma
 4. Write scenario-by-scenario steps with expected outcomes.
 5. Add edge cases, failure paths, and regression checks where relevant.
 6. Add a short completion or sign-off section so testers can record what passed, failed, or was deferred.
+
+## Common Rationalizations
+
+| Rationalization | Reality |
+|---|---|
+| "QA can figure it out from the feature artifacts." | A manual test guide should be executable without hidden context. |
+| "The implementation is partial, but we can write the full release plan anyway." | Testing scenarios must stay honest about delivered scope. |
+| "Expected results are obvious." | Manual verification fails fast when expected outcomes are vague. |
+
+## Red Flags
+
+- the guide describes intended behavior that has not been implemented
+- setup prerequisites are missing for non-trivial flows
+- happy paths are covered but high-risk regression paths are omitted
+
+## Verification
+
+Before finalizing the guide, verify:
+
+- scenarios reflect delivered behavior and approved artifacts
+- prerequisites and setup are concrete enough for a human to follow
+- expected outcomes are explicit
+- partial scope or known limitations are called out honestly
 
 ## Output Standard
 

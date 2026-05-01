@@ -8,6 +8,8 @@ metadata:
 
 # Spec Design
 
+## Overview
+
 Use this skill to create or refine `artifacts/features/<slug>/design.md`.
 
 This skill explains how the feature will work at a system level. It owns decisions, interfaces, flows, and tradeoffs needed before planning.
@@ -23,7 +25,7 @@ Read these inputs when they exist:
 - `artifacts/features/<slug>/analysis.md`
 - `references/design-template.md`
 
-## Use This Skill When
+## When to Use
 
 Use this skill when the feature:
 
@@ -34,6 +36,20 @@ Use this skill when the feature:
 - needs explicit tradeoff decisions before planning
 
 For highly localized changes, prefer a short design or recommend proceeding directly to planning if design is unnecessary.
+
+## Stop Conditions
+
+Stop and explain what blocks safe design work when:
+
+- `spec.md` is missing or not ready enough to design against
+- the change is so small that a design artifact would be ceremonial
+- the key technical choices still depend on unresolved product ambiguity
+
+When stopping, say:
+
+- what is missing or unnecessary
+- whether the correct next step is `spec-requirement` or `spec-plan`
+- which decision still needs clarification if design cannot proceed
 
 ## Preconditions
 
@@ -70,6 +86,30 @@ For highly localized changes, prefer a short design or recommend proceeding dire
 6. Record alternatives considered, the rationale for the chosen approach, and any promotion-worthy decisions.
 7. Present the draft design back in reviewable sections when the design introduced material tradeoffs or cross-boundary changes.
 8. Surface open decisions that still matter for planning.
+
+## Common Rationalizations
+
+| Rationalization | Reality |
+|---|---|
+| "We can skip design and figure it out in implementation." | Cross-boundary ambiguity gets more expensive downstream. |
+| "The first workable approach is enough." | Non-trivial technical choices need explicit tradeoffs before planning. |
+| "This should include the exact patch." | Design should clarify architecture and interfaces, not collapse into implementation. |
+
+## Red Flags
+
+- the design is really a task list or patch plan
+- technical tradeoffs were present but no alternatives were compared
+- planning would still need to invent the core approach
+
+## Verification
+
+Before finalizing the design, verify:
+
+- the design answers the technical ambiguity that justified writing it
+- major boundaries, interfaces, and flows are coherent with the spec
+- the chosen approach is explicit and alternatives are summarized where they matter
+- hidden coupling, contradictory decisions, and task-level drift are removed
+- remaining open questions are real planning blockers or clearly bounded follow-ups
 
 ## Self-Review
 

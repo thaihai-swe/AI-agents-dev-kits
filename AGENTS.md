@@ -1,18 +1,3 @@
-# AGENTS.md
-
-Drop-in operating instructions for coding agents. Read this file before every task.
-
-**Working code only. Finish the job. Plausibility is not correctness.**
-**Tradeoff: these instructions bias toward caution over speed. For trivial tasks, use judgment.**
-
-This file follows the [AGENTS.md](https://agents.md) open standard (Linux Foundation / Agentic AI Foundation). Claude Code, Codex, Cursor, Windsurf, Copilot, Aider, Devin, Amp read it natively. For tools that look elsewhere, symlink:
-
-```bash
-ln -s AGENTS.md CLAUDE.md
-ln -s AGENTS.md GEMINI.md
-```
-
----
 
 ## 0. Non-negotiables
 
@@ -39,6 +24,23 @@ For meaningful work in this repository, use this order:
 6. Move backward to the missing upstream artifact when blocked.
 
 Do not treat chat history as the durable source of truth when an artifact or skill already exists.
+
+Intent to skill map:
+
+- durable repo rules -> `/constitution`
+- durable descriptive repo context -> `/project-knowledge-base`
+- current-state investigation or bug analysis -> `/analyze`
+- define or refine change intent -> `/spec-requirement`
+- review spec readiness -> `/spec-review-requirements`
+- resolve technical ambiguity -> `/spec-design`
+- plan execution -> `/spec-plan`
+- decompose into tasks -> `/spec-tasks`
+- implement the next bounded task -> `/spec-implement`
+- review delivered implementation -> `/spec-review`
+- write manual QA scenarios -> `/spec-testing-scenarios`
+- promote durable findings -> `/memory-promotion`
+- audit traceability -> `/task-traceability-audit`
+- bounded cleanup or dead-code removal -> `refactor-cleaner`
 
 ---
 
@@ -189,9 +191,10 @@ Boris Cherny (creator of Claude Code) keeps his team's file around 100 lines. Un
 ### Commands
 - Install: `none`
 - Build: `none`
-- Test (all): `bash scripts/bootstrap-kit.sh`
+- Test (all): `bash scripts/check-kit-consistency.sh`
 - Test (single file): `sed -n '1,220p' <file>`
 - Lint: `rg -n "TODO|FIXME|TBD" docs skills README.md AGENTS.md`
+- Bootstrap: `bash scripts/bootstrap-kit.sh`
 - Typecheck: `none`
 - Run locally: `none`
 

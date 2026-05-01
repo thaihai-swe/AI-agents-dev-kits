@@ -8,6 +8,8 @@ metadata:
 
 # Analyze
 
+## Overview
+
 Use this skill to investigate existing behavior and write one bounded analysis artifact.
 
 Default output:
@@ -27,7 +29,7 @@ Read these inputs when they exist:
 
 Prefer direct repository evidence over assumptions.
 
-## Use This Skill When
+## When to Use
 
 Use this skill when the user needs to:
 
@@ -42,6 +44,22 @@ Do not use this skill for:
 - writing `spec.md`, `design.md`, `plan.md`, or `tasks.md`
 - post-implementation review
 - promoting durable memory directly
+
+When the request is really about defining future behavior, route to `spec-requirement` after the current-state uncertainty is reduced.
+
+## Stop Conditions
+
+Stop and explain what blocks safe analysis when:
+
+- the scope is too broad to investigate as one bounded artifact
+- the repository does not provide enough evidence to distinguish facts from guesswork
+- the request is actually asking for specification, planning, implementation, or review instead of investigation
+
+When stopping, say:
+
+- what evidence is missing
+- which narrower investigation target would be safe next
+- which adjacent skill should be used instead if analysis is no longer the right stage
 
 ## Core Rules
 
@@ -86,6 +104,31 @@ Only include sections that materially help the next step.
 6. Distinguish facts from inferences, call out the confidence level of any root-cause claim, and note where evidence is weak.
 7. Recommend the next artifact or workflow step, including promotion candidates when a local system map reveals durable repository structure.
 8. If warranted, identify promotion candidates for the constitution or project knowledge base without updating them directly.
+
+## Common Rationalizations
+
+| Rationalization | Reality |
+|---|---|
+| "I already know how this area works." | Repository evidence beats memory, especially in brownfield areas. |
+| "I can turn this straight into a spec." | Analysis should reduce uncertainty, not silently replace downstream artifacts. |
+| "The likely root cause is good enough." | Likely explanations must stay hypotheses until the evidence supports them. |
+
+## Red Flags
+
+- the analysis reads like a spec, design, or plan instead of observed current state
+- root-cause claims are stated as fact without repository evidence
+- the output tries to document the whole repo instead of the bounded investigation target
+
+## Verification
+
+Before finalizing the analysis, verify:
+
+- the investigation stayed within the stated scope
+- facts and inferences are clearly separated
+- root-cause claims are backed by observed evidence or explicitly labeled as hypotheses
+- the first failing boundary is visible when debugging-oriented analysis was requested
+- important unknowns, weak evidence, and boundary risks are visible
+- the recommended next step follows from the findings rather than jumping ahead
 
 ## Self-Review
 

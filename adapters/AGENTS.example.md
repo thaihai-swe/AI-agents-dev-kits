@@ -8,6 +8,18 @@ Workflow source of truth:
 - durable repo memory lives under `memories/repo/`
 - current feature artifacts live under `artifacts/features/<slug>/`
 
+Common routing:
+
+- durable rules -> `/constitution`
+- durable repo context -> `/project-knowledge-base`
+- current-state investigation -> `/analyze`
+- feature definition -> `/spec-requirement`
+- planning -> `/spec-plan`
+- implementation -> `/spec-implement`
+- review -> `/spec-review`
+- durable finding promotion -> `/memory-promotion`
+- traceability audit -> `/task-traceability-audit`
+
 Expected order:
 
 1. read this file

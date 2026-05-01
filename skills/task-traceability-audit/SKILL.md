@@ -8,50 +8,94 @@ metadata:
 
 # Task Traceability Audit
 
-Use this skill when an agent needs to verify that the implementation workflow preserves traceability from requirements through validation.
+## Overview
 
-## Purpose
+Use this skill to verify that the implementation workflow preserves traceability from requirements through validation.
 
-This skill checks the chain:
+This skill audits the chain `REQ -> AC -> TASK -> validation`. It does not replace planning, task generation, implementation, or review.
 
-`REQ -> AC -> TASK -> validation`
+## When to Use
 
-It helps ensure the task system is complete, reviewable, and safe to execute or approve.
+Use this skill when the user needs to:
 
-## When To Use It
+- verify that `tasks.md` covers the approved requirements
+- check whether implementation evidence still matches the claimed task state
+- audit traceability before finalizing tasks, implementation, or review
 
-Use this skill when:
+Do not use this skill for:
 
-- generating or refining `tasks.md`
-- reviewing implementation in `spec-review-implementation`
-- checking whether a task list is safe for `spec-implement`
-- verifying that validation evidence matches the intended behavior
+- inventing missing requirements or tasks
+- pretending weak upstream artifacts are audit-ready
+- implementation review beyond the traceability question
 
-## Audit Checks
+## Read First
 
-Check that:
+Read these inputs when they exist:
 
-- each material `REQ-*` maps to one or more `AC-*`
-- each material `AC-*` maps to one or more `TASK-*`
-- each task points back to relevant requirements and acceptance criteria
-- validation notes or evidence exist for the tasks that change behavior
-- no major requirement or acceptance criterion is orphaned
-- task state does not claim completion without matching validation evidence
+- `artifacts/features/<slug>/spec.md`
+- `artifacts/features/<slug>/plan.md`
+- `artifacts/features/<slug>/tasks.md`
+- `artifacts/features/<slug>/review.md`
+- relevant validation evidence from implementation or review
 
-## Failure Patterns
+## Workflow
 
-Flag issues when:
+1. Identify the feature and the artifact set being audited.
+2. Check that each material `REQ-*` maps to one or more `AC-*`.
+3. Check that each material `AC-*` maps to one or more `TASK-*`.
+4. Check that tasks changing behavior name the validation or evidence proving completion.
+5. Compare completed task state against the available validation evidence.
+6. Report what is complete, what is partial, and which gaps are blocking.
 
-- a requirement has no downstream task coverage
-- an acceptance criterion has no validation path
-- a task lacks links to requirements or acceptance criteria
-- validation evidence is missing for completed behavior-changing tasks
-- implementation reality and task status disagree
+## Stop Conditions
 
-## Output Expectations
+Stop and explain what blocks a meaningful audit when:
 
-When using this skill, clearly report:
+- `spec.md` or `tasks.md` is missing
+- acceptance criteria are too weak to map safely
+- task state or validation evidence is absent enough that the chain cannot be verified
 
-- what part of the chain is complete
-- what part is partial or missing
-- whether the traceability gap is blocking or non-blocking
+When stopping, say:
+
+- which part of the chain is missing
+- which artifact needs repair first
+- whether the gap blocks implementation, review, or closeout
+
+## Core Rules
+
+- Audit the artifact chain as written; do not silently repair it in place.
+- Treat missing validation for completed behavior-changing tasks as a traceability finding.
+- Distinguish between complete coverage, partial coverage, and misleading coverage.
+- Prefer explicit task and validation references over optimistic inference.
+- Route back to `spec-tasks`, `spec-implement`, or `spec-review-implementation` when the gap belongs there.
+
+## Common Rationalizations
+
+| Rationalization | Reality |
+|---|---|
+| "The intent is obvious even if the links are missing." | Missing links are exactly what makes future execution and review unsafe. |
+| "If the code works, the traceability can wait." | Weak traceability breaks review, resumption, and maintenance. |
+| "One passing test covers everything." | Validation has to prove the right requirement-task chain, not just any behavior. |
+
+## Red Flags
+
+- a `REQ-*` has no downstream task coverage
+- an `AC-*` has no validation path
+- a task is marked `Done` but no evidence proves its linked behavior
+- the audit result depends on guessing which task or requirement a change belongs to
+
+## Verification
+
+Before finalizing the audit, verify:
+
+- each material `REQ-*` maps to `AC-*`
+- each material `AC-*` maps to `TASK-*`
+- behavior-changing tasks name validation or evidence
+- completed task state is supported by current evidence
+- blocking and non-blocking gaps are called out separately
+
+## Output Rules
+
+- Clearly report what part of the chain is complete, partial, or missing.
+- State whether each gap is blocking or non-blocking.
+- Do not rewrite the audited artifacts during the audit itself.

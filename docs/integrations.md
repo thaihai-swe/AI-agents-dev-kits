@@ -19,6 +19,8 @@ The rule is simple:
 | GitHub Copilot | `.github/copilot-instructions.md` and optional `.github/instructions/*` | repo instructions point back to the canonical workflow | adapter-driven |
 | Other agent runtimes | repo-specific entrypoint | entrypoint should point to `skills/` and canonical paths | adapter-driven |
 
+For a concise public command and adapter overview, see [Supported Agents](supported-agents.md).
+
 ## Minimal Setup
 
 Keep these as canonical:
@@ -47,6 +49,7 @@ An entrypoint file should:
 - point to `memories/repo/` and `artifacts/features/`
 - tell the agent to choose the matching skill before freeform work
 - tell the agent that completion claims require fresh verification evidence
+- keep any command aliases thin and mapped to existing skills only
 
 An entrypoint file should not:
 
@@ -62,8 +65,26 @@ The expected discovery path is:
 2. choose the matching skill in `skills/`
 3. read `memories/repo/constitution.md`
 4. read `memories/repo/project-knowledge-base.md`
-5. read the current feature artifacts
+5. read the current feature artifacts under `artifacts/features/<slug>/`
 6. execute one stage at a time
+
+## Intent To Skill Map
+
+Keep adapter wording close to this routing:
+
+- durable repo-wide rules -> `/constitution`
+- durable descriptive repo context -> `/project-knowledge-base`
+- current-state investigation or bug analysis -> `/analyze`
+- define or refine what should change -> `/spec-requirement`
+- review spec readiness -> `/spec-review-requirements`
+- resolve technical ambiguity -> `/spec-design`
+- plan execution -> `/spec-plan`
+- break execution into tasks -> `/spec-tasks`
+- implement the next bounded task -> `/spec-implement`
+- review delivered implementation -> `/spec-review`
+- write a manual testing guide -> `/spec-testing-scenarios`
+- promote durable findings -> `/memory-promotion`
+- audit `REQ -> AC -> TASK -> validation` -> `/task-traceability-audit`
 
 ## Packaging Rule
 
@@ -85,6 +106,7 @@ scripts/bootstrap-kit.sh
 Its job should stay small:
 
 - create the canonical folder structure when missing
+- create starter `memories/repo/constitution.md` and `memories/repo/project-knowledge-base.md` files when missing
 - create a thin `AGENTS.md` stub when missing
 - print the next workflow steps
 

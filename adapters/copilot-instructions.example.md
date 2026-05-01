@@ -9,4 +9,10 @@ This repository uses an artifact-first workflow.
 - do not skip forward when the upstream artifact is weak
 - do not claim completion without fresh verification evidence
 
+Use only thin aliases to the existing skills:
+
+- `/spec-review` -> `spec-review-implementation`
+- `/memory-promotion` -> `memory-promotion`
+- `/task-traceability-audit` -> `task-traceability-audit`
+
 Use a thin `.github/instructions/*` layer only to point back to the canonical workflow.

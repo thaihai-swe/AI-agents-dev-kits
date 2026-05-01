@@ -8,4 +8,9 @@ This directory holds durable, project-specific memory for the AI Dev Kit.
 
 In the current model, non-negotiable AI operating rules stay in `constitution.md`, while durable brownfield watchouts, architecture notes, project-map summaries, and promoted decision history are consolidated into `project-knowledge-base.md` instead of being split into separate repository-memory files.
 
-Use `memories/README.md` for the top-level overview and `memories/repo/` as the canonical home for repository memory files.
+Repositories using the kit should normally ship starter versions of:
+
+- `memories/repo/constitution.md`
+- `memories/repo/project-knowledge-base.md`
+
+Use `memories/repo/` as the canonical home for repository memory files.

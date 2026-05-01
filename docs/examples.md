@@ -8,12 +8,12 @@ For a Mermaid view of the same choices, use [Use Case Workflows](use-case-workfl
 
 | Use case | Typical goal | Typical flow |
 |---|---|---|
-| New project | bootstrap the kit in a fresh repo | `constitution -> project-knowledge-base -> first feature` |
-| Existing project adoption | introduce the kit into a brownfield repo | `analyze -> minimal memory -> first bounded feature` |
-| New feature | deliver a real feature with full artifacts | `analyze -> spec -> review -> design -> plan -> tasks -> implement -> review` |
-| Brownfield feature | change risky legacy code safely | `analyze -> spec -> design -> plan -> tasks -> implement -> review -> memory-promotion` |
-| Bug fix | repair a narrow failure without bloating scope | `analyze -> spec -> plan -> tasks -> implement -> review` |
-| Tiny change | make a low-risk wording or UI tweak | `spec -> plan -> tasks -> implement -> review` |
+| New project | bootstrap the kit in a fresh repo | `/constitution -> /project-knowledge-base -> first feature` |
+| Existing project adoption | introduce the kit into a brownfield repo | `/analyze -> minimal memory -> first bounded feature` |
+| New feature | deliver a real feature with full artifacts | `/analyze -> /spec-requirement -> /spec-review-requirements -> /spec-design -> /spec-plan -> /spec-tasks -> /spec-implement -> /spec-review` |
+| Brownfield feature | change risky legacy code safely | `/analyze -> /spec-requirement -> /spec-design -> /spec-plan -> /spec-tasks -> /spec-implement -> /spec-review -> /memory-promotion` |
+| Bug fix | repair a narrow failure without bloating scope | `/analyze -> /spec-requirement -> /spec-plan -> /spec-tasks -> /spec-implement -> /spec-review` |
+| Tiny change | make a low-risk wording or UI tweak | `/spec-requirement -> /spec-plan -> /spec-tasks -> /spec-implement -> /spec-review` |
 
 ## Release Baseline
 
@@ -94,7 +94,7 @@ Create a technical design for token issuance, verification, session creation, an
 ```
 
 ```text
-Run task-traceability-audit on magic-link-login to confirm REQ -> AC -> TASK -> validation coverage before finalizing tasks.md.
+Run `/task-traceability-audit` on `magic-link-login` to confirm `REQ -> AC -> TASK -> validation` coverage before finalizing `tasks.md`.
 ```
 
 Skip conditions:
@@ -196,7 +196,7 @@ Investigate the subsystem we should use for the first bounded workflow trial and
 ```
 
 ```text
-Use memory-promotion to decide what from adoption-first-slice belongs in project-knowledge-base.md.
+Use `/memory-promotion` to decide what from `adoption-first-slice` belongs in `project-knowledge-base.md`.
 ```
 
 ## New Feature Example
@@ -207,7 +207,7 @@ Additional guidance:
 
 - choose a feature with user-visible behavior and bounded blast radius
 - include `/spec-design` when technical choices are real, not decorative
-- use `task-traceability-audit` before implementation if the task list feels too optimistic
+- use `/task-traceability-audit` before implementation if the task list feels too optimistic
 
 ## Brownfield Feature Example
 
@@ -263,7 +263,7 @@ Create a technical design for the audit integration seam and protected legacy bo
 ```
 
 ```text
-Use memory-promotion to decide whether the discovered legacy boundary rules belong in project-knowledge-base.md or should stay in feature artifacts.
+Use `/memory-promotion` to decide whether the discovered legacy boundary rules belong in `project-knowledge-base.md` or should stay in feature artifacts.
 ```
 
 ## Bug Fix Example
@@ -338,7 +338,7 @@ Good enough to hand off:
 - implementation evidence is proportional to the tiny scope
 - the review step still checks that task state and verification match
 
-Even in tiny changes, `task-traceability-audit` can help if task coverage is unclear or the implementation review finds suspicious task-state drift.
+Even in tiny changes, `/task-traceability-audit` can help if task coverage is unclear or the implementation review finds suspicious task-state drift.
 
 Typical prompt sequence:
 
@@ -395,7 +395,7 @@ Helper skills do not own fixed artifacts. They run alongside the main workflow w
 **Typical prompt:**
 
 ```text
-memory-promotion
+/memory-promotion
 Feature slug: legacy-account-status-audit
 
 Determine whether the discovered legacy entity boundary pattern should be promoted to project-knowledge-base.md, added to constitution.md, or kept in feature artifacts.
@@ -426,7 +426,7 @@ Determine whether the discovered legacy entity boundary pattern should be promot
 **Typical prompt:**
 
 ```text
-task-traceability-audit
+/task-traceability-audit
 Feature slug: magic-link-login-plus-mfa
 
 Audit the REQ -> AC -> TASK -> validation mapping to ensure:
@@ -451,7 +451,7 @@ Audit the REQ -> AC -> TASK -> validation mapping to ensure:
 **Typical prompt:**
 
 ```text
-task-traceability-audit
+/task-traceability-audit
 Feature slug: payment-webhook-receiver
 
 Audit current implementation against tasks.md to verify:

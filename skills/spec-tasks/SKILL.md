@@ -8,6 +8,8 @@ metadata:
 
 # Spec Tasks
 
+## Overview
+
 Use this skill to create or refine `artifacts/features/<slug>/tasks.md`.
 
 This skill turns an approved plan into a concrete execution task list. It owns bounded task decomposition, sequencing, dependency clarity, validation coverage, and resumable implementation tracking.
@@ -24,7 +26,7 @@ Read these inputs when they exist:
 - `references/tasks-template.md`
 - any `data-model.md`, `contracts/`, `research.md`, or `quickstart.md` relevant to the feature
 
-## Use This Skill When
+## When to Use
 
 Use this skill when the user needs to:
 
@@ -38,6 +40,8 @@ Do not use this skill for:
 - fixing weak requirements or planning artifacts
 - writing code
 - replacing `plan.md` with a new phase model
+
+If decomposition fails because the plan is weak, route back to `spec-plan` instead of inventing a new execution model.
 
 ## Preconditions
 
@@ -97,18 +101,21 @@ When stopping, say which precondition failed and which artifact needs revision.
 7. Check that every requirement and acceptance criterion is covered.
 8. Run a final traceability pass for `REQ -> AC -> TASK -> validation`.
 
-## Self-Review
+## Common Rationalizations
 
-Before finalizing `tasks.md`, verify:
+| Rationalization | Reality |
+|---|---|
+| "One big task is easier to manage." | Oversized tasks hide dependencies and break resumability. |
+| "Parallel markers are harmless." | Incorrect parallelization guidance creates shared-write and reintegration risk. |
+| "Validation can live only in implementation." | Tasks should say what proof completion requires. |
 
-- no task is too large or vague to execute in one bounded slice
-- tasks marked `[P]` do not create obvious shared-write or shared-contract conflicts
-- tasks marked `[P]` have clear ownership and reintegration instructions
-- validation and reintegration work are explicit where they need to be
-- task ordering still respects the plan rather than introducing a new hidden phase model
-- a future implementer could tell what to do next without guessing
+## Red Flags
 
-## Validation Checklist
+- tasks are too large to execute in one bounded slice
+- `[P]` markers appear without clear ownership boundaries
+- major acceptance criteria have no task or validation path
+
+## Verification
 
 Before finalizing `tasks.md`, verify:
 
@@ -124,6 +131,17 @@ Before finalizing `tasks.md`, verify:
 - every material `AC-*` maps to one or more tasks or validation steps
 - validation tasks are explicit
 - no major work is orphaned
+
+## Self-Review
+
+Before finalizing `tasks.md`, verify:
+
+- no task is too large or vague to execute in one bounded slice
+- tasks marked `[P]` do not create obvious shared-write or shared-contract conflicts
+- tasks marked `[P]` have clear ownership and reintegration instructions
+- validation and reintegration work are explicit where they need to be
+- task ordering still respects the plan rather than introducing a new hidden phase model
+- a future implementer could tell what to do next without guessing
 
 ## Traceability
 

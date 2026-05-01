@@ -8,6 +8,8 @@ metadata:
 
 # Spec Requirement
 
+## Overview
+
 Use this skill to create or refine `artifacts/features/<slug>/spec.md`.
 
 This skill owns specification authoring and the clarification pass that happens before requirements review. It defines what should change and why. It does not own architecture, task sequencing, or implementation planning.
@@ -22,7 +24,7 @@ Read these inputs when they exist:
 - other existing feature artifacts for the same slug
 - `references/spec-template.md` for the canonical bundled spec structure
 
-## Use This Skill When
+## When to Use
 
 Use this skill when the user needs to:
 
@@ -36,6 +38,8 @@ Do not use this skill for:
 - design decisions or technical solutioning
 - implementation planning or task breakdown
 - code changes
+
+If the request is really about current-state discovery, route to `analyze` before drafting future-state requirements.
 
 ## Preconditions
 
@@ -56,7 +60,21 @@ Assess scope before drafting in detail.
 - Decompose the work into smaller feature candidates, explain the split, and continue only with the highest-priority slice when the user has not named a narrower scope.
 - Treat "one spec" as "one reviewable product change" rather than "everything mentioned in the request."
 
-## Writing Rules
+## Stop Conditions
+
+Stop and explain what blocks safe spec authoring when:
+
+- the users, problem, or intended outcomes are still too unclear to define requirements
+- multiple materially different product directions remain unresolved
+- the change should be decomposed into smaller feature specs before writing detailed requirements
+
+When stopping, say:
+
+- what is unclear
+- whether the next step is clarification, `analyze`, or a narrower spec slice
+- why downstream review would be misleading right now
+
+## Core Rules
 
 - Focus on what and why, not how.
 - Keep requirements testable and acceptance criteria observable.
@@ -149,27 +167,23 @@ When `analysis.md` does not exist but the work is brownfield, still check whethe
 11. Check that acceptance criteria trace back to requirements and are observable by a reviewer.
 12. If blocking clarification remains, stop and say exactly what is missing.
 
-## References
+## Common Rationalizations
 
-- Use [references/spec-template.md](references/spec-template.md) as the bundled section template.
-- Remove sections that do not apply instead of leaving placeholders.
-- Keep the skill body focused on workflow and rules; keep structural detail in the reference file.
+| Rationalization | Reality |
+|---|---|
+| "We can lock requirements and fill in the product gaps later." | Unresolved product ambiguity leaks downstream into design and planning. |
+| "A big umbrella spec is faster." | Oversized specs hide scope decisions and make review weaker. |
+| "The technical solution belongs here so implementers know what to do." | Specs should define what and why, not implementation detail. |
 
-## Output Standard
+## Red Flags
 
-The spec is ready only when it:
+- the spec reads like a design or task list
+- acceptance criteria are not observable by a reviewer
+- multiple feature slices are being bundled into one artifact without clear scope control
 
-- clearly defines the problem, users, and value
-- captures the intended experience and highest-value scenarios
-- captures the meaningful constraints, dependencies, and quality expectations that shape the requirement boundary
-- has bounded scope
-- includes testable requirements
-- includes verifiable acceptance criteria
-- separates requirements, quality expectations, and constraints cleanly
-- avoids technical planning and implementation detail
-- resolves all blocking clarification
+## Verification
 
-Before considering the artifact ready, verify:
+Before finalizing the spec, verify:
 
 - no placeholder text remains unless explicitly intentional and called out as blocking
 - requirements do not contradict each other or the stated outcomes
@@ -177,6 +191,12 @@ Before considering the artifact ready, verify:
 - material dependency, integration, and quality expectations are either captured or intentionally omitted
 - acceptance criteria are concrete enough for a reviewer to verify without guessing
 - the document stays in requirement space and does not drift into design or implementation planning
+
+## References
+
+- Use [references/spec-template.md](references/spec-template.md) as the bundled section template.
+- Remove sections that do not apply instead of leaving placeholders.
+- Keep the skill body focused on workflow and rules; keep structural detail in the reference file.
 
 ## Output Rules
 

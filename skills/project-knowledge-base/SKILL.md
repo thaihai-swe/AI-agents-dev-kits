@@ -8,6 +8,8 @@ metadata:
 
 # Project Knowledge Base
 
+## Overview
+
 Use this skill to create or maintain `memories/repo/project-knowledge-base.md`.
 
 This skill captures durable descriptive repository knowledge. It complements the constitution, which owns repo-wide rules.
@@ -22,7 +24,7 @@ Read these inputs when they exist:
 - relevant repository files and code paths
 - `references/project-knowledge-base-template.md`
 
-## Use This Skill When
+## When to Use
 
 Use this skill when the user needs to:
 
@@ -38,6 +40,22 @@ Do not use this skill for:
 - temporary findings
 - feature-specific plans
 - speculative future design with no repository basis
+
+If the candidate finding may really be a rule or may still be feature-local, route through `memory-promotion` before editing this file.
+
+## Stop Conditions
+
+Stop and explain what blocks a safe memory update when:
+
+- the finding is still temporary, speculative, or weakly evidenced
+- the content is really a repo-wide rule that belongs in the constitution
+- the note is feature-local and should stay in feature artifacts
+
+When stopping, say:
+
+- what the finding is
+- why it is not durable enough for repo memory yet
+- which artifact or adjacent skill should own it instead
 
 ## Core Rules
 
@@ -65,6 +83,29 @@ Use the repository’s `memory-promotion` skill when available to decide whether
 3. Merge it into existing sections or create a concise new section when warranted, including architecture notes, project maps, or durable decision summaries when they clear the promotion bar.
 4. Remove duplication and keep the file useful for future agents with no chat history.
 5. If no durable update is warranted, stop and say so plainly.
+
+## Common Rationalizations
+
+| Rationalization | Reality |
+|---|---|
+| "Let's save every useful note here." | Repo memory should capture only durable knowledge, not session residue. |
+| "This sounds important, so it must be a rule." | Descriptive patterns and normative rules belong in different files. |
+| "A file-by-file inventory is safer." | Durable summaries and boundaries age better than exhaustive lists. |
+
+## Red Flags
+
+- feature-local notes are being promoted into repo memory
+- normative language is creeping into descriptive sections
+- the file is turning into a second architecture manual instead of compact durable memory
+
+## Verification
+
+Before finalizing the knowledge base, verify:
+
+- the content is durable, descriptive, and evidence-based
+- overlapping sections were merged instead of duplicated
+- normative rules were kept out
+- the note would still be useful on a future unrelated feature
 
 ## Output Standard
 

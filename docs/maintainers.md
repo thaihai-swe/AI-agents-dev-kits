@@ -6,6 +6,7 @@ The workflow contract lives in:
 
 - `skills/*/SKILL.md`
 - `skills/*/references/*`
+- `docs/skill-anatomy.md`
 
 User-facing docs should explain the workflow, not compete with it.
 
@@ -22,10 +23,11 @@ Maintain docs coverage for all four groups. User-facing docs should not make the
 
 Before release:
 
-1. run one realistic end-to-end dry run
-2. verify skills, templates, docs, and examples use the same artifact model
-3. freeze artifact names, verdict names, and task-state names for the release line
-4. check that stop conditions route back to the correct upstream artifact
+1. run `bash scripts/check-kit-consistency.sh`
+2. run one realistic end-to-end dry run
+3. verify skills, templates, docs, examples, adapters, and bootstrap use the same artifact model
+4. freeze artifact names, verdict names, and task-state names for the release line
+5. check that stop conditions route back to the correct upstream artifact
 
 Release gate:
 
@@ -53,6 +55,7 @@ During the dry run, check:
 - examples and docs do not teach behavior the skills do not require
 - helper skills are described accurately and only where they materially help the workflow
 - foundation skills are included wherever the docs describe the full workflow
+- bootstrap creates the same baseline files the onboarding docs promise
 
 ## Doc Governance
 
@@ -79,8 +82,12 @@ Do one final prose pass for:
 Each page should have one primary job:
 
 - `getting-started.md`: first successful run
+- `supported-agents.md`: adapter model and public command surface
+- `debugging.md`: bug-fix and failure-analysis workflow
+- `understanding-existing-code.md`: current-state discovery workflow
 - `memory.md`: durable repo memory model
 - `workflow.md`: stage responsibilities and gates
+- `skill-anatomy.md`: required `SKILL.md` structure and maintainer rules
 - `adoption.md`: repo rollout and team usage
 - `integrations.md`: client entrypoints and packaging
 - `examples.md`: copyable scenario flows
@@ -93,10 +100,14 @@ Keep each `SKILL.md` lean and operational.
 
 Each skill should make these elements easy to find:
 
+- overview
 - trigger or use-when
 - required inputs and preconditions
 - stop conditions or move-backward conditions
 - the core workflow
+- core rules and cross-skill routing
+- rationalizations and red flags
+- verification
 - expected outputs or owned artifacts
 - quality checks that prevent weak downstream handoffs
 
@@ -106,6 +117,8 @@ Use `references/` for:
 - checklists
 - output shapes
 - examples that would otherwise bloat the skill body
+
+Prefer skill-local `skills/*/references/` material. Use top-level `references/` only when multiple existing skills truly depend on the same shared checklist.
 
 Do not turn docs into a second competing source of workflow truth. If a rule belongs to the contract, update the owning skill first and then align the docs.
 

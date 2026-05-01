@@ -72,6 +72,10 @@ Each artifact has one job. That is the main guard against scope drift and vague 
 - not an automated test suite
 - not a replacement for implementation review
 
+Optional supporting repo memory:
+
+- `memories/repo/domain-specs.md` explains when large repositories may add subsystem-level current-state docs under a `specs/` directory
+
 ## Repo Memory Vs Feature Artifacts
 
 Use repo memory for:
@@ -127,17 +131,17 @@ Use feature artifacts for:
 
 ### Helper Skills
 
-`memory-promotion`
+`/memory-promotion`
 - decides whether a finding should move into durable repo memory, escalate into the constitution, or remain in feature artifacts
 
-`task-traceability-audit`
+`/task-traceability-audit`
 - checks whether `REQ -> AC -> TASK -> validation` coverage is complete and trustworthy
 
 ## How Helpers Fit
 
-Use `memory-promotion` after analysis, design, implementation, or review when durable findings emerge.
+Use `/memory-promotion` after analysis, design, implementation, or review when durable findings emerge.
 
-Use `task-traceability-audit` after task generation, during implementation, or during implementation review when traceability confidence matters.
+Use `/task-traceability-audit` after task generation, during implementation, or during implementation review when traceability confidence matters.
 
 ## Verification First
 

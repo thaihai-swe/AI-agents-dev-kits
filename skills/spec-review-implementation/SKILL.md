@@ -8,6 +8,8 @@ metadata:
 
 # Spec Review Implementation
 
+## Overview
+
 Use this skill to review implemented work for a feature against its approved artifacts and the current repository state.
 
 This skill is the implementation quality gate. It reviews evidence, not vague intent or chat history.
@@ -29,7 +31,7 @@ If a durable written review is useful, write or update:
 
 `artifacts/features/<slug>/review.md`
 
-## Use This Skill When
+## When to Use
 
 Use this skill when the user needs to:
 
@@ -42,6 +44,8 @@ Do not use this skill for:
 - requirement-readiness review before planning
 - silently rewriting the spec, plan, or task list during review
 
+If the change is not implementation reviewable yet, route back to `spec-implement` or the missing upstream artifact.
+
 ## Preconditions
 
 Before review, verify:
@@ -53,7 +57,21 @@ Before review, verify:
 
 If those are not true, stop and say exactly what is missing.
 
-## Core Review Rules
+## Stop Conditions
+
+Stop and explain what blocks a meaningful implementation review when:
+
+- required upstream artifacts are missing
+- implementation has not actually been attempted
+- validation evidence is too weak or stale to support a verdict
+
+When stopping, say:
+
+- what is missing
+- whether the correct next step is `spec-implement`, `spec-tasks`, or another upstream skill
+- why a review verdict would be misleading
+
+## Core Rules
 
 - Review the implemented work against the artifacts as written.
 - Distinguish blocking issues from follow-up improvements.
@@ -93,6 +111,31 @@ Choose `changes required` when requirements are unmet, validation is too weak fo
 6. Classify issues as blocking or follow-up.
 7. Produce a verdict based on evidence.
 8. Write `review.md` only when a durable written review is useful.
+
+## Common Rationalizations
+
+| Rationalization | Reality |
+|---|---|
+| "The diff looks right, so the review can be light." | Review is about evidence, not plausibility. |
+| "Missing verification is just a paperwork issue." | Weak or stale evidence is a real review finding. |
+| "We can leave the task as done and mention the caveat." | Misleading task state is itself an operational risk. |
+
+## Red Flags
+
+- the verdict depends on confidence instead of fresh evidence
+- completed task state contradicts the available validation
+- scope drift is excused instead of called out
+
+## Verification
+
+Before finalizing the review, verify:
+
+- each finding points to evidence rather than intuition
+- requirement coverage, verification quality, and scope control were all checked
+- task-state accuracy was reviewed alongside the code changes
+- any reopen-needed task state is called out clearly
+- the verdict matches the severity of the findings
+- absence of findings is stated explicitly when nothing material is wrong
 
 ## Self-Review
 

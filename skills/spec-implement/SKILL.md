@@ -8,6 +8,8 @@ metadata:
 
 # Spec Implement
 
+## Overview
+
 Use this skill to execute implementation work for a feature from its approved artifacts.
 
 This skill implements from `tasks.md`, with `plan.md` and `spec.md` as governing context. It owns task-by-task execution, status tracking, validation, and scope discipline.
@@ -25,7 +27,7 @@ Read these inputs when they exist:
 - `memories/repo/project-knowledge-base.md`
 - `references/tasks-template.md` to confirm the expected task block and status fields
 
-## Use This Skill When
+## When to Use
 
 Use this skill when the user needs to:
 
@@ -39,6 +41,8 @@ Do not use this skill for:
 - inventing work directly from chat intent
 - repairing weak upstream specs, plans, or task lists by guessing
 - silently broadening scope beyond the selected task
+
+If the selected task is not actually executable, route back to the blocked upstream artifact instead of compensating in code.
 
 ## Preconditions
 
@@ -69,7 +73,7 @@ When stopping, identify:
 - what upstream artifact or decision must change
 - why implementation cannot proceed safely
 
-## Core Execution Rules
+## Core Rules
 
 - Work from `tasks.md`, not vague chat intent.
 - Respect phase order, task dependencies, and resume notes.
@@ -159,9 +163,23 @@ Examples of acceptable evidence include targeted tests, relevant integration tes
 10. If review finds local issues, reopen the task, fix them, rerun the proof, and only then return it to `Done`.
 11. Update resume context in `tasks.md` before moving on.
 
-## Self-Review
+## Common Rationalizations
 
-Before marking the task done, verify:
+| Rationalization | Reality |
+|---|---|
+| "The task is a little vague, but I can fill in the gap." | Silent gap-filling is how scope drift and broken traceability start. |
+| "I'll update task status after everything passes." | Task state must reflect reality as work progresses, not after the fact. |
+| "The code looks correct, so the proof can be minimal." | Completion requires fresh relevant evidence, not confidence. |
+
+## Red Flags
+
+- implementation is being driven from chat instead of `tasks.md`
+- behavior changed but no failing proof or targeted validation exists
+- task state claims `Done` while review or validation still contradicts that claim
+
+## Verification
+
+Before marking a task done, verify:
 
 - the code change stayed inside the selected task boundary
 - test-first behavior was followed when the task changed behavior
@@ -170,30 +188,17 @@ Before marking the task done, verify:
 - task state would still be truthful if another agent reviewed it immediately
 - no hidden scope expansion or unrecorded blocker remains
 
-## Validation Standard
+## Self-Review
 
-Before marking a task done, verify:
+Before marking the task done, verify:
 
 - implementation matches the task description
-- relevant tests pass
-- lint, type checks, or repo quality gates pass when applicable
+- relevant tests and repo quality gates were run when applicable
 - changed behavior still aligns with `spec.md`, `plan.md`, and the selected task
 - evidence exists for the linked acceptance criteria
 - task status in `tasks.md` matches the actual verification outcome
 
 Use the repository’s `task-traceability-audit` skill when available to confirm the selected task still traces cleanly to requirements, acceptance criteria, and validation.
-
-## Output Standard
-
-Implementation work is ready only when it:
-
-- stays within the selected task scope
-- respects dependencies and sequencing
-- updates task status immediately and correctly
-- includes validation with the code change
-- uses test-first validation for behavior changes when practical
-- preserves traceability from `REQ-*` and `AC-*` to the implemented task
-- surfaces blockers or upstream defects clearly instead of masking them
 
 ## Output Rules
 

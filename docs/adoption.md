@@ -46,16 +46,17 @@ Recommended order:
 
 1. copy `skills/` and create the canonical folders, or run `scripts/bootstrap-kit.sh`
 2. add `AGENTS.md` or the equivalent adapter when needed
-3. run `/constitution`
-4. run `/project-knowledge-base`
-5. start one real feature
+3. review the starter `memories/repo/constitution.md` and `memories/repo/project-knowledge-base.md` files
+4. run `/constitution`
+5. run `/project-knowledge-base`
+6. start one real feature
 
 ## Existing Repository Adoption
 
 Recommended order:
 
 1. copy `skills/`
-2. create `memories/repo/` and `artifacts/features/`
+2. create `memories/repo/` and `artifacts/features/`, or run `scripts/bootstrap-kit.sh`
 3. add the thin client adapter
 4. capture only minimal durable memory first
 5. start with a small or well-understood feature
@@ -63,8 +64,8 @@ Recommended order:
 
 Use helper skills during adoption when needed:
 
-- `memory-promotion` to decide whether a discovery should become durable repo memory
-- `task-traceability-audit` to validate that task generation stays trustworthy during early adoption
+- `/memory-promotion` to decide whether a discovery should become durable repo memory
+- `/task-traceability-audit` to validate that task generation stays trustworthy during early adoption
 
 ## Integration Hand-Off
 
@@ -124,7 +125,7 @@ When multiple people or agents work in the same repo:
 - assign one owner per parallel task batch
 - avoid shared-write implementation batches when a simpler boundary exists
 - do not mark tasks done without validation evidence
-- use `task-traceability-audit` when split ownership makes coverage less obvious
+- use `/task-traceability-audit` when split ownership makes coverage less obvious
 - reintegrate by re-running review and relevant validation after parallel work lands
 
 ## What To Avoid

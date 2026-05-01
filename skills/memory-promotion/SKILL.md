@@ -8,49 +8,91 @@ metadata:
 
 # Memory Promotion
 
-Use this skill when an agent needs to decide what should move from feature artifacts into durable repository memory.
+## Overview
 
-## Purpose
+Use this skill to decide where a repository finding belongs after analysis, implementation, review, or cleanup work.
 
-This skill helps an agent distinguish:
+This skill classifies findings. It does not replace the owning update skills for `constitution.md` or `project-knowledge-base.md`.
 
-- durable repository knowledge that belongs in `memories/repo/project-knowledge-base.md`
-- repository-wide rules that belong in `memories/repo/constitution.md`
-- feature-specific findings that should remain in `artifacts/features/<slug>/`
+## When to Use
 
-## When To Use It
+Use this skill when the user needs to:
 
-Use this skill when:
+- decide whether a finding should become durable repo memory
+- choose between `memories/repo/project-knowledge-base.md`, `memories/repo/constitution.md`, or feature artifacts
+- review whether a lesson learned is stable enough to keep
 
-- reviewing `analysis.md` for durable findings
-- updating `project-knowledge-base.md`
-- deciding whether a discovery is stable enough to promote
-- deciding whether something is a durable fact, a repo rule, or a one-off feature note
+Do not use this skill for:
 
-## Decision Rules
+- writing the promoted content directly without a placement decision
+- forcing promotion when the evidence is weak
+- feature-local notes that are obviously temporary
 
-Promote a finding only when it is:
+## Read First
 
-- durable across multiple future changes
-- grounded in repository evidence
-- useful to future contributors or agents
-- more general than a single feature implementation
+Read these inputs when they exist:
 
-Keep a finding in feature artifacts when it is:
+- `memories/repo/constitution.md`
+- `memories/repo/project-knowledge-base.md`
+- the feature artifact or review output that produced the finding
+- any repository evidence needed to confirm the finding is real and durable
 
-- temporary
-- speculative
-- tied to one feature only
-- still uncertain
+## Workflow
 
-Move a finding to the constitution only when it is a true repository-wide rule or non-negotiable guardrail.
+1. Identify the candidate finding and its source artifact.
+2. Check whether the finding is evidence-based, durable, and useful beyond the current feature.
+3. Decide whether it is descriptive knowledge, a repo-wide rule, or still feature-local.
+4. Recommend exactly one destination: `project-knowledge-base.md`, `constitution.md`, or the existing feature artifact.
+5. State the short reason for the decision and route to the owning update skill when promotion is warranted.
 
-## Output Expectations
+## Stop Conditions
 
-When using this skill, the agent should say one of:
+Stop and keep the finding in feature artifacts when:
 
-- promote to `project-knowledge-base.md`
-- promote to `constitution.md`
-- keep in feature artifacts
+- the finding is still uncertain or speculative
+- the evidence does not show that the pattern is durable
+- the finding matters only to the current feature or incident
 
-The decision should include a short reason.
+When stopping, say:
+
+- what the finding is
+- why it is not ready for durable memory
+- what evidence or reuse signal would justify promotion later
+
+## Core Rules
+
+- Promote only findings that future work is likely to need again.
+- Use `project-knowledge-base.md` for durable descriptive patterns, boundaries, and watchouts.
+- Use `constitution.md` only for true repository-wide rules or guardrails.
+- Keep feature-local discoveries in feature artifacts until they clear the promotion bar.
+- When the destination is unclear, err toward leaving the finding local instead of over-promoting it.
+- Route to `project-knowledge-base` or `constitution` after the decision instead of silently editing both in the same step.
+
+## Common Rationalizations
+
+| Rationalization | Reality |
+|---|---|
+| "This was useful once, so it belongs in repo memory." | Durable memory is for reusable knowledge, not every interesting note. |
+| "If it sounds important, put it in the constitution." | The constitution is for rules, not for descriptive context. |
+| "We can always clean it up later." | Over-promotion creates noise that future agents will trust too much. |
+
+## Red Flags
+
+- a temporary workaround is being promoted as durable knowledge
+- a descriptive note is being framed as a rule
+- the same finding could not be explained without reference to one specific feature
+
+## Verification
+
+Before finalizing the decision, verify:
+
+- the finding is grounded in repository evidence
+- the recommended destination matches the type of knowledge
+- the reason explains why the finding is durable, normative, or still local
+- no promotion is recommended just to avoid losing chat context
+
+## Output Rules
+
+- Return exactly one recommendation: promote to `project-knowledge-base.md`, promote to `constitution.md`, or keep in feature artifacts.
+- Include a short reason with the recommendation.
+- Do not update repo memory files directly unless the user separately asked for that change.

@@ -121,7 +121,7 @@ If you want a lightweight setup helper, use:
 scripts/bootstrap-kit.sh
 ```
 
-It creates the canonical folders when missing, creates a thin `AGENTS.md` stub when missing, and prints the next workflow steps.
+It creates the canonical folders when missing, creates starter `memories/repo/constitution.md` and `memories/repo/project-knowledge-base.md` files when missing, creates a thin `AGENTS.md` stub when missing, and prints the next workflow steps.
 
 ## Product Stance
 
@@ -169,3 +169,6 @@ Helper skills:
 
 Utility skills:
 - `refactor-cleaner`
+
+Maintainer checks:
+- `bash scripts/check-kit-consistency.sh`

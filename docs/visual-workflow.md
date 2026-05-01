@@ -6,19 +6,19 @@ This diagram shows the artifact-first workflow, including foundation skills, hel
 flowchart TD
     Start([Request or change])
 
-    Constitution[constitution]
-    PKB[project-knowledge-base]
-    Analyze[analyze]
-    Spec[spec-requirement]
-    ReqReview[spec-review-requirements]
-    Design[spec-design]
-    Plan[spec-plan]
-    Tasks[spec-tasks]
-    Audit[task-traceability-audit]
-    Implement[spec-implement]
-    Review[spec-review-implementation]
-    Testing[spec-testing-scenarios]
-    Promote[memory-promotion]
+    Constitution[/constitution]
+    PKB[/project-knowledge-base]
+    Analyze[/analyze]
+    Spec[/spec-requirement]
+    ReqReview[/spec-review-requirements]
+    Design[/spec-design]
+    Plan[/spec-plan]
+    Tasks[/spec-tasks]
+    Audit[/task-traceability-audit]
+    Implement[/spec-implement]
+    Review[/spec-review]
+    Testing[/spec-testing-scenarios]
+    Promote[/memory-promotion]
     Done([Ready to merge or hand off])
 
     Start --> Constitution
@@ -104,8 +104,8 @@ flowchart TD
 - Check for technology or library constraints
 
 **Decision point:**
-- If patterns exist and are clear → proceed to `spec-requirement`
-- If patterns are inconsistent or unclear → may feed back to `constitution` or `project-knowledge-base`
+- If patterns exist and are clear -> proceed to `/spec-requirement`
+- If patterns are inconsistent or unclear -> may feed back to `/constitution` or `/project-knowledge-base`
 
 **Example:** Before building a new reporting feature, analyze how the existing dashboard fetches and caches data. Identify the ORM patterns, permission checks, and frontend state management.
 
@@ -124,7 +124,7 @@ flowchart TD
 - "Admins can restrict report access by department"
 
 **Decision point:**
-- If requirements are clear and achievable → `spec-review-requirements`
+- If requirements are clear and achievable -> `/spec-review-requirements`
 - If requirements are vague or incomplete → loop back to refine
 
 **Example:** "Payment webhook must retry failed notifications up to 3 times. Retry delay increases exponentially (1s, 4s, 16s). If all retries fail, alert ops via PagerDuty."
@@ -139,9 +139,9 @@ flowchart TD
 - Is there vendor lock-in or compliance burden?
 
 **Decision points:**
-- If requirements look ready → proceed to `spec-plan`
-- If design complexity is high → detour through `spec-design`
-- If requirements are incomplete → loop back to refine in `spec-requirement`
+- If requirements look ready -> proceed to `/spec-plan`
+- If design complexity is high -> detour through `/spec-design`
+- If requirements are incomplete -> loop back to refine in `/spec-requirement`
 
 **Example:** "We can't handle >100k rows without rewriting the ORM layer. Let's scope that to a follow-up. For now, we'll add a warning at 50k rows and document the limit."
 
@@ -197,7 +197,7 @@ flowchart TD
 
 ### Implementation Stages
 
-#### Task-Traceability-Audit (Helper)
+#### /task-traceability-audit (Helper)
 **Purpose:** Quality check on task decomposition before implementation begins.
 
 **When to use:** For complex features or when teams are new to spec-driven work.
@@ -228,7 +228,7 @@ flowchart TD
 2. `feat: implement exponential backoff retry (closes task-102)`
 3. `test: add integration tests for webhook flow (closes task-103)`
 
-#### Spec-Review-Implementation
+#### /spec-review
 **Purpose:** Verify that implementation meets all requirements and is production-ready.
 
 **Review checklist:**
@@ -241,10 +241,10 @@ flowchart TD
 - ✅ Deployment plan is clear (migrations, rollback strategy)
 
 **Decision points:**
-- If approved → `spec-testing-scenarios`
-- If changes needed → loop back to `spec-implement`
-- If a task is missing or wrong → loop back to `spec-tasks` or `spec-plan`
-- If upstream requirement changed → loop back to `spec-requirement` or `spec-design`
+- If approved -> `/spec-testing-scenarios`
+- If changes needed -> loop back to `/spec-implement`
+- If a task is missing or wrong -> loop back to `/spec-tasks` or `/spec-plan`
+- If upstream requirement changed -> loop back to `/spec-requirement` or `/spec-design`
 
 **Example:** "Implementation looks good. But we need a rollback plan for the database schema change. Also, the retry logic doesn't handle the case where Stripe sends a duplicate event. Fix that and we're good."
 
@@ -272,7 +272,7 @@ flowchart TD
 
 ### Helper Stages (Run as needed, not on the main path)
 
-#### Memory-Promotion
+#### /memory-promotion
 **Purpose:** Capture lessons from this feature for future features.
 
 **When to use:** After analysis, design, implementation, or review, if you discover a reusable pattern.
@@ -289,18 +289,18 @@ flowchart TD
 ## Reading The Diagram
 
 - **Solid arrows** show the normal forward path: features progress through planning, design, implementation, and testing
-- **Dotted arrows** show helper usage (memory-promotion, audit) or backward movement when the current stage is blocked
+- **Dotted arrows** show helper usage (`/memory-promotion`, `/task-traceability-audit`) or backward movement when the current stage is blocked
 - **Foundation skills** (constitution, project-knowledge-base) run once per repository, not per feature
-- **Memory-promotion** can happen after analysis, design, implementation, or review when a finding becomes durable repo memory
-- **Task-traceability-audit** is a helper check around task quality, not a replacement for planning or implementation
-- The kit supports backward loops: if review finds a missing requirement, go back to spec-requirement; if implementation finds a design flaw, go back to spec-design
+- **/memory-promotion** can happen after analysis, design, implementation, or review when a finding becomes durable repo memory
+- **/task-traceability-audit** is a helper check around task quality, not a replacement for planning or implementation
+- The kit supports backward loops: if review finds a missing requirement, go back to `/spec-requirement`; if implementation finds a design flaw, go back to `/spec-design`
 
 **To decide which path applies to your specific change,** see [Use Case Workflows](use-case-workflows.md). That page shows repository bootstrap scenarios and feature delivery paths with concrete examples and a decision tree.
 
 ## Common Loop Scenarios
 
 ### "Requirements were incomplete"
-Path: `spec-implement` → loops back to `spec-requirement` → `spec-review-requirements` → back to `spec-plan` / `spec-tasks` → continue implementation
+Path: `/spec-implement` -> loops back to `/spec-requirement` -> `/spec-review-requirements` -> back to `/spec-plan` / `/spec-tasks` -> continue implementation
 
 ```mermaid
 flowchart TD

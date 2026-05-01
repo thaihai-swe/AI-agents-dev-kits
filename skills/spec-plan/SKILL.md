@@ -8,6 +8,8 @@ metadata:
 
 # Spec Plan
 
+## Overview
+
 Use this skill to create or refine `artifacts/features/<slug>/plan.md`.
 
 This skill turns an approved specification into a concrete, sequenced execution plan. It owns planning, not specification authoring, task generation, or coding.
@@ -27,7 +29,7 @@ Read these inputs in this order when they exist:
 
 Also inspect obviously relevant repository files, modules, interfaces, and prior examples needed to plan safely.
 
-## Use This Skill When
+## When to Use
 
 Use this skill when the user needs to:
 
@@ -42,6 +44,8 @@ Do not use this skill for:
 - generating `tasks.md`
 - writing production code
 - replacing a needed `design.md` with planning guesses
+
+If planning exposes weak requirements, route back to `spec-requirement` or `spec-review-requirements` instead of guessing.
 
 ## Stop Conditions
 
@@ -72,7 +76,7 @@ Require design first when the work includes one or more of these:
 - meaningful security, privacy, reliability, or performance implications
 - multiple plausible implementation approaches with real tradeoffs
 
-## Planning Rules
+## Core Rules
 
 - Stay aligned with approved scope in `spec.md`.
 - Preserve the user journeys, scenarios, and success outcomes from the spec.
@@ -117,6 +121,30 @@ Do not create a standalone `DECISIONS.md`; keep feature design choices in `desig
 8. Map `REQ-*` and `AC-*` to phases and validation steps.
 9. Add validation, rollout, rollback, risks, assumptions, and open questions.
 10. Check that the plan is safe, traceable, and ready for task generation.
+
+## Common Rationalizations
+
+| Rationalization | Reality |
+|---|---|
+| "The implementer can figure out the rest." | Planning should remove core sequencing and approach ambiguity. |
+| "We can skip design even though the tradeoffs are real." | Planning should not paper over unresolved architectural choices. |
+| "Validation can be added later during coding." | Validation belongs inside the plan, not as cleanup. |
+
+## Red Flags
+
+- the plan is really a vague brainstorm instead of an execution strategy
+- parallel work is implied without clear ownership boundaries
+- implementation would still need to invent the core technical approach
+
+## Verification
+
+Before finalizing the plan, verify:
+
+- each phase is actionable and sequenced for safe execution
+- validation is embedded in the plan rather than deferred to the end
+- parallelizable work, if any, has clear ownership and reintegration boundaries
+- rollback, rollout, and protected behavior are proportional to actual risk
+- nothing in the plan requires implementation to invent core approach details
 
 ## Self-Review
 

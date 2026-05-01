@@ -8,6 +8,8 @@ metadata:
 
 # Refactor Cleaner
 
+## Overview
+
 Use this skill for conservative cleanup and consolidation work.
 
 This skill owns dead-code removal, duplicate consolidation, and unused dependency cleanup. It does not own feature development, speculative rewrites, or broad architectural redesign.
@@ -24,7 +26,7 @@ Read these inputs when they exist:
 
 Prefer repository evidence over tool output alone.
 
-## Use This Skill When
+## When to Use
 
 Use this skill when the user needs to:
 
@@ -39,6 +41,8 @@ Do not use this skill for:
 - major redesigns that need `spec-requirement`, `spec-design`, or `spec-plan`
 - cleanup justified only by style preference
 - deleting code that may be part of a public or externally consumed API without explicit confirmation
+
+If the cleanup turns into behavior change, route back to the spec-driven workflow instead of smuggling the change through refactoring.
 
 ## Stop Conditions
 
@@ -108,6 +112,29 @@ Default to not deleting `Risky` items without stronger proof or explicit user di
 7. Run the smallest meaningful validation after each batch.
 8. If validation fails, fix the root cause or revert that cleanup direction instead of forcing the result.
 9. Summarize what was removed, what was intentionally left in place, and any residual cleanup candidates that need stronger proof.
+
+## Common Rationalizations
+
+| Rationalization | Reality |
+|---|---|
+| "The tool says it's unused, so we can delete it." | Tool output is a lead, not proof. |
+| "While we're here, we should clean up the neighboring code too." | Unrelated cleanup makes the change harder to review and validate safely. |
+| "It probably isn't public." | Public API risk is exactly where conservative cleanup matters most. |
+
+## Red Flags
+
+- cleanup batches mix dead-code removal with feature behavior changes
+- deletions rely on one tool report with no repository evidence
+- indirectly referenced files or config hooks were not checked
+
+## Verification
+
+Before finalizing cleanup, verify:
+
+- every removal had evidence stronger than a single tool report
+- validation was run after each bounded batch or at the smallest meaningful checkpoint
+- public behavior and extension points were either preserved or explicitly escalated
+- uncertain candidates were left documented instead of removed optimistically
 
 ## Self-Review
 

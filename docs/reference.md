@@ -50,7 +50,7 @@
 - stop when required artifacts are missing or the selected task is blocked or ambiguous
 
 `/spec-review`
-- runs the `spec-review-implementation` skill
+- runs the implementation review stage
 - may create `artifacts/features/<slug>/review.md`
 - verdicts: `approved`, `approved with follow-ups`, `changes required`
 - use when implementation work has been attempted and needs verification
@@ -61,15 +61,33 @@
 - use when delivered behavior needs a human-run manual testing guide
 - stop when implementation is too incomplete to describe meaningful manual scenarios
 
-`memory-promotion`
+`/memory-promotion`
 - does not own a fixed artifact
 - use when deciding whether a finding should go to `project-knowledge-base.md`, `constitution.md`, or remain in feature artifacts
 - stop when the finding is still too uncertain or feature-local to promote
 
-`task-traceability-audit`
+`/task-traceability-audit`
 - does not own a fixed artifact
 - use when checking `REQ -> AC -> TASK -> validation` coverage during tasks, implementation, or review
 - stop when the underlying artifacts are too incomplete to audit meaningfully
+
+## Support Commands
+
+`bash scripts/bootstrap-kit.sh`
+- creates canonical folders when missing
+- creates starter `memories/repo/constitution.md` and `memories/repo/project-knowledge-base.md` files when missing
+- creates a thin `AGENTS.md` stub when missing
+
+`bash scripts/check-kit-consistency.sh`
+- verifies required skill sections exist
+- verifies skill-local referenced files exist
+- verifies canonical memory snippets and command aliases remain aligned across core docs and adapters
+
+## Companion Guides
+
+- [Supported Agents](supported-agents.md)
+- [Debugging](debugging.md)
+- [Understanding Existing Code](understanding-existing-code.md)
 
 ## Quick Operating Rules
 
@@ -114,8 +132,8 @@ Feature workflow:
 
 Helpers:
 
-- `memory-promotion`
-- `task-traceability-audit`
+- `/memory-promotion`
+- `/task-traceability-audit`
 
 ## Artifact Roles
 
@@ -151,10 +169,10 @@ Helpers:
 
 ## Helper Skill Roles
 
-`memory-promotion`
+`/memory-promotion`
 - promotion decision support for durable repository memory
 
-`task-traceability-audit`
+`/task-traceability-audit`
 - traceability verification across requirements, acceptance criteria, tasks, and validation
 
 ## Terminology
