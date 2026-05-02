@@ -42,6 +42,18 @@ required_files = [
     root / "artifacts/examples/magic-link-login/tasks.md",
     root / "artifacts/examples/magic-link-login/review.md",
     root / "artifacts/examples/magic-link-login/testing-scenarios.md",
+    root / "artifacts/examples/auth-timeout-bug/analysis.md",
+    root / "artifacts/examples/auth-timeout-bug/spec.md",
+    root / "artifacts/examples/auth-timeout-bug/plan.md",
+    root / "artifacts/examples/auth-timeout-bug/tasks.md",
+    root / "artifacts/examples/auth-timeout-bug/review.md",
+    root / "artifacts/examples/legacy-account-audit-event/analysis.md",
+    root / "artifacts/examples/legacy-account-audit-event/spec.md",
+    root / "artifacts/examples/legacy-account-audit-event/design.md",
+    root / "artifacts/examples/legacy-account-audit-event/plan.md",
+    root / "artifacts/examples/legacy-account-audit-event/tasks.md",
+    root / "artifacts/examples/cleanup-unused-exports/report.md",
+    root / "artifacts/examples/cleanup-unused-exports/validation-notes.md",
 ]
 
 for path in required_files:
@@ -191,6 +203,44 @@ example_fixture_checks = {
         "## Scenario Matrix",
         "## Happy Path Scenarios",
         "## Regression Checks",
+    ],
+    "artifacts/examples/auth-timeout-bug/analysis.md": [
+        "## Scope",
+        "## Findings",
+        "## Recommendation",
+    ],
+    "artifacts/examples/auth-timeout-bug/spec.md": [
+        "### REQ-001",
+        "## Acceptance Criteria",
+    ],
+    "artifacts/examples/auth-timeout-bug/tasks.md": [
+        "Status: Not Started",
+        "Validation note:",
+    ],
+    "artifacts/examples/auth-timeout-bug/review.md": [
+        "Verdict:",
+        "## Evidence Checked",
+    ],
+    "artifacts/examples/legacy-account-audit-event/analysis.md": [
+        "## Findings",
+        "## Recommendation",
+    ],
+    "artifacts/examples/legacy-account-audit-event/design.md": [
+        "## Proposed Architecture",
+        "## Brownfield Integration Notes",
+    ],
+    "artifacts/examples/legacy-account-audit-event/tasks.md": [
+        "Status: Not Started",
+        "Validation note:",
+    ],
+    "artifacts/examples/cleanup-unused-exports/report.md": [
+        "## Candidate Classification",
+        "## Recommended Action",
+        "## Validation",
+    ],
+    "artifacts/examples/cleanup-unused-exports/validation-notes.md": [
+        "## Removed In First Safe Batch",
+        "## Retained Pending Stronger Proof",
     ],
 }
 

@@ -29,7 +29,7 @@ Why this is the baseline:
 - it usually benefits from design
 - it exercises the full workflow
 
-Reviewed example artifacts for this baseline live in [artifacts/examples/magic-link-login](/Users/thaihai-swe/Desktop/AI-agents-dev-kits/artifacts/examples/magic-link-login).
+Reviewed example artifacts for this baseline live in [artifacts/examples/magic-link-login](/artifacts/examples/magic-link-login).
 
 Expected flow:
 
@@ -112,6 +112,12 @@ Helper-skill snapshots:
 
 - A good `/memory-promotion` result names exactly one destination and gives a short reason tied to evidence.
 - A good `/task-traceability-audit` result calls out whether the chain is complete, partial, misleading, or blocked.
+
+Additional reviewed fixtures:
+
+- [auth-timeout-bug](/artifacts/examples/auth-timeout-bug): narrow bug-fix path
+- [legacy-account-audit-event](/artifacts/examples/legacy-account-audit-event): brownfield feature extension
+- [cleanup-unused-exports](/artifacts/examples/cleanup-unused-exports): conservative `refactor-cleaner` example
 
 Skip conditions:
 

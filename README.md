@@ -2,6 +2,8 @@
 
 Structured documentation, portable skills, and templates for running spec-driven development with Claude, Codex, and other coding agents.
 
+Artifact-first spec workflow kit for brownfield and greenfield repositories and quality-first teams.
+
 ## What It Is
 
 This kit helps teams turn AI-assisted work into written artifacts that are reviewable, resumable, and traceable.
@@ -11,6 +13,8 @@ Its core stance is:
 - artifacts are the durable source of truth
 - skills are the reusable workflow contract
 - adapter files such as `AGENTS.md` should stay thin
+
+This kit is optimized for teams that care more about trustworthy delivery and brownfield safety than about maximum prompt convenience.
 
 It gives you:
 - an end-to-end skill workflow from repo memory through delivery review
@@ -49,6 +53,15 @@ In practice, the kit helps teams use AI more like a disciplined implementation p
 - brownfield repositories with hidden constraints
 - quality-first teams that want explicit gates before planning and shipping
 - maintainers building an internal skill-based workflow kit
+
+## Why This Kit
+
+Use this kit when you want:
+
+- artifact-first delivery instead of chat-history-first improvisation
+- durable repo memory that survives across features and sessions
+- a brownfield-safe workflow that forces upstream clarity before code
+- reviewed traceability from requirements to tasks to validation
 
 ## 60-Second Workflow
 

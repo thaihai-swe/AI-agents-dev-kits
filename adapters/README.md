@@ -6,6 +6,7 @@ Use them as patterns, not as a second workflow source of truth.
 
 Rules:
 
+- install or vendor the kit before using bootstrap in another repository
 - point the agent back to `skills/`
 - point the agent to `memories/repo/` and `artifacts/features/`
 - tell the agent to choose the matching skill before freeform work

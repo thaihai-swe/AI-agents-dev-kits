@@ -4,6 +4,8 @@ Use this page when the request is really a bug, failure, or unexpected behavior 
 
 The kit’s debugging stance is simple: understand the failure before proposing the repair.
 
+The debugging contract lives inside `/analyze`. This page explains when to use that debugging path.
+
 ## Recommended Path
 
 For most bugs:
@@ -25,8 +27,10 @@ Before you move into repair work, the analysis should make these things visible:
 
 - the reported symptom
 - the expected behavior
+- the reproduction status
 - the first boundary where expected and observed behavior diverge
 - the strongest supported root-cause hypothesis
+- the next proving check when root cause is still not fully established
 - any protected behavior that the fix must preserve
 
 If the bug still feels like guesswork, stay in `/analyze`.

@@ -58,7 +58,7 @@ During the dry run, check:
 - bootstrap creates the same baseline files the onboarding docs promise
 - the documented install step explains how `skills/` reaches the target repository before bootstrap runs
 - bootstrap is described only as scaffolding, not as installation
-- the checked-in example artifact fixture still matches the current skill contract
+- the checked-in example artifact fixtures still match the current skill contract
 
 ## Adopter Confidence Signals
 

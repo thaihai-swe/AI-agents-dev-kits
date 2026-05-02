@@ -38,6 +38,7 @@ Use this skill when the user needs to:
 - review delivered implementation against the feature artifacts
 - determine whether the feature is approved, approved with follow-ups, or changes required
 - audit traceability, validation quality, and scope control after implementation
+- check security-sensitive changes such as auth, permissions, secrets, data handling, or externally reachable interfaces
 
 Do not use this skill for:
 
@@ -80,6 +81,7 @@ When stopping, say:
 - Keep the review proportional to the feature’s size and risk.
 - Prefer fresh verification evidence over implementation plausibility or agent claims.
 - Treat missing, stale, or weak verification as a review finding, not a paperwork issue.
+- Apply a security lens when the change touches auth, permissions, secrets, data handling, external interfaces, or other security-sensitive boundaries.
 - Call out when task status says `Done` but the evidence does not support that claim.
 - Call out when the implementation should reopen a task instead of carrying a misleading `Done` state.
 - Do not silently rewrite scope drift as “acceptable interpretation” when the implementation materially diverged from the approved artifacts.
@@ -106,11 +108,12 @@ Choose `changes required` when requirements are unmet, validation is too weak fo
 1. Read the approved feature artifacts and any relevant repo memory.
 2. Inspect the repository changes, tests, docs, touched files, and the current task-state evidence.
 3. Identify which verification commands or artifacts actually prove the delivered behavior and prefer fresh evidence when available.
-4. Check whether any claimed `Done` task should be reopened because the evidence is stale, weak, contradicted, or missing.
-5. Compare implementation against requirements, acceptance criteria, task outcomes, and repo rules.
-6. Classify issues as blocking or follow-up.
-7. Produce a verdict based on evidence.
-8. Write `review.md` only when a durable written review is useful.
+4. Check whether the change crosses security-sensitive boundaries and, if so, inspect auth, permission, secret-handling, input-validation, and externally reachable behavior explicitly.
+5. Check whether any claimed `Done` task should be reopened because the evidence is stale, weak, contradicted, or missing.
+6. Compare implementation against requirements, acceptance criteria, task outcomes, and repo rules.
+7. Classify issues as blocking or follow-up.
+8. Produce a verdict based on evidence.
+9. Write `review.md` only when a durable written review is useful.
 
 ## Common Rationalizations
 
@@ -125,6 +128,7 @@ Choose `changes required` when requirements are unmet, validation is too weak fo
 - the verdict depends on confidence instead of fresh evidence
 - completed task state contradicts the available validation
 - scope drift is excused instead of called out
+- security-sensitive changes were reviewed as if they were low-risk plumbing
 
 ## Verification
 
@@ -132,6 +136,7 @@ Before finalizing the review, verify:
 
 - each finding points to evidence rather than intuition
 - requirement coverage, verification quality, and scope control were all checked
+- security-sensitive boundaries were checked when relevant
 - task-state accuracy was reviewed alongside the code changes
 - any reopen-needed task state is called out clearly
 - the verdict matches the severity of the findings
@@ -143,6 +148,7 @@ Before finalizing the review, verify:
 
 - each finding points to evidence rather than intuition
 - requirement coverage, verification quality, and scope control were all checked
+- security-sensitive boundaries were checked when relevant
 - task-state accuracy was reviewed alongside the code changes
 - any reopen-needed task state is called out clearly
 - the verdict matches the severity of the findings

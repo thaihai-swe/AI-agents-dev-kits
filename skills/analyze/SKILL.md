@@ -18,6 +18,8 @@ Default output:
 
 For non-feature investigations, another explicit analysis path may be used if the user or repository convention provides it.
 
+This skill also owns debugging-oriented investigation. Use it for bug analysis, failure tracing, and root-cause discovery before repair work moves into the spec-driven implementation flow.
+
 ## Read First
 
 Read these inputs when they exist:
@@ -26,6 +28,7 @@ Read these inputs when they exist:
 - `memories/repo/project-knowledge-base.md`
 - related feature artifacts
 - relevant code, tests, configs, docs, and repository structure
+- `references/analysis-template.md`
 
 Prefer direct repository evidence over assumptions.
 
@@ -38,6 +41,7 @@ Use this skill when the user needs to:
 - explore a brownfield path or integration boundary
 - compare implementation options before specification
 - document observed constraints before writing a spec
+- trace a failure to the first boundary where expected and observed behavior diverge
 
 Do not use this skill for:
 
@@ -77,6 +81,8 @@ When stopping, say:
 - Do not present a likely explanation as established root cause unless the evidence supports it.
 - When the bug spans multiple boundaries, identify the first boundary where expected and observed behavior diverge.
 - If root cause is still uncertain, end with the strongest supported hypothesis plus the next proving check rather than an overstated conclusion.
+- For debugging work, make reproduction status, the first failing boundary, and the strongest supported root-cause hypothesis explicit.
+- When inspecting an unfamiliar area, ground the analysis in repository code and interfaces before proposing changes downstream.
 
 ## Suggested Output Shape
 
@@ -93,6 +99,20 @@ When useful, organize `analysis.md` with:
 - `Promotion Candidates`
 
 Only include sections that materially help the next step.
+
+For debugging-oriented analysis, add when useful:
+
+- `Reported Symptom`
+- `Expected Behavior`
+- `Reproduction Status`
+- `First Failing Boundary`
+- `Root-Cause Hypothesis`
+- `Next Proving Check`
+
+## References
+
+- Use [references/analysis-template.md](references/analysis-template.md) when a structured output shape helps.
+- Keep bug-oriented sections only when the request is actually about failure analysis.
 
 ## Workflow
 

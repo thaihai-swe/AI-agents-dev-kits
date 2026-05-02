@@ -7,3 +7,6 @@ These are fixtures, not live workflow state. They exist to show what good output
 Current fixture set:
 
 - `magic-link-login/`
+- `auth-timeout-bug/`
+- `legacy-account-audit-event/`
+- `cleanup-unused-exports/`

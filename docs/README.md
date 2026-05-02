@@ -2,6 +2,8 @@
 
 This documentation set is intentionally small.
 
+The kit’s position is simple: artifact-first spec workflow for brownfield repositories and quality-first teams.
+
 Each page has one job:
 
 - [Getting Started](getting-started.md): first successful run

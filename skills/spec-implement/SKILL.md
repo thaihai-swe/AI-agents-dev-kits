@@ -26,6 +26,7 @@ Read these inputs when they exist:
 - `memories/repo/constitution.md`
 - `memories/repo/project-knowledge-base.md`
 - `references/tasks-template.md` to confirm the expected task block and status fields
+- the files being changed plus the direct callers, interfaces, tests, configs, and docs that make the change risky
 
 ## When to Use
 
@@ -82,6 +83,8 @@ When stopping, identify:
 - Implement only what the selected task describes.
 - Add tests and validation during implementation, not afterthought.
 - Surface upstream defects instead of working around them silently.
+- Read the code you are changing and the relevant surrounding boundaries before editing.
+- Reuse repository patterns that are already visible in the codebase unless the approved artifacts explicitly require a new direction.
 - When behavior changes, write or update the targeted failing test first unless the task is strictly non-behavioral.
 - Verify the failing test fails for the expected reason before relying on it as proof.
 - Prefer minimal code that satisfies the task and its tests over speculative cleanup or extra features.
@@ -137,6 +140,15 @@ If implementation reveals that a task is materially larger, more ambiguous, or m
 3. Recommend revisiting `tasks.md` or upstream artifacts.
 4. Do not silently expand the implementation slice.
 
+## Source-Grounded Implementation
+
+Before editing:
+
+- read the selected task and its linked requirements and acceptance criteria
+- inspect the touched files and the immediate boundaries that consume or depend on them
+- match established repository patterns when they already solve the problem
+- if repository reality contradicts the task assumptions, stop and route back upstream instead of inventing a local workaround
+
 ## Verification Discipline
 
 Before claiming a task is done:
@@ -154,14 +166,15 @@ Examples of acceptable evidence include targeted tests, relevant integration tes
 1. Validate that the required artifacts and prerequisites exist.
 2. Select the next unblocked task, or confirm the user-selected task IDs are executable.
 3. Update the task status in `tasks.md` to `In Progress`.
-4. If the task changes behavior, write or update the most targeted failing test first and verify it fails for the expected reason.
-5. Implement only the scoped task outcome.
-6. Add or update any additional tests and validation needed for that task.
-7. Run the proving verification commands and confirm the task outcome matches its linked requirements and acceptance criteria.
-8. Mark the task `Done` immediately after validation passes, or `Blocked` with a reason if it cannot complete.
-9. Run implementation review when the slice is ready for review.
-10. If review finds local issues, reopen the task, fix them, rerun the proof, and only then return it to `Done`.
-11. Update resume context in `tasks.md` before moving on.
+4. Inspect the touched files and relevant surrounding boundaries before editing.
+5. If the task changes behavior, write or update the most targeted failing test first and verify it fails for the expected reason.
+6. Implement only the scoped task outcome.
+7. Add or update any additional tests and validation needed for that task.
+8. Run the proving verification commands and confirm the task outcome matches its linked requirements and acceptance criteria.
+9. Mark the task `Done` immediately after validation passes, or `Blocked` with a reason if it cannot complete.
+10. Run implementation review when the slice is ready for review.
+11. If review finds local issues, reopen the task, fix them, rerun the proof, and only then return it to `Done`.
+12. Update resume context in `tasks.md` before moving on.
 
 ## Common Rationalizations
 
@@ -176,6 +189,7 @@ Examples of acceptable evidence include targeted tests, relevant integration tes
 - implementation is being driven from chat instead of `tasks.md`
 - behavior changed but no failing proof or targeted validation exists
 - task state claims `Done` while review or validation still contradicts that claim
+- the change introduces patterns not grounded in the repository or approved artifacts
 
 ## Verification
 
@@ -183,6 +197,7 @@ Before marking a task done, verify:
 
 - the code change stayed inside the selected task boundary
 - test-first behavior was followed when the task changed behavior
+- the code change was grounded in the repository files and interfaces actually touched by the task
 - any parallel execution assumptions remained safe
 - verification was fresh and directly relevant to the task
 - task state would still be truthful if another agent reviewed it immediately

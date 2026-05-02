@@ -4,6 +4,8 @@ Use this page when the goal is to understand an existing subsystem, brownfield a
 
 This is not the feature-writing path. It is the current-state understanding path.
 
+The same `analyze` skill also owns debugging-oriented investigation when the request is about a failure rather than general subsystem understanding.
+
 ## Recommended Path
 
 For most discovery work:
