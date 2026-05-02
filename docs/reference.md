@@ -77,6 +77,7 @@
 - creates canonical folders when missing
 - creates starter `memories/repo/constitution.md` and `memories/repo/project-knowledge-base.md` files when missing
 - creates a thin `AGENTS.md` stub when missing
+- does not install `skills/` into another repository
 
 `bash scripts/check-kit-consistency.sh`
 - verifies required skill sections exist

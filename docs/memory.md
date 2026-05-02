@@ -30,6 +30,8 @@ Use only:
 
 These files should ship with starter content when the repository uses `scripts/bootstrap-kit.sh`. They are expected to exist before the first serious feature workflow begins.
 
+In this repository, the checked-in versions of those files should contain real repo-specific memory. Starter template text belongs in the skill-owned reference templates and in bootstrap output for adopters.
+
 ## What Goes Where
 
 Use `constitution.md` for:

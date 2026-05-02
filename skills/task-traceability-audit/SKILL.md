@@ -37,6 +37,7 @@ Read these inputs when they exist:
 - `artifacts/features/<slug>/tasks.md`
 - `artifacts/features/<slug>/review.md`
 - relevant validation evidence from implementation or review
+- `references/audit-template.md`
 
 ## Workflow
 
@@ -69,6 +70,11 @@ When stopping, say:
 - Prefer explicit task and validation references over optimistic inference.
 - Route back to `spec-tasks`, `spec-implement`, or `spec-review-implementation` when the gap belongs there.
 
+## References
+
+- Use [references/audit-template.md](references/audit-template.md) when a structured audit record helps.
+- Keep the audit focused on the traceability chain rather than broad implementation judgment.
+
 ## Common Rationalizations
 
 | Rationalization | Reality |
@@ -94,8 +100,17 @@ Before finalizing the audit, verify:
 - completed task state is supported by current evidence
 - blocking and non-blocking gaps are called out separately
 
+## Output Standard
+
+The audit is ready only when it:
+
+- makes the current state of the traceability chain explicit
+- distinguishes blocking gaps from non-blocking gaps
+- points the next repair back to the owning artifact or skill
+
 ## Output Rules
 
 - Clearly report what part of the chain is complete, partial, or missing.
 - State whether each gap is blocking or non-blocking.
+- Use the template shape when a maintainer wants a reusable audit record.
 - Do not rewrite the audited artifacts during the audit itself.

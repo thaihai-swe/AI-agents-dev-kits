@@ -41,6 +41,8 @@ CLAUDE.md
 
 Use [../adapters](../adapters/README.md) for thin starter examples.
 
+Before running bootstrap in another repository, make sure the kit has already been copied or vendored there. `scripts/bootstrap-kit.sh` does not install `skills/` for you.
+
 ## Entry Point Rules
 
 An entrypoint file should:
@@ -91,6 +93,7 @@ Keep adapter wording close to this routing:
 If you package this kit into another repository:
 
 - vendor or copy `skills/` intact
+- copy or vendor `scripts/bootstrap-kit.sh` if you want the lightweight scaffolding helper
 - keep the canonical `memories/repo/` and `artifacts/features/` paths unless you are intentionally changing the contract
 - adapt only the thin client entrypoints
 - prefer repository-local copies or vendoring over partial copy-paste into multiple adapter folders
@@ -110,7 +113,7 @@ Its job should stay small:
 - create a thin `AGENTS.md` stub when missing
 - print the next workflow steps
 
-It should not replace the skills or invent a separate setup model.
+It should not replace the skills, install the kit, or invent a separate setup model.
 
 ## What To Check
 

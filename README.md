@@ -63,7 +63,7 @@ In practice, the kit helps teams use AI more like a disciplined implementation p
 /spec-tasks                 (bounded implementation tasks)
 /task-traceability-audit    (when traceability confidence needs checking)
 /spec-implement             (execute tasks)
-/spec-review                (run `spec-review-implementation`)
+/spec-review                (implementation review)
 /spec-testing-scenarios     (create human-run manual test guide)
 /memory-promotion           (when deciding what belongs in durable repo memory)
 ```
@@ -92,6 +92,23 @@ Treat this as an operating sequence, not a menu of loosely related prompts.
 - Reference: [Reference](docs/reference.md)
 - Maintainers: [Maintainers](docs/maintainers.md)
 
+## Install The Kit
+
+Before bootstrap means anything, the target repository needs the kit itself.
+
+Use one of these packaging paths:
+
+- copy or vendor this repository into the target repo
+- copy `skills/` intact, plus the scripts and entrypoint examples you want to keep
+
+At minimum, a working adoption needs:
+
+- `skills/`
+- `scripts/bootstrap-kit.sh`
+- a repo entrypoint such as `AGENTS.md` when the client needs one
+
+`scripts/bootstrap-kit.sh` does not install skills into another repository. It only scaffolds folders, starter memory files, and a thin `AGENTS.md` stub.
+
 ## Minimum Adoption
 
 For a new repository, the minimum safe setup is:
@@ -103,10 +120,13 @@ artifacts/features/
 AGENTS.md                 # or another client adapter entrypoint, when needed
 ```
 
-If your client uses a repo entrypoint file, add `AGENTS.md` first.
-Its job is to point the agent at `skills/`, `memories/repo/`, and `artifacts/features/` without copying the full workflow into the adapter.
+After the kit is copied or vendored into the target repository, initialize:
 
-Then initialize:
+```text
+scripts/bootstrap-kit.sh
+```
+
+Then review the starter memory files and continue with:
 
 ```text
 /constitution
@@ -122,6 +142,8 @@ scripts/bootstrap-kit.sh
 ```
 
 It creates the canonical folders when missing, creates starter `memories/repo/constitution.md` and `memories/repo/project-knowledge-base.md` files when missing, creates a thin `AGENTS.md` stub when missing, and prints the next workflow steps.
+
+It does not copy `skills/` into the target repository for you.
 
 ## Product Stance
 
@@ -160,7 +182,7 @@ Core workflow skills:
 - `spec-plan`
 - `spec-tasks`
 - `spec-implement`
-- `spec-review-implementation`
+- `/spec-review` as the public implementation-review stage
 - `spec-testing-scenarios`
 
 Helper skills:

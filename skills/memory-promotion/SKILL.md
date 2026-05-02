@@ -36,6 +36,7 @@ Read these inputs when they exist:
 - `memories/repo/project-knowledge-base.md`
 - the feature artifact or review output that produced the finding
 - any repository evidence needed to confirm the finding is real and durable
+- `references/decision-template.md`
 
 ## Workflow
 
@@ -68,6 +69,12 @@ When stopping, say:
 - When the destination is unclear, err toward leaving the finding local instead of over-promoting it.
 - Route to `project-knowledge-base` or `constitution` after the decision instead of silently editing both in the same step.
 
+## References
+
+- Use [references/decision-template.md](references/decision-template.md) when a structured decision record would help.
+- Keep the output short and decisive.
+- Prefer one clearly justified destination over a hedge list of possibilities.
+
 ## Common Rationalizations
 
 | Rationalization | Reality |
@@ -91,8 +98,17 @@ Before finalizing the decision, verify:
 - the reason explains why the finding is durable, normative, or still local
 - no promotion is recommended just to avoid losing chat context
 
+## Output Standard
+
+The decision is ready only when it:
+
+- names exactly one destination
+- cites the evidence that makes the finding durable, normative, or still local
+- gives a short reason future maintainers can trust without chat history
+
 ## Output Rules
 
 - Return exactly one recommendation: promote to `project-knowledge-base.md`, promote to `constitution.md`, or keep in feature artifacts.
 - Include a short reason with the recommendation.
+- Use the template shape when a maintainer asks for a reusable decision record.
 - Do not update repo memory files directly unless the user separately asked for that change.

@@ -24,7 +24,7 @@ Maintain docs coverage for all four groups. User-facing docs should not make the
 Before release:
 
 1. run `bash scripts/check-kit-consistency.sh`
-2. run one realistic end-to-end dry run
+2. run one realistic end-to-end dry run from a clean target directory
 3. verify skills, templates, docs, examples, adapters, and bootstrap use the same artifact model
 4. freeze artifact names, verdict names, and task-state names for the release line
 5. check that stop conditions route back to the correct upstream artifact
@@ -56,6 +56,17 @@ During the dry run, check:
 - helper skills are described accurately and only where they materially help the workflow
 - foundation skills are included wherever the docs describe the full workflow
 - bootstrap creates the same baseline files the onboarding docs promise
+- the documented install step explains how `skills/` reaches the target repository before bootstrap runs
+- bootstrap is described only as scaffolding, not as installation
+- the checked-in example artifact fixture still matches the current skill contract
+
+## Adopter Confidence Signals
+
+Before telling users the kit is release-ready, make sure:
+
+- the golden example artifacts still read like outputs the skills would actually produce today
+- helper-skill decisions and audits are easy to compare against checked-in examples or templates
+- a new maintainer can explain the install step, bootstrap step, and first real feature path without adding unstated rules
 
 ## Doc Governance
 

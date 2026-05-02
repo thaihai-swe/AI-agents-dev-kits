@@ -29,6 +29,8 @@ Why this is the baseline:
 - it usually benefits from design
 - it exercises the full workflow
 
+Reviewed example artifacts for this baseline live in [artifacts/examples/magic-link-login](/Users/thaihai-swe/Desktop/AI-agents-dev-kits/artifacts/examples/magic-link-login).
+
 Expected flow:
 
 ```text
@@ -96,6 +98,20 @@ Create a technical design for token issuance, verification, session creation, an
 ```text
 Run `/task-traceability-audit` on `magic-link-login` to confirm `REQ -> AC -> TASK -> validation` coverage before finalizing `tasks.md`.
 ```
+
+## What Good Looks Like
+
+Use the checked-in fixture as the canonical output example. A few fast calibration checks:
+
+- `requirements-review.md` should give a crisp verdict and separate blocking issues from non-blocking improvements.
+- `tasks.md` should preserve `REQ -> AC -> TASK -> validation` and keep every task review-sized.
+- `review.md` should read like evidence-backed verification, not like a second implementation summary.
+- `testing-scenarios.md` should be executable by a human without hidden chat context.
+
+Helper-skill snapshots:
+
+- A good `/memory-promotion` result names exactly one destination and gives a short reason tied to evidence.
+- A good `/task-traceability-audit` result calls out whether the chain is complete, partial, misleading, or blocked.
 
 Skip conditions:
 

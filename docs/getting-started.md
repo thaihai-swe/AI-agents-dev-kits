@@ -22,8 +22,14 @@ artifacts/features/
 AGENTS.md                 # or another client adapter entrypoint, when needed
 ```
 
-If your client uses a repo entrypoint file, add `AGENTS.md` first.
-Its job is to point the agent to `skills/`, `memories/repo/`, and `artifacts/features/` without copying the workflow into the adapter.
+Before setup, make sure the target repository already contains the kit.
+
+Recommended packaging paths:
+
+- vendor or copy this repository into the target repo
+- or copy `skills/` intact plus the scripts and adapter files you plan to use
+
+`scripts/bootstrap-kit.sh` does not install skills into another repository. It only scaffolds folders, starter memory files, and a thin `AGENTS.md` stub.
 
 If you want a lightweight setup helper, run:
 
@@ -39,6 +45,9 @@ The starter repo-memory files are:
 - `memories/repo/project-knowledge-base.md`
 
 ## First Commands
+
+If your client uses a repo entrypoint file, add `AGENTS.md` first.
+Its job is to point the agent to `skills/`, `memories/repo/`, and `artifacts/features/` without copying the workflow into the adapter.
 
 If durable memory does not exist yet, start here:
 

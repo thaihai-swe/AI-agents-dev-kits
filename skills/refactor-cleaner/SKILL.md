@@ -140,11 +140,11 @@ Before finalizing cleanup, verify:
 
 Before finalizing, verify:
 
-- every deleted or consolidated item had evidence stronger than a single tool report
 - the cleanup stayed within the requested scope
-- unchanged public behavior is still believable from the evidence
+- the final result still reads like cleanup rather than a disguised feature change
+- any intentionally retained risky candidates are called out clearly
 - tests, lint, or other validation match the risk of the cleanup
-- uncertain candidates were left documented rather than removed optimistically
+- the summary distinguishes what was removed from what still needs stronger proof
 
 ## Output Standard
 

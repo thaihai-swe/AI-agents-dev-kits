@@ -1,0 +1,9 @@
+# Example Artifacts
+
+This directory contains reviewed example artifact sets for release validation and maintainer calibration.
+
+These are fixtures, not live workflow state. They exist to show what good outputs look like and to make release dry runs less interpretive.
+
+Current fixture set:
+
+- `magic-link-login/`

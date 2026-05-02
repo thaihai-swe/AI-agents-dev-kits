@@ -51,9 +51,8 @@ Internal skill names such as `spec-review-implementation` are implementation det
 
 These aliases are wrappers around existing skills, not separate workflows:
 
-- `/spec-review` -> `spec-review-implementation`
-- `/memory-promotion` -> `memory-promotion`
-- `/task-traceability-audit` -> `task-traceability-audit`
+- `/spec-review` is the public command for implementation review
+- `/memory-promotion` and `/task-traceability-audit` are already the public skill names
 
 Do not introduce alternate command semantics per environment.
 

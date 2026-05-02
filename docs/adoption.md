@@ -44,23 +44,26 @@ The expected discovery sequence is:
 
 Recommended order:
 
-1. copy `skills/` and create the canonical folders, or run `scripts/bootstrap-kit.sh`
-2. add `AGENTS.md` or the equivalent adapter when needed
-3. review the starter `memories/repo/constitution.md` and `memories/repo/project-knowledge-base.md` files
-4. run `/constitution`
-5. run `/project-knowledge-base`
-6. start one real feature
+1. copy or vendor the kit so the target repository contains `skills/`
+2. run `scripts/bootstrap-kit.sh` to scaffold canonical folders, starter memory files, and a thin `AGENTS.md` stub
+3. add or refine `AGENTS.md` or the equivalent adapter when needed
+4. review the starter `memories/repo/constitution.md` and `memories/repo/project-knowledge-base.md` files
+5. run `/constitution`
+6. run `/project-knowledge-base`
+7. start one real feature
 
 ## Existing Repository Adoption
 
 Recommended order:
 
-1. copy `skills/`
+1. copy or vendor the kit so the target repository contains `skills/`
 2. create `memories/repo/` and `artifacts/features/`, or run `scripts/bootstrap-kit.sh`
 3. add the thin client adapter
 4. capture only minimal durable memory first
 5. start with a small or well-understood feature
 6. grow repo memory as durable knowledge emerges
+
+Bootstrap is scaffolding only. It does not install the skill kit into another repository.
 
 Use helper skills during adoption when needed:
 

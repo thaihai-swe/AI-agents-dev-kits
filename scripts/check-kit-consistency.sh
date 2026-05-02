@@ -29,6 +29,19 @@ required_files = [
     root / "memories/repo/constitution.md",
     root / "memories/repo/project-knowledge-base.md",
     root / "docs/skill-anatomy.md",
+    root / "skills/constitution/references/constitution-template.md",
+    root / "skills/project-knowledge-base/references/project-knowledge-base-template.md",
+    root / "skills/memory-promotion/references/decision-template.md",
+    root / "skills/task-traceability-audit/references/audit-template.md",
+    root / "artifacts/examples/README.md",
+    root / "artifacts/examples/magic-link-login/analysis.md",
+    root / "artifacts/examples/magic-link-login/spec.md",
+    root / "artifacts/examples/magic-link-login/requirements-review.md",
+    root / "artifacts/examples/magic-link-login/design.md",
+    root / "artifacts/examples/magic-link-login/plan.md",
+    root / "artifacts/examples/magic-link-login/tasks.md",
+    root / "artifacts/examples/magic-link-login/review.md",
+    root / "artifacts/examples/magic-link-login/testing-scenarios.md",
 ]
 
 for path in required_files:
@@ -78,6 +91,7 @@ canonical_checks = {
     "scripts/bootstrap-kit.sh": [
         "memories/repo/constitution.md",
         "memories/repo/project-knowledge-base.md",
+        "does not install the skill kit",
     ],
 }
 
@@ -86,6 +100,105 @@ for rel_path, snippets in canonical_checks.items():
     for snippet in snippets:
         if snippet not in text:
             errors.append(f"{rel_path} missing canonical snippet: {snippet}")
+
+packaging_and_bootstrap_checks = {
+    "README.md": [
+        r"copy or vendor",
+        r"does not copy `skills/`",
+    ],
+    "docs/getting-started.md": [
+        r"copy .*`skills/`",
+        r"does not install skills",
+    ],
+    "docs/adoption.md": [
+        r"copy or vendor the kit",
+        r"does not install the skill kit",
+    ],
+    "docs/integrations.md": [
+        r"copied or vendored",
+        r"does not install `skills/`",
+    ],
+    "docs/reference.md": [
+        r"does not install `skills/`",
+    ],
+}
+
+for rel_path, patterns in packaging_and_bootstrap_checks.items():
+    text = (root / rel_path).read_text()
+    for pattern in patterns:
+        if not re.search(pattern, text, re.IGNORECASE):
+            errors.append(
+                f"{rel_path} missing packaging/bootstrap guidance matching: {pattern}"
+            )
+
+placeholder_checks = {
+    "memories/repo/constitution.md": [
+        r"Last updated: YYYY-MM-DD",
+        r"^- CC-001 Principle:$",
+        r"^- repositories, services, or packages in scope$",
+        r"^- who should follow these rules$",
+    ],
+    "memories/repo/project-knowledge-base.md": [
+        r"^- Domain or concern:$",
+        r"Confidence: High \| Medium \| Low",
+        r"Provenance: Observed in repo \| Team convention",
+        r"^- What belongs here:$",
+    ],
+}
+
+for rel_path, patterns in placeholder_checks.items():
+    text = (root / rel_path).read_text()
+    for pattern in patterns:
+        if re.search(pattern, text, re.MULTILINE):
+            errors.append(f"{rel_path} still contains starter placeholder pattern: {pattern}")
+
+example_fixture_checks = {
+    "artifacts/examples/magic-link-login/analysis.md": [
+        "## Scope",
+        "## Findings",
+        "## Recommendation",
+    ],
+    "artifacts/examples/magic-link-login/spec.md": [
+        "## Functional Requirements",
+        "### REQ-001",
+        "## Acceptance Criteria",
+        "AC-001",
+    ],
+    "artifacts/examples/magic-link-login/requirements-review.md": [
+        "Verdict:",
+        "## Blocking Issues",
+        "## Recommendation",
+    ],
+    "artifacts/examples/magic-link-login/design.md": [
+        "## Proposed Architecture",
+        "## Design Decisions And Tradeoffs",
+    ],
+    "artifacts/examples/magic-link-login/plan.md": [
+        "## Implementation Phases",
+        "## Traceability Matrix",
+    ],
+    "artifacts/examples/magic-link-login/tasks.md": [
+        "Status: Not Started",
+        "Linked requirement(s):",
+        "Validation note:",
+    ],
+    "artifacts/examples/magic-link-login/review.md": [
+        "Verdict:",
+        "## Evidence Checked",
+        "## Recommendation",
+    ],
+    "artifacts/examples/magic-link-login/testing-scenarios.md": [
+        "## Scenario Matrix",
+        "## Happy Path Scenarios",
+        "## Regression Checks",
+    ],
+}
+
+for rel_path, snippets in example_fixture_checks.items():
+    text = (root / rel_path).read_text()
+    for snippet in snippets:
+        if snippet not in text:
+            errors.append(f"{rel_path} missing example fixture snippet: {snippet}")
 
 command_sources = [
     root / "README.md",
