@@ -74,6 +74,15 @@ When stopping, say:
 - whether the next step is clarification, `analyze`, or a narrower spec slice
 - why downstream review would be misleading right now
 
+## Output Rules
+
+- Update only `artifacts/features/<slug>/spec.md`.
+- DO NOT create `design.md`, `plan.md`, or `tasks.md`.
+- Do not finalize the spec if requirements or acceptance criteria are not reviewable.
+- Do not finalize one oversized spec when the request should be split into multiple feature artifacts.
+- If the spec is not ready, state exactly what is missing instead of guessing.
+
+
 ## Core Rules
 
 - Focus on what and why, not how.
@@ -198,10 +207,3 @@ Before finalizing the spec, verify:
 - Remove sections that do not apply instead of leaving placeholders.
 - Keep the skill body focused on workflow and rules; keep structural detail in the reference file.
 
-## Output Rules
-
-- Update only `artifacts/features/<slug>/spec.md`.
-- Do not create `design.md`, `plan.md`, or `tasks.md`.
-- Do not finalize the spec if requirements or acceptance criteria are not reviewable.
-- Do not finalize one oversized spec when the request should be split into multiple feature artifacts.
-- If the spec is not ready, state exactly what is missing instead of guessing.

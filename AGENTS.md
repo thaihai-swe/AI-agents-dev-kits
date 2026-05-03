@@ -1,5 +1,6 @@
 
 ## 0. Non-negotiables
+For Python is always use with virtualenv.
 
 These rules override everything else in this file when in conflict:
 
@@ -11,36 +12,6 @@ These rules override everything else in this file when in conflict:
 6. **Use the matching skill before freeform work.** In this repo, `skills/` is the workflow contract. Do not improvise around it when an existing skill applies.
 
 ---
-
-## 0.5 Workflow activation
-
-For meaningful work in this repository, use this order:
-
-1. Read `AGENTS.md`.
-2. Choose the matching skill under `skills/`.
-3. Read `memories/repo/constitution.md` and `memories/repo/project-knowledge-base.md` when relevant.
-4. Read the current feature artifacts under `artifacts/features/<slug>/` when the task is feature-specific.
-5. Operate one stage at a time.
-6. Move backward to the missing upstream artifact when blocked.
-
-Do not treat chat history as the durable source of truth when an artifact or skill already exists.
-
-Intent to skill map:
-
-- durable repo rules -> `/constitution`
-- durable descriptive repo context -> `/project-knowledge-base`
-- current-state investigation or bug analysis -> `/analyze`
-- define or refine change intent -> `/spec-requirement`
-- review spec readiness -> `/spec-review-requirements`
-- resolve technical ambiguity -> `/spec-design`
-- plan execution -> `/spec-plan`
-- decompose into tasks -> `/spec-tasks`
-- implement the next bounded task -> `/spec-implement`
-- review delivered implementation -> `/spec-review`
-- write manual QA scenarios -> `/spec-testing-scenarios`
-- promote durable findings -> `/memory-promotion`
-- audit traceability -> `/task-traceability-audit`
-- bounded cleanup or dead-code removal -> `refactor-cleaner`
 
 ---
 
@@ -174,7 +145,6 @@ After every session where the agent did something wrong:
 3. If ignored: the rule may be too long, too vague, or buried. Tighten it or move it up.
 4. Every few weeks, prune. For each line, ask: "Would removing this cause the agent to make a mistake?" If no, delete. Bloated AGENTS.md files get ignored wholesale.
 
-Boris Cherny (creator of Claude Code) keeps his team's file around 100 lines. Under 300 is a good ceiling. Over 500 and you are fighting your own config.
 
 ---
 
@@ -188,22 +158,6 @@ Boris Cherny (creator of Claude Code) keeps his team's file around 100 lines. Un
 - Package manager: none
 - Runtime / deployment target: repository consumed by AI coding agents
 
-### Commands
-- Install: `none`
-- Build: `none`
-- Test (all): `bash scripts/check-kit-consistency.sh`
-- Test (single file): `sed -n '1,220p' <file>`
-- Lint: `rg -n "TODO|FIXME|TBD" docs skills README.md AGENTS.md`
-- Bootstrap: `bash scripts/bootstrap-kit.sh`
-- Typecheck: `none`
-- Run locally: `none`
-
-Prefer single-file or single-test runs during iteration. Full suites are for the final verification pass.
-
-### Layout
-- Source lives in: `skills/`, `docs/`, `memories/`, `scripts/`, `README.md`, `AGENTS.md`
-- Tests live in: no dedicated automated test suite; verify with targeted script runs and consistency checks
-- Do not modify: no generated or vendored areas today; still avoid unrelated churn
 
 ### Conventions specific to this repo
 - Naming: keep skill names, artifact names, verdict names, and task states stable unless the owning skill and docs change together
@@ -224,8 +178,5 @@ Prefer single-file or single-test runs during iteration. Full suites are for the
 **Accumulated corrections. This section is for the agent to maintain, not just the human.**
 
 When the user corrects your approach, append a one-line rule here before ending the session. Write it concretely ("Always use X for Y"), never abstractly ("be careful with Y"). If an existing line already covers the correction, tighten it instead of adding a new one. Remove lines when the underlying issue goes away (model upgrades, refactors, process changes).
-
-- (empty)
-- When updating workflow behavior, align the owning `SKILL.md`, any affected `references/`, and the user-facing docs in the same change.
 
 ---

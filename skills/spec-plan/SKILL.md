@@ -54,7 +54,7 @@ Stop and explain exactly what must happen next when any of these are true:
 - `artifacts/features/<slug>/spec.md` is missing
 - `spec.md` is vague, contradictory, incomplete, or still contains unresolved blocking clarification
 - `requirements-review.md` exists and its verdict is `not ready`
-- the feature requires design first and `design.md` does not exist
+
 - repository context reveals major conflicts or dependencies that prevent safe sequencing
 
 When stopping, state:
@@ -63,18 +63,7 @@ When stopping, state:
 - why planning cannot proceed safely
 - which artifact, clarification, or decision is required next
 
-## Design Gate
 
-If `design.md` does not exist, proceed only when the feature is simple and localized enough that the technical approach can be planned directly from the spec, repository patterns, and known constraints.
-
-Require design first when the work includes one or more of these:
-
-- cross-service or cross-boundary changes
-- new data models or migrations
-- new public interfaces or contracts
-- infrastructure or platform changes
-- meaningful security, privacy, reliability, or performance implications
-- multiple plausible implementation approaches with real tradeoffs
 
 ## Core Rules
 
