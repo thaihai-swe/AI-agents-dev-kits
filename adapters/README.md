@@ -19,3 +19,4 @@ Included examples:
 - `AGENTS.example.md`
 - `CLAUDE.example.md`
 - `copilot-instructions.example.md`
+- `GEMINI.example.md`

@@ -5,8 +5,13 @@ set -euo pipefail
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 
 mkdir -p skills memories/repo artifacts/features
+has_runtime_entrypoint=false
 
-if [[ ! -f AGENTS.md ]]; then
+if [[ -f AGENTS.md || -f CLAUDE.md || -f GEMINI.md || -f .github/copilot-instructions.md ]]; then
+  has_runtime_entrypoint=true
+fi
+
+if [[ "$has_runtime_entrypoint" == false ]]; then
   cat > AGENTS.md <<'EOF'
 # AGENTS.md
 
@@ -20,7 +25,7 @@ Read this file before working in this repository.
 EOF
   echo "Created AGENTS.md"
 else
-  echo "AGENTS.md already exists"
+  echo "Runtime entrypoint already exists; skipped AGENTS.md stub"
 fi
 
 if [[ ! -f memories/repo/constitution.md ]]; then
@@ -44,6 +49,7 @@ echo "- artifacts/features/"
 echo
 echo "This script scaffolds folders, starter memory files, and a thin AGENTS stub."
 echo "It does not install the skill kit into another repository."
+echo "It only creates AGENTS.md when no other supported runtime entrypoint exists."
 echo
 echo "Next steps:"
 echo "1. Copy or vendor the kit so the target repository has the real skills under skills/"

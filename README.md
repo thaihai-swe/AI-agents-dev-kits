@@ -118,9 +118,16 @@ At minimum, a working adoption needs:
 
 - `skills/`
 - `scripts/bootstrap-kit.sh`
-- a repo entrypoint such as `AGENTS.md` when the client needs one
+- one runtime entrypoint such as `AGENTS.md`, `CLAUDE.md`, `.github/copilot-instructions.md`, or `GEMINI.md`
 
-`scripts/bootstrap-kit.sh` does not install skills into another repository. It only scaffolds folders, starter memory files, and a thin `AGENTS.md` stub.
+`scripts/bootstrap-kit.sh` does not install skills into another repository. It only scaffolds folders, starter memory files, and a thin `AGENTS.md` stub when no other supported runtime entrypoint exists.
+
+Starter entrypoint examples live under [`adapters/`](adapters/):
+
+- Codex or generic repo-instruction runtimes: `adapters/AGENTS.example.md`
+- Claude Code: `adapters/CLAUDE.example.md`
+- GitHub Copilot: `adapters/copilot-instructions.example.md`
+- Gemini CLI: `adapters/GEMINI.example.md`
 
 ## Minimum Adoption
 
@@ -154,9 +161,29 @@ If you want a lightweight setup helper, use:
 scripts/bootstrap-kit.sh
 ```
 
-It creates the canonical folders when missing, creates starter `memories/repo/constitution.md` and `memories/repo/project-knowledge-base.md` files when missing, creates a thin `AGENTS.md` stub when missing, and prints the next workflow steps.
+It creates the canonical folders when missing, creates starter `memories/repo/constitution.md` and `memories/repo/project-knowledge-base.md` files when missing, creates a thin `AGENTS.md` stub only when no other supported runtime entrypoint exists, and prints the next workflow steps.
 
 It does not copy `skills/` into the target repository for you.
+
+## Clean Repo Quickstart
+
+For a brand-new target repository:
+
+1. copy or vendor this kit so the target repo contains `skills/`, `scripts/bootstrap-kit.sh`, and the adapter examples you want
+2. copy the matching adapter example into the runtime entrypoint your client expects
+3. run `scripts/bootstrap-kit.sh`
+4. refine `memories/repo/constitution.md` and `memories/repo/project-knowledge-base.md`
+5. start the first real feature with the normal workflow
+
+Expected result after bootstrap:
+
+```text
+skills/
+memories/repo/constitution.md
+memories/repo/project-knowledge-base.md
+artifacts/features/
+AGENTS.md                 # or the runtime-specific entrypoint you chose
+```
 
 ## Product Stance
 
@@ -173,6 +200,17 @@ This kit is not trying to be:
 - a CLI-heavy generator
 - a plugin marketplace
 - a large autonomous multi-agent framework
+
+## Runtime Surface
+
+Supported checked-in adapter examples:
+
+- Codex or generic repo-instruction runtimes through `AGENTS.md`
+- Claude Code through `CLAUDE.md`
+- GitHub Copilot through `.github/copilot-instructions.md`
+- Gemini CLI through `GEMINI.md`
+
+Each runtime should expose the same public slash-alias surface and point back to the same canonical paths under `skills/`, `memories/repo/`, and `artifacts/features/<slug>/`.
 
 ## Skills
 

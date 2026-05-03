@@ -52,6 +52,11 @@ Use it for stable repository facts, packaging patterns, boundaries between layer
   Confidence: High
   Provenance: Observed in repo
 
+- Invariant: Claimed runtime support should be backed by checked-in adapter examples under `adapters/`.
+  Why it matters: supported-agent docs and release checks should point to concrete repo evidence, not vague promises.
+  Confidence: High
+  Provenance: Observed in repo
+
 ## Decision Heuristics
 
 - Heuristic: If a change affects workflow semantics, edit the owning `SKILL.md` before touching docs or adapters.
@@ -80,6 +85,11 @@ Use it for stable repository facts, packaging patterns, boundaries between layer
   Use when: changing release-critical surfaces or preparing a publishable release.
   Reference: `scripts/check-kit-consistency.sh`
   Notes: the script is intentionally small, so maintainers should still run a real dry run for adoption paths.
+
+- Pattern: Keep at least one checked-in helper-skill example alongside the main artifact fixtures.
+  Use when: refining helper-skill output shapes or calibrating new maintainers.
+  Reference: `artifacts/examples/magic-link-login/memory-promotion-decision.md`, `artifacts/examples/magic-link-login/traceability-audit.md`
+  Notes: templates alone are not enough when the output quality bar is subtle.
 
 - Pattern: Keep starter memory templates in skill-owned references and use bootstrap to copy them when needed.
   Use when: setting up another repository that adopts this kit.

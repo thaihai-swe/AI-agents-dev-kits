@@ -17,6 +17,7 @@ The rule is simple:
 | Codex | `AGENTS.md` | `AGENTS.md` points to `skills/`, repo memory, and feature artifacts | adapter-driven |
 | Claude Code | `CLAUDE.md` and optional `.claude/commands/*` | `CLAUDE.md` sets context, command files wrap matching skills | adapter-driven |
 | GitHub Copilot | `.github/copilot-instructions.md` and optional `.github/instructions/*` | repo instructions point back to the canonical workflow | adapter-driven |
+| Gemini CLI | `GEMINI.md` | `GEMINI.md` points to the same canonical workflow and repo memory | adapter-driven |
 | Other agent runtimes | repo-specific entrypoint | entrypoint should point to `skills/` and canonical paths | adapter-driven |
 
 For a concise public command and adapter overview, see [Supported Agents](supported-agents.md).
@@ -37,9 +38,17 @@ Add the client entrypoint your runtime expects, for example:
 AGENTS.md
 CLAUDE.md
 .github/copilot-instructions.md
+GEMINI.md
 ```
 
 Use [../adapters](../adapters/README.md) for thin starter examples.
+
+Checked-in examples:
+
+- `adapters/AGENTS.example.md`
+- `adapters/CLAUDE.example.md`
+- `adapters/copilot-instructions.example.md`
+- `adapters/GEMINI.example.md`
 
 Before running bootstrap in another repository, make sure the kit has already been copied or vendored there. `scripts/bootstrap-kit.sh` does not install `skills/` for you.
 
@@ -98,6 +107,13 @@ If you package this kit into another repository:
 - adapt only the thin client entrypoints
 - prefer repository-local copies or vendoring over partial copy-paste into multiple adapter folders
 
+For downstream updates, change these layers together:
+
+- `skills/`
+- the chosen adapter example
+- any locally copied onboarding docs or reference snippets
+- release verification notes
+
 ## Lightweight Bootstrap
 
 If you want a small helper instead of manual setup, use:
@@ -110,7 +126,7 @@ Its job should stay small:
 
 - create the canonical folder structure when missing
 - create starter `memories/repo/constitution.md` and `memories/repo/project-knowledge-base.md` files when missing
-- create a thin `AGENTS.md` stub when missing
+- create a thin `AGENTS.md` stub only when no other supported runtime entrypoint exists
 - print the next workflow steps
 
 It should not replace the skills, install the kit, or invent a separate setup model.
@@ -123,3 +139,4 @@ Before treating an integration as finished, verify:
 - the client is not taught a competing workflow
 - artifact and memory paths are consistent
 - the discovery order is explicit
+- every claimed runtime still has a checked-in adapter example that matches the docs

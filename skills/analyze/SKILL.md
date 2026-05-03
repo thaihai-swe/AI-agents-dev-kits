@@ -29,6 +29,7 @@ Read these inputs when they exist:
 - related feature artifacts
 - relevant code, tests, configs, docs, and repository structure
 - `references/analysis-template.md`
+- `references/debugging-checklist.md` when the request is about failures, regressions, or uncertain brownfield behavior
 
 Prefer direct repository evidence over assumptions.
 
@@ -112,6 +113,7 @@ For debugging-oriented analysis, add when useful:
 ## References
 
 - Use [references/analysis-template.md](references/analysis-template.md) when a structured output shape helps.
+- Use [references/debugging-checklist.md](references/debugging-checklist.md) when you need a compact checklist for reproduction, boundary tracing, and root-cause confidence.
 - Keep bug-oriented sections only when the request is actually about failure analysis.
 
 ## Workflow

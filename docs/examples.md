@@ -113,6 +113,11 @@ Helper-skill snapshots:
 - A good `/memory-promotion` result names exactly one destination and gives a short reason tied to evidence.
 - A good `/task-traceability-audit` result calls out whether the chain is complete, partial, misleading, or blocked.
 
+Checked-in helper examples:
+
+- [magic-link-login/memory-promotion-decision.md](/artifacts/examples/magic-link-login/memory-promotion-decision.md)
+- [magic-link-login/traceability-audit.md](/artifacts/examples/magic-link-login/traceability-audit.md)
+
 Additional reviewed fixtures:
 
 - [auth-timeout-bug](/artifacts/examples/auth-timeout-bug): narrow bug-fix path

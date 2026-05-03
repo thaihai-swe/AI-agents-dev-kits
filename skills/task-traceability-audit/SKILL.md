@@ -73,6 +73,7 @@ When stopping, say:
 ## References
 
 - Use [references/audit-template.md](references/audit-template.md) when a structured audit record helps.
+- Use [references/example-audit.md](references/example-audit.md) to calibrate complete, partial, misleading, and blocked outcomes.
 - Keep the audit focused on the traceability chain rather than broad implementation judgment.
 
 ## Common Rationalizations

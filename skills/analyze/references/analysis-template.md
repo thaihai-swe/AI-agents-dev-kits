@@ -26,6 +26,12 @@ Use only the sections that materially help the investigation.
   Evidence:
   Type: Fact | Inference
 
+## Brownfield Notes
+
+- Existing repository pattern to preserve:
+- Boundary or dependency that looks fragile:
+- Existing test or validation surface to reuse:
+
 ## Risks And Unknowns
 
 - Risk or unknown:

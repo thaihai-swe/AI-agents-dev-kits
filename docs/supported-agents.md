@@ -20,12 +20,13 @@ Every supported environment should be taught the same habits:
 
 ## Current Adapter Surface
 
-| Environment | Primary entrypoint | What the adapter should do |
-|---|---|---|
-| Codex | `AGENTS.md` | Point to `skills/`, repo memory, artifacts, and slash aliases |
-| Claude Code | `CLAUDE.md` and optional `.claude/commands/*` | Keep command wrappers thin and mapped to the existing skills |
-| GitHub Copilot | `.github/copilot-instructions.md` and optional `.github/instructions/*` | Point back to the canonical workflow and avoid competing prompt systems |
-| Other runtimes | repo-specific entrypoint | Reuse the same workflow contract and canonical paths |
+| Environment | Primary entrypoint | Checked-in example | What the adapter should do |
+|---|---|---|---|
+| Codex | `AGENTS.md` | `adapters/AGENTS.example.md` | Point to `skills/`, repo memory, artifacts, and slash aliases |
+| Claude Code | `CLAUDE.md` and optional `.claude/commands/*` | `adapters/CLAUDE.example.md` | Keep command wrappers thin and mapped to the existing skills |
+| GitHub Copilot | `.github/copilot-instructions.md` and optional `.github/instructions/*` | `adapters/copilot-instructions.example.md` | Point back to the canonical workflow and avoid competing prompt systems |
+| Gemini CLI | `GEMINI.md` | `adapters/GEMINI.example.md` | Keep the root context file thin and point back to the same workflow |
+| Other runtimes | repo-specific entrypoint | start from `adapters/AGENTS.example.md` | Reuse the same workflow contract and canonical paths |
 
 ## Public Command Surface
 
@@ -45,7 +46,7 @@ User-facing docs should stay on this slash-alias surface:
 - `/memory-promotion`
 - `/task-traceability-audit`
 
-Internal skill names such as `spec-review-implementation` are implementation details. They belong in maintainer docs, not in first-run user guidance.
+Internal skill IDs are implementation details. They belong in maintainer docs or thin adapter wrappers only when explicit mapping is necessary.
 
 ## Thin Alias Rules
 
@@ -56,9 +57,18 @@ These aliases are wrappers around existing skills, not separate workflows:
 
 Do not introduce alternate command semantics per environment.
 
+## Support Claim Rule
+
+Do not claim a runtime is supported unless this repository ships:
+
+- one checked-in starter adapter for that runtime
+- docs that explain its entrypoint shape
+- release verification that checks the adapter still points to the canonical workflow
+
 ## What To Verify Before Release
 
 - the adapter points to `skills/`, `memories/repo/`, and `artifacts/features/<slug>/`
 - the public command names match the docs
 - no environment is taught a competing workflow order
 - bootstrap and onboarding docs describe the same baseline files the adapter expects
+- every claimed runtime still has a checked-in example adapter

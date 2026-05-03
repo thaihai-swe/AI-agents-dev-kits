@@ -1,4 +1,4 @@
-# CLAUDE.md
+# GEMINI.md
 
 Use the existing workflow in `skills/` instead of improvising from chat history.
 
@@ -14,4 +14,4 @@ Keep routing thin:
 - `/memory-promotion` should point to the existing memory-promotion stage
 - `/task-traceability-audit` should point to the existing audit stage
 
-Keep `.claude/commands/*` wrappers thin and aligned with the canonical skill names.
+Keep `GEMINI.md` focused on entrypoint routing and repo context, not on duplicating full skill bodies.

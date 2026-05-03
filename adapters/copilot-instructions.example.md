@@ -11,8 +11,8 @@ This repository uses an artifact-first workflow.
 
 Use only thin aliases to the existing skills:
 
-- `/spec-review` -> `spec-review-implementation`
-- `/memory-promotion` -> `memory-promotion`
-- `/task-traceability-audit` -> `task-traceability-audit`
+- `/spec-review` should map to the existing implementation-review stage
+- `/memory-promotion` should map to the existing memory-promotion stage
+- `/task-traceability-audit` should map to the existing audit stage
 
 Use a thin `.github/instructions/*` layer only to point back to the canonical workflow.

@@ -76,13 +76,14 @@
 `bash scripts/bootstrap-kit.sh`
 - creates canonical folders when missing
 - creates starter `memories/repo/constitution.md` and `memories/repo/project-knowledge-base.md` files when missing
-- creates a thin `AGENTS.md` stub when missing
+- creates a thin `AGENTS.md` stub only when no other supported runtime entrypoint exists
 - does not install `skills/` into another repository
 
 `bash scripts/check-kit-consistency.sh`
 - verifies required skill sections exist
 - verifies skill-local referenced files exist
 - verifies canonical memory snippets and command aliases remain aligned across core docs and adapters
+- verifies claimed runtime adapters and checked-in example fixtures still match the documented product surface
 
 ## Companion Guides
 

@@ -29,10 +29,14 @@ required_files = [
     root / "memories/repo/constitution.md",
     root / "memories/repo/project-knowledge-base.md",
     root / "docs/skill-anatomy.md",
+    root / "adapters/GEMINI.example.md",
     root / "skills/constitution/references/constitution-template.md",
     root / "skills/project-knowledge-base/references/project-knowledge-base-template.md",
     root / "skills/memory-promotion/references/decision-template.md",
+    root / "skills/memory-promotion/references/example-decision.md",
     root / "skills/task-traceability-audit/references/audit-template.md",
+    root / "skills/task-traceability-audit/references/example-audit.md",
+    root / "skills/analyze/references/debugging-checklist.md",
     root / "artifacts/examples/README.md",
     root / "artifacts/examples/magic-link-login/analysis.md",
     root / "artifacts/examples/magic-link-login/spec.md",
@@ -42,6 +46,8 @@ required_files = [
     root / "artifacts/examples/magic-link-login/tasks.md",
     root / "artifacts/examples/magic-link-login/review.md",
     root / "artifacts/examples/magic-link-login/testing-scenarios.md",
+    root / "artifacts/examples/magic-link-login/memory-promotion-decision.md",
+    root / "artifacts/examples/magic-link-login/traceability-audit.md",
     root / "artifacts/examples/auth-timeout-bug/analysis.md",
     root / "artifacts/examples/auth-timeout-bug/spec.md",
     root / "artifacts/examples/auth-timeout-bug/plan.md",
@@ -86,10 +92,17 @@ canonical_checks = {
         "memories/repo/project-knowledge-base.md",
         "scripts/bootstrap-kit.sh",
     ],
+    "docs/supported-agents.md": [
+        "adapters/AGENTS.example.md",
+        "adapters/CLAUDE.example.md",
+        "adapters/copilot-instructions.example.md",
+        "adapters/GEMINI.example.md",
+    ],
     "docs/integrations.md": [
         "memories/repo/constitution.md",
         "memories/repo/project-knowledge-base.md",
         "artifacts/features/<slug>/",
+        "adapters/GEMINI.example.md",
     ],
     "docs/reference.md": [
         "/spec-review",
@@ -99,6 +112,21 @@ canonical_checks = {
     "adapters/AGENTS.example.md": [
         "memories/repo/constitution.md",
         "memories/repo/project-knowledge-base.md",
+    ],
+    "adapters/CLAUDE.example.md": [
+        "skills/",
+        "memories/repo/",
+        "artifacts/features/<slug>/",
+    ],
+    "adapters/copilot-instructions.example.md": [
+        "skills/",
+        "memories/repo/",
+        "artifacts/features/<slug>/",
+    ],
+    "adapters/GEMINI.example.md": [
+        "skills/",
+        "memories/repo/",
+        "artifacts/features/<slug>/",
     ],
     "scripts/bootstrap-kit.sh": [
         "memories/repo/constitution.md",
@@ -204,6 +232,16 @@ example_fixture_checks = {
         "## Happy Path Scenarios",
         "## Regression Checks",
     ],
+    "artifacts/examples/magic-link-login/memory-promotion-decision.md": [
+        "## Candidate Finding",
+        "## Classification",
+        "Decision: promote to `project-knowledge-base.md`",
+    ],
+    "artifacts/examples/magic-link-login/traceability-audit.md": [
+        "## Coverage Summary",
+        "Overall status: partial",
+        "## Gaps",
+    ],
     "artifacts/examples/auth-timeout-bug/analysis.md": [
         "## Scope",
         "## Findings",
@@ -258,9 +296,11 @@ command_sources = [
     root / "docs/reference.md",
     root / "docs/examples.md",
     root / "docs/integrations.md",
+    root / "docs/supported-agents.md",
     root / "adapters/AGENTS.example.md",
     root / "adapters/CLAUDE.example.md",
     root / "adapters/copilot-instructions.example.md",
+    root / "adapters/GEMINI.example.md",
     root / "docs/skill-anatomy.md",
 ]
 

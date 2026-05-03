@@ -19,6 +19,13 @@ Current skill surface:
 
 Maintain docs coverage for all four groups. User-facing docs should not make the kit look like it only contains the feature-delivery middle.
 
+Current checked-in runtime examples:
+
+- `adapters/AGENTS.example.md`
+- `adapters/CLAUDE.example.md`
+- `adapters/copilot-instructions.example.md`
+- `adapters/GEMINI.example.md`
+
 ## Release Checklist
 
 Before release:
@@ -28,6 +35,8 @@ Before release:
 3. verify skills, templates, docs, examples, adapters, and bootstrap use the same artifact model
 4. freeze artifact names, verdict names, and task-state names for the release line
 5. check that stop conditions route back to the correct upstream artifact
+6. verify every claimed runtime still has a checked-in adapter example
+7. verify helper-skill example outputs still match the current contracts
 
 Release gate:
 
@@ -35,6 +44,7 @@ Release gate:
 - the current skill set supports the intended workflow without sidecar rules outside `skills/`
 - the minimum adoption path is clear
 - at least one realistic baseline example still teaches the intended model
+- every claimed runtime support surface has checked-in evidence
 
 ## Dry Run Report Template
 
@@ -59,6 +69,8 @@ During the dry run, check:
 - the documented install step explains how `skills/` reaches the target repository before bootstrap runs
 - bootstrap is described only as scaffolding, not as installation
 - the checked-in example artifact fixtures still match the current skill contract
+- checked-in runtime adapter examples still match the public command surface and canonical paths
+- checked-in helper-skill example outputs still read like current contract outputs
 
 ## Adopter Confidence Signals
 
@@ -67,6 +79,7 @@ Before telling users the kit is release-ready, make sure:
 - the golden example artifacts still read like outputs the skills would actually produce today
 - helper-skill decisions and audits are easy to compare against checked-in examples or templates
 - a new maintainer can explain the install step, bootstrap step, and first real feature path without adding unstated rules
+- a new maintainer can point to a checked-in example for every runtime the docs claim to support
 
 ## Doc Governance
 

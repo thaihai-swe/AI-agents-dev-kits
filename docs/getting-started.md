@@ -29,7 +29,7 @@ Recommended packaging paths:
 - vendor or copy this repository into the target repo
 - or copy `skills/` intact plus the scripts and adapter files you plan to use
 
-`scripts/bootstrap-kit.sh` does not install skills into another repository. It only scaffolds folders, starter memory files, and a thin `AGENTS.md` stub.
+`scripts/bootstrap-kit.sh` does not install skills into another repository. It only scaffolds folders, starter memory files, and a thin `AGENTS.md` stub when no other supported runtime entrypoint exists.
 
 If you want a lightweight setup helper, run:
 
@@ -37,17 +37,47 @@ If you want a lightweight setup helper, run:
 scripts/bootstrap-kit.sh
 ```
 
-It creates the canonical folders, starter repo-memory files, and a thin `AGENTS.md` stub when those files are missing.
+It creates the canonical folders, starter repo-memory files, and a thin `AGENTS.md` stub only when no other supported runtime entrypoint exists.
 
 The starter repo-memory files are:
 
 - `memories/repo/constitution.md`
 - `memories/repo/project-knowledge-base.md`
 
+## Clean Repo Quickstart
+
+Use this path when the target repository is starting from scratch:
+
+1. copy or vendor the kit into the target repository
+2. choose one adapter example from `adapters/`
+3. place it at the runtime entrypoint your client expects
+4. run `scripts/bootstrap-kit.sh`
+5. refine the starter memory files
+6. start the first real feature
+
+Checked-in adapter examples:
+
+- Codex or generic repo-instruction runtimes: `adapters/AGENTS.example.md`
+- Claude Code: `adapters/CLAUDE.example.md`
+- GitHub Copilot: `adapters/copilot-instructions.example.md`
+- Gemini CLI: `adapters/GEMINI.example.md`
+
+Expected repository shape after bootstrap:
+
+```text
+skills/
+memories/repo/constitution.md
+memories/repo/project-knowledge-base.md
+artifacts/features/
+AGENTS.md                 # or the runtime-specific entrypoint you chose
+```
+
 ## First Commands
 
-If your client uses a repo entrypoint file, add `AGENTS.md` first.
+If your client uses a repo entrypoint file, add the matching runtime entrypoint first.
 Its job is to point the agent to `skills/`, `memories/repo/`, and `artifacts/features/` without copying the workflow into the adapter.
+
+If your runtime prefers another entrypoint file, use the matching checked-in example instead of inventing a new command surface.
 
 If durable memory does not exist yet, start here:
 

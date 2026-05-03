@@ -11,7 +11,7 @@ By the end of adoption, a repository should have:
 
 ## First File To Add
 
-If your client uses a repo entrypoint file, add `AGENTS.md` first.
+If your client uses a repo entrypoint file, add the matching runtime entrypoint first.
 
 Keep it thin:
 
@@ -45,20 +45,28 @@ The expected discovery sequence is:
 Recommended order:
 
 1. copy or vendor the kit so the target repository contains `skills/`
-2. run `scripts/bootstrap-kit.sh` to scaffold canonical folders, starter memory files, and a thin `AGENTS.md` stub
-3. add or refine `AGENTS.md` or the equivalent adapter when needed
-4. review the starter `memories/repo/constitution.md` and `memories/repo/project-knowledge-base.md` files
-5. run `/constitution`
-6. run `/project-knowledge-base`
-7. start one real feature
+2. copy the matching adapter example from `adapters/` into the runtime entrypoint your client expects
+3. run `scripts/bootstrap-kit.sh` to scaffold canonical folders and starter memory files
+4. if no runtime entrypoint existed yet, keep or replace the thin `AGENTS.md` stub with the runtime-specific entrypoint you chose
+5. review the starter `memories/repo/constitution.md` and `memories/repo/project-knowledge-base.md` files
+6. run `/constitution`
+7. run `/project-knowledge-base`
+8. start one real feature
+
+Checked-in adapter examples:
+
+- `adapters/AGENTS.example.md`
+- `adapters/CLAUDE.example.md`
+- `adapters/copilot-instructions.example.md`
+- `adapters/GEMINI.example.md`
 
 ## Existing Repository Adoption
 
 Recommended order:
 
 1. copy or vendor the kit so the target repository contains `skills/`
-2. create `memories/repo/` and `artifacts/features/`, or run `scripts/bootstrap-kit.sh`
-3. add the thin client adapter
+2. add the matching thin client adapter from `adapters/`
+3. create `memories/repo/` and `artifacts/features/`, or run `scripts/bootstrap-kit.sh`
 4. capture only minimal durable memory first
 5. start with a small or well-understood feature
 6. grow repo memory as durable knowledge emerges
@@ -80,6 +88,17 @@ After the repository is bootstrapped:
 4. run one bounded feature through the workflow
 
 For client-specific details, use [Integrations](integrations.md).
+
+## Downstream Update Pattern
+
+When a downstream repository updates its vendored copy of this kit:
+
+1. update `skills/`, scripts, docs you rely on, and the chosen adapter example together
+2. keep downstream repo memory files project-specific instead of overwriting them with upstream starter text
+3. rerun bootstrap only if canonical folders or starter files are genuinely missing
+4. rerun the downstream dry run on one bounded feature before broad rollout
+
+Do not mix kit-version updates with unrelated workflow customization.
 
 ## Good First Feature
 

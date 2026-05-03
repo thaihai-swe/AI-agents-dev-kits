@@ -10,3 +10,8 @@ Current fixture set:
 - `auth-timeout-bug/`
 - `legacy-account-audit-event/`
 - `cleanup-unused-exports/`
+
+Helper-skill calibration examples are currently checked into `magic-link-login/`:
+
+- `memory-promotion-decision.md`
+- `traceability-audit.md`

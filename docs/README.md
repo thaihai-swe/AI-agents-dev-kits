@@ -58,6 +58,13 @@ If you are adopting the kit in a real repository:
 4. read [Integrations](integrations.md)
 5. read [Reference](reference.md)
 
+Runtime starter files are checked in under `adapters/` for:
+
+- `AGENTS.md`
+- `CLAUDE.md`
+- `.github/copilot-instructions.md`
+- `GEMINI.md`
+
 If you maintain the kit itself:
 
 1. read [Maintainers](maintainers.md)

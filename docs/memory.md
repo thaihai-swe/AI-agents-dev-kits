@@ -82,6 +82,8 @@ Keep these in feature artifacts instead:
 
 When the right destination is unclear, use `/memory-promotion` instead of guessing.
 
+For calibration, keep one reviewed helper example in the fixture set so maintainers can compare real promotion decisions against the current skill contract.
+
 ## What Not To Create
 
 Do not create competing durable memory files such as:

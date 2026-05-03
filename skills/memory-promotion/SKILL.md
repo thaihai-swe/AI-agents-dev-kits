@@ -72,6 +72,7 @@ When stopping, say:
 ## References
 
 - Use [references/decision-template.md](references/decision-template.md) when a structured decision record would help.
+- Use [references/example-decision.md](references/example-decision.md) to calibrate what a concise, evidence-based promotion decision should look like.
 - Keep the output short and decisive.
 - Prefer one clearly justified destination over a hedge list of possibilities.
 
