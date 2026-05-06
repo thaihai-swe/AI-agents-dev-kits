@@ -1,7 +1,5 @@
 # AI Agents Development Kit
 
-[![Consistency Check](https://github.com/thaihai-swe/ai-agents-dev-kit/actions/workflows/consistency.yml/badge.svg)](https://github.com/thaihai-swe/ai-agents-dev-kit/actions)
-[![License: CC0-1.0](https://img.shields.io/badge/License-CC0--1.0-lightgrey.svg)](https://creativecommons.org/publicdomain/zero/1.0/)
 
 **Durable, Spec-Anchored Development for AI Coding Agents.**
 
