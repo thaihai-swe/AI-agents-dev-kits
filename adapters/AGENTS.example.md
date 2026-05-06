@@ -1,32 +1,20 @@
 # AGENTS.md
 
-Read this file before working in this repository.
+Use the existing workflow in `skills/` instead of improvising from chat history.
 
-Workflow source of truth:
+- choose the matching skill before freeform work
+- use `memories/repo/` for durable repository context
+- use `artifacts/features/<slug>/` for feature-specific artifacts
+- move backward to the missing upstream artifact when blocked
 
-- use the matching skill under `skills/` before freeform work
-- durable repo memory lives under `memories/repo/`
-- current feature artifacts live under `artifacts/features/<slug>/`
+## Skill Mapping
 
-Common routing:
+- `/kit-memory`: manage memories/repo/constitution.md and memories/repo/project-knowledge-base.md
+- `/kit-research`: investigate current behavior or bugs
+- `/kit-spec`: define what and why (with Socratic Wave)
+- `/kit-plan`: design technical approach and breakdown tasks
+- `/kit-implement`: execute tasks surgically
+- `/kit-verify`: verify implementation and drift
+- `/kit-cleanup`: perform maintenance refactoring
 
-- durable rules -> `/constitution`
-- durable repo context -> `/project-knowledge-base`
-- current-state investigation -> `/analyze`
-- feature definition -> `/spec-requirement`
-- planning -> `/spec-plan`
-- implementation -> `/spec-implement`
-- review -> `/spec-review`
-- durable finding promotion -> `/memory-promotion`
-- traceability audit -> `/task-traceability-audit`
-
-Expected order:
-
-1. read this file
-2. choose the matching skill
-3. read `memories/repo/constitution.md` and `memories/repo/project-knowledge-base.md` when relevant
-4. read the current feature artifacts
-5. execute one stage at a time
-6. move backward when the current stage is blocked
-
-Completion claims require fresh verification evidence.
+Keep routing thin; keep detailed behavior in `skills/`.

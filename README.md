@@ -1,247 +1,81 @@
 # AI Agents Development Kit
 
-Structured documentation, portable skills, and templates for running spec-driven development with Claude, Codex, and other coding agents.
+[![Consistency Check](https://github.com/thaihai-swe/ai-agents-dev-kit/actions/workflows/consistency.yml/badge.svg)](https://github.com/thaihai-swe/ai-agents-dev-kit/actions)
+[![License: CC0-1.0](https://img.shields.io/badge/License-CC0--1.0-lightgrey.svg)](https://creativecommons.org/publicdomain/zero/1.0/)
 
-Artifact-first spec workflow kit for brownfield and greenfield repositories and quality-first teams.
+**Durable, Spec-Anchored Development for AI Coding Agents.**
 
-## What It Is
+The AI Agents Development Kit is a professional framework for running **Spec-Driven Development (SDD)**. It moves beyond "vibe coding" by treating structured specifications, technical plans, and task lists as the primary source of truth for AI agents.
 
-This kit helps teams turn AI-assisted work into written artifacts that are reviewable, resumable, and traceable.
+## 🚀 Why This Kit?
 
-Its core stance is:
+Most AI agents drift during implementation because their only context is the current codebase and a vague chat history. This kit enforces **Spec-Anchoring**:
+- **Eliminate Ambiguity:** Mandatory Socratic waves ensure requirements are clear before a single line of code is written.
+- **Enforce Traceability:** Every task and test traces back to a specific requirement.
+- **Prevent Drift:** Automated checks ensure the implementation never diverges from the approved specification.
 
-- artifacts are the durable source of truth
-- skills are the reusable workflow contract
-- adapter files such as `AGENTS.md` should stay thin
+---
 
-This kit is optimized for teams that care more about trustworthy delivery and brownfield safety than about maximum prompt convenience.
+## 🛠 The 8-Skill Workflow
 
-It gives you:
-- an end-to-end skill workflow from repo memory through delivery review
-- durable repo memory under `memories/repo/`
-- per-feature artifacts under `artifacts/features/<slug>/`
-- thin adapter examples under [`adapters/`](adapters/)
-- 14 portable skills under `skills/`:
-  11 core workflow skills, 2 helper skills, and 1 utility skill
+The kit consolidates engineering steps into 8 core "Phase Owners" to minimize agent friction while maintaining maximum rigor.
 
-## Introduction
+```mermaid
+flowchart TD
+    Start([Request]) --> Memory[/kit-memory/]
+    Memory --> Research[/kit-research/]
+    Research --> Spec[/kit-spec/]
+    ADR --> Plan[/kit-plan/]
+    Plan --> Implement[/kit-implement/]
+    Implement --> Verify[/kit-verify/]
+    Verify --> Done([Production Ready])
 
-Spec-driven development is an approach where teams write and refine structured specifications before letting AI generate or change code. Instead of letting the codebase become the accidental requirements document, the team captures intent, scope, constraints, and acceptance criteria in artifacts that both humans and AI can review.
-
-That matters because AI is powerful, but it is also highly sensitive to context quality. When the only context is a partial prompt plus the current codebase, the codebase becomes the de facto specification. That usually leads to hidden assumptions, accidental scope decisions, and implementation-first drift. This kit is designed to prevent that.
-
-The model used here is close to what modern spec-driven development tools call:
-- **spec-first**: define the change before implementation
-- **spec-anchored**: keep the artifacts around long enough to guide delivery, review, and future evolution
-
-This kit deliberately focuses on that middle ground. It does not treat specs as disposable notes, and it does not require a future “spec-as-source” world where humans stop editing code entirely. Instead, it gives teams a practical way to make requirements, planning, and review explicit while still working in normal repositories with normal engineering controls.
-
-It also separates two kinds of context that are often mixed together:
-- **durable repo memory**: rules and stable architecture knowledge that apply across many changes
-- **feature artifacts**: change-specific specs, plans, tasks, and reviews that apply to one feature or bug fix
-
-That distinction is especially important for large codebases. A big repository cannot be loaded into an AI agent’s context all at once in a reliable way. The kit narrows the working set by combining:
-- compact durable repo memory
-- explicit per-feature artifacts
-- workflow gates that stop weak context from propagating downstream
-
-In practice, the kit helps teams use AI more like a disciplined implementation partner than a fast improviser.
-
-## Who It Is For
-
-- teams using AI to build real product features
-- brownfield repositories with hidden constraints
-- quality-first teams that want explicit gates before planning and shipping
-- maintainers building an internal skill-based workflow kit
-
-## Why This Kit
-
-Use this kit when you want:
-
-- artifact-first delivery instead of chat-history-first improvisation
-- durable repo memory that survives across features and sessions
-- a brownfield-safe workflow that forces upstream clarity before code
-- reviewed traceability from requirements to tasks to validation
-
-## 60-Second Workflow
-
-```text
-/constitution               (if durable repo rules do not exist yet)
-/project-knowledge-base     (if durable repo context does not exist yet)
-/analyze                    (if current system behavior is unclear)
-/spec-requirement           (define intent, scope, constraints, and acceptance clarity)
-/spec-review-requirements   (check readiness)
-/spec-design                (only when technical ambiguity needs design)
-/spec-plan                  (pre-plan analysis + execution strategy)
-/spec-tasks                 (bounded implementation tasks)
-/task-traceability-audit    (when traceability confidence needs checking)
-/spec-implement             (execute tasks)
-/spec-review                (implementation review)
-/spec-testing-scenarios     (create human-run manual test guide)
-/memory-promotion           (when deciding what belongs in durable repo memory)
+    Verify -.->|Drift Detected| Spec
+    Implement -.->|Discovery| Plan
+    Plan -.->|Design Shift| ADR
+    Spec -.->|Ambiguity| Research
 ```
 
-Treat this as an operating sequence, not a menu of loosely related prompts.
+| Skill | Role | Artifacts |
+| :--- | :--- | :--- |
+| **`/kit-memory`** | **Context** | `memories/repo/constitution.md`, `memories/repo/project-knowledge-base.md` |
+| **`/kit-research`** | **Investigate** | `artifacts/features/<slug>/analysis.md` |
+| **`/kit-spec`** | **Define** | `spec.md`, `requirements-review.md` |
+| **`/kit-adr`** | **Decide** | `adr-[number].md`, `adr-log.md` |
+| **`/kit-plan`** | **Engineer** | `design.md`, `plan.md`, `tasks.md` |
+| **`/kit-implement`** | **Execute** | Code + Test Changes |
+| **`/kit-verify`** | **Validate** | `review.md`, `testing-scenarios.md` |
+| **`/kit-cleanup`** | **Maintain** | Refactored Code |
 
-- start with the skill that matches the current uncertainty instead of improvising from chat history
-- do not skip forward when the upstream artifact is still weak
-- use the current feature artifacts under `artifacts/features/<slug>/` as the working source of truth
-- do not claim implementation is complete until the relevant verification has been run and read
-- when debugging, investigate root cause before proposing fixes
-- after implementation, expect a normal `implement -> validate -> review -> fix -> re-review` loop
-- for behavior-changing work, prefer a failing test or other failing proof before the fix when practical
+---
 
-## Start Here
+## 🏁 Quick Start
 
-- Docs home: [Docs](docs/README.md)
-- Quick start: [Getting Started](docs/getting-started.md)
-- Memory: [Memory](docs/memory.md)
-- Workflow: [Workflow](docs/workflow.md)
-- Visual workflow: [Visual Workflow](docs/visual-workflow.md)
-- Use cases: [Use Case Workflows](docs/use-case-workflows.md)
-- Adoption: [Adoption](docs/adoption.md)
-- Integrations: [Integrations](docs/integrations.md)
-- Examples: [Examples](docs/examples.md)
-- Reference: [Reference](docs/reference.md)
-- Maintainers: [Maintainers](docs/maintainers.md)
+### 1. Adopt the Kit
+To install, copy or vendor the `skills/` directory into your target repository. Note: `bootstrap-kit.sh` does not copy `skills/` for you.
 
-## Install The Kit
-
-Before bootstrap means anything, the target repository needs the kit itself.
-
-Use one of these packaging paths:
-
-- copy or vendor this repository into the target repo
-- copy `skills/` intact, plus the scripts and entrypoint examples you want to keep
-
-At minimum, a working adoption needs:
-
-- `skills/`
-- `scripts/bootstrap-kit.sh`
-- one runtime entrypoint such as `AGENTS.md`, `CLAUDE.md`, `.github/copilot-instructions.md`, or `GEMINI.md`
-
-`scripts/bootstrap-kit.sh` does not install skills into another repository. It only scaffolds folders, starter memory files, and a thin `AGENTS.md` stub when no other supported runtime entrypoint exists.
-
-Starter entrypoint examples live under [`adapters/`](adapters/):
-
-- Codex or generic repo-instruction runtimes: `adapters/AGENTS.example.md`
-- Claude Code: `adapters/CLAUDE.example.md`
-- GitHub Copilot: `adapters/copilot-instructions.example.md`
-- Gemini CLI: `adapters/GEMINI.example.md`
-
-## Minimum Adoption
-
-For a new repository, the minimum safe setup is:
-
-```text
-skills/
-memories/repo/
-artifacts/features/
-AGENTS.md                 # or another client adapter entrypoint, when needed
+### 2. Initialize
+```bash
+bash scripts/bootstrap-kit.sh
 ```
 
-After the kit is copied or vendored into the target repository, initialize:
+### 3. Start a Feature
+Ask your AI agent (Cursor, Claude Code, Gemini CLI):
+> "Run /kit-spec for feature 'user-auth-fix'. Ask me 5 clarifying questions first."
 
-```text
-scripts/bootstrap-kit.sh
-```
+---
 
-Then review the starter memory files and continue with:
+## 📖 Choose Your Path
 
-```text
-/constitution
-/project-knowledge-base
-```
+| I am a... | I want to... | Start Here |
+| :--- | :--- | :--- |
+| **New Developer** | Learn how to build a feature with the kit. | [Getting Started Tutorial](docs/getting-started.md) |
+| **Architect** | Understand the design principles and data flow. | [Architecture & Design](docs/architecture.md) |
+| **Contributor** | Extend the kit with new skills or templates. | [Contributor Guide](docs/contributing.md) |
+| **Maintainer** | Run consistency checks and release updates. | [Maintainer Guide](docs/maintainers.md) |
 
-After that, start with one real feature and follow the normal workflow.
+---
 
-If you want a lightweight setup helper, use:
+## 🏛 License
 
-```text
-scripts/bootstrap-kit.sh
-```
-
-It creates the canonical folders when missing, creates starter `memories/repo/constitution.md` and `memories/repo/project-knowledge-base.md` files when missing, creates a thin `AGENTS.md` stub only when no other supported runtime entrypoint exists, and prints the next workflow steps.
-
-It does not copy `skills/` into the target repository for you.
-
-## Clean Repo Quickstart
-
-For a brand-new target repository:
-
-1. copy or vendor this kit so the target repo contains `skills/`, `scripts/bootstrap-kit.sh`, and the adapter examples you want
-2. copy the matching adapter example into the runtime entrypoint your client expects
-3. run `scripts/bootstrap-kit.sh`
-4. refine `memories/repo/constitution.md` and `memories/repo/project-knowledge-base.md`
-5. start the first real feature with the normal workflow
-
-Expected result after bootstrap:
-
-```text
-skills/
-memories/repo/constitution.md
-memories/repo/project-knowledge-base.md
-artifacts/features/
-AGENTS.md                 # or the runtime-specific entrypoint you chose
-```
-
-## Product Stance
-
-This kit is designed to be:
-
-- artifact-first, not chat-history-first
-- portable across agents, not tied to one client
-- disciplined about verification and review
-- small enough to maintain without turning every concern into a separate skill
-
-This kit is not trying to be:
-
-- a general orchestration platform
-- a CLI-heavy generator
-- a plugin marketplace
-- a large autonomous multi-agent framework
-
-## Runtime Surface
-
-Supported checked-in adapter examples:
-
-- Codex or generic repo-instruction runtimes through `AGENTS.md`
-- Claude Code through `CLAUDE.md`
-- GitHub Copilot through `.github/copilot-instructions.md`
-- Gemini CLI through `GEMINI.md`
-
-Each runtime should expose the same public slash-alias surface and point back to the same canonical paths under `skills/`, `memories/repo/`, and `artifacts/features/<slug>/`.
-
-## Skills
-
-Portable workflow contracts now live under [`skills/`](skills/). Each skill packages the workflow instructions plus any bundled `references/` files needed to support Claude, Codex, and other Agent Skills-compatible tools.
-
-The intended agent behavior is:
-
-- check whether an existing skill matches the task before improvising
-- prefer the matching artifact-driven workflow over freeform execution
-- escalate backward to the missing upstream artifact when the current phase is blocked
-- keep activation and adapter files thin; keep detailed behavior in `skills/`
-
-Core workflow skills:
-- `constitution`
-- `project-knowledge-base`
-- `analyze`
-- `spec-requirement`
-- `spec-review-requirements`
-- `spec-design`
-- `spec-plan`
-- `spec-tasks`
-- `spec-implement`
-- `/spec-review` as the public implementation-review stage
-- `spec-testing-scenarios`
-
-Helper skills:
-- `memory-promotion`
-- `task-traceability-audit`
-
-Utility skills:
-- `refactor-cleaner`
-
-Maintainer checks:
-- `bash scripts/check-kit-consistency.sh`
+This project is licensed under the [CC0 1.0 Universal](LICENSE) - see the [LICENSE](LICENSE) file for details.

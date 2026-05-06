@@ -29,14 +29,14 @@ else
 fi
 
 if [[ ! -f memories/repo/constitution.md ]]; then
-  cp "$ROOT_DIR/skills/constitution/references/constitution-template.md" memories/repo/constitution.md
+  cp "$ROOT_DIR/skills/kit-memory/references/constitution-template.md" memories/repo/constitution.md
   echo "Created memories/repo/constitution.md"
 else
   echo "memories/repo/constitution.md already exists"
 fi
 
 if [[ ! -f memories/repo/project-knowledge-base.md ]]; then
-  cp "$ROOT_DIR/skills/project-knowledge-base/references/project-knowledge-base-template.md" memories/repo/project-knowledge-base.md
+  cp "$ROOT_DIR/skills/kit-memory/references/project-knowledge-base-template.md" memories/repo/project-knowledge-base.md
   echo "Created memories/repo/project-knowledge-base.md"
 else
   echo "memories/repo/project-knowledge-base.md already exists"
@@ -55,5 +55,5 @@ echo "Next steps:"
 echo "1. Copy or vendor the kit so the target repository has the real skills under skills/"
 echo "2. Review and refine memories/repo/constitution.md"
 echo "3. Review and refine memories/repo/project-knowledge-base.md"
-echo "4. Run /constitution or /project-knowledge-base when those starter files need durable project-specific content"
+echo "4. Run /kit-memory when those starter files need durable project-specific content"
 echo "5. Start one real feature under artifacts/features/<slug>/"

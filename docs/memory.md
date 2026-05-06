@@ -10,9 +10,9 @@ The memory model is intentionally small. Durable repository memory should stay c
 
 Think about context in four layers:
 
-1. `memories/repo/constitution.md`
+1. `memories/repo/kit-memory.md`
    Durable repo-wide rules, guardrails, and non-negotiable operating constraints.
-2. `memories/repo/project-knowledge-base.md`
+2. `memories/repo/kit-memory.md`
    Durable descriptive context: patterns, boundaries, architecture notes, and brownfield watchouts.
 3. optional domain specs
    Current-state subsystem descriptions for large repositories.
@@ -25,8 +25,8 @@ The first two are canonical repo memory. Domain specs are optional. Feature arti
 
 Use only:
 
-- `memories/repo/constitution.md`
-- `memories/repo/project-knowledge-base.md`
+- `memories/repo/kit-memory.md`
+- `memories/repo/kit-memory.md`
 
 These files should ship with starter content when the repository uses `scripts/bootstrap-kit.sh`. They are expected to exist before the first serious feature workflow begins.
 
@@ -80,7 +80,7 @@ Keep these in feature artifacts instead:
 - one-off debugging sessions
 - local design rationale that does not generalize beyond one feature
 
-When the right destination is unclear, use `/memory-promotion` instead of guessing.
+When the right destination is unclear, use `/kit-memory` instead of guessing.
 
 For calibration, keep one reviewed helper example in the fixture set so maintainers can compare real promotion decisions against the current skill contract.
 
@@ -99,10 +99,10 @@ unless the repository intentionally changes the canonical model.
 
 The lightweight bootstrap flow should give a repository these starter files:
 
-- `memories/repo/constitution.md`
-- `memories/repo/project-knowledge-base.md`
+- `memories/repo/kit-memory.md`
+- `memories/repo/kit-memory.md`
 
-Then the repository owner or maintainer should refine them with `/constitution` and `/project-knowledge-base`.
+Then the repository owner or maintainer should refine them with `/kit-memory` and `/kit-memory`.
 
 ## How Agents Should Use Memory
 
@@ -110,8 +110,8 @@ The intended discovery order is:
 
 1. read the entrypoint file such as `AGENTS.md` when the client uses one
 2. choose the matching skill under `skills/`
-3. read `memories/repo/constitution.md`
-4. read `memories/repo/project-knowledge-base.md`
+3. read `memories/repo/kit-memory.md`
+4. read `memories/repo/kit-memory.md`
 5. read the current feature artifact folder under `artifacts/features/<slug>/`
 
 The entrypoint should point the agent to this order instead of duplicating the memory rules.
@@ -122,5 +122,5 @@ The entrypoint should point the agent to this order instead of duplicating the m
 - merge duplicate notes into compact summaries
 - remove stale or disproven knowledge
 - do not let descriptive memory override the constitution
-- use `/memory-promotion` when deciding what deserves promotion
+- use `/kit-memory` when deciding what deserves promotion
 - update repo memory because a durable pattern was discovered, not because chat context might be lost

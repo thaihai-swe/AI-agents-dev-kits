@@ -1,71 +1,41 @@
-# Docs
+# Documentation Center
 
-This documentation set is intentionally small.
+Welcome to the **AI Agents Development Kit** documentation. This suite is organized according to the Diátaxis framework to help you find the right information based on your current goal.
 
-The kit’s position is simple: artifact-first spec workflow for brownfield repositories and quality-first teams.
+---
 
-Each page has one job:
+## 🧭 Navigation
 
-- [Getting Started](getting-started.md): first successful run
-- [Supported Agents](supported-agents.md): adapter model and public command surface
-- [Debugging](debugging.md): root-cause-first repair workflow
-- [Understanding Existing Code](understanding-existing-code.md): current-state discovery workflow
-- [Memory](memory.md): durable repo memory
-- [Workflow](workflow.md): stage responsibilities and gates
-- [Skill Anatomy](skill-anatomy.md): maintainer contract for `SKILL.md` structure
-- [Visual Workflow](visual-workflow.md): Mermaid diagram of the workflow
-- [Use Case Workflows](use-case-workflows.md): Mermaid diagrams for common scenarios
-- [Adoption](adoption.md): repo rollout and team usage
-- [Integrations](integrations.md): client entrypoints and packaging
-- [Examples](examples.md): copyable scenario flows
-- [Reference](reference.md): fast lookup and glossary
-- [Maintainers](maintainers.md): governance and release operation
+### 🎓 Tutorials (Learning-Oriented)
+*   [**Getting Started**](getting-started.md): The absolute basics. Install the kit and run your first command.
+*   [**First Feature Tutorial**](first-feature.md): A step-by-step walk-through of the 7-Skill workflow.
 
-Use these pages:
+### 🛠 How-to Guides (Task-Oriented)
+*   [**Adoption Guide**](adoption.md): How to bring the kit into an existing (brownfield) project, including discovery and debugging paths.
+*   [**Client Integrations**](integrations.md): Golden configurations for Cursor, Claude Code, and Gemini CLI.
+*   [**Contributing**](contributing.md): How to add new skills, templates, or examples.
 
-- [Getting Started](getting-started.md)
-- [Supported Agents](supported-agents.md)
-- [Debugging](debugging.md)
-- [Understanding Existing Code](understanding-existing-code.md)
-- [Memory](memory.md)
-- [Workflow](workflow.md)
-- [Skill Anatomy](skill-anatomy.md)
-- [Visual Workflow](visual-workflow.md)
-- [Use Case Workflows](use-case-workflows.md)
-- [Adoption](adoption.md)
-- [Integrations](integrations.md)
-- [Examples](examples.md)
-- [Reference](reference.md)
-- [Maintainers](maintainers.md)
+### 🧠 Explanation (Understanding-Oriented)
+*   [**Core Workflow**](workflow.md): The philosophy of Spec-Anchored development and common use-case loops.
+*   [**Architecture & Design**](architecture.md): How the kit is built (Skills, Adapters, Artifacts) and core design principles.
+*   [**Repository Memory**](memory.md): The difference between the Constitution and the Knowledge Base.
 
-## Recommended Reading Order
+### 📋 Reference (Information-Oriented)
+*   [**Technical Reference**](reference.md): Command list, artifact schemas, verdicts, and skill anatomy standards.
+*   [**Maintainer Guide**](maintainers.md): Consistency checks and release management.
 
-If you are new to the kit:
+---
 
-1. read [Getting Started](getting-started.md)
-2. read [Supported Agents](supported-agents.md)
-3. read [Workflow](workflow.md)
-4. read [Memory](memory.md)
-5. read [Visual Workflow](visual-workflow.md)
-6. read [Use Case Workflows](use-case-workflows.md)
-7. read [Examples](examples.md)
+## 🏛 Core Philosophy
 
-If you are adopting the kit in a real repository:
+This kit is built on the belief that **AI agents are implementation partners, not architects.** By enforcing a rigorous, artifact-first workflow, we ensure that:
+1.  **Intent is captured** before code is written.
+2.  **Engineering decisions are durable** and survive session resets.
+3.  **Quality is verifiable** through evidence-based reviews.
 
-1. read [Adoption](adoption.md)
-2. read [Supported Agents](supported-agents.md)
-3. read [Memory](memory.md)
-4. read [Integrations](integrations.md)
-5. read [Reference](reference.md)
+---
 
-Runtime starter files are checked in under `adapters/` for:
+## 🤝 Community & Support
 
-- `AGENTS.md`
-- `CLAUDE.md`
-- `.github/copilot-instructions.md`
-- `GEMINI.md`
-
-If you maintain the kit itself:
-
-1. read [Maintainers](maintainers.md)
-2. read [Skill Anatomy](skill-anatomy.md)
+*   [**Report a Bug**](https://github.com/thaihai-swe/ai-agents-dev-kit/issues)
+*   [**Propose a Feature**](https://github.com/thaihai-swe/ai-agents-dev-kit/discussions)

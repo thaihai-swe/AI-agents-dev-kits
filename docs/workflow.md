@@ -1,240 +1,126 @@
-# Workflow
+# Core Workflow: The 7-Skill Lifecycle
 
-## Workflow Model
+This guide provides the authoritative map of the AI Agents Development Kit workflow. It covers the 7-skill model, artifact transitions, and common delivery profiles.
 
-This kit separates durable repository context from change-specific work.
+---
 
-Durable repo memory:
+## 1. Workflow Overview
 
-- `memories/repo/constitution.md`
-- `memories/repo/project-knowledge-base.md`
+The kit uses a **Spec-Anchored** model where artifacts are the primary source of truth. The flow is designed to eliminate ambiguity early and prevent drift during execution.
 
-Per-feature artifacts:
+```mermaid
+flowchart TD
+    Start([Request or change])
 
-- `artifacts/features/<slug>/analysis.md`
-- `artifacts/features/<slug>/spec.md`
-- `artifacts/features/<slug>/requirements-review.md`
-- `artifacts/features/<slug>/design.md`
-- `artifacts/features/<slug>/plan.md`
-- `artifacts/features/<slug>/tasks.md`
-- `artifacts/features/<slug>/review.md`
-- `artifacts/features/<slug>/testing-scenarios.md`
+    Memory[/kit-memory/]
+    Research[/kit-research/]
+    Spec[/kit-spec/]
+    Plan[/kit-plan/]
+    Implement[/kit-implement/]
+    Verify[/kit-verify/]
+    Cleanup[/kit-cleanup/]
+    Done([Production Ready])
 
-## Why Artifacts Exist
+    Start --> Memory
+    Memory --> Research
+    Research --> Spec
+    Spec -->|locked| Plan
+    Spec -.->|clarification needed| Research
+    Plan --> Implement
+    Plan -.->|design issue| Spec
+    Implement --> Verify
+    Implement -.->|discovery| Plan
+    Verify -->|approved| Done
+    Verify -.->|drift detected| Spec
+    Cleanup --> Done
 
-Artifacts make the workflow reviewable and resumable.
+    classDef foundation fill:#eef6ff,stroke:#4a7bd1,color:#0f2547,stroke-width:1px;
+    classDef workflow fill:#f3efff,stroke:#7b5cd6,color:#26174a,stroke-width:1px;
+    classDef utility fill:#eefbf2,stroke:#2f8f5b,color:#163a22,stroke-width:1px;
+    classDef outcome fill:#fff6e8,stroke:#c98a2b,color:#4f3306,stroke-width:1px;
 
-Each artifact has one job. That is the main guard against scope drift and vague handoffs.
+    class Memory foundation;
+    class Research,Spec,Plan,Implement,Verify workflow;
+    class Cleanup utility;
+    class Start,Done outcome;
+```
 
-## Artifact Lifecycle
+---
 
-`analysis.md`
-- bounded discovery about the current system
-- reduces uncertainty before committing to a feature definition
-- not a durable repo-memory file
-- not a plan
+## 2. Stage Responsibilities
 
-`spec.md`
-- the statement of what should change and why
-- defines intent, scope, requirements, and acceptance criteria
-- not a technical plan
-- not a coding checklist
+### 🏗 Foundation
+*   **`/kit-memory`**: Manages the **Constitution** (Rules) and **Knowledge Base** (Facts). Handles the promotion of feature findings into global memory.
 
-`requirements-review.md`
-- the readiness judgment for the spec
-- prevents downstream work from starting on weak requirements
-- not a rewritten spec
+### 🚀 Feature Delivery
+*   **`/kit-research`**: Investigates current behavior and traces bugs. Produces `analysis.md`.
+*   **`/kit-spec`**: Defines "What & Why" using a **Socratic Wave**. Produces `spec.md` and runs a built-in readiness review (`requirements-review.md`).
+*   **`/kit-plan`**: Designs the technical approach (`design.md`) and decomposes work into bounded units (`tasks.md`) with **Automated Traceability**.
+*   **`/kit-implement`**: Executes tasks one at a time. Mark tasks `Done` only after fresh validation evidence is provided.
+*   **`/kit-verify`**: Audits the implementation. Enforces the **Spec-Drift Guardian** to ensure the code matches the specification.
 
-`design.md`
-- technical clarification for features that need it
-- removes planning ambiguity
-- not a task list
+### 🧹 Maintenance
+*   **`/kit-cleanup`**: Performs surgical refactoring and debt removal without changing behavior.
 
-`plan.md`
-- the execution strategy
-- translates approved intent into sequencing, boundaries, validation, and rollout thinking
-- not production code
-- not a patch-level implementation diff
+---
 
-`tasks.md`
-- bounded execution units derived from the plan
-- lets implementation happen in reviewable slices
-- not a loose brainstorm list
+## 3. Artifact Lifecycle
 
-`review.md`
-- durable implementation review findings when useful
-- preserves what was checked and what issues remain
-- not mandatory for every tiny change
+| Artifact | Purpose | Role in Workflow |
+| :--- | :--- | :--- |
+| **`analysis.md`** | Evidence-based discovery. | Reduces uncertainty before specification. |
+| **`spec.md`** | Functional requirements. | The **Source of Truth** for the feature. |
+| **`design.md`** | Technical decisions. | Resolves architectural ambiguity. |
+| **`plan.md`** | Execution strategy. | Defines sequencing and rollout phases. |
+| **`tasks.md`** | Atomic work units. | Tracks progress and validation evidence. |
+| **`review.md`** | Verification audit. | Durable record of requirement coverage. |
 
-`testing-scenarios.md`
-- a human-run manual testing guide for delivered behavior
-- turns implemented or reviewed scope into clear tester-facing scenarios
-- not an automated test suite
-- not a replacement for implementation review
+---
 
-Optional supporting repo memory:
+## 4. Delivery Profiles (Adaptive Rigor)
 
-- `memories/repo/domain-specs.md` explains when large repositories may add subsystem-level current-state docs under a `specs/` directory
+Not every change needs the full 7-skill path. Choose the profile that matches your risk level.
 
-## Repo Memory Vs Feature Artifacts
+| Profile | Flow | Use Case |
+| :--- | :--- | :--- |
+| **Standard** | Research → Spec → Plan → Implement → Verify | Most new features or complex changes. |
+| **Fast-Track** | Spec → Implement → Verify | Minor updates or established patterns. |
+| **Hotfix** | Research → Implement → Verify | Urgent bug fixes where the spec is the bug report. |
 
-Use repo memory for:
+---
 
-- durable rules
-- durable architecture and integration context
-- recurring patterns
+## 5. Use-Case Loops (Scenarios)
 
-Use feature artifacts for:
+### A. New Feature Scenario
+Building a feature that doesn't exist yet and affects multiple systems.
+**Path:** `kit-research` → `kit-spec` → `kit-plan` → `kit-implement` → `kit-verify`.
 
-- feature-specific decisions
-- current feature constraints
-- work-in-progress clarification, planning, tasks, and review
+### B. Brownfield Feature Scenario
+Adding to or improving an existing feature area with established patterns.
+**Path:** `kit-research` → `kit-spec` → `kit-plan` (optional) → `kit-implement` → `kit-verify`.
 
-## Stage Responsibilities
+### C. Bug Fix Scenario
+Fixing a defect with clear reproduction steps.
+**Path:** `kit-research` (Root Cause) → `kit-spec` (Repair Scope) → `kit-implement` → `kit-verify`.
 
-### Foundation Skills
+### D. Tiny Change Scenario
+Low-risk changes: typo fixes, config tweaks, or simple style improvements.
+**Path:** `kit-spec` → `kit-implement`.
 
-`/constitution`
-- creates or maintains durable repo-wide rules and guardrails
+---
 
-`/project-knowledge-base`
-- creates or maintains durable descriptive repository context
+## 6. Common Feedback Loops
 
-### Feature Workflow Skills
+*   **"Discovery" Loop:** Implementation reveals a technical hurdle. **Action:** Return to `/kit-plan` to adjust design or tasks.
+*   **"Clarification" Loop:** Planning reveals a requirement gap. **Action:** Return to `/kit-spec` to update the specification.
+*   **"Drift" Loop:** Verification finds code that isn't in the spec. **Action:** Either remove the code or update the spec using `/kit-spec`.
 
-`/analyze`
-- investigates current behavior, bugs, and brownfield constraints
+---
 
-`/spec-requirement`
-- defines what should change and why, including the requirement boundary, key scenarios, constraints, and acceptance clarity
+## 6. The Quality Bar
 
-`/spec-review-requirements`
-- judges whether the spec is ready for design or planning
-
-`/spec-design`
-- resolves technical ambiguity when planning needs design decisions
-
-`/spec-plan`
-- turns approved intent into execution strategy
-
-`/spec-tasks`
-- turns the plan into bounded implementation slices
-
-`/spec-implement`
-- executes one bounded task at a time with validation
-
-`/spec-review`
-- reviews delivered work against artifacts and evidence
-
-`/spec-testing-scenarios`
-- creates a human-run testing guide for delivered behavior
-
-### Helper Skills
-
-`/memory-promotion`
-- decides whether a finding should move into durable repo memory, escalate into the constitution, or remain in feature artifacts
-
-`/task-traceability-audit`
-- checks whether `REQ -> AC -> TASK -> validation` coverage is complete and trustworthy
-
-## How Helpers Fit
-
-Use `/memory-promotion` after analysis, design, implementation, or review when durable findings emerge.
-
-Use `/task-traceability-audit` after task generation, during implementation, or during implementation review when traceability confidence matters.
-
-## Verification First
-
-Do not treat a plausible diff as completion.
-
-At implementation and review time:
-
-- identify the concrete proof for the current task
-- run the proof after the change, not just before it
-- read the output before updating task state or review verdicts
-- move backward when the evidence does not support the claimed outcome
-
-Fresh verification evidence is part of the workflow contract, not an optional courtesy.
-
-## Test-First Default
-
-For behavior-changing work, prefer starting with a failing test or other failing proof when practical.
-
-That default is strong, but not dogmatic:
-
-- use a targeted failing automated test when the change is testable that way
-- use the smallest bounded failing proof available when the work is manual, UI-heavy, or integration-heavy
-- do not force heavyweight scaffolding onto tiny or non-behavioral changes
-
-## Debugging Path
-
-When the requested change is a bug fix or brownfield repair:
-
-1. reproduce the symptom or gather the strongest available evidence
-2. inspect the boundary where the wrong behavior becomes visible
-3. trace backward until the root cause is clearer than the symptom
-4. define the narrow repair in `spec.md`, `plan.md`, and `tasks.md`
-5. verify the fix against the observed failure mode
-
-Do not treat error suppression, retries, or defensive patches as a fix unless the artifacts explicitly justify that approach.
-
-## When Steps Are Optional
-
-`/constitution` and `/project-knowledge-base` are required only when durable repo memory does not already exist or needs amendment.
-
-`/analyze` is optional when current behavior is already obvious.
-
-`/spec-review-requirements` may be skipped only when the change is tiny, obvious, and low-risk.
-
-`/spec-design` is optional when planning can proceed safely from the spec without reopening technical choices.
-
-`/spec-testing-scenarios` is optional when a manual testing guide is unnecessary.
-
-## Team And Multi-Agent Coordination
-
-When multiple people or agents work in the same repository, artifact-first discipline becomes critical.
-
-**Key principles:**
-
-- stabilize upstream artifacts (`spec.md`, `plan.md`, `tasks.md`) before parallelizing implementation
-- serialize edits to shared planning artifacts
-- parallelize only bounded implementation tasks with clear file boundaries
-- assign one owner per parallel task batch
-- revalidate after parallel work lands
-
-For detailed coordination rules, including how to avoid race conditions and task-state drift, see [Adoption → Team And Multi-Agent Rule](adoption.md#team-and-multi-agent-rule).
-
-## Stop Conditions
-
-Stop and move backward when:
-
-- the request is still too unclear to specify safely
-- requirements review says the spec is not ready
-- design ambiguity still blocks planning
-- the plan is not decomposable into safe tasks
-- the selected task is broader or more ambiguous than the artifacts claim
-- implementation evidence is too weak to support completion
-
-## Implementation And Review Loop
-
-After `tasks.md` exists, the normal delivery loop is:
-
-1. select the next unblocked task
-2. verify the task preconditions and upstream artifacts still match reality
-3. implement only the bounded task
-4. run the proving validation
-5. update task state from evidence
-6. run implementation review
-7. fix findings or reopen the upstream artifact if the issue is not local
-8. re-review until the evidence and artifacts agree
-
-That loop is normal. Re-review is not a failure mode.
-
-## Quality Bar
-
-The workflow is working correctly when:
-
-- artifacts become more specific as work moves downstream
-- downstream stages do not invent missing upstream decisions
-- review and validation are based on evidence, not plausibility
-- `REQ -> AC -> TASK -> validation` stays intact
+The workflow is successful when:
+1.  **Downstream stages do not "invent" requirements.** (They follow the Spec).
+2.  **Implementation is evidence-based.** (Tests/Logs prove the change).
+3.  **Traceability is intact.** (`REQ -> TASK -> TEST`).
+4.  **Zero Drift exists.** (Spec and Code are in sync).

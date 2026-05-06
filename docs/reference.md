@@ -1,231 +1,101 @@
-# Reference
-
-## Commands
-
-`/constitution`
-- creates `memories/repo/constitution.md`
-- use when setting durable repo-wide rules
-- stop when the requested content is really descriptive context rather than a durable rule
-
-`/project-knowledge-base`
-- creates or updates `memories/repo/project-knowledge-base.md`
-- use when capturing durable descriptive repository context
-- stop when the content is feature-specific or should be a rule in the constitution
-
-`/analyze`
-- creates `artifacts/features/<slug>/analysis.md`
-- use when current behavior, bugs, or brownfield constraints need evidence first
-- stop when the request is really asking for a spec, design, or plan instead of discovery
-
-`/spec-requirement`
-- creates or updates `artifacts/features/<slug>/spec.md`
-- use when defining what should change and why, including users, scenarios, constraints, dependencies, and acceptance criteria
-- stop when users, scope, success outcomes, or acceptance criteria are still blocked
-
-`/spec-review-requirements`
-- creates or updates `artifacts/features/<slug>/requirements-review.md`
-- verdicts: `ready`, `ready with minor issues`, `not ready`
-- use when judging whether `spec.md` is ready for design or planning
-- stop when `spec.md` is missing or clearly not ready
-
-`/spec-design`
-- creates or updates `artifacts/features/<slug>/design.md`
-- use when planning depends on technical clarification
-- stop when `spec.md` is missing, not ready, or design is unnecessary
-
-`/spec-plan`
-- creates or updates `artifacts/features/<slug>/plan.md`
-- use when the spec is approved and clarified
-- stop when blocking clarification remains, design is required but missing, or sequencing is unsafe
-
-`/spec-tasks`
-- creates or updates `artifacts/features/<slug>/tasks.md`
-- use when the plan is ready to decompose into bounded execution units
-- stop when the plan is not taskable or traceability would be incomplete
-
-`/spec-implement`
-- updates code, tests, and `tasks.md`
-- task states: `Not Started`, `In Progress`, `Blocked`, `Done`, `Deferred`
-- use when the next unblocked task is ready to execute
-- stop when required artifacts are missing or the selected task is blocked or ambiguous
-
-`/spec-review`
-- runs the implementation review stage
-- may create `artifacts/features/<slug>/review.md`
-- verdicts: `approved`, `approved with follow-ups`, `changes required`
-- use when implementation work has been attempted and needs verification
-- stop when implementation has not actually been attempted or review evidence is missing
-
-`/spec-testing-scenarios`
-- creates or updates `artifacts/features/<slug>/testing-scenarios.md`
-- use when delivered behavior needs a human-run manual testing guide
-- stop when implementation is too incomplete to describe meaningful manual scenarios
-
-`/memory-promotion`
-- does not own a fixed artifact
-- use when deciding whether a finding should go to `project-knowledge-base.md`, `constitution.md`, or remain in feature artifacts
-- stop when the finding is still too uncertain or feature-local to promote
-
-`/task-traceability-audit`
-- does not own a fixed artifact
-- use when checking `REQ -> AC -> TASK -> validation` coverage during tasks, implementation, or review
-- stop when the underlying artifacts are too incomplete to audit meaningfully
-
-## Support Commands
-
-`bash scripts/bootstrap-kit.sh`
-- creates canonical folders when missing
-- creates starter `memories/repo/constitution.md` and `memories/repo/project-knowledge-base.md` files when missing
-- creates a thin `AGENTS.md` stub only when no other supported runtime entrypoint exists
-- does not install `skills/` into another repository
-
-`bash scripts/check-kit-consistency.sh`
-- verifies required skill sections exist
-- verifies skill-local referenced files exist
-- verifies canonical memory snippets and command aliases remain aligned across core docs and adapters
-- verifies claimed runtime adapters and checked-in example fixtures still match the documented product surface
-
-## Companion Guides
-
-- [Supported Agents](supported-agents.md)
-- [Debugging](debugging.md)
-- [Understanding Existing Code](understanding-existing-code.md)
-
-## Quick Operating Rules
-
-Verification:
-
-- completion claims require fresh evidence
-- task states should reflect observed results, not optimistic intent
-- review verdicts should match the current evidence, not the size of the diff
-
-Debugging:
-
-- reproduce first when practical
-- inspect boundaries before proposing repairs
-- fix the root cause, not only the visible symptom
-
-Implementation loop:
-
-- implement one bounded task
-- validate it
-- review it
-- fix or reopen the upstream artifact
-- re-review until the record is coherent
-
-## Command Groups
-
-Foundation:
-
-- `/constitution`
-- `/project-knowledge-base`
-
-Feature workflow:
-
-- `/analyze`
-- `/spec-requirement`
-- `/spec-review-requirements`
-- `/spec-design`
-- `/spec-plan`
-- `/spec-tasks`
-- `/spec-implement`
-- `/spec-review`
-- `/spec-testing-scenarios`
-
-Helpers:
-
-- `/memory-promotion`
-- `/task-traceability-audit`
-
-## Artifact Roles
-
-`constitution.md`
-- durable repo-wide rules
-
-`project-knowledge-base.md`
-- durable descriptive repository context
-
-`analysis.md`
-- bounded current-state investigation
-
-`spec.md`
-- feature intent, scope, requirements, and acceptance criteria
-
-`requirements-review.md`
-- readiness judgment for the spec
-
-`design.md`
-- technical decisions and tradeoffs when needed
-
-`plan.md`
-- execution strategy
-
-`tasks.md`
-- bounded implementation units with validation and task-state tracking
-
-`review.md`
-- durable implementation review findings when useful
-
-`testing-scenarios.md`
-- human-run test guide
-
-## Helper Skill Roles
-
-`/memory-promotion`
-- promotion decision support for durable repository memory
-
-`/task-traceability-audit`
-- traceability verification across requirements, acceptance criteria, tasks, and validation
-
-## Terminology
-
-Skill
-- a workflow contract stored in `skills/*/SKILL.md`
-
-Reference
-- a bundled support file stored in `skills/*/references/`
-
-Constitution
-- the normative repo-memory file
-
-Project knowledge base
-- the descriptive repo-memory file
-
-Feature artifact
-- a per-feature document under `artifacts/features/<slug>/`
-
-Specification
-- the statement of what should change and why, stored as `spec.md`
-
-Requirements review
-- the readiness judgment for the spec, stored as `requirements-review.md`
-
-Design
-- technical clarification used when planning depends on it, stored as `design.md`
-
-Plan
-- the execution strategy for a feature, stored as `plan.md`
-
-Tasks
-- bounded execution units derived from the plan, stored as `tasks.md`
-
-Review
-- the implementation verification step that checks delivered work against approved artifacts
-
-Taskability
-- the quality of a plan being decomposable into bounded, reviewable, validation-backed tasks without forcing the implementer to invent missing strategy
-
-Artifact-first
-- artifacts, not chat, are the durable source of truth
-
-Repo memory
-- durable repository-wide context under `memories/repo/`
-
-Feature artifacts
-- change-specific files under `artifacts/features/<slug>/`
-
-Traceability
-- keeping `REQ -> AC -> TASK -> validation` intact
-
-Thin adapter
-- a client entrypoint file that points to the workflow without duplicating it
+# Technical Reference
+
+This page provides a searchable directory of commands, artifacts, and standards used in the AI Agents Development Kit.
+
+---
+
+## 🛠 Commands & Aliases
+
+| Command | Internal Skill | Primary Artifact | Purpose |
+| :--- | :--- | :--- | :--- |
+| **`/kit-memory`** | `kit-memory` | `constitution.md` | Manage durable rules and facts. |
+| **`/kit-research`** | `kit-research` | `analysis.md` | Investigate current behavior or bugs. |
+| **`/kit-spec`** | `kit-spec` | `spec.md` | Define What & Why (Socratic Wave). |
+| **`/kit-adr`** | `kit-adr` | `adr-log.md` | Record architectural decisions and trade-offs. |
+| **`/kit-plan`** | `kit-plan` | `tasks.md` | Design approach and task breakdown. |
+| **`/kit-implement`** | `kit-implement` | N/A | Surgical coding and validation. |
+| **`/kit-verify`** | `kit-verify` | `review.md` | Implementation audit and drift check. |
+| **`/kit-cleanup`** | `kit-cleanup` | N/A | Surgical refactoring and debt removal. |
+
+---
+
+## 📄 Artifact Schemas
+
+| Artifact | Location | Ownership | Role |
+| :--- | :--- | :--- | :--- |
+| **`constitution.md`** | `memories/repo/` | `kit-memory` | Normative rules and guardrails. |
+| **`project-knowledge-base.md`** | `memories/repo/` | `kit-memory` | Descriptive architecture and patterns. |
+| **`adr-log.md`** | `memories/repo/` | `kit-adr` | Central log of all architecture decisions. |
+| **`analysis.md`** | `artifacts/features/<slug>/` | `kit-research` | Discovery findings. |
+| **`spec.md`** | `artifacts/features/<slug>/` | `kit-spec` | Functional requirements (Source of Truth). |
+| **`design.md`** | `artifacts/features/<slug>/` | `kit-plan` | Technical architecture decisions. |
+| **`plan.md`** | `artifacts/features/<slug>/` | `kit-plan` | Staged implementation strategy. |
+| **`tasks.md`** | `artifacts/features/<slug>/` | `kit-plan` | Atomic, traceable work units. |
+| **`review.md`** | `artifacts/features/<slug>/` | `kit-verify` | Verification evidence and audit findings. |
+
+---
+
+## 🚦 State & Verdict Names
+
+### Task Status (`tasks.md`)
+*   `Not Started`: Default state.
+*   `In Progress`: Actively being implemented.
+*   `Blocked`: Dependent on another task or external input.
+*   `Done`: Code written, tests passed, evidence provided.
+
+### Review Verdicts (`review.md`)
+*   `Approved`: Implementation fully meets artifacts.
+*   `Changes Required`: Significant drift or failing validation.
+
+### Requirements Verdicts (`requirements-review.md`)
+*   `Ready`: Spec is complete and testable.
+*   `Not Ready`: Ambiguity remains; iterate on `spec.md`.
+
+---
+
+## 🤖 Agent Capability Matrix
+
+The kit is adapter-driven. Each environment uses a thin entrypoint pointing back to the core logic in `skills/`.
+
+| Client | Discovery Path | Optimized For |
+| :--- | :--- | :--- |
+| **Gemini CLI** | `GEMINI.md` | Large context windows & native tool-calling. |
+| **Claude Code** | `CLAUDE.md` | Command-line execution & sub-agent orchestration. |
+| **Cursor** | `.cursorrules` | Real-time code indexing & `@artifact` referencing. |
+| **GitHub Copilot** | `.github/instructions.md` | IDE-integrated chat and file-anchored context. |
+
+---
+
+## 🏛 Skill Anatomy Standard
+
+To maintain high agentic reliability, every `SKILL.md` must follow this 10-section structure:
+
+1.  **Overview**: Boundary and non-goals.
+2.  **When to Use**: Trigger conditions and routing.
+3.  **Read First**: Mandatory context paths.
+4.  **Workflow**: Ordered, imperative steps.
+5.  **Stop Conditions**: Escalation gates.
+6.  **Core Rules**: Non-negotiable constraints.
+7.  **Common Rationalizations**: Prevention of anti-patterns.
+8.  **Red Flags**: Observable signs of failure.
+9.  **Verification**: Evidence-based completion criteria.
+10. **Output Rules**: File mutation boundaries.
+
+---
+
+## 🏗 Directory Structure
+
+```text
+/
+├── AGENTS.md           # Client Adapter
+├── skills/             # Core Logic (The "Contracts")
+│   └── kit-<name>/
+│       ├── SKILL.md
+│       └── references/ # Templates
+├── memories/repo/      # Durable Global Memory
+├── artifacts/          # Feature-Specific State
+│   ├── features/
+│   │   └── <slug>/     # Active Work
+│   └── examples/       # Golden Fixtures
+└── docs/               # Technical Documentation
+```

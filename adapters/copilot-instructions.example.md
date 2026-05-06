@@ -1,18 +1,20 @@
-# Copilot Instructions
+# GitHub Copilot Instructions
 
-This repository uses an artifact-first workflow.
+Use the existing workflow in `skills/` instead of improvising from chat history.
 
-- the canonical workflow contract lives in `skills/`
-- durable repository memory lives in `memories/repo/`
-- feature artifacts live in `artifacts/features/<slug>/`
-- choose the matching existing skill before freeform implementation
-- do not skip forward when the upstream artifact is weak
-- do not claim completion without fresh verification evidence
+- choose the matching skill before freeform work
+- use `memories/repo/` for durable repository context
+- use `artifacts/features/<slug>/` for feature-specific artifacts
+- move backward to the missing upstream artifact when blocked
 
-Use only thin aliases to the existing skills:
+## Skill Mapping
 
-- `/spec-review` should map to the existing implementation-review stage
-- `/memory-promotion` should map to the existing memory-promotion stage
-- `/task-traceability-audit` should map to the existing audit stage
+- `/kit-memory`: manage memories/repo/constitution.md and memories/repo/project-knowledge-base.md
+- `/kit-research`: investigate current behavior or bugs
+- `/kit-spec`: define what and why (with Socratic Wave)
+- `/kit-plan`: design technical approach and breakdown tasks
+- `/kit-implement`: execute tasks surgically
+- `/kit-verify`: verify implementation and drift
+- `/kit-cleanup`: perform maintenance refactoring
 
-Use a thin `.github/instructions/*` layer only to point back to the canonical workflow.
+Keep routing thin; keep detailed behavior in `skills/`.
