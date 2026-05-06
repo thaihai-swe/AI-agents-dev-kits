@@ -1,6 +1,5 @@
 
 ## 0. Non-negotiables
-For Python is always use with virtualenv.
 
 These rules override everything else in this file when in conflict:
 
@@ -10,8 +9,7 @@ These rules override everything else in this file when in conflict:
 4. **Stop when confused.** If the task has two plausible interpretations, ask. Do not pick silently and proceed.
 5. **Touch only what you must.** Every changed line must trace directly to the user's request. No drive-by refactors, reformatting, or "while I was in there" cleanups.
 6. **Use the matching skill before freeform work.** In this repo, `skills/` is the workflow contract. Do not improvise around it when an existing skill applies.
-
----
+7. **Follow SOLID principles.**
 
 ---
 
@@ -41,7 +39,7 @@ These rules override everything else in this file when in conflict:
 - If you find yourself adding "for future extensibility", stop. Future extensibility is a future decision.
 - Bias toward deleting code over adding code. Shipping less is almost always better.
 
-The test: would a senior engineer reading the diff call this overcomplicated? If yes, simplify.
+
 
 ---
 
@@ -55,7 +53,7 @@ The test: would a senior engineer reading the diff call this overcomplicated? If
 - Do clean up orphans created by your own changes (unused imports, variables, functions your edit made obsolete).
 - Match the project's existing style exactly: indentation, quotes, naming, file layout.
 
-The test: every changed line traces directly to the user's request. If a line fails that test, revert it.
+
 
 ---
 
@@ -63,25 +61,10 @@ The test: every changed line traces directly to the user's request. If a line fa
 
 **Goal: define success as something you can verify, then loop until verified.**
 
-Rewrite vague asks into verifiable goals before starting:
-
-- "Add validation" becomes "Write tests for invalid inputs (empty, malformed, oversized), then make them pass."
-- "Fix the bug" becomes "Write a failing test that reproduces the reported symptom, then make it pass."
-- "Refactor X" becomes "Ensure the existing test suite passes before and after, and no public API changes."
-- "Make it faster" becomes "Benchmark the current hot path, identify the bottleneck with profiling, change it, show the benchmark is faster."
-
-For multi-step tasks, state a brief plan in this shape:
-
-```text
-1. [Step] -> verify: [check]
-2. [Step] -> verify: [check]
-3. [Step] -> verify: [check]
-```
-
 For every task:
 
 1. State the success criteria before writing code.
-2. Write the verification (test, script, benchmark, screenshot diff) where practical.
+2. Write the verification (script, benchmark, screenshot diff) where practical.
 3. Run the verification. Read the output. Do not claim success without checking.
 4. If the verification fails, fix the cause, not the test.
 
@@ -148,30 +131,7 @@ After every session where the agent did something wrong:
 
 ---
 
-## 10. Project context
 
-**Fill this in per project. Keep it specific. Delete sections that don't apply.**
-
-### Stack
-- Language and version: Markdown plus repository-local skill contracts (`SKILL.md`)
-- Framework(s): Agent Skills-style workflow packaging
-- Package manager: none
-- Runtime / deployment target: repository consumed by AI coding agents
-
-
-### Conventions specific to this repo
-- Naming: keep skill names, artifact names, verdict names, and task states stable unless the owning skill and docs change together
-- Import style: not applicable
-- Error handling pattern: not applicable
-- Testing pattern and framework: validate by checking skill-template-doc alignment and running lightweight repo scripts when present
-
-### Forbidden
-- creating a new workflow outside `skills/` without updating the owning contract
-- renaming canonical artifact or memory paths in docs only
-- teaching one client a different workflow order than the core kit
-- adding docs that compete with or contradict `SKILL.md`
-
----
 
 ## 11. Project Learnings
 
@@ -179,4 +139,3 @@ After every session where the agent did something wrong:
 
 When the user corrects your approach, append a one-line rule here before ending the session. Write it concretely ("Always use X for Y"), never abstractly ("be careful with Y"). If an existing line already covers the correction, tighten it instead of adding a new one. Remove lines when the underlying issue goes away (model upgrades, refactors, process changes).
 
----
